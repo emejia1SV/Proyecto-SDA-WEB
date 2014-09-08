@@ -1,0 +1,23 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="./vistas/commons/commonTemplate.xhtml">
+
+	
+	<ui:define name="content">
+	<br/><br/><br/><br/><br/><br/><br/><br/>
+	  <h:form>
+		   <center>
+			  <h:outputText value="#{sessionExpiredMB.mensaje}"  style="font-size: 25px;" /> 
+			   <br/><br/>
+			   <h:commandLink action="/vistas/commons/Logout.xhtml" value="Click aqui" />
+			    <h:outputText value=" para iniciar session nuevamente" /> 
+		   </center>
+	   </h:form>
+	</ui:define>
+
+
+</ui:composition>

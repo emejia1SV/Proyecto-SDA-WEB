@@ -1,0 +1,53 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="./../commons/template.xhtml">
+
+	<f:metadata>
+		<f:event
+			listener="#{usuarioSessionMB.validarSesion()}"
+			type="preRenderView" />
+		<f:event
+			listener="#{usuarioSessionMB.mostrarMensajeValidacion()}"
+			type="postAddToView" />
+		<f:event 
+			listener="#{usuarioSessionMB.validarAccesoPagina()}" 
+			type="preRenderView"/>
+		
+	</f:metadata>
+
+	<ui:define name="content">
+		<p:panel	id="IDPanel"
+					header="#{msj['depuracionMasiva.header']}"
+					style="#{msj['p.panelGrande']} margin-top: 10pt;">
+			<h:form id="IDFrmPrincipal">
+			
+			<p:panelGrid	id="IDPnlGridDepuracionMasiva">
+				<p:row>
+					<p:column style="#{msj['p.column_width_mediano']}">
+						<h:outputText value="#{msj['depuracionMasiva.numeros']}" />
+					</p:column>
+					<p:column>
+						<h:inputFile 	id="file" 
+										value="#{subirArchivoBean.file}"
+										validator="#{subirArchivoBean.validateFile}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<center>
+					<p:commandButton 	value="#{msj['p.commandButton_depurar']}"
+										actionListener="#{depuracionMasivaBean.accionDepuacion()}"
+										id="IDCmdBtnDepuracionMasiva"/>
+			</center>			
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
