@@ -23,7 +23,7 @@
 		<p:panel	id="IDPanel"
 					header="#{msj['depuracionMasiva.header']}"
 					style="#{msj['p.panelGrande']} margin-top: 10pt;">
-			<h:form id="IDFrmPrincipal">
+			<h:form id="IDFrmPrincipal" enctype="multipart/form-data">
 			
 			<p:panelGrid	id="IDPnlGridDepuracionMasiva">
 				<p:row>
@@ -31,9 +31,8 @@
 						<h:outputText value="#{msj['depuracionMasiva.numeros']}" />
 					</p:column>
 					<p:column>
-						<h:inputFile 	id="file" 
-										value="#{subirArchivoBean.file}"
-										validator="#{subirArchivoBean.validateFile}" />
+						<p:fileUpload 	value="#{subirArchivoBean.file}"
+										mode="simple" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>
@@ -42,10 +41,10 @@
 			<br/>
 			<br/>
 			<br/>
-			<center>
-					<p:commandButton 	value="#{msj['p.commandButton_depurar']}"
-										actionListener="#{depuracionMasivaBean.accionDepuacion()}"
-										id="IDCmdBtnDepuracionMasiva"/>
+			<center>					
+				<p:commandButton 	value="#{msj['p.commandButton_depurar']}"
+									actionListener="#{depuracionMasivaBean.uploadFile()}"
+									id="IDCmdBtnDepuracionMasiva"/>
 			</center>			
 			</h:form>
 		</p:panel>

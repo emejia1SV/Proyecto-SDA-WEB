@@ -8,6 +8,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
+
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
 @ManagedBean
@@ -15,6 +18,7 @@ import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 public class DepuracionMasivaBean extends AccionesManageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private UploadedFile file;
 	private List<String> numerosMoviles;
 
 	@PostConstruct
@@ -22,10 +26,28 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	{
 		numerosMoviles = new ArrayList<String>();
 	}
+     
+	
+	public void uploadFile(FileUploadEvent event) {
+        byte[] file = event.getFile().getContents();
 
+        System.out.println("MADE IT INTO FILE UPLOAD !!! ");
+   }
+	
+    public void upload() 
+    {
+    	System.out.println("entre a obtener el archivo");
+        if(file != null) 
+        {
+        	accionDepuacion();
+            lanzarMensajeInformacion("Archivo:", "Se subio el archivo exitosamente");
+        }
+    }
+    
 	public void accionDepuacion() 
 	{
-		try {
+		try 
+		{
 			System.out.println("Entre a depurar un numero");
 		} 
 		catch (Exception exception) 
@@ -44,4 +66,15 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	{
 		this.numerosMoviles = numerosMoviles;
 	}
+	
+	public UploadedFile getFile() 
+	{
+        return file;
+    }
+ 
+    public void setFile(UploadedFile file) 
+    {
+    	System.out.println("Recibiendo....");
+        this.file = file;
+    }
 }
