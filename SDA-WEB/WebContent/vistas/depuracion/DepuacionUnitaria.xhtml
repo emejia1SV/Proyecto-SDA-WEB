@@ -27,23 +27,31 @@
 			
 			<p:panelGrid	id="IDPnlGridDepuracionUnitaria">
 				<p:row>
+					<p:column/>
+					<p:column/>
+				</p:row>
+				<p:row>
 					<p:column style="#{msj['p.column_width_mediano']}">
 						<h:outputText value="#{msj['depuracionUnitaria.numero']}" />
 					</p:column>
 					<p:column>
 						<p:inputText	id="IDInptTxtMovil" 
+										value="#{depuracionUnitariaBean.numeroMovil}"
 										style="text-transform: uppercase; #{msj['p.inputText_width_mediano']}" />
 					</p:column>
 				</p:row>
+				<p:row>
+					<p:column/>
+					<p:column/>
+				</p:row>
+				<p:row>
+					<p:column/>
+					<p:column/>
+				</p:row>
 			</p:panelGrid>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
 			<center>
 					<p:commandButton 	value="#{msj['p.commandButton_depurar']}"
-										actionListener="#{depuracionUnitariaBean.accionDepuacion() }"
+										actionListener="#{depuracionUnitariaBean.accionDepuracion()}"
 										id="IDCmdBtnDepuracionUnitaria"/>
 			</center>			
 			</h:form>

@@ -1,6 +1,8 @@
 package sv.avantia.depurador.agregadores.view.managebean.viewscoped;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -14,17 +16,35 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 
 	private static final long serialVersionUID = 1L;
 	private String numeroMovil;
+	private List<String> numerosMoviles;
 
+	/**
+	 * Metodo {@link PostConstruct}
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
 	@PostConstruct
 	public void init() 
 	{
-
+		setNumerosMoviles(new ArrayList<String>());
 	}
 
-	public void accionDepuacion() 
+	/**
+	 * Metodo que depurará un numero de telefono en los agregadores
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @return void
+	 * */
+	public void accionDepuracion() 
 	{
-		try {
-			System.out.println("Entre a depurar un numero");
+		try 
+		{
+			getNumerosMoviles().add(getNumeroMovil());
+			for (String numero : getNumerosMoviles())
+        	{
+        		System.out.println(numero);
+        	}
+			lanzarMensajeInformacion("Flujo", "Se termino de procesar exitosamente");
 		} 
 		catch (Exception exception) 
 		{
@@ -41,6 +61,16 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	public void setNumeroMovil(String numeroMovil) 
 	{
 		this.numeroMovil = numeroMovil;
+	}
+
+	private List<String> getNumerosMoviles() 
+	{
+		return numerosMoviles;
+	}
+
+	private void setNumerosMoviles(List<String> numerosMoviles) 
+	{
+		this.numerosMoviles = numerosMoviles;
 	}
 
 }

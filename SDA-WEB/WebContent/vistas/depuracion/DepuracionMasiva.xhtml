@@ -27,25 +27,35 @@
 			
 			<p:panelGrid	id="IDPnlGridDepuracionMasiva">
 				<p:row>
+					<p:column/>
+					<p:column/>
+				</p:row>
+				<p:row>
 					<p:column style="#{msj['p.column_width_mediano']}">
 						<h:outputText value="#{msj['depuracionMasiva.numeros']}" />
 					</p:column>
 					<p:column>
-						<p:fileUpload 	value="#{subirArchivoBean.file}"
-										mode="simple" />
+						<p:fileUpload 	label="Subir archivo Excel" 
+										sizeLimit="1024000000" 
+										showButtons="false" 
+										id="mouFile" 
+										auto="false" 
+										fileUploadListener="#{depuracionMasivaBean.handleFileUpload}" 
+										mode="advanced"
+										allowTypes="/(\.|\/)(xlsx|xls)$/" 
+										style="width: 100%; max-width: 500px;" />
+						
 					</p:column>
 				</p:row>
+				<p:row>
+					<p:column/>
+					<p:column/>
+				</p:row>
+				<p:row>
+					<p:column/>
+					<p:column/>
+				</p:row>
 			</p:panelGrid>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<center>					
-				<p:commandButton 	value="#{msj['p.commandButton_depurar']}"
-									actionListener="#{depuracionMasivaBean.uploadFile()}"
-									id="IDCmdBtnDepuracionMasiva"/>
-			</center>			
 			</h:form>
 		</p:panel>
 	</ui:define>
