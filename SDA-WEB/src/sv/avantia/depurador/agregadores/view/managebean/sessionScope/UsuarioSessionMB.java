@@ -101,7 +101,7 @@ public class UsuarioSessionMB implements Serializable {
 			getMenus().add(	new MenuT("6", "Masivo", "4",  "/vistas/reportes/ReportesDepuracionMasiva.xhtml"));
 			
 			getMenus().add(	new MenuT("7", "Manteniento", null, null));
-			getMenus().add(	new MenuT("8", "Paises", "7",  "/vistas/mantenimientos/Paises.xhtml"));
+			getMenus().add(	new MenuT("8", "Parmetrización", "7",  "/vistas/mantenimientos/Parametrizacion.xhtml"));
 			getMenus().add(	new MenuT("9", "Agregadores", "7",  "/vistas/mantenimientos/Paises.xhtml"));
 			getMenus().add(	new MenuT("10", "Metodos", "7",  "/vistas/mantenimientos/Paises.xhtml"));
 			getMenus().add(	new MenuT("11", "Prametros", "7",  "/vistas/mantenimientos/Paises.xhtml"));

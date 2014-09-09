@@ -1,0 +1,160 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="./../commons/template.xhtml">
+
+	<f:metadata>
+		<f:event
+			listener="#{usuarioSessionMB.validarSesion()}"
+			type="preRenderView" />
+		<f:event
+			listener="#{usuarioSessionMB.mostrarMensajeValidacion()}"
+			type="postAddToView" />
+		<f:event 
+			listener="#{usuarioSessionMB.validarAccesoPagina()}" 
+			type="preRenderView"/>
+			
+	</f:metadata>
+
+	<ui:define name="content">
+		<p:panel	id="IDPanel"
+					header="#{msj['manto.parametrizacion.header']}"
+					style="#{msj['p.panelGrande']} margin-top: 10pt;">
+
+			<h:form id="IDFrmPrincipal">
+				 <h:panelGrid   id="panelGrid" 
+				 				columns="1" 
+				 				style="margin: 0 auto; width: 55%">
+
+                    <p:wizard 	id="wizard" 
+                    			onnext="startNivel40();startNivel60();startNivel80();startNivel100();" 
+                    			flowListener="#{parametrizacionBean.onFlowProcess}"   
+                    			backLabel="Atras" 
+                    			nextLabel="Siguiente" 
+                    			widgetVar="wiz" >
+                    			 
+                        <p:tab  titleStyleClass="text-normal-out" 
+                        		titleStyle="height:10px;"  
+                        		title="Paises"   
+                        		id="tab1">
+                        	<p:panelGrid	id="IDPnlGridTab1">
+								<p:row>
+									<p:column/>
+									uno
+									<p:column/>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+									</p:column>
+									<p:column>
+										
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column/>
+									<p:column/>
+								</p:row>
+								<p:row>
+									<p:column/>
+									<p:column/>
+								</p:row>
+							</p:panelGrid>
+                    	</p:tab>
+                    	
+                    	<p:tab  titleStyleClass="text-normal-out" 
+                        		titleStyle="height:10px;"  
+                        		title="Agregadores"   
+                        		id="tab2">
+                        	<p:panelGrid	id="IDPnlGridTab2">
+								<p:row>
+									<p:column/>
+									dos
+									<p:column/>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+									</p:column>
+									<p:column>
+										
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column/>
+									<p:column/>
+								</p:row>
+								<p:row>
+									<p:column/>
+									<p:column/>
+								</p:row>
+							</p:panelGrid>
+                    	</p:tab>
+                    	
+                    	<p:tab  titleStyleClass="text-normal-out" 
+                        		titleStyle="height:10px;"  
+                        		title="Metodos"   
+                        		id="tab3">
+                        	<p:panelGrid	id="IDPnlGridTab3">
+								<p:row>
+									<p:column/>
+									tres
+									<p:column/>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+									</p:column>
+									<p:column>
+										
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column/>
+									<p:column/>
+								</p:row>
+								<p:row>
+									<p:column/>
+									<p:column/>
+								</p:row>
+							</p:panelGrid>
+                    	</p:tab>
+                    	
+                    	<p:tab  titleStyleClass="text-normal-out" 
+                        		titleStyle="height:10px;"  
+                        		title="Parametros"   
+                        		id="tab4">
+                        	<p:panelGrid	id="IDPnlGridTab4">
+								<p:row>
+									<p:column/>
+									cuatro
+									<p:column/>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+									</p:column>
+									<p:column>
+										
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column/>
+									<p:column/>
+								</p:row>
+								<p:row>
+									<p:column/>
+									<p:column/>
+								</p:row>
+							</p:panelGrid>
+                    	</p:tab>
+                	</p:wizard>
+               	</h:panelGrid>
+                           
+				
+			
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>
