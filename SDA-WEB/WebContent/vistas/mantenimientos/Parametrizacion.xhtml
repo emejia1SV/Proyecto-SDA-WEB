@@ -25,13 +25,12 @@
 					style="#{msj['p.panelGrande']} margin-top: 10pt;">
 
 			<h:form id="IDFrmPrincipal">
-				 <h:panelGrid   id="panelGrid" 
+				 <p:panelGrid   id="panelGrid" 
 				 				columns="1" 
 				 				style="margin: 0 auto; width: 55%">
 
-                    <p:wizard 	id="wizard" 
-                    			onnext="startNivel40();startNivel60();startNivel80();startNivel100();" 
-                    			flowListener="#{parametrizacionBean.onFlowProcess}"   
+                    <p:wizard 	id="wizard"  
+                    			flowListener="#{parametrizacionBean.onFlowProcessx}"   
                     			backLabel="Atras" 
                     			nextLabel="Siguiente" 
                     			widgetVar="wiz" >
@@ -40,28 +39,63 @@
                         		titleStyle="height:10px;"  
                         		title="Paises"   
                         		id="tab1">
-                        	<p:panelGrid	id="IDPnlGridTab1">
+                        	<p:panelGrid 	id="IDPnlGridTab1" 
+                        					style="margin-top: 10pt; margin:0 auto;">
 								<p:row>
-									<p:column/>
-									uno
-									<p:column/>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-									</p:column>
 									<p:column>
-										
+										<h:outputText value="#{msj['manto.parametrizacion.pais.nombre']}" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.pais.nombre}" />
 									</p:column>
 								</p:row>
 								<p:row>
-									<p:column/>
-									<p:column/>
+									<p:column>
+										<h:outputText value="#{msj['manto.parametrizacion.pais.codigo']}" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.pais.codigo}" />
+									</p:column>
 								</p:row>
 								<p:row>
-									<p:column/>
-									<p:column/>
+									<p:column>
+										<h:outputText value="#{msj['manto.parametrizacion.pais.estado']}" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.pais.estado}" />
+									</p:column>
 								</p:row>
 							</p:panelGrid>
+							<p:dataTable 	id="IDDataTblUsuarioExterno" 
+											value="#{parametrizacionBean.paises}"
+											var="VDataTblPais"	
+											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+											paginator="true" 
+											rows="5"					
+											editable="true">
+						
+								<p:column 	headerText="#{msj['manto.parametrizacion.pais.nombre']}" 
+											filterBy="#{VDataTblPais.nombre}"
+											filterMatchMode="contains">
+									<h:outputText value="#{VDataTblPais.nombre}" />
+								</p:column>
+								<p:column 	headerText="#{msj['manto.parametrizacion.pais.codigo']}"
+											filterBy="#{VDataTblPais.codigo}"
+											filterMatchMode="contains">
+									<h:outputText value="#{VDataTblPais.codigo}" />
+								</p:column>
+								<p:column headerText="#{msj['manto.parametrizacion.pais.estado']}" >
+									<h:outputText value="#{VDataTblPais.estado}" />
+								</p:column>
+								<p:column>
+									<div style="float: left;">
+										<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+														actionListener="#{parametrizacionBean.cargarPais(VDataTblPais)}"
+														title="Editar Pais" 								
+														update=":IDFrmPrincipal"  />
+									</div>
+								</p:column>
+							</p:dataTable>	
                     	</p:tab>
                     	
                     	<p:tab  titleStyleClass="text-normal-out" 
@@ -70,25 +104,21 @@
                         		id="tab2">
                         	<p:panelGrid	id="IDPnlGridTab2">
 								<p:row>
-									<p:column/>
-									dos
-									<p:column/>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="#{msj['manto.parametrizacion.agregador.nombre']}"  />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.agregador.nombre_agregador}" />
+									</p:column>
 								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="#{msj['manto.parametrizacion.agregador.estado']}"  />
 									</p:column>
-									<p:column>
-										
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.agregador.estado}" />
 									</p:column>
-								</p:row>
-								<p:row>
-									<p:column/>
-									<p:column/>
-								</p:row>
-								<p:row>
-									<p:column/>
-									<p:column/>
-								</p:row>
+								</p:row>								
 							</p:panelGrid>
                     	</p:tab>
                     	
@@ -96,26 +126,83 @@
                         		titleStyle="height:10px;"  
                         		title="Metodos"   
                         		id="tab3">
-                        	<p:panelGrid	id="IDPnlGridTab3">
+                        	<p:panelGrid	id="IDPnlGridTab3_1">
+                        		<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="#{msj['manto.parametrizacion.metodo.wsdl']}" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.wsdl_Agregador}" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:commandButton value="Submit" actionListener="#{parametrizacionBean.readWSDL}" />
+									</p:column>
+								</p:row>
+                        	</p:panelGrid>
+                        	<p:panelGrid	id="IDPnlGridTab3_2">
 								<p:row>
-									<p:column/>
-									tres
-									<p:column/>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="#{msj['manto.parametrizacion.metodo.nombre']}" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.nombre}" />
+									</p:column>
 								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="inputMessageName" />
 									</p:column>
-									<p:column>
-										
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.inputMessageName}" />
 									</p:column>
 								</p:row>
 								<p:row>
-									<p:column/>
-									<p:column/>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="inputMessageText" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.inputMessageText}" />
+									</p:column>
 								</p:row>
 								<p:row>
-									<p:column/>
-									<p:column/>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="namespaceURI" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.namespaceURI}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="style" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.style}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="targetMethodName" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.targetMethodName}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="targetObjectURI" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.targetObjectURI}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="targetURL" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.targetURL}" />
+									</p:column>
 								</p:row>
 							</p:panelGrid>
                     	</p:tab>
@@ -126,32 +213,37 @@
                         		id="tab4">
                         	<p:panelGrid	id="IDPnlGridTab4">
 								<p:row>
-									<p:column/>
-									cuatro
-									<p:column/>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="id" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.parametro.id}" />
+									</p:column>
 								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="nombre" />
 									</p:column>
-									<p:column>
-										
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.parametro.nombre}" />
 									</p:column>
 								</p:row>
 								<p:row>
-									<p:column/>
-									<p:column/>
-								</p:row>
-								<p:row>
-									<p:column/>
-									<p:column/>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="tipo" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.parametro.tipo}" />
+									</p:column>
 								</p:row>
 							</p:panelGrid>
+							
+							<p:commandButton value="Submit" actionListener="#{parametrizacionBean.save}" />
+							
                     	</p:tab>
                 	</p:wizard>
-               	</h:panelGrid>
-                           
-				
-			
+               	</p:panelGrid>
+            
 			</h:form>
 		</p:panel>
 
