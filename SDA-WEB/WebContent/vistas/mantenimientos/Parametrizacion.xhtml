@@ -16,7 +16,6 @@
 		<f:event 
 			listener="#{usuarioSessionMB.validarAccesoPagina()}" 
 			type="preRenderView"/>
-			
 	</f:metadata>
 
 	<ui:define name="content">
@@ -65,8 +64,20 @@
 										<p:inputText value="#{parametrizacionBean.pais.estado}" />
 									</p:column>
 								</p:row>
+								<p:row>
+									<p:column>
+										<p:commandButton	id="IDCmdBtnLimpiarTab1" 
+															value="#{msj['p.commanButton_Nuevo']}" 
+															actionListener="#{parametrizacionBean.limpiarPais}" />
+									</p:column>
+									<p:column>
+										<p:commandButton	id="IDCmdBtnGuardarTab1" 
+															value="#{msj['p.commanButton_Guardar']}"  
+															actionListener="#{parametrizacionBean.guardarPais}" />
+									</p:column>
+								</p:row>
 							</p:panelGrid>
-							<p:dataTable 	id="IDDataTblUsuarioExterno" 
+							<p:dataTable 	id="IDDataTblPaises" 
 											value="#{parametrizacionBean.paises}"
 											var="VDataTblPais"	
 											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
@@ -118,8 +129,45 @@
 									<p:column style="#{msj['p.column_width_mediano_inputText']}">
 										<p:inputText value="#{parametrizacionBean.agregador.estado}" />
 									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>
+										<p:commandButton	id="IDCmdBtnLimpiarTab2" 
+															value="#{msj['p.commanButton_Nuevo']}" 
+															actionListener="#{parametrizacionBean.limpiarAgregador}" />
+									</p:column>
+									<p:column>
+										<p:commandButton	id="IDCmdBtnGuardarTab2" 
+															value="#{msj['p.commanButton_Guardar']}"  
+															actionListener="#{parametrizacionBean.guardarAgregador}" />
+									</p:column>
 								</p:row>								
 							</p:panelGrid>
+							<p:dataTable 	id="IDDataTblAgregadores" 
+											value="#{parametrizacionBean.agregadores}"
+											var="VDataTblAgregador"	
+											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+											paginator="true" 
+											rows="5"					
+											editable="true">
+						
+								<p:column 	headerText="#{msj['manto.parametrizacion.agregador.nombre']}" 
+											filterBy="#{VDataTblAgregador.nombre_agregador}"
+											filterMatchMode="contains">
+									<h:outputText value="#{VDataTblAgregador.nombre_agregador}" />
+								</p:column>
+								<p:column headerText="#{msj['manto.parametrizacion.agregador.estado']}" >
+									<h:outputText value="#{VDataTblAgregador.estado}" />
+								</p:column>
+								<p:column>
+									<div style="float: left;">
+										<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+														actionListener="#{parametrizacionBean.cargarAgregador(VDataTblAgregador)}"
+														title="Editar Agregador" 								
+														update=":IDFrmPrincipal"  />
+									</div>
+								</p:column>
+							</p:dataTable>	
                     	</p:tab>
                     	
                     	<p:tab  titleStyleClass="text-normal-out" 
@@ -204,7 +252,44 @@
 										<p:inputText value="#{parametrizacionBean.metodo.targetURL}" />
 									</p:column>
 								</p:row>
+								<p:row>
+									<p:column>
+										<p:commandButton	id="IDCmdBtnLimpiarTab3" 
+															value="#{msj['p.commanButton_Nuevo']}" 
+															actionListener="#{parametrizacionBean.limpiarMetodo}" />
+									</p:column>
+									<p:column>
+										<p:commandButton	id="IDCmdBtnGuardarTab3" 
+															value="#{msj['p.commanButton_Guardar']}"  
+															actionListener="#{parametrizacionBean.guardarMetodo}" />
+									</p:column>
+								</p:row>
 							</p:panelGrid>
+							<p:dataTable 	id="IDDataTblMetodos" 
+											value="#{parametrizacionBean.metodos}"
+											var="VDataTblMetodo"	
+											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+											paginator="true" 
+											rows="5"					
+											editable="true">
+						
+								<p:column 	headerText="#{msj['manto.parametrizacion.metodo.nombre']}" 
+											filterBy="#{VDataTblMetodo.nombre}"
+											filterMatchMode="contains">
+									<h:outputText value="#{VDataTblMetodo.nombre}" />
+								</p:column>
+								<p:column headerText="#{msj['manto.parametrizacion.metodo.wsdl']}" >
+									<h:outputText value="#{VDataTblMetodo.wsdl_Agregador}" />
+								</p:column>
+								<p:column>
+									<div style="float: left;">
+										<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+														actionListener="#{parametrizacionBean.cargarMetodo(VDataTblMetodo)}"
+														title="Editar Agregador" 								
+														update=":IDFrmPrincipal"  />
+									</div>
+								</p:column>
+							</p:dataTable>
                     	</p:tab>
                     	
                     	<p:tab  titleStyleClass="text-normal-out" 
@@ -212,14 +297,6 @@
                         		title="Parametros"   
                         		id="tab4">
                         	<p:panelGrid	id="IDPnlGridTab4">
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="id" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.parametro.id}" />
-									</p:column>
-								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
 										<h:outputText value="nombre" />
@@ -236,10 +313,44 @@
 										<p:inputText value="#{parametrizacionBean.parametro.tipo}" />
 									</p:column>
 								</p:row>
+								<p:row>
+									<p:column>
+										<p:commandButton	id="IDCmdBtnLimpiarTab4" 
+															value="#{msj['p.commanButton_Nuevo']}" 
+															actionListener="#{parametrizacionBean.limpiarParametro}" />
+									</p:column>
+									<p:column>
+										<p:commandButton	id="IDCmdBtnGuardarTab4" 
+															value="#{msj['p.commanButton_Guardar']}"  
+															actionListener="#{parametrizacionBean.guardarParametro}" />
+									</p:column>
+								</p:row>
 							</p:panelGrid>
-							
-							<p:commandButton value="Submit" actionListener="#{parametrizacionBean.save}" />
-							
+							<p:dataTable 	id="IDDataTblParametros" 
+											value="#{parametrizacionBean.parametros}"
+											var="VDataTblParametro"	
+											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+											paginator="true" 
+											rows="5"					
+											editable="true">
+						
+								<p:column 	headerText="nombre" 
+											filterBy="#{VDataTblParametro.nombre}"
+											filterMatchMode="contains">
+									<h:outputText value="#{VDataTblParametro.nombre}" />
+								</p:column>
+								<p:column headerText="tipo" >
+									<h:outputText value="#{VDataTblParametro.tipo}" />
+								</p:column>
+								<p:column>
+									<div style="float: left;">
+										<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+														actionListener="#{parametrizacionBean.cargarParametro(VDataTblParametro)}"
+														title="Editar Agregador" 								
+														update=":IDFrmPrincipal"  />
+									</div>
+								</p:column>
+							</p:dataTable>
                     	</p:tab>
                 	</p:wizard>
                	</p:panelGrid>

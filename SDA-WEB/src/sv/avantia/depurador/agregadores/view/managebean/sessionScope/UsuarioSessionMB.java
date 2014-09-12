@@ -184,7 +184,6 @@ public class UsuarioSessionMB implements Serializable {
 	 * */
 	public String getContexto() {
 		FacesContext fc = FacesContext.getCurrentInstance();		
-		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/Logout.xhtml");
 		String id = fc.getViewRoot().getViewId();
 		String[] arreglo = id.split("/");	
 		return arreglo[arreglo.length - 1];

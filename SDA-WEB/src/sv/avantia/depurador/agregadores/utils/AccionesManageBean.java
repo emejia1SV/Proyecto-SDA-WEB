@@ -9,11 +9,45 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import sv.avantia.depurador.agregadores.view.managebean.applicationscoped.ApplicationBean;
 import sv.avantia.depurador.agregadores.view.managebean.sessionScope.UsuarioSessionMB;
 
 public class AccionesManageBean {
 
+	/**
+	 * Esta es la unica injeccion de la sesion en todos los ManageBean ya que
+	 * esta clase es la heredada por todos los managebean
+	 * 
+	 * @author Emejia - Avantia Consultores
+	 * */
+	@ManagedProperty("#{usuarioSessionMB}")
+	private UsuarioSessionMB usuarioSessionMB;
 
+	public UsuarioSessionMB getUsuarioSessionMB() {
+		return usuarioSessionMB;
+	}
+
+	public void setUsuarioSessionMB(UsuarioSessionMB usuarioSessionMB) {
+		this.usuarioSessionMB = usuarioSessionMB;
+	}
+	
+	/**
+	 * Esta es la unica injeccion de la sesion en todos los ManageBean ya que
+	 * esta clase es la heredada por todos los managebean
+	 * 
+	 * @author Emejia - Avantia Consultores
+	 * */
+	@ManagedProperty("#{applicationBean}")
+	private ApplicationBean applicationBean;
+
+	public ApplicationBean getApplicationBean() {
+		return this.applicationBean;
+	}
+
+	public void setApplicationBean(ApplicationBean applicationBean) {
+		this.applicationBean = applicationBean;
+	}
+	
 	/**
 	 * Metodo que muestra un mensaje en pantalla
 	 * 
@@ -151,23 +185,6 @@ public class AccionesManageBean {
 			}
 			return errMsg;
 		}
-	}
-
-	/**
-	 * Esta es la unica injeccion de la sesion en todos los ManageBean ya que
-	 * esta clase es la heredada por todos los managebean
-	 * 
-	 * @author Emejia - Avantia Consultores
-	 * */
-	@ManagedProperty("#{usuarioSessionMB}")
-	private UsuarioSessionMB usuarioSessionMB;
-
-	public UsuarioSessionMB getUsuarioSessionMB() {
-		return usuarioSessionMB;
-	}
-
-	public void setUsuarioSessionMB(UsuarioSessionMB usuarioSessionMB) {
-		this.usuarioSessionMB = usuarioSessionMB;
 	}
 
 	/***
