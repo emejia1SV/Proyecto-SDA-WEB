@@ -8,6 +8,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import sv.avantia.depurador.agregadores.entidades.Agregadores;
+import sv.avantia.depurador.agregadores.entidades.Pais;
+import sv.avantia.depurador.agregadores.hilo.ConsultaAgregadorPorHilo;
+import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
+import sv.avantia.depurador.agregadores.jdbc.SessionFactoryUtil;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
 @ManagedBean
@@ -44,6 +49,26 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
         	{
         		System.out.println(numero);
         	}
+			
+			long init = System.currentTimeMillis();
+			
+			//consultar la parametrización
+			for (Pais pais : obtenerParmetrizacion()) {
+				System.out.println("Procesando... " + pais.getNombre());
+				for (Agregadores agregador : pais.getAgregadores()) {
+					//abrir un hilo pr cada agregador parametrizados
+					ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
+					hilo.setMoviles(getNumerosMoviles());
+					hilo.setAgregador(agregador);
+					hilo.start();
+				}
+			}
+			
+			//terminar el flujo.
+			SessionFactoryUtil.closeSession();
+			
+			System.out.println("finish " + ((System.currentTimeMillis() - init)/1000)  + "Segundos");
+			
 			lanzarMensajeInformacion("Flujo", "Se termino de procesar exitosamente");
 		} 
 		catch (Exception exception) 
@@ -51,6 +76,16 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 			lanzarMensajeError("Error", "No se puede generar la depuración", exception);
 		}
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Pais> obtenerParmetrizacion(){
+		BdEjecucion ejecucion = new BdEjecucion();
+		try {
+			return (List<Pais>)(List<?>) ejecucion.listData("FROM SDA_PAISES WHERE ID = 1");
+		} finally{
+			ejecucion = null;
+		}
 	}
 
 	public String getNumeroMovil() 

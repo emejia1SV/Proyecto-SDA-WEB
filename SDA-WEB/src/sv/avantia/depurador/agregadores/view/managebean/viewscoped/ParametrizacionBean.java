@@ -7,7 +7,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.ActionEvent;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FlowEvent;
@@ -20,7 +19,7 @@ import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.entidades.Parametros;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
-import sv.avantia.depurador.agregadores.ws.cliente.ParametrizarServicio;
+import sv.avantia.depurador.agregadores.utils.ParametrizarServicio;
 
 @ManagedBean
 @ViewScoped
@@ -60,8 +59,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	public void llenarTablaPaises() {
 		try 
 		{
-			setPaises((List<Pais>) (List<?>) ejecucion
-					.listData("FROM SDA_PAISES"));
+			setPaises((List<Pais>) (List<?>) ejecucion.listData("FROM SDA_PAISES"));
 		} 
 		catch (Exception e) 
 		{
@@ -73,9 +71,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	public void llenarTablaAgregadores() {
 		try 
 		{
-			setAgregadores((List<Agregadores>) (List<?>) ejecucion
-					.listData("FROM SDA_AGREGADORES WHERE ID_PAIS = "
-							+ getPais().getId()));
+			setAgregadores((List<Agregadores>) (List<?>) ejecucion.listData("FROM SDA_AGREGADORES WHERE ID_PAIS = "	+ getPais().getId()));
 		} 
 		catch (Exception e) 
 		{
@@ -139,8 +135,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	
 	public void guardarPais()
 	{
-		System.out.println("ID pais " + getPais().getId());
-		if(getPais().getId())
+		if(getPais().getId() == null)
 		{
 			ejecucion.createData(getPais());
 		}
@@ -148,71 +143,103 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		{
 			ejecucion.updateData(getPais());
 		}
+		setPais(new Pais());
+		llenarTablaPaises();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblPaises");
 	}
 	
 	public void guardarAgregador()
 	{
-		System.out.println("ID agregador " + getAgregador().getId());
-		if(getAgregador().getId()==0)
+		if(getAgregador().getId()== null)
 		{
+			getAgregador().setPais(getPais());
 			ejecucion.createData(getAgregador());
 		}
 		else
 		{
 			ejecucion.updateData(getAgregador());
 		}
+		setAgregador(new Agregadores());
+		llenarTablaAgregadores();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblAgregadores");
 	}
 	
 	public void guardarMetodo()
 	{
-		if(getMetodo().getId()==0)
+		if(getMetodo().getId()==null)
 		{
+			getMetodo().setAgregador(getAgregador());
 			ejecucion.createData(getMetodo());
 		}
 		else
 		{
 			ejecucion.updateData(getMetodo());
 		}
+		setMetodo(new Metodos());
+		llenarTablaMetodos();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblMetodos");
 	}
 	
 	public void guardarParametro() 
 	{
-		if(getParametro().getId()==0)
+		if(getParametro().getId()==null)
 		{
+			getParametro().setMetodo(getMetodo());
 			ejecucion.createData(getParametro());
 		}
 		else
 		{
 			ejecucion.updateData(getParametro());
 		}
+		setParametro(new Parametros());
+		llenarTablaParametros();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblParametros");
 	}
 
 	/**
-	 * Implementar cambio de tas
+	 * Verificar que cuando se quiera mover de tab tenga seleccionado el objeto
+	 * neccesario para seguir
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @param event
+	 *            {@link FlowEvent}
+	 * @return String {@link String}
 	 * */
 	public String onFlowProcessx(FlowEvent event) {
-		if(event.getOldStep().equals("tab1"))
+		if(event.getOldStep().equals("tab1") && event.getNewStep().equals("tab2"))
 		{
-			guardarPais();
+			if(getPais().getId()==null)
+			{
+				lanzarMensajeInformacion("Pais", "Debe seleccionar un pais");
+				return event.getOldStep();
+			}
 		}
-		if(event.getOldStep().equals("tab2"))
+		if(event.getOldStep().equals("tab2")  && event.getNewStep().equals("tab3"))
 		{
-			guardarAgregador();
+			if(getAgregador().getId()==null)
+			{
+				lanzarMensajeInformacion("Agregador", "Debe seleccionar un agregador");
+				return event.getOldStep();
+			}
 		}
-		if(event.getOldStep().equals("tab3"))
+		if(event.getOldStep().equals("tab3") && event.getNewStep().equals("tab4"))
 		{
-			guardarMetodo();
+			if(getMetodo().getId()==null)
+			{
+				lanzarMensajeInformacion("Metodo", "Debe seleccionar un metodo");
+				return event.getOldStep();
+			}
 		}
 		return event.getNewStep();
 	}
 
 	public void readWSDL() {
 		try {
-			setAgregador(new ParametrizarServicio().getServicesInfo(getMetodo().getWsdl_Agregador(), getAgregador()));
-			guardarPais();
 			getAgregador().setPais(getPais());
-			guardarAgregador();
-			
 			ParametrizarServicio readWSDL = new ParametrizarServicio();
 			setAgregador(readWSDL.getServicesInfo(getMetodo().getWsdl_Agregador(), getAgregador()));
 			

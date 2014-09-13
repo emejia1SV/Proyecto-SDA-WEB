@@ -93,7 +93,7 @@ public class UsuarioSessionMB implements Serializable {
 			//new MenuT(id, nombre, idMenuPadre, url, orden)
 			
 			getMenus().add(	new MenuT("1", "Depuración", null, null));
-			getMenus().add(	new MenuT("2", "Uno a uno", "1",  "/vistas/depuracion/DepuacionUnitaria.xhtml"));
+			getMenus().add(	new MenuT("2", "Uno a uno", "1",  "/vistas/depuracion/DepuracionUnitaria.xhtml"));
 			getMenus().add(	new MenuT("3", "Masivo", "1",  "/vistas/depuracion/DepuracionMasiva.xhtml"));
 			
 			getMenus().add(	new MenuT("4", "Reportes", null, null));
