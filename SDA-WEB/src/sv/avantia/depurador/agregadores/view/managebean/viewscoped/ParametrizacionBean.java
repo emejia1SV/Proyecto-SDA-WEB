@@ -246,6 +246,8 @@ public class ParametrizacionBean extends AccionesManageBean implements
 			for (Metodos metodo : agregador.getMetodos()) {
 				System.out.println("Metodo Name: " 		+ metodo.toString());
 				metodo.setAgregador(getAgregador());
+				if(metodo.getNombre()==null)
+					metodo.setNamespaceURI("" +metodo.getTargetMethodName());
 				if(metodo.getTargetURL().startsWith("http:")){
 					metodo.setSeguridad(0);
 				}
@@ -255,7 +257,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 				ejecucion.createData(metodo);
 				
 				for (Parametros param : metodo.getParametros()) {
-					System.out.println("parametro Name: " 		+ param.getNombre());
+					System.out.println("parametro Name: " + param.getNombre());
 					param.setMetodo(metodo);
 					ejecucion.createData(param);
 				}				
