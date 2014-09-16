@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FlowEvent;
@@ -285,6 +286,13 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	
 	public void cargarParametro(Parametros parametros) {
 		setParametro(parametros);
+	}
+	
+	public SelectItem[] getListaEstados() {
+		SelectItem[] items = new SelectItem[2];
+		items[0] = new SelectItem(1, "Activo");
+		items[1] = new SelectItem(0, "Inactivo");
+		return items;
 	}
 
 	public Pais getPais() {

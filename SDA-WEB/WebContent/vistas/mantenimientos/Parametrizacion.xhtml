@@ -61,7 +61,11 @@
 										<h:outputText value="#{msj['manto.parametrizacion.pais.estado']}" />
 									</p:column>
 									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.pais.estado}" />
+										<p:selectOneMenu	style="#{msj['p.inputText_width_mediano']}"
+															value="#{parametrizacionBean.pais.estado}" >
+											<f:selectItem 	itemLabel="#{msj['f.selectItem']}" />
+											<f:selectItems 	value="#{parametrizacionBean.listaEstados}" />
+										</p:selectOneMenu>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -127,7 +131,11 @@
 										<h:outputText value="#{msj['manto.parametrizacion.agregador.estado']}"  />
 									</p:column>
 									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.agregador.estado}" />
+										<p:selectOneMenu	style="#{msj['p.inputText_width_mediano']}"
+															value="#{parametrizacionBean.agregador.estado}" >
+											<f:selectItem 	itemLabel="#{msj['f.selectItem']}" />
+											<f:selectItems 	value="#{parametrizacionBean.listaEstados}" />
+										</p:selectOneMenu>
 									</p:column>
 								</p:row>
 								<p:row>
@@ -174,7 +182,7 @@
                         		titleStyle="height:10px;"  
                         		title="Metodos"   
                         		id="tab3">
-                        	<p:panelGrid	id="IDPnlGridTab3_1">
+                        	<p:panelGrid	id="IDPnlGridTab3_1" rendered="false">
                         		<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
 										<h:outputText value="#{msj['manto.parametrizacion.metodo.wsdl']}" />
@@ -198,63 +206,31 @@
 								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="inputMessageName" />
+										<h:outputText value="#{msj['manto.parametrizacion.metodo.pass']}" />
 									</p:column>
 									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.inputMessageName}" />
+										<p:inputText value="#{parametrizacionBean.metodo.pass}" />
 									</p:column>
 								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="inputMessageText" />
+										<h:outputText value="#{msj['manto.parametrizacion.metodo.accion']}" />
 									</p:column>
 									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.inputMessageText}" />
+										<p:inputText value="#{parametrizacionBean.metodo.accion}" />
 									</p:column>
 								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="namespaceURI" />
+										<h:outputText value="#{msj['manto.parametrizacion.metodo.seguridad']}" />
 									</p:column>
 									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.namespaceURI}" />
+										<p:inputText value="#{parametrizacionBean.metodo.seguridad}" />
 									</p:column>
 								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="style" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.style}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="targetMethodName" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.targetMethodName}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="targetObjectURI" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.targetObjectURI}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="targetURL" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.targetURL}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="EndPoint" />
+										<h:outputText value="#{msj['manto.parametrizacion.metodo.endpoint']}" />
 									</p:column>
 									<p:column style="#{msj['p.column_width_mediano_inputText']}">
 										<p:inputText value="#{parametrizacionBean.metodo.endPoint}" />
@@ -262,12 +238,29 @@
 								</p:row>
 								<p:row>
 									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="Maneja Seguridad" />
+										<h:outputText value="#{msj['manto.parametrizacion.metodo.inputMessage']}" />
 									</p:column>
 									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.seguridad}" />
+										<p:inputText value="#{parametrizacionBean.metodo.inputMessageText}" />
 									</p:column>
 								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="#{msj['manto.parametrizacion.metodo.orden']}" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.ordenEjecucion}" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column style="#{msj['p.column_width_mediano']}">
+										<h:outputText value="soapActionURI" />
+									</p:column>
+									<p:column style="#{msj['p.column_width_mediano_inputText']}">
+										<p:inputText value="#{parametrizacionBean.metodo.soapActionURI}" />
+									</p:column>
+								</p:row>
+								
 								<p:row>
 									<p:column>
 										<p:commandButton	id="IDCmdBtnLimpiarTab3" 

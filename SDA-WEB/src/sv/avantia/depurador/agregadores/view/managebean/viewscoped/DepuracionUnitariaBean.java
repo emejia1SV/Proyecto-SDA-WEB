@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import sv.avantia.depurador.agregadores.entidades.Agregadores;
 import sv.avantia.depurador.agregadores.entidades.Pais;
@@ -42,9 +43,13 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	 * */
 	public void accionDepuracion() 
 	{
+		System.out.println("Inicia la depuración unitaria");
 		try 
 		{
+			setNumerosMoviles(new ArrayList<String>());
 			getNumerosMoviles().add(getNumeroMovil());
+			
+			System.out.println("Se procesaran " + getNumerosMoviles().size() +  " números ");
 			for (String numero : getNumerosMoviles())
         	{
         		System.out.println(numero);
@@ -52,10 +57,13 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 			
 			long init = System.currentTimeMillis();
 			
+			System.out.println("Se obtendra la parametrización");
 			//consultar la parametrización
-			for (Pais pais : obtenerParmetrizacion()) {
+			for (Pais pais : obtenerParmetrizacion()) 
+			{
 				System.out.println("Procesando... " + pais.getNombre());
-				for (Agregadores agregador : pais.getAgregadores()) {
+				for (Agregadores agregador : pais.getAgregadores()) 
+				{
 					//abrir un hilo pr cada agregador parametrizados
 					ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
 					hilo.setMoviles(getNumerosMoviles());

@@ -1,21 +1,23 @@
 --------------------------------------------------------
 -- Archivo creado  - jueves-septiembre-11-2014   
 --------------------------------------------------------
---DROP TABLE "CLIENTE_TEL" cascade constraints;
---DROP TABLE "SDA_AGREGADORES" cascade constraints;
---DROP TABLE "SDA_INSUMOS" cascade constraints;
---DROP TABLE "SDA_LOG_DEPURACION" cascade constraints;
---DROP TABLE "SDA_METODOS" cascade constraints;
---DROP TABLE "SDA_PAISES" cascade constraints;
---DROP TABLE "SDA_PARAMETROS" cascade constraints;
---DROP TABLE "SDA_PARAMETROS_SISTEMA" cascade constraints;
---DROP TABLE "SDA_RESPUESTAS" cascade constraints;
---DROP SEQUENCE "SQ_SDA_AGREGADORES";
---DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
---DROP SEQUENCE "SQ_SDA_METODOS";
---DROP SEQUENCE "SQ_SDA_PAIS";
---DROP SEQUENCE "SQ_SDA_PARAMETROS";
---DROP SEQUENCE "SQ_SDA_RESPUESTAS";
+
+DROP TABLE "CLIENTE_TEL" cascade constraints;
+DROP TABLE "SDA_AGREGADORES" cascade constraints;
+DROP TABLE "SDA_INSUMOS" cascade constraints;
+DROP TABLE "SDA_LOG_DEPURACION" cascade constraints;
+DROP TABLE "SDA_METODOS" cascade constraints;
+DROP TABLE "SDA_PAISES" cascade constraints;
+DROP TABLE "SDA_PARAMETROS" cascade constraints;
+DROP TABLE "SDA_PARAMETROS_SISTEMA" cascade constraints;
+DROP TABLE "SDA_RESPUESTAS" cascade constraints;
+DROP SEQUENCE "SQ_SDA_AGREGADORES";
+DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
+DROP SEQUENCE "SQ_SDA_METODOS";
+DROP SEQUENCE "SQ_SDA_PAIS";
+DROP SEQUENCE "SQ_SDA_PARAMETROS";
+DROP SEQUENCE "SQ_SDA_RESPUESTAS";
+
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_AGREGADORES
 --------------------------------------------------------
@@ -81,7 +83,7 @@
   CREATE TABLE "SDA_LOG_DEPURACION" 
    (    "ID" NUMBER, 
     "NUMERO" VARCHAR2(50 BYTE), 
-    "ID_ERROR" NUMBER, 
+    "ID_ERROR" VARCHAR2(255 BYTE),, 
     "FECHA_PROCESAMIENTO" TIMESTAMP (6), 
     "ID_METODO_PROCESADO" NUMBER
    )  ;
@@ -105,8 +107,11 @@
     "CONTRASENIA" VARCHAR2(255 BYTE), 
     "SERVICE_NAME" VARCHAR2(20 BYTE), 
     "SOAPACTIONURI" VARCHAR2(255 BYTE), 
+    "ACCION" VARCHAR2(1000 BYTE),
+    "PASS" VARCHAR2(1000 BYTE),
     "END_POINT" VARCHAR2(1000 BYTE),
-    "SEGURIDAD" NUMBER
+    "SEGURIDAD" NUMBER,
+    "ORDEN_EJECUCION" NUMBER
    )  ;
  
 
@@ -307,29 +312,34 @@
 --  Ref Constraints for Table SDA_AGREGADORES
 --------------------------------------------------------
 
-  ALTER TABLE "SDA_AGREGADORES" ADD CONSTRAINT "AGR_AGREGADORES_FK1" FOREIGN KEY ("ID_PAIS")
-      REFERENCES "SDA_PAISES" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "SDA_AGREGADORES" 
+    ADD CONSTRAINT "AGR_AGREGADORES_FK1" FOREIGN KEY ("ID_PAIS")
+        REFERENCES "SDA_PAISES" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table SDA_LOG_DEPURACION
 --------------------------------------------------------
 
-  ALTER TABLE "SDA_LOG_DEPURACION" ADD CONSTRAINT "AGR_DEPURACION_BCK_FK1" FOREIGN KEY ("ID_METODO_PROCESADO")
+  ALTER TABLE "SDA_LOG_DEPURACION" 
+    ADD CONSTRAINT "AGR_DEPURACION_BCK_FK1" FOREIGN KEY ("ID_METODO_PROCESADO")
       REFERENCES "SDA_METODOS" ("ID") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table SDA_METODOS
 --------------------------------------------------------
 
-  ALTER TABLE "SDA_METODOS" ADD CONSTRAINT "METODOS_SERVICIOS_FK" FOREIGN KEY ("ID_AGREGADOR")
+  ALTER TABLE "SDA_METODOS" 
+    ADD CONSTRAINT "METODOS_SERVICIOS_FK" FOREIGN KEY ("ID_AGREGADOR")
       REFERENCES "SDA_AGREGADORES" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table SDA_PARAMETROS
 --------------------------------------------------------
 
-  ALTER TABLE "SDA_PARAMETROS" ADD CONSTRAINT "PARAMETROS_METODOS" FOREIGN KEY ("ID_METODO")
+  ALTER TABLE "SDA_PARAMETROS" 
+    ADD CONSTRAINT "PARAMETROS_METODOS" FOREIGN KEY ("ID_METODO")
       REFERENCES "SDA_METODOS" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table SDA_RESPUESTAS
 --------------------------------------------------------
 
-  ALTER TABLE "SDA_RESPUESTAS" ADD CONSTRAINT "AGR_RESPUESTAS_FK1" FOREIGN KEY ("ID_METODO")
+  ALTER TABLE "SDA_RESPUESTAS" 
+    ADD CONSTRAINT "AGR_RESPUESTAS_FK" FOREIGN KEY ("ID_METODO")
       REFERENCES "SDA_METODOS" ("ID") ON DELETE CASCADE ENABLE;
