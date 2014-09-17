@@ -39,7 +39,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	private List<Metodos> metodos;
 	private List<Parametros> parametros;
 	private List<Respuesta> respuestas;
-	private BdEjecucion ejecucion = new BdEjecucion();
+	private BdEjecucion ejecucion;
 
 	/**
 	 * Metodo {@link PostConstruct}
@@ -48,6 +48,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	 * */
 	@PostConstruct
 	public void init() {
+		setEjecucion(new BdEjecucion());
 		setPais(new Pais());
 		setAgregador(new Agregadores());
 		setMetodo(new Metodos());
@@ -65,7 +66,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	public void llenarTablaPaises() {
 		try 
 		{
-			setPaises((List<Pais>) (List<?>) ejecucion.listData("FROM SDA_PAISES"));
+			setPaises((List<Pais>) (List<?>) getEjecucion().listData("FROM SDA_PAISES"));
 		} 
 		catch (Exception e) 
 		{
@@ -77,7 +78,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	public void llenarTablaAgregadores() {
 		try 
 		{
-			setAgregadores((List<Agregadores>) (List<?>) ejecucion.listData("FROM SDA_AGREGADORES WHERE ID_PAIS = "	+ getPais().getId()));
+			setAgregadores((List<Agregadores>) (List<?>) getEjecucion().listData("FROM SDA_AGREGADORES WHERE ID_PAIS = "	+ getPais().getId()));
 		} 
 		catch (Exception e) 
 		{
@@ -90,7 +91,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	{
 		try 
 		{
-			setMetodos((List<Metodos>) (List<?>) ejecucion
+			setMetodos((List<Metodos>) (List<?>) getEjecucion()
 					.listData("FROM SDA_METODOS WHERE ID_AGREGADOR = "
 							+ getAgregador().getId()));
 		} 
@@ -105,7 +106,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	{	
 		try 
 		{
-			setParametros((List<Parametros>) (List<?>) ejecucion
+			setParametros((List<Parametros>) (List<?>) getEjecucion()
 					.listData("FROM SDA_PARAMETROS WHERE ID_METODO = "
 							+ getMetodo().getId()));
 		} 
@@ -120,7 +121,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	{	
 		try 
 		{
-			setRespuestas((List<Respuesta>) (List<?>) ejecucion
+			setRespuestas((List<Respuesta>) (List<?>) getEjecucion()
 					.listData("FROM SDA_RESPUESTAS WHERE ID_METODO = "
 							+ getMetodo().getId()));
 		} 
@@ -161,34 +162,34 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	}
 	
 	public void eliminarPais() {
-		ejecucion.deleteData(getPais());
+		getEjecucion().deleteData(getPais());
 	}
 
 	public void eliminarAgregador() {
-		ejecucion.deleteData(getAgregador());
+		getEjecucion().deleteData(getAgregador());
 	}
 
 	public void eliminarMetodo() {
-		ejecucion.deleteData(getMetodo());
+		getEjecucion().deleteData(getMetodo());
 	}
 
 	public void eliminarParametro() {
-		ejecucion.deleteData(getParametro());
+		getEjecucion().deleteData(getParametro());
 	}
 	
 	public void eliminarRespuesta() {
-		ejecucion.deleteData(getRespuesta());
+		getEjecucion().deleteData(getRespuesta());
 	}
 	
 	public void guardarPais()
 	{
 		if(getPais().getId() == null)
 		{
-			ejecucion.createData(getPais());
+			getEjecucion().createData(getPais());
 		}
 		else
 		{
-			ejecucion.updateData(getPais());
+			getEjecucion().updateData(getPais());
 		}
 		setPais(new Pais());
 		llenarTablaPaises();
@@ -201,11 +202,11 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		if(getAgregador().getId()== null)
 		{
 			getAgregador().setPais(getPais());
-			ejecucion.createData(getAgregador());
+			getEjecucion().createData(getAgregador());
 		}
 		else
 		{
-			ejecucion.updateData(getAgregador());
+			getEjecucion().updateData(getAgregador());
 		}
 		setAgregador(new Agregadores());
 		llenarTablaAgregadores();
@@ -218,11 +219,11 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		if(getMetodo().getId()==null)
 		{
 			getMetodo().setAgregador(getAgregador());
-			ejecucion.createData(getMetodo());
+			getEjecucion().createData(getMetodo());
 		}
 		else
 		{
-			ejecucion.updateData(getMetodo());
+			getEjecucion().updateData(getMetodo());
 		}
 		setMetodo(new Metodos());
 		llenarTablaMetodos();
@@ -235,11 +236,11 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		if(getParametro().getId()==null)
 		{
 			getParametro().setMetodo(getMetodo());
-			ejecucion.createData(getParametro());
+			getEjecucion().createData(getParametro());
 		}
 		else
 		{
-			ejecucion.updateData(getParametro());
+			getEjecucion().updateData(getParametro());
 		}
 		setParametro(new Parametros());
 		llenarTablaParametros();
@@ -252,11 +253,11 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		if(getRespuesta().getId()==null)
 		{
 			getRespuesta().setMetodo(getMetodo());
-			ejecucion.createData(getRespuesta());
+			getEjecucion().createData(getRespuesta());
 		}
 		else
 		{
-			ejecucion.updateData(getRespuesta());
+			getEjecucion().updateData(getRespuesta());
 		}
 		setRespuesta(new Respuesta());
 		llenarTablaRespuestas();
@@ -318,12 +319,12 @@ public class ParametrizacionBean extends AccionesManageBean implements
 				if(metodo.getTargetURL().startsWith("https:")){
 					metodo.setSeguridad(1);
 				}
-				ejecucion.createData(metodo);
+				getEjecucion().createData(metodo);
 				
 				for (Parametros param : metodo.getParametros()) {
 					System.out.println("parametro Name: " + param.getNombre());
 					param.setMetodo(metodo);
-					ejecucion.createData(param);
+					getEjecucion().createData(param);
 				}				
 			}			
 			lanzarMensajeInformacion("Exito", "Se obtubo la parametrizacion exitosamente");
@@ -439,14 +440,14 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	/**
 	 * @return the ejecucion
 	 */
-	public BdEjecucion getEjecucion() {
+	private BdEjecucion getEjecucion() {
 		return ejecucion;
 	}
 
 	/**
 	 * @param ejecucion the ejecucion to set
 	 */
-	public void setEjecucion(BdEjecucion ejecucion) {
+	private void setEjecucion(BdEjecucion ejecucion) {
 		this.ejecucion = ejecucion;
 	}
 

@@ -10,7 +10,7 @@
 	<f:event listener="#{usuarioSessionMB.limpiarSesion}" type="postAddToView"  />
 	<ui:define name="menu">	</ui:define>
 	<ui:define name="content">
-	<c:set var="root" value="#{request.contextPath}/" />
+	<c:set var="root" value="#{request.contextPath}" />
 	<h:form>
 	  <p:dialog header="Iniciar de Session" 
 	  			resizable="false"

@@ -208,12 +208,13 @@ public class UsuarioSessionMB implements Serializable {
 	public void validarAccesoPagina() {
 		String contexto = getContextoCompleto();
 		boolean permiso = false;
-		for (MenuT item : getMenus()) {
-			if (item.getUrl() != null && item.getUrl().equals(contexto)) {				
-				permiso = true;
-				break;
+		if(getMenus() != null || !getMenus().isEmpty())
+			for (MenuT item : getMenus()) {
+				if (item.getUrl() != null && item.getUrl().equals(contexto)) {				
+					permiso = true;
+					break;
+				}
 			}
-		}
 		if (!permiso) {
 			redireccionarPagina(URL_PAGINA_PERMISOS);
 		}

@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 
 import sv.avantia.depurador.agregadores.view.managebean.applicationscoped.ApplicationBean;
@@ -14,6 +15,13 @@ import sv.avantia.depurador.agregadores.view.managebean.sessionScope.UsuarioSess
 
 public class AccionesManageBean {
 
+	/**
+	 * Obtener el appender para la impresión en un archivo de LOG
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
+	public static Logger logger = Logger.getLogger("avantiaLogger");
+	
 	/**
 	 * Esta es la unica injeccion de la sesion en todos los ManageBean ya que
 	 * esta clase es la heredada por todos los managebean

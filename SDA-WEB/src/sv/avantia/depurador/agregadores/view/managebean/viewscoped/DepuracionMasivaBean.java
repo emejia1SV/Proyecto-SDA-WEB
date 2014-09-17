@@ -92,7 +92,7 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
             setFile(event.getFile());
             logger.info("Archivo recibido " + getFile().getFileName());
             
-            if(getFile().getFileName().endsWith(".xlx"))
+            if(getFile().getFileName().endsWith(".xls"))
             	readExcelFile(getFile().getInputstream());
             
             if(getFile().getFileName().endsWith(".xlsx"))
@@ -158,8 +158,7 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	 * */
 	private void accionDepuracion() 
 	{
-		long init = System.currentTimeMillis();
-		System.out.println("Inicia la depuración unitaria");
+		logger.info("Iniciando la depuración Masiva por archivo");
 		try 
 		{
 			//obtener el numero
@@ -169,7 +168,6 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 				//consultar la parametrización
 				for (Pais pais : obtenerParmetrizacion()) 
 				{
-					System.out.println("Procesando... " + pais.getNombre());
 					for (Agregadores agregador : pais.getAgregadores()) 
 					{
 						//abrir un hilo pr cada agregador parametrizados
@@ -196,9 +194,7 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 			SessionFactoryUtil.closeSession();
 			setNumerosMoviles(null);
 			setEjecucion(null);
-			logger.info("finish " + ((System.currentTimeMillis() - init)/1000)  + "Segundos");
 		}
-		
 	}
 	
 	/**
@@ -213,7 +209,7 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	@SuppressWarnings("unchecked")
 	public static List<Pais> obtenerParmetrizacion() throws Exception 
 	{
-		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES WHERE ID = 2");
+		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES");
 	}
 	
 	/**

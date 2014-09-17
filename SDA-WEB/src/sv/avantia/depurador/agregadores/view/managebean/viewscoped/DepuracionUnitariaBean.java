@@ -71,16 +71,15 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	 * */
 	public void accionDepuracion() 
 	{
-		long init = System.currentTimeMillis();
-		System.out.println("Inicia la depuración unitaria");
+		logger.info("Iniciando la depuración unitaria");
 		try 
 		{
-			//obtener el numero
+			if(getNumeroMovil() == null || getNumeroMovil().trim().equals(""))
+				lanzarMensajeAdvertencia("Número", "Por favor, ingresar un numero telefonico");
+			
+			//obtener el numero para la depuracion
 			setNumerosMoviles(new ArrayList<String>());
 			getNumerosMoviles().add(getNumeroMovil()); 
-			
-			System.out.println(getNumeroMovil());
-			System.out.println(getNumerosMoviles().size());
 			
 			if(getNumerosMoviles().size()>0) 
 			{
@@ -88,7 +87,6 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 				//consultar la parametrización
 				for (Pais pais : obtenerParmetrizacion()) 
 				{
-					System.out.println("Procesando... " + pais.getNombre());
 					for (Agregadores agregador : pais.getAgregadores()) 
 					{
 						//abrir un hilo pr cada agregador parametrizados
@@ -115,7 +113,6 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 			SessionFactoryUtil.closeSession();
 			setNumerosMoviles(null);
 			setEjecucion(null);
-			logger.info("finish " + ((System.currentTimeMillis() - init)/1000)  + "Segundos");
 		}
 		
 	}
