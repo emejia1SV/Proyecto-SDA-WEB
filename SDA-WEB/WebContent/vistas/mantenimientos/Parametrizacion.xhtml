@@ -24,346 +24,471 @@
 					style="#{msj['p.panelGrande']} margin-top: 10pt;">
 
 			<h:form id="IDFrmPrincipal">
-				 <p:panelGrid   id="panelGrid" 
-				 				columns="1" 
-				 				style="margin: 0 auto; width: 55%">
-
-                    <p:wizard 	id="wizard"  
-                    			flowListener="#{parametrizacionBean.onFlowProcessx}"   
-                    			backLabel="Atras" 
-                    			nextLabel="Siguiente" 
-                    			widgetVar="wiz" >
-                    			 
-                        <p:tab  titleStyleClass="text-normal-out" 
-                        		titleStyle="height:10px;"  
-                        		title="Paises"   
-                        		id="tab1">
-                        	<p:panelGrid 	id="IDPnlGridTab1" 
-                        					style="margin-top: 10pt; margin:0 auto;">
-								<p:row>
-									<p:column>
-										<h:outputText value="#{msj['manto.parametrizacion.pais.nombre']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.pais.nombre}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column>
-										<h:outputText value="#{msj['manto.parametrizacion.pais.codigo']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.pais.codigo}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column>
-										<h:outputText value="#{msj['manto.parametrizacion.pais.estado']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:selectOneMenu	style="#{msj['p.inputText_width_mediano']}"
-															value="#{parametrizacionBean.pais.estado}" >
-											<f:selectItem 	itemLabel="#{msj['f.selectItem']}" />
-											<f:selectItems 	value="#{parametrizacionBean.listaEstados}" />
-										</p:selectOneMenu>
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column>
-										<p:commandButton	id="IDCmdBtnLimpiarTab1" 
-															value="#{msj['p.commanButton_Nuevo']}" 
-															actionListener="#{parametrizacionBean.limpiarPais}" />
-									</p:column>
-									<p:column>
-										<p:commandButton	id="IDCmdBtnGuardarTab1" 
-															value="#{msj['p.commanButton_Guardar']}"  
-															actionListener="#{parametrizacionBean.guardarPais}" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
-							<p:dataTable 	id="IDDataTblPaises" 
-											value="#{parametrizacionBean.paises}"
-											var="VDataTblPais"	
-											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
-											paginator="true" 
-											rows="5"					
-											editable="true">
-						
-								<p:column 	headerText="#{msj['manto.parametrizacion.pais.nombre']}" 
-											filterBy="#{VDataTblPais.nombre}"
-											filterMatchMode="contains">
-									<h:outputText value="#{VDataTblPais.nombre}" />
-								</p:column>
-								<p:column 	headerText="#{msj['manto.parametrizacion.pais.codigo']}"
-											filterBy="#{VDataTblPais.codigo}"
-											filterMatchMode="contains">
-									<h:outputText value="#{VDataTblPais.codigo}" />
-								</p:column>
-								<p:column headerText="#{msj['manto.parametrizacion.pais.estado']}" >
-									<h:outputText value="#{VDataTblPais.estado}" />
-								</p:column>
-								<p:column>
-									<div style="float: left;">
-										<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
-														actionListener="#{parametrizacionBean.cargarPais(VDataTblPais)}"
-														title="Editar Pais" 								
-														update=":IDFrmPrincipal"  />
-									</div>
-								</p:column>
-							</p:dataTable>	
-                    	</p:tab>
-                    	
-                    	<p:tab  titleStyleClass="text-normal-out" 
-                        		titleStyle="height:10px;"  
-                        		title="Agregadores"   
-                        		id="tab2">
-                        	<p:panelGrid	id="IDPnlGridTab2">
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.agregador.nombre']}"  />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.agregador.nombre_agregador}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.agregador.estado']}"  />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:selectOneMenu	style="#{msj['p.inputText_width_mediano']}"
-															value="#{parametrizacionBean.agregador.estado}" >
-											<f:selectItem 	itemLabel="#{msj['f.selectItem']}" />
-											<f:selectItems 	value="#{parametrizacionBean.listaEstados}" />
-										</p:selectOneMenu>
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column>
-										<p:commandButton	id="IDCmdBtnLimpiarTab2" 
-															value="#{msj['p.commanButton_Nuevo']}" 
-															actionListener="#{parametrizacionBean.limpiarAgregador}" />
-									</p:column>
-									<p:column>
-										<p:commandButton	id="IDCmdBtnGuardarTab2" 
-															value="#{msj['p.commanButton_Guardar']}"  
-															actionListener="#{parametrizacionBean.guardarAgregador}" />
-									</p:column>
-								</p:row>								
-							</p:panelGrid>
-							<p:dataTable 	id="IDDataTblAgregadores" 
-											value="#{parametrizacionBean.agregadores}"
-											var="VDataTblAgregador"	
-											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
-											paginator="true" 
-											rows="5"					
-											editable="true">
-						
-								<p:column 	headerText="#{msj['manto.parametrizacion.agregador.nombre']}" 
-											filterBy="#{VDataTblAgregador.nombre_agregador}"
-											filterMatchMode="contains">
-									<h:outputText value="#{VDataTblAgregador.nombre_agregador}" />
-								</p:column>
-								<p:column headerText="#{msj['manto.parametrizacion.agregador.estado']}" >
-									<h:outputText value="#{VDataTblAgregador.estado}" />
-								</p:column>
-								<p:column>
-									<div style="float: left;">
-										<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
-														actionListener="#{parametrizacionBean.cargarAgregador(VDataTblAgregador)}"
-														title="Editar Agregador" 								
-														update=":IDFrmPrincipal"  />
-									</div>
-								</p:column>
-							</p:dataTable>	
-                    	</p:tab>
-                    	
-                    	<p:tab  titleStyleClass="text-normal-out" 
-                        		titleStyle="height:10px;"  
-                        		title="Metodos"   
-                        		id="tab3">
-                        	<p:panelGrid	id="IDPnlGridTab3_1" rendered="false">
-                        		<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.metodo.wsdl']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.wsdl_Agregador}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:commandButton value="Submit" actionListener="#{parametrizacionBean.readWSDL}" />
-									</p:column>
-								</p:row>
-                        	</p:panelGrid>
-                        	<p:panelGrid	id="IDPnlGridTab3_2">
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.metodo.nombre']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.nombre}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.metodo.pass']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.pass}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.metodo.accion']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.accion}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.metodo.seguridad']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.seguridad}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.metodo.endpoint']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.endPoint}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.metodo.inputMessage']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.inputMessageText}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="#{msj['manto.parametrizacion.metodo.orden']}" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.ordenEjecucion}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="soapActionURI" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.metodo.soapActionURI}" />
-									</p:column>
-								</p:row>
+				<center>
+					 <p:panelGrid   id="panelGrid" 
+					 				columns="1" 
+					 				style="margin: 0 auto; width: 65%">
+						<center>	
+		                    <p:wizard 	id="wizard"  
+		                    			flowListener="#{parametrizacionBean.onFlowProcessx}"   
+		                    			backLabel="Atras" 
+		                    			nextLabel="Siguiente" 
+		                    			widgetVar="wiz" >
+		                    			 
+		                        <p:tab  titleStyleClass="text-normal-out" 
+		                        		titleStyle="height:10px;"  
+		                        		title="Paises"   
+		                        		id="tab1">
+		                        	<center>
+			                        	<p:panelGrid 	id="IDPnlGridTab1" 
+			                        					style="margin-top: 10pt; margin:0 auto;">
+											<p:row>
+												<p:column>
+													<h:outputText value="#{msj['manto.parametrizacion.pais.nombre']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.pais.nombre}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column>
+													<h:outputText value="#{msj['manto.parametrizacion.pais.codigo']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.pais.codigo}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column>
+													<h:outputText value="#{msj['manto.parametrizacion.pais.estado']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:selectOneMenu	style="#{msj['p.inputText_width_mediano']}"
+																		value="#{parametrizacionBean.pais.estado}" >
+														<f:selectItem 	itemLabel="#{msj['f.selectItem']}" />
+														<f:selectItems 	value="#{parametrizacionBean.listaEstados}" />
+													</p:selectOneMenu>
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnLimpiarTab1" 
+																		value="#{msj['p.commanButton_Nuevo']}" 
+																		actionListener="#{parametrizacionBean.limpiarPais}" />
+												</p:column>
+												<p:column>
+													<center>
+														<p:commandButton	id="IDCmdBtnEliminarTab1" 
+																			value="#{msj['p.commandButton_Eliminar']}"  
+																			actionListener="#{parametrizacionBean.eliminarPais}" />
+													</center>
+												</p:column>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnGuardarTab1" 
+																		value="#{msj['p.commanButton_Guardar']}"  
+																		actionListener="#{parametrizacionBean.guardarPais}" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+									</center>
+									<p:dataTable 	id="IDDataTblPaises" 
+													value="#{parametrizacionBean.paises}"
+													var="VDataTblPais"	
+													emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+													paginator="true" 
+													rows="5"					
+													editable="true">
 								
-								<p:row>
-									<p:column>
-										<p:commandButton	id="IDCmdBtnLimpiarTab3" 
-															value="#{msj['p.commanButton_Nuevo']}" 
-															actionListener="#{parametrizacionBean.limpiarMetodo}" />
-									</p:column>
-									<p:column>
-										<p:commandButton	id="IDCmdBtnGuardarTab3" 
-															value="#{msj['p.commanButton_Guardar']}"  
-															actionListener="#{parametrizacionBean.guardarMetodo}" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
-							<p:dataTable 	id="IDDataTblMetodos" 
-											value="#{parametrizacionBean.metodos}"
-											var="VDataTblMetodo"	
-											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
-											paginator="true" 
-											rows="5"					
-											editable="true">
-						
-								<p:column 	headerText="#{msj['manto.parametrizacion.metodo.nombre']}" 
-											filterBy="#{VDataTblMetodo.nombre}"
-											filterMatchMode="contains">
-									<h:outputText value="#{VDataTblMetodo.nombre}" />
-								</p:column>
-								<p:column headerText="#{msj['manto.parametrizacion.metodo.wsdl']}" >
-									<h:outputText value="#{VDataTblMetodo.wsdl_Agregador}" />
-								</p:column>
-								<p:column>
-									<div style="float: left;">
-										<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
-														actionListener="#{parametrizacionBean.cargarMetodo(VDataTblMetodo)}"
-														title="Editar Agregador" 								
-														update=":IDFrmPrincipal"  />
-									</div>
-								</p:column>
-							</p:dataTable>
-                    	</p:tab>
-                    	
-                    	<p:tab  titleStyleClass="text-normal-out" 
-                        		titleStyle="height:10px;"  
-                        		title="Parametros"   
-                        		id="tab4">
-                        	<p:panelGrid	id="IDPnlGridTab4">
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="nombre" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.parametro.nombre}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column style="#{msj['p.column_width_mediano']}">
-										<h:outputText value="tipo" />
-									</p:column>
-									<p:column style="#{msj['p.column_width_mediano_inputText']}">
-										<p:inputText value="#{parametrizacionBean.parametro.tipo}" />
-									</p:column>
-								</p:row>
-								<p:row>
-									<p:column>
-										<p:commandButton	id="IDCmdBtnLimpiarTab4" 
-															value="#{msj['p.commanButton_Nuevo']}" 
-															actionListener="#{parametrizacionBean.limpiarParametro}" />
-									</p:column>
-									<p:column>
-										<p:commandButton	id="IDCmdBtnGuardarTab4" 
-															value="#{msj['p.commanButton_Guardar']}"  
-															actionListener="#{parametrizacionBean.guardarParametro}" />
-									</p:column>
-								</p:row>
-							</p:panelGrid>
-							<p:dataTable 	id="IDDataTblParametros" 
-											value="#{parametrizacionBean.parametros}"
-											var="VDataTblParametro"	
-											emptyMessage="#{msj['p.dataTable_emptyMessage']}"
-											paginator="true" 
-											rows="5"					
-											editable="true">
-						
-								<p:column 	headerText="nombre" 
-											filterBy="#{VDataTblParametro.nombre}"
-											filterMatchMode="contains">
-									<h:outputText value="#{VDataTblParametro.nombre}" />
-								</p:column>
-								<p:column headerText="tipo" >
-									<h:outputText value="#{VDataTblParametro.tipo}" />
-								</p:column>
-								<p:column>
-									<div style="float: left;">
-										<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
-														actionListener="#{parametrizacionBean.cargarParametro(VDataTblParametro)}"
-														title="Editar Agregador" 								
-														update=":IDFrmPrincipal"  />
-									</div>
-								</p:column>
-							</p:dataTable>
-                    	</p:tab>
-                	</p:wizard>
-               	</p:panelGrid>
-            
+										<p:column 	headerText="#{msj['manto.parametrizacion.pais.nombre']}" 
+													filterBy="#{VDataTblPais.nombre}"
+													filterMatchMode="contains">
+											<h:outputText value="#{VDataTblPais.nombre}" />
+										</p:column>
+										<p:column 	headerText="#{msj['manto.parametrizacion.pais.codigo']}"
+													filterBy="#{VDataTblPais.codigo}"
+													filterMatchMode="contains">
+											<h:outputText value="#{VDataTblPais.codigo}" />
+										</p:column>
+										<p:column headerText="#{msj['manto.parametrizacion.pais.estado']}" >
+											<h:outputText value="#{VDataTblPais.estado}" />
+										</p:column>
+										<p:column>
+											<div style="float: left;">
+												<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+																actionListener="#{parametrizacionBean.cargarPais(VDataTblPais)}"
+																title="Editar Pais" 								
+																update=":IDFrmPrincipal"  />
+											</div>
+										</p:column>
+									</p:dataTable>	
+		                    	</p:tab>
+		                    	
+		                    	<p:tab  titleStyleClass="text-normal-out" 
+		                        		titleStyle="height:10px;"  
+		                        		title="Agregadores"   
+		                        		id="tab2">
+		                        	<center>
+			                        	<p:panelGrid	id="IDPnlGridTab2">
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.agregador.nombre']}"  />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.agregador.nombre_agregador}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.agregador.estado']}"  />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:selectOneMenu	style="#{msj['p.inputText_width_mediano']}"
+																		value="#{parametrizacionBean.agregador.estado}" >
+														<f:selectItem 	itemLabel="#{msj['f.selectItem']}" />
+														<f:selectItems 	value="#{parametrizacionBean.listaEstados}" />
+													</p:selectOneMenu>
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnLimpiarTab2" 
+																		value="#{msj['p.commanButton_Nuevo']}" 
+																		actionListener="#{parametrizacionBean.limpiarAgregador}" />
+												</p:column>
+												<p:column>
+													<center>
+														<p:commandButton	id="IDCmdBtnEliminarTab2" 
+																			value="#{msj['p.commandButton_Eliminar']}"  
+																			actionListener="#{parametrizacionBean.eliminarAgregador}" />
+													</center>
+												</p:column>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnGuardarTab2" 
+																		value="#{msj['p.commanButton_Guardar']}"  
+																		actionListener="#{parametrizacionBean.guardarAgregador}" />
+												</p:column>
+											</p:row>								
+										</p:panelGrid>
+									</center>
+									<p:dataTable 	id="IDDataTblAgregadores" 
+													value="#{parametrizacionBean.agregadores}"
+													var="VDataTblAgregador"	
+													emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+													paginator="true" 
+													rows="5"					
+													editable="true">
+								
+										<p:column 	headerText="#{msj['manto.parametrizacion.agregador.nombre']}" 
+													filterBy="#{VDataTblAgregador.nombre_agregador}"
+													filterMatchMode="contains">
+											<h:outputText value="#{VDataTblAgregador.nombre_agregador}" />
+										</p:column>
+										<p:column headerText="#{msj['manto.parametrizacion.agregador.estado']}" >
+											<h:outputText value="#{VDataTblAgregador.estado}" />
+										</p:column>
+										<p:column>
+											<div style="float: left;">
+												<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+																actionListener="#{parametrizacionBean.cargarAgregador(VDataTblAgregador)}"
+																title="Editar Agregador" 								
+																update=":IDFrmPrincipal"  />
+											</div>
+										</p:column>
+									</p:dataTable>	
+		                    	</p:tab>
+		                    	
+		                    	<p:tab  titleStyleClass="text-normal-out" 
+		                        		titleStyle="height:10px;"  
+		                        		title="Metodos"   
+		                        		id="tab3">
+		                        	<p:panelGrid	id="IDPnlGridTab3_1" rendered="false">
+		                        		<p:row>
+											<p:column style="#{msj['p.column_width_mediano']}">
+												<h:outputText value="#{msj['manto.parametrizacion.metodo.wsdl']}" />
+											</p:column>
+											<p:column style="#{msj['p.column_width_mediano_inputText']}">
+												<p:inputText value="#{parametrizacionBean.metodo.wsdl_Agregador}" />
+											</p:column>
+											<p:column style="#{msj['p.column_width_mediano_inputText']}">
+												<p:commandButton value="Submit" actionListener="#{parametrizacionBean.readWSDL}" />
+											</p:column>
+										</p:row>
+		                        	</p:panelGrid>
+		                        	<center>
+			                        	<p:panelGrid	id="IDPnlGridTab3_2">
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.metodo.nombre']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.metodo.nombre}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.metodo.pass']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.metodo.pass}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.metodo.accion']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.metodo.accion}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.metodo.seguridad']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.metodo.seguridad}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.metodo.endpoint']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.metodo.endPoint}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.metodo.inputMessage']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.metodo.inputMessageText}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="#{msj['manto.parametrizacion.metodo.orden']}" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.metodo.ordenEjecucion}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="soapActionURI" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.metodo.soapActionURI}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											
+											<p:row>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnLimpiarTab3" 
+																		value="#{msj['p.commanButton_Nuevo']}" 
+																		actionListener="#{parametrizacionBean.limpiarMetodo}" />
+												</p:column>
+												<p:column>
+													<center>
+														<p:commandButton	id="IDCmdBtnEliminarTab3" 
+																			value="#{msj['p.commandButton_Eliminar']}"  
+																			actionListener="#{parametrizacionBean.eliminarMetodo}" />
+													</center>
+												</p:column>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnGuardarTab3" 
+																		value="#{msj['p.commanButton_Guardar']}"  
+																		actionListener="#{parametrizacionBean.guardarMetodo}" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+									</center>
+									<p:dataTable 	id="IDDataTblMetodos" 
+													value="#{parametrizacionBean.metodos}"
+													var="VDataTblMetodo"	
+													emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+													paginator="true" 
+													rows="5"					
+													editable="true">
+								
+										<p:column 	headerText="#{msj['manto.parametrizacion.metodo.nombre']}" 
+													filterBy="#{VDataTblMetodo.nombre}"
+													filterMatchMode="contains">
+											<h:outputText value="#{VDataTblMetodo.nombre}" />
+										</p:column>
+										<p:column headerText="#{msj['manto.parametrizacion.metodo.wsdl']}" >
+											<h:outputText value="#{VDataTblMetodo.wsdl_Agregador}" />
+										</p:column>
+										<p:column>
+											<div style="float: left;">
+												<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+																actionListener="#{parametrizacionBean.cargarMetodo(VDataTblMetodo)}"
+																title="Editar Agregador" 								
+																update=":IDFrmPrincipal"  />
+											</div>
+										</p:column>
+									</p:dataTable>
+		                    	</p:tab>
+		                    	
+		                    	<p:tab  titleStyleClass="text-normal-out" 
+		                        		titleStyle="height:10px;"  
+		                        		title="Parametros"   
+		                        		id="tab4">
+		                        	<center>
+			                        	<p:panelGrid	id="IDPnlGridTab4">
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="nombre" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.parametro.nombre}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="tipo" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.parametro.tipo}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnLimpiarTab4" 
+																		value="#{msj['p.commanButton_Nuevo']}" 
+																		actionListener="#{parametrizacionBean.limpiarParametro}" />
+												</p:column>
+												<p:column>
+													<center>
+														<p:commandButton	id="IDCmdBtnEliminarTab4" 
+																			value="#{msj['p.commandButton_Eliminar']}"  
+																			actionListener="#{parametrizacionBean.eliminarParametro}" />
+													</center>
+												</p:column>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnGuardarTab4" 
+																		value="#{msj['p.commanButton_Guardar']}"  
+																		actionListener="#{parametrizacionBean.guardarParametro}" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+									</center>
+									<p:dataTable 	id="IDDataTblParametros" 
+													value="#{parametrizacionBean.parametros}"
+													var="VDataTblParametro"	
+													emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+													paginator="true" 
+													rows="5"					
+													editable="true">
+								
+										<p:column 	headerText="nombre" 
+													filterBy="#{VDataTblParametro.nombre}"
+													filterMatchMode="contains">
+											<h:outputText value="#{VDataTblParametro.nombre}" />
+										</p:column>
+										<p:column headerText="tipo" >
+											<h:outputText value="#{VDataTblParametro.tipo}" />
+										</p:column>
+										<p:column>
+											<div style="float: left;">
+												<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+																actionListener="#{parametrizacionBean.cargarParametro(VDataTblParametro)}"
+																title="Editar Agregador" 								
+																update=":IDFrmPrincipal"  />
+											</div>
+										</p:column>
+									</p:dataTable>
+		                    	</p:tab>
+		                    	
+		                    	<p:tab  titleStyleClass="text-normal-out" 
+		                        		titleStyle="height:10px;"  
+		                        		title="Respuesta"   
+		                        		id="tab5">
+		                        	<center>
+			                        	<p:panelGrid	id="IDPnlGridTab5">
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="nombre" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.respuesta.nombre}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column style="#{msj['p.column_width_mediano']}">
+													<h:outputText value="tipo" />
+												</p:column>
+												<p:column style="#{msj['p.column_width_mediano_inputText']}">
+													<p:inputText value="#{parametrizacionBean.respuesta.tipo}" />
+												</p:column>
+												<p:column/>
+											</p:row>
+											<p:row>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnLimpiarTab5" 
+																		value="#{msj['p.commanButton_Nuevo']}" 
+																		actionListener="#{parametrizacionBean.limpiarRespuesta}" />
+												</p:column>
+												<p:column>
+													<center>
+														<p:commandButton	id="IDCmdBtnEliminarTab5" 
+																			value="#{msj['p.commandButton_Eliminar']}"  
+																			actionListener="#{parametrizacionBean.eliminarRespuesta}" />
+													</center>
+												</p:column>
+												<p:column>
+													<p:commandButton	id="IDCmdBtnGuardarTab5" 
+																		value="#{msj['p.commanButton_Guardar']}"  
+																		actionListener="#{parametrizacionBean.guardarRespuesta}" />
+												</p:column>
+											</p:row>
+										</p:panelGrid>
+									</center>
+									<p:dataTable 	id="IDDataTblRespuestas" 
+													value="#{parametrizacionBean.respuestas}"
+													var="VDataTblRespuesta"	
+													emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+													paginator="true" 
+													rows="5"					
+													editable="true">
+								
+										<p:column 	headerText="nombre" 
+													filterBy="#{VDataTblRespuesta.nombre}"
+													filterMatchMode="contains">
+											<h:outputText value="#{VDataTblRespuesta.nombre}" />
+										</p:column>
+										<p:column headerText="tipo" >
+											<h:outputText value="#{VDataTblRespuesta.tipo}" />
+										</p:column>
+										<p:column>
+											<div style="float: left;">
+												<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+																actionListener="#{parametrizacionBean.cargarRespuesta(VDataTblRespuesta)}"
+																title="Editar Respuesta" 								
+																update=":IDFrmPrincipal"  />
+											</div>
+										</p:column>
+									</p:dataTable>
+		                    	</p:tab>
+		                	</p:wizard>
+		                </center>
+	               	</p:panelGrid>
+            	</center>
 			</h:form>
 		</p:panel>
 

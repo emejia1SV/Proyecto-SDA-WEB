@@ -18,6 +18,7 @@ import sv.avantia.depurador.agregadores.entidades.Agregadores;
 import sv.avantia.depurador.agregadores.entidades.Metodos;
 import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.entidades.Parametros;
+import sv.avantia.depurador.agregadores.entidades.Respuesta;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 import sv.avantia.depurador.agregadores.utils.ParametrizarServicio;
@@ -32,10 +33,12 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	private Agregadores agregador;
 	private Metodos metodo;
 	private Parametros parametro;
+	private Respuesta respuesta;
 	private List<Pais> paises;
 	private List<Agregadores> agregadores;
 	private List<Metodos> metodos;
 	private List<Parametros> parametros;
+	private List<Respuesta> respuestas;
 	private BdEjecucion ejecucion = new BdEjecucion();
 
 	/**
@@ -53,6 +56,8 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		setAgregadores(new ArrayList<Agregadores>());
 		setMetodos(new ArrayList<Metodos>());
 		setParametros(new ArrayList<Parametros>());
+		setRespuesta(new Respuesta());
+		setRespuestas(new ArrayList<Respuesta>());
 		llenarTablaPaises();
 	}
 
@@ -76,7 +81,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		} 
 		catch (Exception e) 
 		{
-			lanzarMensajeError("Error:", "No se pudo cargar la tabla de paises", e);
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de Agregadores", e);
 		}
 	}
 
@@ -91,7 +96,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		} 
 		catch (Exception e) 
 		{
-			lanzarMensajeError("Error:", "No se pudo cargar la tabla de paises", e);
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de Metodos", e);
 		}
 	}
 
@@ -106,7 +111,22 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		} 
 		catch (Exception e) 
 		{
-			lanzarMensajeError("Error:", "No se pudo cargar la tabla de paises", e);
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de Parametros", e);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void llenarTablaRespuestas() 
+	{	
+		try 
+		{
+			setRespuestas((List<Respuesta>) (List<?>) ejecucion
+					.listData("FROM SDA_RESPUESTAS WHERE ID_METODO = "
+							+ getMetodo().getId()));
+		} 
+		catch (Exception e) 
+		{
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de Respuestas", e);
 		}
 	}
 
@@ -132,6 +152,32 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	{
 		setParametro(new Parametros());
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+	}
+	
+	public void limpiarRespuesta() 
+	{
+		setRespuesta(new Respuesta());
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+	}
+	
+	public void eliminarPais() {
+		ejecucion.deleteData(getPais());
+	}
+
+	public void eliminarAgregador() {
+		ejecucion.deleteData(getAgregador());
+	}
+
+	public void eliminarMetodo() {
+		ejecucion.deleteData(getMetodo());
+	}
+
+	public void eliminarParametro() {
+		ejecucion.deleteData(getParametro());
+	}
+	
+	public void eliminarRespuesta() {
+		ejecucion.deleteData(getRespuesta());
 	}
 	
 	public void guardarPais()
@@ -180,7 +226,7 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		}
 		setMetodo(new Metodos());
 		llenarTablaMetodos();
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblMetodos");
 	}
 	
@@ -199,6 +245,23 @@ public class ParametrizacionBean extends AccionesManageBean implements
 		llenarTablaParametros();
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblParametros");
+	}
+	
+	public void guardarRespuesta() 
+	{
+		if(getRespuesta().getId()==null)
+		{
+			getRespuesta().setMetodo(getMetodo());
+			ejecucion.createData(getRespuesta());
+		}
+		else
+		{
+			ejecucion.updateData(getRespuesta());
+		}
+		setRespuesta(new Respuesta());
+		llenarTablaRespuestas();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
 	}
 
 	/**
@@ -357,5 +420,47 @@ public class ParametrizacionBean extends AccionesManageBean implements
 
 	public void setParametros(List<Parametros> parametros) {
 		this.parametros = parametros;
+	}
+
+	/**
+	 * @return the respuesta
+	 */
+	public Respuesta getRespuesta() {
+		return respuesta;
+	}
+
+	/**
+	 * @param respuesta the respuesta to set
+	 */
+	public void setRespuesta(Respuesta respuesta) {
+		this.respuesta = respuesta;
+	}
+
+	/**
+	 * @return the ejecucion
+	 */
+	public BdEjecucion getEjecucion() {
+		return ejecucion;
+	}
+
+	/**
+	 * @param ejecucion the ejecucion to set
+	 */
+	public void setEjecucion(BdEjecucion ejecucion) {
+		this.ejecucion = ejecucion;
+	}
+
+	/**
+	 * @return the respuestas
+	 */
+	public List<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+
+	/**
+	 * @param respuestas the respuestas to set
+	 */
+	public void setRespuestas(List<Respuesta> respuestas) {
+		this.respuestas = respuestas;
 	}
 }

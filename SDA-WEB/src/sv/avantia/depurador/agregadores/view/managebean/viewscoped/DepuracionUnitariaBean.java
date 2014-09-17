@@ -7,7 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.model.SelectItem;
+
+import org.apache.log4j.Logger;
 
 import sv.avantia.depurador.agregadores.entidades.Agregadores;
 import sv.avantia.depurador.agregadores.entidades.Pais;
@@ -21,8 +22,35 @@ import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 public class DepuracionUnitariaBean extends AccionesManageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String numeroMovil;
+	
+	/**
+	 * Instancia de un {@link String} para alojar el unico numero que sera
+	 * depurado en este Managebean
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
+	private String numeroMovil = "";
+	
+	/**
+	 * Instancia de la lista que tendra alojada los numeros para la depuracion
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
 	private List<String> numerosMoviles;
+	
+	/**
+	 * Obtener el appender para la impresión en un archivo de LOG
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
+	public static Logger logger = Logger.getLogger("avantiaLogger");
+	
+	/**
+	 * Instancia de las operaciones con la base de datos.
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
+	private static BdEjecucion ejecucion = null;
 
 	/**
 	 * Metodo {@link PostConstruct}
@@ -43,74 +71,137 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	 * */
 	public void accionDepuracion() 
 	{
+		long init = System.currentTimeMillis();
 		System.out.println("Inicia la depuración unitaria");
 		try 
 		{
+			//obtener el numero
 			setNumerosMoviles(new ArrayList<String>());
-			getNumerosMoviles().add(getNumeroMovil());
+			getNumerosMoviles().add(getNumeroMovil()); 
 			
-			System.out.println("Se procesaran " + getNumerosMoviles().size() +  " números ");
-			for (String numero : getNumerosMoviles())
-        	{
-        		System.out.println(numero);
-        	}
+			System.out.println(getNumeroMovil());
+			System.out.println(getNumerosMoviles().size());
 			
-			long init = System.currentTimeMillis();
-			
-			System.out.println("Se obtendra la parametrización");
-			//consultar la parametrización
-			for (Pais pais : obtenerParmetrizacion()) 
+			if(getNumerosMoviles().size()>0) 
 			{
-				System.out.println("Procesando... " + pais.getNombre());
-				for (Agregadores agregador : pais.getAgregadores()) 
+				setEjecucion(new BdEjecucion());
+				//consultar la parametrización
+				for (Pais pais : obtenerParmetrizacion()) 
 				{
-					//abrir un hilo pr cada agregador parametrizados
-					ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
-					hilo.setMoviles(getNumerosMoviles());
-					hilo.setAgregador(agregador);
-					hilo.start();
+					System.out.println("Procesando... " + pais.getNombre());
+					for (Agregadores agregador : pais.getAgregadores()) 
+					{
+						//abrir un hilo pr cada agregador parametrizados
+						ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
+						hilo.setMoviles(getNumerosMoviles());
+						hilo.setAgregador(agregador);
+						hilo.start();
+					}
 				}
+				lanzarMensajeInformacion("Flujo", "Se termino de procesar exitosamente");
 			}
-			
-			//terminar el flujo.
-			SessionFactoryUtil.closeSession();
-			
-			System.out.println("finish " + ((System.currentTimeMillis() - init)/1000)  + "Segundos");
-			
-			lanzarMensajeInformacion("Flujo", "Se termino de procesar exitosamente");
+			else
+			{
+				lanzarMensajeInformacion("Flujo", "No existen números para procesar");
+			}
 		} 
 		catch (Exception exception) 
 		{
 			lanzarMensajeError("Error", "No se puede generar la depuración", exception);
 		}
+		finally
+		{
+			//terminar el flujo.
+			SessionFactoryUtil.closeSession();
+			setNumerosMoviles(null);
+			setEjecucion(null);
+			logger.info("finish " + ((System.currentTimeMillis() - init)/1000)  + "Segundos");
+		}
 		
 	}
 	
+	/**
+	 * Obtener insumo de parametrización para consultar a los agregadores
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @return {@link List} paises con sus dependencias en la base de datos
+	 * @throws Exception
+	 *             podria generarse una exepcion en el momento de ejecutar la
+	 *             consulta a la base de datos
+	 * */
 	@SuppressWarnings("unchecked")
-	public static List<Pais> obtenerParmetrizacion(){
-		BdEjecucion ejecucion = new BdEjecucion();
-		try {
-			return (List<Pais>)(List<?>) ejecucion.listData("FROM SDA_PAISES WHERE ID = 1");
-		} finally{
-			ejecucion = null;
-		}
+	public static List<Pais> obtenerParmetrizacion() throws Exception 
+	{
+		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES");
+	}
+	
+	/**
+	 * getter
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @return the ejecucion
+	 */
+	private static BdEjecucion getEjecucion() 
+	{
+		return ejecucion;
 	}
 
+	/**
+	 * setter
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @param ejecucion
+	 *            the ejecucion to set
+	 * @return {@link Void}
+	 */
+	private static void setEjecucion(BdEjecucion ejecucion) 
+	{
+		DepuracionUnitariaBean.ejecucion = ejecucion;
+	}
+	
+	/**
+	 * getter
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @return {@link String} numero movil
+	 */
 	public String getNumeroMovil() 
 	{
 		return numeroMovil;
 	}
 
+	/**
+	 * setter
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @param ejecucion
+	 *            the ejecucion to set
+	 * @return {@link Void}
+	 */
 	public void setNumeroMovil(String numeroMovil) 
 	{
 		this.numeroMovil = numeroMovil;
 	}
 
+	/**
+	 * getter
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @return {@link List} numeros moviles
+	 */
 	private List<String> getNumerosMoviles() 
 	{
 		return numerosMoviles;
 	}
 
+	/**
+	 * setter
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @param ejecucion
+	 *            the ejecucion to set
+	 * @return {@link Void}
+	 */
 	private void setNumerosMoviles(List<String> numerosMoviles) 
 	{
 		this.numerosMoviles = numerosMoviles;
