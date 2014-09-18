@@ -203,10 +203,10 @@ DROP SEQUENCE "SQ_SDA_RESPUESTAS";
 
   CREATE UNIQUE INDEX "METODOS_SERVICIOS_PK" ON "SDA_METODOS" ("ID") ;
 --------------------------------------------------------
---  DDL for Index PAISES_PK
+--  DDL for Index SDA_PAISES_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "PAISES_PK" ON "SDA_PAISES" ("ID") ;
+  CREATE UNIQUE INDEX "SDA_PAISES_PK" ON "SDA_PAISES" ("ID") ;
 --------------------------------------------------------
 --  DDL for Index USUARIOS_TEL_PK
 --------------------------------------------------------
@@ -269,7 +269,7 @@ DROP SEQUENCE "SQ_SDA_RESPUESTAS";
 --  Constraints for Table SDA_PAISES
 --------------------------------------------------------
 
-  ALTER TABLE "SDA_PAISES" ADD CONSTRAINT "PAISES_PK" PRIMARY KEY ("ID") ENABLE;
+  ALTER TABLE "SDA_PAISES" ADD CONSTRAINT "SDA_PAISES_PK" PRIMARY KEY ("ID") ENABLE;
  
   ALTER TABLE "SDA_PAISES" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
