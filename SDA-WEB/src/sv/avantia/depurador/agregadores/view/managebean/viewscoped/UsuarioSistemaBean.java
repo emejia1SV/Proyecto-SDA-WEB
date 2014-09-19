@@ -17,13 +17,11 @@ import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
 @ManagedBean
 @ViewScoped
-public class UsuarioSistemaBean extends AccionesManageBean implements
-		Serializable {
-
+public class UsuarioSistemaBean extends AccionesManageBean implements Serializable 
+{
 	private static final long serialVersionUID = 1L;
 	private UsuarioSistema usuarioSistema;
 	private List<UsuarioSistema> usuarioSistemas;
-	private BdEjecucion ejecucion;
 
 	@PostConstruct
 	public void init() {
@@ -124,21 +122,6 @@ public class UsuarioSistemaBean extends AccionesManageBean implements
 	}
 
 	/**
-	 * @return the ejecucion
-	 */
-	public BdEjecucion getEjecucion() {
-		return ejecucion;
-	}
-
-	/**
-	 * @param ejecucion
-	 *            the ejecucion to set
-	 */
-	public void setEjecucion(BdEjecucion ejecucion) {
-		this.ejecucion = ejecucion;
-	}
-
-	/**
 	 * @return the usuarioSistema
 	 */
 	public UsuarioSistema getUsuarioSistema() {
@@ -167,5 +150,4 @@ public class UsuarioSistemaBean extends AccionesManageBean implements
 	public void setUsuarioSistemas(List<UsuarioSistema> usuarioSistemas) {
 		this.usuarioSistemas = usuarioSistemas;
 	}
-
 }

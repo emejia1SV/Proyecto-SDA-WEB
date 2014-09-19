@@ -22,7 +22,6 @@ public class ParametrosSistemaBean extends AccionesManageBean implements Seriali
 	private static final long serialVersionUID = 1L;
 	private ParametrosSistema parametrosSistema;
 	private List<ParametrosSistema> parametrosSistemas;
-	private BdEjecucion ejecucion;
 
 	@PostConstruct
 	public void init() {
@@ -142,23 +141,4 @@ public class ParametrosSistemaBean extends AccionesManageBean implements Seriali
 	public void setParametrosSistemas(List<ParametrosSistema> parametrosSistemas) {
 		this.parametrosSistemas = parametrosSistemas;
 	}
-
-
-
-	/**
-	 * @return the ejecucion
-	 */
-	public BdEjecucion getEjecucion() {
-		return ejecucion;
-	}
-
-
-
-	/**
-	 * @param ejecucion the ejecucion to set
-	 */
-	public void setEjecucion(BdEjecucion ejecucion) {
-		this.ejecucion = ejecucion;
-	}
-
 }

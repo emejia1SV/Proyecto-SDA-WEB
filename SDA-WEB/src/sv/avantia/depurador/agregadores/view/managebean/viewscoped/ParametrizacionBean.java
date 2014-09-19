@@ -39,7 +39,6 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	private List<Metodos> metodos;
 	private List<Parametros> parametros;
 	private List<Respuesta> respuestas;
-	private BdEjecucion ejecucion;
 
 	/**
 	 * Metodo {@link PostConstruct}
@@ -246,6 +245,21 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	
 	public void guardarMetodo()
 	{
+		if(getMetodo().getEndPoint()==null){
+			lanzarMensajeAdvertencia("Endpoint", "Debe ingresar el endpoint");
+			return;
+		}else{
+			if(getMetodo().getEndPoint().startsWith("http:"))
+			{
+				getMetodo().setSeguridad(0);
+			}
+			else if(getMetodo().getEndPoint().startsWith("https:"))
+			{
+				getMetodo().setSeguridad(1);
+			}else{
+				lanzarMensajeAdvertencia("Endpoint", "Debe iniciar el endpoint con http: ó https");
+			}
+		}
 		if(getMetodo().getId()==null)
 		{
 			getMetodo().setAgregador(getAgregador());
@@ -398,7 +412,16 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		items[1] = new SelectItem(0, "Inactivo");
 		return items;
 	}
-
+	
+	public String getEstadoLabel(Integer id){
+		if(id==1)
+			return "Activo";
+		else if (id==2)
+			return "Inactivo";
+		else
+			return "";
+	}
+	
 	public Pais getPais() {
 		return pais;
 	}
@@ -475,20 +498,6 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	 */
 	public void setRespuesta(Respuesta respuesta) {
 		this.respuesta = respuesta;
-	}
-
-	/**
-	 * @return the ejecucion
-	 */
-	private BdEjecucion getEjecucion() {
-		return ejecucion;
-	}
-
-	/**
-	 * @param ejecucion the ejecucion to set
-	 */
-	private void setEjecucion(BdEjecucion ejecucion) {
-		this.ejecucion = ejecucion;
 	}
 
 	/**

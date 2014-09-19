@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 
+import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.view.managebean.applicationscoped.ApplicationBean;
 import sv.avantia.depurador.agregadores.view.managebean.sessionScope.UsuarioSessionMB;
 
@@ -21,6 +22,14 @@ public class AccionesManageBean {
 	 * @author Edwin Mejia - Avantia Consultores
 	 * */
 	public static Logger logger = Logger.getLogger("avantiaLogger");
+	
+	/**
+	 * Instanacia de {@link BdEjecucion} para poder generar ejecuciones en la
+	 * base de datos desde cualquier managebean
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
+	private BdEjecucion ejecucion = new BdEjecucion();
 	
 	/**
 	 * Esta es la unica injeccion de la sesion en todos los ManageBean ya que
@@ -384,5 +393,19 @@ public class AccionesManageBean {
 		lanzarMensaje(null, "IDGrowlErrorSistemas",
 				excepcion.getCause().toString(), excepcion.getMessage(),
 				FacesMessage.SEVERITY_FATAL);
+	}
+
+	/**
+	 * @return the ejecucion
+	 */
+	public BdEjecucion getEjecucion() {
+		return ejecucion;
+	}
+
+	/**
+	 * @param ejecucion the ejecucion to set
+	 */
+	public void setEjecucion(BdEjecucion ejecucion) {
+		this.ejecucion = ejecucion;
 	}
 }

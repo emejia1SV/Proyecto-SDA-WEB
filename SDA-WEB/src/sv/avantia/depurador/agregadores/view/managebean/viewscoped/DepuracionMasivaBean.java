@@ -12,7 +12,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -51,19 +50,6 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	 * @author Edwin Mejia - Avantia Consultores
 	 * */
 	private UploadedFile file;
-	
-	/**
-	 * Obtener el appender para la impresión en un archivo de LOG
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * */
-	public static Logger logger = Logger.getLogger("avantiaLogger");
-	
-	/**
-	 * Instancia de las operaciones con la base de datos.
-	 * 
-	 * */
-	private static BdEjecucion ejecucion = null;
 
 	/**
 	 * Metodo {@link PostConstruct}
@@ -207,33 +193,9 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	 *             consulta a la base de datos
 	 * */
 	@SuppressWarnings("unchecked")
-	public static List<Pais> obtenerParmetrizacion() throws Exception 
+	public List<Pais> obtenerParmetrizacion() throws Exception 
 	{
 		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES");
-	}
-	
-	/**
-	 * getter
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * @return the ejecucion
-	 */
-	private static BdEjecucion getEjecucion() 
-	{
-		return ejecucion;
-	}
-
-	/**
-	 * setter
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * @param ejecucion
-	 *            the ejecucion to set
-	 * @return {@link Void}
-	 */
-	private static void setEjecucion(BdEjecucion ejecucion) 
-	{
-		DepuracionMasivaBean.ejecucion = ejecucion;
 	}
 
 	/**

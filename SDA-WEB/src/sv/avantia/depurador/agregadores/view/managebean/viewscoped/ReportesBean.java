@@ -1,19 +1,23 @@
 package sv.avantia.depurador.agregadores.view.managebean.viewscoped;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,22 +36,81 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.export.ExporterInput;
-import net.sf.jasperreports.export.OutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
-import sv.avantia.depurador.agregadores.utils.AccionesReportesBean;
+
+import org.apache.commons.io.FileUtils;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+
+import sv.avantia.depurador.agregadores.entidades.LogDepuracion;
+import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
 @ManagedBean
 @ViewScoped
-public class ReportesBean extends AccionesReportesBean {
+public class ReportesBean extends AccionesManageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private final String COMPILE_FILE_NAME = "report6";
+	private List<LogDepuracion> depuraciones;
+	
+	@PostConstruct
+	public void init(){
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void llenarTablaLogs() {
+		try 
+		{
+			setDepuraciones(((List<LogDepuracion>) (List<?>) getEjecucion().listData("FROM SDA_LOG_DEPURACION")));
+			for (LogDepuracion log : getDepuraciones()) {
+				System.out.println("conocer si carga o no");
+				System.out.println(log.getMetodo().getAgregador().getPais().getNombre());
+			}
+		} 
+		catch (Exception e) 
+		{
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de paises", e);
+		}
+	}
+	
+	/**
+	 * @return the depuraciones
+	 */
+	public List<LogDepuracion> getDepuraciones() {
+		return depuraciones;
+	}
 
-	@Override
+
+	/**
+	 * @param depuraciones the depuraciones to set
+	 */
+	public void setDepuraciones(List<LogDepuracion> depuraciones) {
+		this.depuraciones = depuraciones;
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//private final String COMPILE_FILE_NAME = "report6";
+
+	/*@Override
 	protected String getCompileFileName() {
 		return COMPILE_FILE_NAME; 
 	}
@@ -55,11 +118,10 @@ public class ReportesBean extends AccionesReportesBean {
 	@Override
 	protected Map<String, Object> getReportParameters() {
 		Map<String, Object> reportParameters = new HashMap<String, Object>();
-		reportParameters.put("nombre",
-						"Claro depurador de agregadores a continuacion se muestran los numeros preocesados:");
+		reportParameters.put("nombre" , "Claro depurador de agregadores a continuacion se muestran los numeros preocesados:");
 		reportParameters.put("numeros", "50370170722 \n 50370172230");
 		return reportParameters;
-	}
+	}*/
 
 	public void execute() {
 		try {
@@ -273,6 +335,20 @@ public class ReportesBean extends AccionesReportesBean {
 			jasperPrint         = null;
 		}		
 	}
+	
+	 public StreamedContent getStream() throws IOException {
+	        FacesContext context = FacesContext.getCurrentInstance();
+
+	        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+	            // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
+	            return new DefaultStreamedContent();
+	        } else {
+	            // So, browser is requesting the media. Return a real StreamedContent with the media bytes.
+	            
+	            File reporte = new File("C:\\Users\\Edwin\\Documents\\documentacion Agregadores claro\\reportes\\reporte1.pdf");
+	            return new DefaultStreamedContent(new ByteArrayInputStream(FileUtils.readFileToByteArray(reporte)) );
+	        }
+	    }
 	
 	/**
 	 * 

@@ -8,8 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.log4j.Logger;
-
 import sv.avantia.depurador.agregadores.entidades.Agregadores;
 import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.hilo.ConsultaAgregadorPorHilo;
@@ -37,20 +35,6 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	 * @author Edwin Mejia - Avantia Consultores
 	 * */
 	private List<String> numerosMoviles;
-	
-	/**
-	 * Obtener el appender para la impresión en un archivo de LOG
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * */
-	public static Logger logger = Logger.getLogger("avantiaLogger");
-	
-	/**
-	 * Instancia de las operaciones con la base de datos.
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * */
-	private static BdEjecucion ejecucion = null;
 
 	/**
 	 * Metodo {@link PostConstruct}
@@ -127,33 +111,9 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	 *             consulta a la base de datos
 	 * */
 	@SuppressWarnings("unchecked")
-	public static List<Pais> obtenerParmetrizacion() throws Exception 
+	public List<Pais> obtenerParmetrizacion() throws Exception 
 	{
 		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES");
-	}
-	
-	/**
-	 * getter
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * @return the ejecucion
-	 */
-	private static BdEjecucion getEjecucion() 
-	{
-		return ejecucion;
-	}
-
-	/**
-	 * setter
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * @param ejecucion
-	 *            the ejecucion to set
-	 * @return {@link Void}
-	 */
-	private static void setEjecucion(BdEjecucion ejecucion) 
-	{
-		DepuracionUnitariaBean.ejecucion = ejecucion;
 	}
 	
 	/**

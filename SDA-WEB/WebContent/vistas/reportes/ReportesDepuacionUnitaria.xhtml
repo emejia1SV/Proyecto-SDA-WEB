@@ -23,19 +23,44 @@
 		<p:panel	id="IDPanel"
 					header=""
 					style="#{msj['p.panelGrande']} margin-top: 10pt;">
-
-		
-
 			<h:form id="IDFrmPrincipal">
+				<p:dataTable 	id="IDDataTblReporte" 
+								value="#{reportesBean.depuraciones}"
+								var="VDataTblReporte"	
+								emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+								paginator="true" 
+								rows="5"		rendered = false;			
+								editable="true">
+			
+					<p:column 	headerText="#{msj['reporte.pais']}" 
+								filterBy="#{VDataTblReporte}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblPais.nombre}" />
+					</p:column>
+					<p:column 	headerText="#{msj['manto.parametrizacion.pais.codigo']}"
+								filterBy="#{VDataTblPais.codigo}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblPais.codigo}" />
+					</p:column>
+					<p:column headerText="#{msj['manto.parametrizacion.pais.estado']}" >
+						<h:outputText value="#{VDataTblPais.estado}" />
+					</p:column>
+					<p:column>
+						<div style="float: left;">
+							<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+											actionListener="#{parametrizacionBean.cargarPais(VDataTblPais)}"
+											title="Editar Pais" 								
+											update=":IDFrmPrincipal"  />
+						</div>
+					</p:column>
+				</p:dataTable>	
+			
 				<div style="float: left;">
 					<p:commandLink
 						actionListener="#{reportesBean.execute}" 
 						value="uno a uno">						
 					</p:commandLink>
 				</div>
-
-				
-			
 			</h:form>
 		</p:panel>
 
