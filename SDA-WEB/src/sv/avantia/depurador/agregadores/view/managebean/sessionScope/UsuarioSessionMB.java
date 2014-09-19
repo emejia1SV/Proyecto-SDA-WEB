@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -14,6 +13,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.MenuControllerT;
 import sv.avantia.depurador.agregadores.utils.MenuT;
 import sv.avantia.depurador.agregadores.utils.ValidacionLDAP;
@@ -38,14 +38,6 @@ public class UsuarioSessionMB implements Serializable {
 	protected List<MenuT> menus;
 	private MenuControllerT menu;
 	
-	private static HashMap<String, String> usuarios = new HashMap<String, String>();
-	
-	static{
-		usuarios.put("edwin", "pass");
-		usuarios.put("admin", "pass");
-		usuarios.put("test", "pass");
-	}
-
 	/**
 	 * Metodo con el cual es ingresado la contraseña a traves de parametros
 	 * desde la vista
@@ -62,12 +54,13 @@ public class UsuarioSessionMB implements Serializable {
 	 * @param contrasenia - Contrasenia del usuario
 	 * */
 	private void loginUsuario(String contrasenia) {
+		BdEjecucion ejecucion = new BdEjecucion();
 		try {
 			//validar en active directory
 			ValidacionLDAP activeDirectory = new ValidacionLDAP();
 			if(activeDirectory.Authenticate("", getNombreUsuario(), contrasenia)){
 				//validar en Base de Datos
-				if(usuarios.get(getNombreUsuario()).equals(contrasenia)){
+				if(ejecucion.verificarUsuario(getNombreUsuario(), contrasenia)){
 					PoblarMenu(1);
 					redireccionarPagina(URL_PAGINA_PRINCIPAL);
 				}else{
@@ -78,6 +71,8 @@ public class UsuarioSessionMB implements Serializable {
 			}	
 		} catch (Exception e) {
 			mostrarMensajeError((e.getMessage().equals("")? "Ocurrió un error al intentar validar su usuario y contraseña." : e.getMessage()));
+		}finally{
+			ejecucion = null;
 		}
 	}
 
@@ -102,6 +97,8 @@ public class UsuarioSessionMB implements Serializable {
 			
 			getMenus().add(	new MenuT("7", "Manteniento", null, null));
 			getMenus().add(	new MenuT("8", "Parametrización", "7",  "/vistas/mantenimientos/Parametrizacion.xhtml"));
+			getMenus().add(	new MenuT("9", "Parametros Sistema", "7",  "/vistas/mantenimientos/ParametrosSistema.xhtml"));
+			getMenus().add(	new MenuT("9", "Usuarios Sistema", "7",  "/vistas/mantenimientos/UsusarioSistema.xhtml"));
 			//getMenus().add(	new MenuT("9", "Agregadores", "7",  "/vistas/mantenimientos/Paises.xhtml"));
 			//getMenus().add(	new MenuT("10", "Metodos", "7",  "/vistas/mantenimientos/Paises.xhtml"));
 			//getMenus().add(	new MenuT("11", "Prametros", "7",  "/vistas/mantenimientos/Paises.xhtml"));

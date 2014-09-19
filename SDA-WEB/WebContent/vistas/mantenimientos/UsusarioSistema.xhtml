@@ -1,0 +1,115 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="./../commons/template.xhtml">
+
+	<f:metadata>
+		<f:event
+			listener="#{usuarioSessionMB.validarSesion()}"
+			type="preRenderView" />
+		<f:event
+			listener="#{usuarioSessionMB.mostrarMensajeValidacion()}"
+			type="postAddToView" />
+		<f:event 
+			listener="#{usuarioSessionMB.validarAccesoPagina()}" 
+			type="preRenderView"/>
+		
+	</f:metadata>
+
+	<ui:define name="content">
+		<p:panel	id="IDPanel"
+					header="Matenimiento"
+					style="#{msj['p.panelMediano']} margin-top: 10pt; ">
+
+			<h:form id="IDFrmPrincipal">
+				<center>
+			    	<p:panelGrid 	id="IDPnlGridUsuarioSistema" 
+			                       	style="margin-top: 10pt; margin:0 auto;">
+						<p:row>
+							<p:column>
+								<h:outputText value="#{msj['manto.usuario.sistema.usuario']}" />
+							</p:column>
+							<p:column style="#{msj['p.column_width_mediano_inputText']}">
+								<p:inputText value="#{usuarioSistemaBean.usuarioSistema.usuario}" />
+							</p:column>
+							<p:column/>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="#{msj['manto.usuario.sistema.contrasenia']}" />
+							</p:column>
+							<p:column style="#{msj['p.column_width_mediano_inputText']}">
+								<p:inputText value="#{usuarioSistemaBean.usuarioSistema.contrasenia}" />
+							</p:column>
+							<p:column/>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="#{msj['manto.usuario.sistema.estado']}" />
+							</p:column>
+							<p:column style="#{msj['p.column_width_mediano_inputText']}">
+								<p:selectOneMenu	style="#{msj['p.inputText_width_mediano']}"
+													value="#{usuarioSistemaBean.usuarioSistema.estado}" >
+									<f:selectItem 	itemLabel="#{msj['f.selectItem']}" />
+									<f:selectItems 	value="#{usuarioSistemaBean.listaEstados}" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column/>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:commandButton	id="IDCmdBtnLimpiar" 
+													value="#{msj['p.commanButton_Nuevo']}" 
+													actionListener="#{usuarioSistemaBean.limpiarUsuario}" />
+							</p:column>
+							<p:column>
+								<center>
+									<p:commandButton	id="IDCmdBtnEliminar" 
+														value="#{msj['p.commandButton_Eliminar']}"  
+														actionListener="#{usuarioSistemaBean.eliminarUsuario}" />
+								</center>
+							</p:column>
+							<p:column>
+								<p:commandButton	id="IDCmdBtnGuardar" 
+													value="#{msj['p.commanButton_Guardar']}"  
+													actionListener="#{usuarioSistemaBean.guardarUsuario}" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</center>
+				<p:dataTable 	id="IDDataTblUsuarioSistema" 
+								value="#{usuarioSistemaBean.usuarioSistemas}"
+								var="VDataTblUserSistem"	
+								emptyMessage="#{msj['p.dataTable_emptyMessage']}"
+								paginator="true" 
+								rows="5"					
+								editable="true">
+								
+					<p:column 	headerText="#{msj['manto.usuario.sistema.usuario']}" 
+								filterBy="#{VDataTblUserSistem.usuario}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblUserSistem.usuario}" />
+					</p:column>
+					<p:column headerText="#{msj['manto.usuario.sistema.estado']}" >
+						<h:outputText value="#{VDataTblUserSistem.estado}" />
+					</p:column>
+					<p:column>
+						<div style="float: left;">
+							<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
+											actionListener="#{usuarioSistemaBean.cargarUsuario(VDataTblUserSistem)}"
+											title="Editar Usuario" 								
+											update=":IDFrmPrincipal"  />
+						</div>
+					</p:column>
+				</p:dataTable>
+				
+			
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>

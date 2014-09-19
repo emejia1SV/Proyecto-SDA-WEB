@@ -2,6 +2,7 @@ package sv.avantia.depurador.agregadores.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.j2ee.servlets.BaseHttpServlet;
 
-public abstract class AccionesReportesBean {
+public abstract class AccionesReportesBean implements Serializable {
 	public enum ExportOption {
 		PDF, HTML, EXCEL
 	}
@@ -29,7 +30,7 @@ public abstract class AccionesReportesBean {
 
 	public AccionesReportesBean() {
 		super();
-		setExportOption(ExportOption.PDF);
+		setExportOption(ExportOption.HTML);
 	}
 
 	protected void prepareReport() throws JRException, IOException {
@@ -45,6 +46,7 @@ public abstract class AccionesReportesBean {
 
 		if (getExportOption().equals(ExportOption.HTML)) 
 		{
+			System.out.println("debe imprimirlo por  html");
 			ReportConfigUtil.exportReportAsHtml(jasperPrint, response.getWriter());
 		} 
 		else if (getExportOption().equals(ExportOption.EXCEL)) 

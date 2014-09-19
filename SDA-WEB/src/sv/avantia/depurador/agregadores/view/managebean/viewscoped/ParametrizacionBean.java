@@ -25,8 +25,8 @@ import sv.avantia.depurador.agregadores.utils.ParametrizarServicio;
 
 @ManagedBean
 @ViewScoped
-public class ParametrizacionBean extends AccionesManageBean implements
-		Serializable {
+public class ParametrizacionBean extends AccionesManageBean implements	Serializable 
+{
 
 	private static final long serialVersionUID = 1L;
 	private Pais pais;
@@ -134,51 +134,81 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	public void limpiarPais() 
 	{
 		setPais(new Pais());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
 	}
 
 	public void limpiarAgregador() 
 	{
 		setAgregador(new Agregadores());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
 	}
 
 	public void limpiarMetodo() 
 	{
 		setMetodo(new Metodos());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
 	}
 
 	public void limpiarParametro() 
 	{
 		setParametro(new Parametros());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
 	}
 	
 	public void limpiarRespuesta() 
 	{
 		setRespuesta(new Respuesta());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
 	}
 	
 	public void eliminarPais() {
-		getEjecucion().deleteData(getPais());
+		if(getPais().getId()!=null){
+			getEjecucion().deleteData(getPais());
+			setPais(new Pais());
+			llenarTablaPaises();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblPaises");
+		}
 	}
 
 	public void eliminarAgregador() {
-		getEjecucion().deleteData(getAgregador());
+		if(getAgregador().getId()!=null){
+			getEjecucion().deleteData(getAgregador());
+			setAgregador(new Agregadores());
+			llenarTablaAgregadores();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblAgregadores");
+		}
 	}
 
 	public void eliminarMetodo() {
-		getEjecucion().deleteData(getMetodo());
+		if(getMetodo()!=null){
+			getEjecucion().deleteData(getMetodo());
+			setMetodo(new Metodos());
+			llenarTablaMetodos();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblMetodos");
+		}
 	}
 
 	public void eliminarParametro() {
-		getEjecucion().deleteData(getParametro());
+		if(getParametro().getId()!=null){
+			getEjecucion().deleteData(getParametro());
+			setParametro(new Parametros());
+			llenarTablaParametros();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblParametros");
+		}
 	}
 	
 	public void eliminarRespuesta() {
-		getEjecucion().deleteData(getRespuesta());
+		if(getRespuesta().getId()!=null){
+			getEjecucion().deleteData(getRespuesta());
+			setRespuesta(new Respuesta());
+			llenarTablaRespuestas();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
+		}
 	}
 	
 	public void guardarPais()
@@ -336,20 +366,30 @@ public class ParametrizacionBean extends AccionesManageBean implements
 	public void cargarPais(Pais pais) {
 		setPais(pais);
 		llenarTablaAgregadores();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
 	}
 	
 	public void cargarAgregador(Agregadores agregadores) {
 		setAgregador(agregadores);
 		llenarTablaMetodos();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
 	}
 	
 	public void cargarMetodo(Metodos metodos) {
 		setMetodo(metodos);
 		llenarTablaParametros();
+		llenarTablaRespuestas();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
 	}
 	
 	public void cargarParametro(Parametros parametros) {
 		setParametro(parametros);
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
+	}
+	
+	public void cargarRespuesta(Respuesta respuesta) {
+		setRespuesta(respuesta);
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
 	}
 	
 	public SelectItem[] getListaEstados() {
