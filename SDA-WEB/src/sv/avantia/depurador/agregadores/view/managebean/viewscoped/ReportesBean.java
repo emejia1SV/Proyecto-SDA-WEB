@@ -42,10 +42,12 @@ import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 import org.apache.commons.io.FileUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import sv.avantia.depurador.agregadores.entidades.LogDepuracion;
+import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
 @ManagedBean
@@ -57,7 +59,7 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 	
 	@PostConstruct
 	public void init(){
-		
+		llenarTablaLogs();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -92,7 +94,10 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 	}
 
 
-	
+	public void cargarLog(LogDepuracion logDepuracion) {
+		System.out.println("Se recibio " + logDepuracion.getId());
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+	}
 	
 	
 	

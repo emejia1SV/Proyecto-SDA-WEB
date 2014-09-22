@@ -77,6 +77,8 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 						ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
 						hilo.setMoviles(getNumerosMoviles());
 						hilo.setAgregador(agregador);
+						hilo.setTipoDepuracion("UNITARIA");
+						hilo.setUsuarioSistema(getUsuarioSessionMB().getUsuarioSession());
 						hilo.start();
 					}
 				}
@@ -94,7 +96,7 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 		finally
 		{
 			//terminar el flujo.
-			SessionFactoryUtil.closeSession();
+			//SessionFactoryUtil.closeSession();
 			setNumerosMoviles(null);
 			setEjecucion(null);
 		}

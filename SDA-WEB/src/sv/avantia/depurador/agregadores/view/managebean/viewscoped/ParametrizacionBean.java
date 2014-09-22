@@ -413,7 +413,7 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		return items;
 	}
 	
-	public String getEstadoLabel(Integer id){
+	public String estadoLabel(Integer id){
 		if(id==1)
 			return "Activo";
 		else if (id==2)

@@ -160,6 +160,8 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 						ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
 						hilo.setMoviles(getNumerosMoviles());
 						hilo.setAgregador(agregador);
+						hilo.setTipoDepuracion("ARCHIVO");
+						hilo.setUsuarioSistema(getUsuarioSessionMB().getUsuarioSession());
 						hilo.start();
 					}
 				}
@@ -177,7 +179,7 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 		finally
 		{
 			//terminar el flujo.
-			SessionFactoryUtil.closeSession();
+			//SessionFactoryUtil.closeSession();
 			setNumerosMoviles(null);
 			setEjecucion(null);
 		}

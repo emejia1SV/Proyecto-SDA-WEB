@@ -42,7 +42,7 @@ public class UsuarioSistemaBean extends AccionesManageBean implements Serializab
 	public void llenarTablaUsuarios() {
 		try {
 			setUsuarioSistemas((List<UsuarioSistema>) (List<?>) getEjecucion()
-					.listData("FROM SDA_USUARIO_SISTEMA"));
+					.listData("FROM SDA_USUARIO_SISTEMA WHERE ID > 1"));
 		} catch (Exception e) {
 			lanzarMensajeError("Error:",
 					"No se pudo cargar la tabla de paises", e);

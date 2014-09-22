@@ -1,3 +1,7 @@
+<version>1.0</version>
+<key> </key>
+<value> </value>
+
 <soapActionUri>loc:queryBlackList</soapActionUri>
 
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/blackgray/v1_0/local">
@@ -44,7 +48,7 @@
          <loc:version>_*version_*</loc:version>
          <loc:blackList>
             <balckee>
-               <msisdn>_*msisdn_*</msisdn>
+               <msisdn>_*movil_*</msisdn>
                <serviceID></serviceID>
                <createTime>_*date_*</createTime>
             </balckee>
@@ -66,7 +70,7 @@
          <loc:version>_*version_*</loc:version>
          <loc:blackList>
             <balckee>
-               <msisdn>_*msisdn_*</msisdn>
+               <msisdn>_*movil_*</msisdn>
                <ASPID>35000001000001</ASPID>
                <serviceID>2014011716010012345</serviceID>
                <createTime>_*date_*</createTime>
@@ -82,13 +86,33 @@
    </soapenv:Body>
 </soapenv:Envelope>
 
+<soapActionUri>loc:queryGrayList</soapActionUri>
+<endPoint>https://hub.americamovil.com/sag/services/blackgrayService<endPoint>
+<user>PA00000737</user>
+<pass>x9t/yLcnC3VYKCb6v0uezTwYJNk=</pass>
+
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/blackgray/v1_0/local">
-   <soapenv:Header/>
+   <soapenv:Header>
+      <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+         <wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+            <wsse:Username>_*user_*</wsse:Username>
+            <wsse:Password Type="...#PasswordDigest">_*pass_*</wsse:Password>
+            <wsse:Nonce>096459e93f20a2b39ab6c5ddd493e44f58bc3a91</wsse:Nonce>
+            <wsse:Created>_*date_*</wsse:Created>
+         </wsse:UsernameToken>
+      </wsse:Security>
+      <tns:RequestSOAPHeader xmlns:tns="http://www.huawei.com.cn/schema/common/v2_1">
+         <tns:AppId>35000001000001</tns:AppId>
+         <tns:TransId>2014011716010012345</tns:TransId>
+         <tns:OA>_*movil_*</tns:OA>
+         <tns:FA>_*movil_*</tns:FA>
+      </tns:RequestSOAPHeader>
+   </soapenv:Header>
    <soapenv:Body>
       <loc:queryGrayList>
          <loc:version>_*version_*</loc:version>
          <loc:msisdns>
-            <msisdn>_*msisdn_*</msisdn>
+            <msisdn>_*movil_*</msisdn>
          </loc:msisdns>
          <loc:extensionInfo>
             <NamedParameters>
@@ -151,7 +175,7 @@
          <loc:version>_*version_*</loc:version>
          <loc:grayList>
             <grayee>
-               <msisdn>_*msisdn_*</msisdn>    
+               <msisdn>_*movil_*</msisdn>    
             </grayee>
          </loc:grayList>
       </loc:deleteGrayList>

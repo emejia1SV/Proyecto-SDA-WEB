@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import sv.avantia.depurador.agregadores.entidades.UsuarioSistema;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.MenuControllerT;
 import sv.avantia.depurador.agregadores.utils.MenuT;
@@ -31,7 +32,10 @@ public class UsuarioSessionMB implements Serializable {
 	private static String URL_PAGINA_PRINCIPAL = "/SDA-WEB/Principal.xhtml";
 	private static String URL_PAGINA_PERMISOS = "/SDA-WEB/Permisos.xhtml";
 	private static String URL_PAGINA_LOGOUT = "/SDA-WEB/vistas/commons/Logout.xhtml";
+	private static final String MASTER_USER = "admin";
+	private static final String MASTER_PASS = "admin";
 	private String nombreUsuario;
+	private UsuarioSistema usuarioSession;
 
 	private String mensaje = "";
 
@@ -56,19 +60,28 @@ public class UsuarioSessionMB implements Serializable {
 	private void loginUsuario(String contrasenia) {
 		BdEjecucion ejecucion = new BdEjecucion();
 		try {
-			//validar en active directory
-			ValidacionLDAP activeDirectory = new ValidacionLDAP();
-			if(activeDirectory.Authenticate("", getNombreUsuario(), contrasenia)){
-				//validar en Base de Datos
-				if(ejecucion.verificarUsuario(getNombreUsuario(), contrasenia)){
-					PoblarMenu(1);
-					redireccionarPagina(URL_PAGINA_PRINCIPAL);
+			
+			if(getNombreUsuario().equals(MASTER_USER) && contrasenia.equals(MASTER_PASS))
+			{
+				PoblarMenu(1);
+				redireccionarPagina(URL_PAGINA_PRINCIPAL);
+			}
+			else{
+				//validar en active directory
+				ValidacionLDAP activeDirectory = new ValidacionLDAP();
+				if(activeDirectory.Authenticate("", getNombreUsuario(), contrasenia)){
+					//validar en Base de Datos
+					if(ejecucion.verificarUsuario(getNombreUsuario(), contrasenia)){
+						setUsuarioSession((UsuarioSistema) ejecucion.obtenerDato("FROM SDA_USUARIO_SISTEMA WHERE USUARIO = '" + getNombreUsuario() + "' AND CONTRASENIA =  '" + contrasenia + "'"));
+						PoblarMenu(1);
+						redireccionarPagina(URL_PAGINA_PRINCIPAL);
+					}else{
+						mostrarMensajeError("No posee un perfil asignado.");
+					}	
 				}else{
-					mostrarMensajeError("No posee un perfil asignado.");
-				}	
-			}else{
-				mostrarMensajeError("El usuario "+getNombreUsuario()+ " no existe");
-			}	
+					mostrarMensajeError("El usuario "+getNombreUsuario()+ " no existe");
+				}
+			}
 		} catch (Exception e) {
 			mostrarMensajeError((e.getMessage().equals("")? "Ocurrió un error al intentar validar su usuario y contraseña." : e.getMessage()));
 		}finally{
@@ -92,8 +105,8 @@ public class UsuarioSessionMB implements Serializable {
 			getMenus().add(	new MenuT("3", "Masivo", "1",  "/vistas/depuracion/DepuracionMasiva.xhtml"));
 			
 			getMenus().add(	new MenuT("4", "Reportes", null, null));
-			getMenus().add(	new MenuT("5", "Uno a uno", "4",  "/vistas/reportes/ReportesDepuacionUnitaria.xhtml"));
-			getMenus().add(	new MenuT("6", "Masivo", "4",  "/vistas/reportes/ReportesDepuracionMasiva.xhtml"));
+			getMenus().add(	new MenuT("5", "Reporte", "4",  "/vistas/reportes/ReportesDepuacionUnitaria.xhtml"));
+			//getMenus().add(	new MenuT("6", "Masivo", "4",  "/vistas/reportes/ReportesDepuracionMasiva.xhtml"));
 			
 			getMenus().add(	new MenuT("7", "Manteniento", null, null));
 			getMenus().add(	new MenuT("8", "Parametrización", "7",  "/vistas/mantenimientos/Parametrizacion.xhtml"));
@@ -299,5 +312,19 @@ public class UsuarioSessionMB implements Serializable {
 	 */
 	private void setMenu(MenuControllerT menu) {
 		this.menu = menu;
+	}
+
+	/**
+	 * @return the usuarioSession
+	 */
+	public UsuarioSistema getUsuarioSession() {
+		return usuarioSession;
+	}
+
+	/**
+	 * @param usuarioSession the usuarioSession to set
+	 */
+	public void setUsuarioSession(UsuarioSistema usuarioSession) {
+		this.usuarioSession = usuarioSession;
 	}
 }

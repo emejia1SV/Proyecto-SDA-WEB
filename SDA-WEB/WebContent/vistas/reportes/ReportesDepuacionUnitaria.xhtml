@@ -29,26 +29,58 @@
 								var="VDataTblReporte"	
 								emptyMessage="#{msj['p.dataTable_emptyMessage']}"
 								paginator="true" 
-								rows="5"		rendered = false;			
+								rows="5"			
 								editable="true">
 			
 					<p:column 	headerText="#{msj['reporte.pais']}" 
-								filterBy="#{VDataTblReporte}"
+								filterBy="#{VDataTblReporte.metodo.agregador.pais.nombre}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblPais.nombre}" />
+						<h:outputText value="#{VDataTblReporte.metodo.agregador.pais.nombre}" />
 					</p:column>
 					<p:column 	headerText="#{msj['manto.parametrizacion.pais.codigo']}"
-								filterBy="#{VDataTblPais.codigo}"
+								filterBy="#{VDataTblReporte.metodo.agregador.pais.codigo}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblPais.codigo}" />
+						<h:outputText value="#{VDataTblReporte.metodo.agregador.pais.codigo}" />
 					</p:column>
-					<p:column headerText="#{msj['manto.parametrizacion.pais.estado']}" >
-						<h:outputText value="#{VDataTblPais.estado}" />
+					<p:column 	headerText="#{msj['manto.parametrizacion.agregador.nombre']}"
+								filterBy="#{VDataTblReporte.metodo.agregador.nombre_agregador}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblReporte.metodo.agregador.nombre_agregador}" />
+					</p:column>
+					<p:column 	headerText="#{msj['manto.parametrizacion.metodo.nombre']}" 
+								filterBy="#{VDataTblReporte.metodo.nombre}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblReporte.metodo.nombre}" />
+					</p:column>
+					<p:column 	headerText="usuario" 
+								filterBy="#{VDataTblReporte.usuarioSistema.usuario}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblReporte.usuarioSistema.usuario}" />
+					</p:column>
+					<p:column 	headerText="fecha" 
+								filterBy="#{VDataTblReporte.fechaTransaccion}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblReporte.fechaTransaccion}" />
+					</p:column>
+					<p:column 	headerText="estado" 
+								filterBy="#{VDataTblReporte.estadoTransaccion}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblReporte.estadoTransaccion}" />
+					</p:column>
+					<p:column 	headerText="tipo" 
+								filterBy="#{VDataTblReporte.tipoTransaccion}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblReporte.tipoTransaccion}" />
+					</p:column>
+					<p:column 	headerText="suscriptor" 
+								filterBy="#{VDataTblReporte.numero}"
+								filterMatchMode="contains">
+						<h:outputText value="#{VDataTblReporte.numero}" />
 					</p:column>
 					<p:column>
 						<div style="float: left;">
 							<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
-											actionListener="#{parametrizacionBean.cargarPais(VDataTblPais)}"
+											actionListener="#{reportesBean.cargarLog(VDataTblReporte)}"
 											title="Editar Pais" 								
 											update=":IDFrmPrincipal"  />
 						</div>
