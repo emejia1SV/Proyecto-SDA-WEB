@@ -158,9 +158,9 @@
       <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
          <wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
             <wsse:Username>_*user_*</wsse:Username>
-            <wsse:Password Type="...#PasswordDigest">_*pass_*</wsse:Password>
-            <wsse:Nonce>096459e93f20a2b39ab6c5ddd493e44f58bc3a91</wsse:Nonce>
-            <wsse:Created>_*date_*</wsse:Created>
+            <wsse:Password Type="...#PasswordDigest">_*passSMT_*</wsse:Password>
+            <wsse:Nonce>_*nonce_*</wsse:Nonce>
+            <wsse:Created>_*dateSMT_*</wsse:Created>
          </wsse:UsernameToken>
       </wsse:Security>
       <tns:RequestSOAPHeader xmlns:tns="http://www.huawei.com.cn/schema/common/v2_1">

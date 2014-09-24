@@ -137,6 +137,7 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
   CREATE TABLE "SDA_METODOS" 
    (    "ID" NUMBER, 
 		"ID_AGREGADOR" NUMBER, 
+		"ESTADO" NUMBER,
 		"NOMBRE" VARCHAR2(255 BYTE), 
 		"USUARIO" VARCHAR2(255 BYTE), 
 		"CONTRASENIA" VARCHAR2(255 BYTE), 
@@ -160,6 +161,8 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
  
    COMMENT ON COLUMN "SDA_METODOS"."ID_AGREGADOR" IS 'fk relacion con la tabla de agregadores de los servicios web de los agregadores';
  
+   COMMENT ON COLUMN "SDA_METODOS"."ESTADO" IS 'estado del metodo del servicio web de los agregadores';
+   
    COMMENT ON COLUMN "SDA_METODOS"."NOMBRE" IS 'nombre del metodo del servicio web de los agregadores';
    
    COMMENT ON COLUMN "SDA_METODOS"."USUARIO" IS 'USUARIO del metodo del servicio web de los agregadores';
@@ -268,6 +271,7 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
    (    "ID" NUMBER, 
 		"SUSCRIPTOR" VARCHAR2(50 BYTE), 
 		"RESPUESTA" VARCHAR2(4000 BYTE),
+		"ENVIO" VARCHAR2(4000 BYTE),
 		"ESTADO_TRANSACCION" VARCHAR2(255 BYTE),
 		"FECHA_TRANSACCION" TIMESTAMP (6),
 		"TIPO_TRANSACCION" VARCHAR2(50 BYTE),
@@ -279,6 +283,8 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
  
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."SUSCRIPTOR" IS 'numero de telefono que se desea depurar';
  
+   COMMENT ON COLUMN "SDA_LOG_DEPURACION"."ENVIO" IS 'archivo enviado al servicio de los agregadores';
+	
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."RESPUESTA" IS 'respuesta obtenida al invocar al metodo web del servicio de los agregadores';
    
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."ESTADO_TRANSACCION" IS 'estado de la depuracion la cual sera mostrada en el reporte';

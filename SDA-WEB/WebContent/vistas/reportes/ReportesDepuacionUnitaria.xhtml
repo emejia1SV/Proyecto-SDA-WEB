@@ -24,6 +24,12 @@
 					header=""
 					style="#{msj['p.panelGrande']} margin-top: 10pt;">
 			<h:form id="IDFrmPrincipal">
+				<p:commandButton value="Export as PDF" ajax="false" >
+					<p:dataExporter type="pdf" target="IDDataTblReporte" fileName="Reporte"/>
+				</p:commandButton>
+				<p:commandButton value="Export as Excel" ajax="false">
+					<p:dataExporter type="xls" target="IDDataTblReporte" fileName="Reporte"/>
+				</p:commandButton>
 				<p:dataTable 	id="IDDataTblReporte" 
 								value="#{reportesBean.depuraciones}"
 								var="VDataTblReporte"	
@@ -32,70 +38,64 @@
 								rows="5"			
 								editable="true">
 			
-					<p:column 	headerText="#{msj['reporte.pais']}" 
+					<p:column 	style="#{msj['p.column_width_diminuto_inputText']}" 
+								headerText="#{msj['reporte.pais']}"
+								filterStyle="width: 16px;"
 								filterBy="#{VDataTblReporte.metodo.agregador.pais.nombre}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.metodo.agregador.pais.nombre}" />
+						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.metodo.agregador.pais.nombre}" />
 					</p:column>
-					<p:column 	headerText="#{msj['manto.parametrizacion.pais.codigo']}"
-								filterBy="#{VDataTblReporte.metodo.agregador.pais.codigo}"
-								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.metodo.agregador.pais.codigo}" />
-					</p:column>
-					<p:column 	headerText="#{msj['manto.parametrizacion.agregador.nombre']}"
+					<p:column 	style="#{msj['p.column_width_diminuto_inputText']}"
+								headerText="#{msj['manto.parametrizacion.agregador.nombre']}"
+								filterStyle="width: 16px;"
 								filterBy="#{VDataTblReporte.metodo.agregador.nombre_agregador}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.metodo.agregador.nombre_agregador}" />
+						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.metodo.agregador.nombre_agregador}" />
 					</p:column>
-					<p:column 	headerText="#{msj['manto.parametrizacion.metodo.nombre']}" 
+					<p:column 	style="#{msj['p.column_width_diminuto_inputText']}"
+								headerText="#{msj['manto.parametrizacion.metodo.nombre']}" 
+								filterStyle="width: 16px;"
 								filterBy="#{VDataTblReporte.metodo.nombre}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.metodo.nombre}" />
+						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.metodo.nombre}" />
 					</p:column>
-					<p:column 	headerText="usuario" 
+					<p:column 	style="#{msj['p.column_width_diminuto_inputText']}"
+								headerText="usuario" 
+								filterStyle="width: 16px;"
 								filterBy="#{VDataTblReporte.usuarioSistema.usuario}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.usuarioSistema.usuario}" />
+						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.usuarioSistema.usuario}" />
 					</p:column>
-					<p:column 	headerText="fecha" 
+					<p:column 	style="#{msj['p.column_width_diminuto_inputText']}"
+								headerText="fecha" 
+								filterStyle="width: 16px;"
 								filterBy="#{VDataTblReporte.fechaTransaccion}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.fechaTransaccion}" />
+						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.fechaTransaccion}" />
 					</p:column>
-					<p:column 	headerText="estado" 
+					<p:column 	style="#{msj['p.column_width_diminuto_inputText']}"
+								headerText="estado" 
+								filterStyle="width: 16px;"
 								filterBy="#{VDataTblReporte.estadoTransaccion}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.estadoTransaccion}" />
+						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.estadoTransaccion}" />
 					</p:column>
-					<p:column 	headerText="tipo" 
+					<p:column 	style="#{msj['p.column_width_diminuto_inputText']}"
+								headerText="tipo" 
+								filterStyle="width: 16px;"
 								filterBy="#{VDataTblReporte.tipoTransaccion}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.tipoTransaccion}" />
+						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.tipoTransaccion}" />
 					</p:column>
-					<p:column 	headerText="suscriptor" 
+					<p:column 	style="#{msj['p.column_width_diminuto_inputText']}"
+								headerText="suscriptor" 
+								filterStyle="width: 16px;"
 								filterBy="#{VDataTblReporte.numero}"
 								filterMatchMode="contains">
-						<h:outputText value="#{VDataTblReporte.numero}" />
-					</p:column>
-					<p:column>
-						<div style="float: left;">
-							<p:commandLink 	styleClass="ui-icon ui-icon-pencil" 
-											actionListener="#{reportesBean.cargarLog(VDataTblReporte)}"
-											title="Editar Pais" 								
-											update=":IDFrmPrincipal"  />
-						</div>
+						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.numero}" />
 					</p:column>
 				</p:dataTable>	
-			
-				<div style="float: left;">
-					<p:commandLink
-						actionListener="#{reportesBean.execute}" 
-						value="uno a uno">						
-					</p:commandLink>
-				</div>
 			</h:form>
 		</p:panel>
-
 	</ui:define>
-
 </ui:composition>

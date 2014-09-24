@@ -35,6 +35,7 @@ public class UsuarioSessionMB implements Serializable {
 	private static final String MASTER_USER = "admin";
 	private static final String MASTER_PASS = "admin";
 	private String nombreUsuario;
+	private String dominio;
 	private UsuarioSistema usuarioSession;
 
 	private String mensaje = "";
@@ -63,13 +64,15 @@ public class UsuarioSessionMB implements Serializable {
 			
 			if(getNombreUsuario().equals(MASTER_USER) && contrasenia.equals(MASTER_PASS))
 			{
+				setUsuarioSession((UsuarioSistema) ejecucion.obtenerDato("FROM SDA_USUARIO_SISTEMA WHERE USUARIO = '" + getNombreUsuario() + "' AND CONTRASENIA =  '" + contrasenia + "'"));
 				PoblarMenu(1);
 				redireccionarPagina(URL_PAGINA_PRINCIPAL);
 			}
 			else{
+				String host = (String) ejecucion.obtenerDato("SELECT a.VALUE FROM SDA_PARAMETROS_SISTEMA a WHERE a.KEY = 'host'");
 				//validar en active directory
 				ValidacionLDAP activeDirectory = new ValidacionLDAP();
-				if(activeDirectory.Authenticate("", getNombreUsuario(), contrasenia)){
+				if(activeDirectory.Authenticate(host, getDominio(), getNombreUsuario(), contrasenia)){
 					//validar en Base de Datos
 					if(ejecucion.verificarUsuario(getNombreUsuario(), contrasenia)){
 						setUsuarioSession((UsuarioSistema) ejecucion.obtenerDato("FROM SDA_USUARIO_SISTEMA WHERE USUARIO = '" + getNombreUsuario() + "' AND CONTRASENIA =  '" + contrasenia + "'"));
@@ -326,5 +329,19 @@ public class UsuarioSessionMB implements Serializable {
 	 */
 	public void setUsuarioSession(UsuarioSistema usuarioSession) {
 		this.usuarioSession = usuarioSession;
+	}
+
+	/**
+	 * @return the dominio
+	 */
+	public String getDominio() {
+		return dominio;
+	}
+
+	/**
+	 * @param dominio the dominio to set
+	 */
+	public void setDominio(String dominio) {
+		this.dominio = dominio;
 	}
 }

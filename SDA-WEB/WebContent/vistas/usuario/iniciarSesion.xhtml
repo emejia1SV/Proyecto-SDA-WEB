@@ -54,6 +54,15 @@
 										title="Contraseña" />
 						</p:column>
 					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msj['general.dominio']}" />
+						</p:column>
+						<p:column style="#{msj['p.column_width_mediano_inputText']}">
+							<p:inputText	value="#{usuarioSessionMB.dominio}"
+											size="30" />
+						</p:column>
+					</p:row>
 
 					<p:row>
 						<p:column	colspan="4"

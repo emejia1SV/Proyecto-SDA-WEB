@@ -8,11 +8,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.context.RequestContext;
+
 import sv.avantia.depurador.agregadores.entidades.Agregadores;
 import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.hilo.ConsultaAgregadorPorHilo;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
-import sv.avantia.depurador.agregadores.jdbc.SessionFactoryUtil;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
 @ManagedBean
@@ -71,6 +72,7 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 				//consultar la parametrización
 				for (Pais pais : obtenerParmetrizacion()) 
 				{
+					System.out.println("Porcesando..." + pais.getNombre());
 					for (Agregadores agregador : pais.getAgregadores()) 
 					{
 						//abrir un hilo pr cada agregador parametrizados
@@ -95,10 +97,13 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 		}
 		finally
 		{
+			
 			//terminar el flujo.
 			//SessionFactoryUtil.closeSession();
+			setNumeroMovil(null);
 			setNumerosMoviles(null);
 			setEjecucion(null);
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal");
 		}
 		
 	}
@@ -115,7 +120,7 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	@SuppressWarnings("unchecked")
 	public List<Pais> obtenerParmetrizacion() throws Exception 
 	{
-		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES");
+		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES WHERE STATUS = 1");
 	}
 	
 	/**

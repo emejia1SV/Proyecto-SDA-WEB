@@ -27,7 +27,6 @@ import sv.avantia.depurador.agregadores.entidades.Agregadores;
 import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.hilo.ConsultaAgregadorPorHilo;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
-import sv.avantia.depurador.agregadores.jdbc.SessionFactoryUtil;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
 @ManagedBean
@@ -197,7 +196,7 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	@SuppressWarnings("unchecked")
 	public List<Pais> obtenerParmetrizacion() throws Exception 
 	{
-		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES");
+		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES WHERE STATUS = 1");
 	}
 
 	/**
