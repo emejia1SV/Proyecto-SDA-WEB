@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +49,6 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import sv.avantia.depurador.agregadores.entidades.LogDepuracion;
-import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
 @ManagedBean
@@ -56,6 +57,7 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private List<LogDepuracion> depuraciones;
+	private Date filterTripDateFrom, filterTripDateTo;
 	
 	@PostConstruct
 	public void init(){
@@ -67,10 +69,7 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 		try 
 		{
 			setDepuraciones(((List<LogDepuracion>) (List<?>) getEjecucion().listData("FROM SDA_LOG_DEPURACION")));
-			for (LogDepuracion log : getDepuraciones()) {
-				System.out.println("conocer si carga o no");
-				System.out.println(log.getMetodo().getAgregador().getPais().getNombre());
-			}
+			
 		} 
 		catch (Exception e) 
 		{
@@ -78,6 +77,61 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void filtrarPorFechaSeleccionada(){
+		String query = "FROM SDA_LOG_DEPURACION";
+		if(getFilterTripDateFrom()!=null && getFilterTripDateTo()== null){
+			query = "from SDA_LOG_DEPURACION WHERE FECHA_TRANSACCION > TO_DATE('"+ getDateFromDateTime(getFilterTripDateFrom()) +"','DD/MM/YYYY')";
+		}
+		if(getFilterTripDateFrom()==null && getFilterTripDateTo()!= null){
+			query = "from SDA_LOG_DEPURACION WHERE FECHA_TRANSACCION < TO_DATE('"+ getDateFromDateTime(getFilterTripDateTo()) +"','DD/MM/YYYY')";
+		}
+		if(getFilterTripDateFrom()!=null && getFilterTripDateTo()!= null){
+			query = "from SDA_LOG_DEPURACION WHERE FECHA_TRANSACCION BETWEEN TO_DATE('"+ getDateFromDateTime(getFilterTripDateFrom()) +"','DD/MM/YYYY') AND TO_DATE('"+ getDateFromDateTime(getFilterTripDateTo()) +"','DD/MM/YYYY')";
+		}
+		setDepuraciones(((List<LogDepuracion>) (List<?>) getEjecucion().listData(query)));
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+	}
+	
+	private String getDateFromDateTime (Date date) {
+        SimpleDateFormat dtFormatter= new SimpleDateFormat("dd/MM/yyyy");
+        return dtFormatter.format(date);
+    }
+	
+	public void limpiarFechas(){
+		setFilterTripDateFrom(null);
+		setFilterTripDateTo(null);
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+	}
+	
+	/**
+	 * @return the filterTripDateFrom
+	 */
+	public Date getFilterTripDateFrom() {
+		return filterTripDateFrom;
+	}
+
+	/**
+	 * @param filterTripDateFrom the filterTripDateFrom to set
+	 */
+	public void setFilterTripDateFrom(Date filterTripDateFrom) {
+		this.filterTripDateFrom = filterTripDateFrom;
+	}
+
+	/**
+	 * @return the filterTripDateTo
+	 */
+	public Date getFilterTripDateTo() {
+		return filterTripDateTo;
+	}
+
+	/**
+	 * @param filterTripDateTo the filterTripDateTo to set
+	 */
+	public void setFilterTripDateTo(Date filterTripDateTo) {
+		this.filterTripDateTo = filterTripDateTo;
+	}
+
 	/**
 	 * @return the depuraciones
 	 */
@@ -99,7 +153,84 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
 	}
 	
+	/*private LazyOrdersDataModel lazyModel;
 	
+	public LazyOrdersDataModel getLazyModel() {
+        return lazyModel;
+    }
+
+	public String getDateFromDateTime (Date date, Boolean display) {
+
+        SimpleDateFormat dtFormatter;
+        if (display)
+            dtFormatter = new SimpleDateFormat("MM/dd/yyyy");
+        else
+            dtFormatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        return dtFormatter.format(date);
+
+    }
+	
+    private void initLazyModel() {
+        try {
+            String tripDateFrom = getDateFromDateTime(filterTripDateFrom, false);
+            String tripDateTo = getDateFromDateTime(filterTripDateTo, false);
+
+            // filter by
+           //ir a la base ya filtrado
+            // List<LogDepuracion> list = filterBy(tripDateFrom, tripDateTo);
+
+            // populate lazyModel
+            lazyModel = new LazyOrdersDataModel(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //messages.addFormErrorMsg("Error retrieving list of Orders", (e.getMessage() != null) ? e.getMessage() : "");
+        }
+    }
+
+    public Date getFilterTripDateFrom() {
+        return filterTripDateFrom;
+    }
+
+    public void setFilterTripDateFrom(Date filterTripDateFrom) {
+        this.filterTripDateFrom = filterTripDateFrom;
+        updateFilterTripDateTo();
+    }
+
+    public void filterTripDateFromSelected(DateSelectEvent event) {
+        filterTripDateFrom = event.getDate();
+        updateFilterTripDateTo();
+        prepareList();
+    }
+
+    public void updateFilterTripDateTo() {
+        if (browsePayroll) {
+            DateTime dateTime = new DateTime(filterTripDateFrom);
+            // per Oleta Coach Lines, payroll end date is 13 days after payroll begin date
+            filterTripDateTo = dateTime.plusDays(13).toDate();
+        }
+        else if (filterTripDateFrom.after(filterTripDateTo))
+            filterTripDateTo = filterTripDateFrom;
+    }
+
+    public Date getFilterTripDateTo() {
+        return filterTripDateTo;
+    }
+
+    public void setFilterTripDateTo(Date filterTripDateTo) {
+        this.filterTripDateTo = filterTripDateTo;
+    }
+
+    public void filterTripDateToSelected(DateSelectEvent event) {
+        filterTripDateTo = event.getDate();
+        if (filterTripDateTo.before(filterTripDateFrom)) {
+           // messages.addFormInfoMsg("Please select Trip Date TO that occurs on same day or after Trip Date FROM.", "");
+        }
+        else
+            prepareList();
+    }
+	
+	*/
 	
 	
 	
@@ -390,5 +521,7 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 			 throw new Exception("Error en la clase ReportFactory: "+ e.getMessage(), e.getCause());
 		}    
 	}
+
+	
 
 }

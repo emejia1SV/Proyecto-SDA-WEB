@@ -413,6 +413,14 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		return items;
 	}
 	
+	public SelectItem[] getListaServicios() {
+		SelectItem[] items = new SelectItem[3];
+		items[0] = new SelectItem(1, "Lista Negra");
+		items[1] = new SelectItem(2, "Consulta de Servicios");
+		items[2] = new SelectItem(3, "Baja de Servicios");
+		return items;
+	}
+	
 	public String estadoLabel(Integer id){
 		if(id==1)
 			return "Activo";

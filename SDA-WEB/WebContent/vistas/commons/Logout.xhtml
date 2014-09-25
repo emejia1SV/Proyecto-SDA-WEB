@@ -11,7 +11,7 @@
     <h:form>
       <p:dialog header="Iniciar de Session" 
       			resizable="false" 
-      			onHide="window.location='#{facesContext.externalContext.requestContextPath}/Logout.xhtml'"
+      			onHide="window.location='#{facesContext.externalContext.requestContextPath}/SDA-WEB/vistas/commons/Logout.xhtml'"
             	widgetVar="idleDialogSessionExpired" 
             	appendToBody="true" 
             	modal="true" 
@@ -53,7 +53,16 @@
 								title="Contraseña" />
 						</p:column>
 					</p:row>
-
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msj['general.dominio']}" />
+						</p:column>
+						<p:column style="#{msj['p.column_width_mediano_inputText']}">
+							<p:inputText	value="#{usuarioSessionMB.dominio}"
+											size="30" />
+						</p:column>
+					</p:row>
+					
 					<p:row>
 						<p:column
 							colspan="4"

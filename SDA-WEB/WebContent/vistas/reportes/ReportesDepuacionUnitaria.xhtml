@@ -24,12 +24,70 @@
 					header=""
 					style="#{msj['p.panelGrande']} margin-top: 10pt;">
 			<h:form id="IDFrmPrincipal">
-				<p:commandButton value="Export as PDF" ajax="false" >
-					<p:dataExporter type="pdf" target="IDDataTblReporte" fileName="Reporte"/>
-				</p:commandButton>
-				<p:commandButton value="Export as Excel" ajax="false">
-					<p:dataExporter type="xls" target="IDDataTblReporte" fileName="Reporte"/>
-				</p:commandButton>
+				<p:panelGrid 	id="IDPnlGridTab1"
+			                    style="margin-top: 10pt; margin:0 auto;">
+					<p:row>
+						<p:column>
+							<h:outputText value="Desde:" />
+						</p:column>
+						<p:column style="#{msj['p.column_width_mediano_inputText']}">
+					    	<p:calendar	id="filterTripDateFrom" 
+			                        	mode="popup" 
+			                        	showOn="button" 
+			                        	value="#{reportesBean.filterTripDateFrom}"
+			                        	navigator="true" 
+			                        	effect="fadeIn" 
+			                        	pattern="dd/MM/yyyy" 
+			                        	size="8">
+			                    <p:ajax event="dateSelect" listener="#{reportesBean.filtrarPorFechaSeleccionada}" />
+					        </p:calendar>
+						</p:column>
+						<p:column/>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="Desde:" />
+						</p:column>
+						<p:column style="#{msj['p.column_width_mediano_inputText']}">
+					    	<p:calendar	id="filterTripDateTo" 
+			                        	mode="popup" 
+			                        	showOn="button"
+			                        	value="#{reportesBean.filterTripDateTo}" 
+			                        	navigator="true" 
+			                        	effect="fadeIn" 
+			                        	pattern="dd/MM/yyyy" 
+			                        	size="8">
+			                    <p:ajax event="dateSelect" listener="#{reportesBean.filtrarPorFechaSeleccionada}" />
+					        </p:calendar>
+						</p:column>
+						<p:column/>
+					</p:row>
+					<p:row>
+						<p:column>
+					    	<p:commandButton 	id="IDCmdBtnLimpiar"
+					    						value="Limpiar"
+					    					 	actionListener="#{reportesBean.limpiarFechas}"/>
+						</p:column>
+						<p:column>
+							<p:commandButton 	value="Export as PDF" 
+												ajax="false" >
+								<p:dataExporter type="pdf" 
+												target="IDDataTblReporte" 
+												fileName="Reporte"/>
+							</p:commandButton>			
+						</p:column>
+						<p:column>
+					    	<p:commandButton 	value="Export as Excel" 
+					    						ajax="false">
+								<p:dataExporter type="xls" 
+												target="IDDataTblReporte" 
+												fileName="Reporte"/>
+							</p:commandButton>
+						</p:column>
+					</p:row>
+				</p:panelGrid>			
+				
+				
 				<p:dataTable 	id="IDDataTblReporte" 
 								value="#{reportesBean.depuraciones}"
 								var="VDataTblReporte"	
@@ -43,35 +101,32 @@
 								filterStyle="#{msj['p.column_filter']}"
 								filterBy="#{VDataTblReporte.metodo.agregador.pais.nombre}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.metodo.agregador.pais.nombre}" />
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.metodo.agregador.pais.nombre}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.agregador']}"
 								filterStyle="#{msj['p.column_filter']}"
 								filterBy="#{VDataTblReporte.metodo.agregador.nombre_agregador}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.metodo.agregador.nombre_agregador}" />
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.metodo.agregador.nombre_agregador}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.suscriptor']}"
 								filterStyle="#{msj['p.column_filter']}"
 								filterBy="#{VDataTblReporte.numero}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.numero}" />
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.numero}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.empleado']}" 
 								filterStyle="#{msj['p.column_filter']}"
 								filterBy="#{VDataTblReporte.usuarioSistema.usuario}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.usuarioSistema.usuario}" />
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.usuarioSistema.usuario}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
-								headerText="#{msj['reporte.fecha']}" 
-								filterStyle="#{msj['p.column_filter']}"
-								filterBy="#{VDataTblReporte.fechaTransaccion}"
-								filterMatchMode="contains">
-						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.fechaTransaccion}" >
+								headerText="#{msj['reporte.fecha']}" >
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.fechaTransaccion}" >
 							 <f:convertDateTime pattern="dd/MM/yyyy"/>
 						</h:outputText>
 					</p:column>
@@ -80,14 +135,14 @@
 								filterStyle="#{msj['p.column_filter']}"
 								filterBy="#{VDataTblReporte.estadoTransaccion}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.estadoTransaccion}" />
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.estadoTransaccion}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.tipo']}"
 								filterStyle="#{msj['p.column_filter']}"
 								filterBy="#{VDataTblReporte.tipoTransaccion}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:8px;" value="#{VDataTblReporte.tipoTransaccion}" />
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.tipoTransaccion}" />
 					</p:column>
 					
 				</p:dataTable>	
