@@ -355,8 +355,7 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 			for (Metodos metodo : agregador.getMetodos()) {
 				System.out.println("Metodo Name: " 		+ metodo.toString());
 				metodo.setAgregador(getAgregador());
-				if(metodo.getNombre()==null)
-					metodo.setNamespaceURI("" +metodo.getTargetMethodName());
+				
 				if(metodo.getTargetURL().startsWith("http:")){
 					metodo.setSeguridad(0);
 				}
@@ -426,6 +425,17 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 			return "Activo";
 		else if (id==0)
 			return "Inactivo";
+		else
+			return "";
+	}
+	
+	public String metodoLabel(Integer id){
+		if(id==1)
+			return "Lista Negra";
+		else if (id==2)
+			return "Consulta de Servicios";
+		else if (id==3)
+			return "Baja de Servicios";
 		else
 			return "";
 	}
