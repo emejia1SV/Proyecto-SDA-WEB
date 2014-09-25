@@ -97,15 +97,11 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 		}
 		finally
 		{
-			
-			//terminar el flujo.
-			//SessionFactoryUtil.closeSession();
 			setNumeroMovil(null);
 			setNumerosMoviles(null);
 			setEjecucion(null);
 			RequestContext.getCurrentInstance().update("IDFrmPrincipal");
 		}
-		
 	}
 	
 	/**
@@ -170,5 +166,4 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	{
 		this.numerosMoviles = numerosMoviles;
 	}
-
 }
