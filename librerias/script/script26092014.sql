@@ -1,9 +1,10 @@
 --------------------------------------------------------
--- ARCHIVO CREADO  jueves-septiembre-17-2014   
+-- ARCHIVO CREADO  jueves-septiembre-26-2014   
 -- USUARIO CREADOR Edwin Mejia - Avantia Consultores
 --------------------------------------------------------
---SE ELIMINO DEFINITIVAMENTE
-DROP TABLE "SDA_INSUMOS" cascade constraints;
+
+DROP TABLE "SDA_RESULTADOS_RESPUESTA" cascade constraints;
+DROP SEQUENCE "SQ_SDA_RESULTADO_RESPUESTAS";
 
 DROP TABLE "CLIENTE_TEL" cascade constraints;
 DROP TABLE "SDA_AGREGADORES" cascade constraints;
@@ -21,7 +22,7 @@ DROP SEQUENCE "SQ_SDA_PARAMETROS";
 DROP SEQUENCE "SQ_SDA_RESPUESTAS";
 DROP SEQUENCE "SQ_SDA_PARAMETROS_SISTEMA";
 DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
-DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
+DROP SEQUENCE "SQ_SDA_LOG_DEPURACION";
 
 ---------------------------------------------------------------
 ------------------DDL CREACION DE SECUENCIAS-------------------
@@ -31,49 +32,55 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
 --  DDL for Sequence SQ_SDA_AGREGADORES
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_AGREGADORES"  MINVALUE 1 MAXVALUE 10000 INCREMENT BY 1 START WITH 1 CACHE 100 ORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_AGREGADORES"  MINVALUE 1 MAXVALUE 10000 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
 
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_METODOS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_METODOS"  MINVALUE 1 MAXVALUE 50000 INCREMENT BY 1 START WITH 1 CACHE 1000 ORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_METODOS"  MINVALUE 1 MAXVALUE 50000 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
 
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_PAIS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_PAIS"  MINVALUE 1 MAXVALUE 300 INCREMENT BY 1 START WITH 1 CACHE 50 ORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_PAIS"  MINVALUE 1 MAXVALUE 300 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
 
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_PARAMETROS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_PARAMETROS"  MINVALUE 1 MAXVALUE 100000 INCREMENT BY 1 START WITH 1 CACHE 1000 ORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_PARAMETROS"  MINVALUE 1 MAXVALUE 100000 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
    
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_RESPUESTAS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_RESPUESTAS"  MINVALUE 1 MAXVALUE 10000 INCREMENT BY 1 START WITH 1 CACHE 1000 ORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_RESPUESTAS"  MINVALUE 1 MAXVALUE 10000 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
 
+--------------------------------------------------------
+--  DDL for Sequence SQ_SDA_RESULTADO_RESPUESTAS
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "SQ_SDA_RESULTADO_RESPUESTAS"  MINVALUE 1 MAXVALUE 100 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
+   
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_PARAMETROS_SISTEMA
 --------------------------------------------------------
 
-	CREATE SEQUENCE "SQ_SDA_PARAMETROS_SISTEMA" MINVALUE 1 MAXVALUE 1000 INCREMENT BY 1 START WITH 1 CACHE 100 ORDER  NOCYCLE ;	
+	CREATE SEQUENCE "SQ_SDA_PARAMETROS_SISTEMA" MINVALUE 1 MAXVALUE 1000 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
 	
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_USUARIO_SISTEMA
 --------------------------------------------------------
 
-	CREATE SEQUENCE "SQ_SDA_USUARIO_SISTEMA" MINVALUE 2 MAXVALUE 10000 INCREMENT BY 1 START WITH 2 CACHE 100 ORDER  NOCYCLE ;
+	CREATE SEQUENCE "SQ_SDA_USUARIO_SISTEMA" MINVALUE 2 MAXVALUE 10000 INCREMENT BY 1 START WITH 2 NOCACHE  NOORDER  NOCYCLE ;
    
 --------------------------------------------------------
---  DDL for Sequence SQ_SDA_DEPURACION_LOG
+--  DDL for Sequence SQ_SDA_LOG_DEPURACION
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_DEPURACION_LOG"  MINVALUE 1 MAXVALUE 100000000 INCREMENT BY 1 START WITH 1 NOCACHE  ORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_LOG_DEPURACION"  MINVALUE 1 MAXVALUE 100000000 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
 
    
    
@@ -137,12 +144,11 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
   CREATE TABLE "SDA_METODOS" 
    (    "ID" NUMBER, 
 		"ID_AGREGADOR" NUMBER, 
-		"NOMBRE" VARCHAR2(255 BYTE), 
+		"METODO" NUMBER, 
 		"USUARIO" VARCHAR2(255 BYTE), 
 		"CONTRASENIA" VARCHAR2(255 BYTE), 
 		"END_POINT" VARCHAR2(1000 BYTE),
 		"SEGURIDAD" NUMBER,
-		"ORDEN_EJECUCION" NUMBER,
 		"INPUTMESSAGETEXT" VARCHAR2(4000 BYTE), 
 		"INPUTMESSAGENAME" VARCHAR2(255 BYTE), 
 		"SERVICE_NAME" VARCHAR2(20 BYTE), 
@@ -160,7 +166,7 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
  
    COMMENT ON COLUMN "SDA_METODOS"."ID_AGREGADOR" IS 'fk relacion con la tabla de agregadores de los servicios web de los agregadores';
  
-   COMMENT ON COLUMN "SDA_METODOS"."NOMBRE" IS 'nombre del metodo del servicio web de los agregadores';
+   COMMENT ON COLUMN "SDA_METODOS"."METODO" IS 'el id del tipo metodo del servicio web de los agregadores';
    
    COMMENT ON COLUMN "SDA_METODOS"."USUARIO" IS 'USUARIO del metodo del servicio web de los agregadores';
    
@@ -169,8 +175,6 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
    COMMENT ON COLUMN "SDA_METODOS"."END_POINT" IS 'END_POINT del metodo del servicio web de los agregadores';
    
    COMMENT ON COLUMN "SDA_METODOS"."SEGURIDAD" IS 'SEGURIDAD significa si saldra por el puerto de http o por el puerto del https el metodo del servicio web de los agregadores';
-   
-   COMMENT ON COLUMN "SDA_METODOS"."ORDEN_EJECUCION" IS 'ORDEN_EJECUCION del metodo del servicio web de los agregadores';
    
    COMMENT ON COLUMN "SDA_METODOS"."INPUTMESSAGETEXT" IS 'el cuerpo del mensaje del metodo del servicio web de los agregadores';
    
@@ -226,6 +230,25 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
    COMMENT ON COLUMN "SDA_RESPUESTAS"."ID_METODO" IS 'fk con la tabla de metodos';
    
 --------------------------------------------------------
+--  DDL for Table SDA_RESULTADOS_RESPUESTA
+--------------------------------------------------------
+
+  CREATE TABLE "SDA_RESULTADOS_RESPUESTA" 
+   (	"ID" NUMBER, 
+	"ID_RESPUESTA" NUMBER, 
+	"VALOR" VARCHAR2(255 BYTE), 
+	"DATO" VARCHAR2(20 BYTE)
+   ) ;
+  
+   COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."ID" IS 'pk de la tabla de SDA_RESPUESTAS';
+ 
+   COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."DATO" IS 'el dato que se espera retorne en la respuesta';
+   
+   COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."VALOR" IS 'el VALOR que se considerara con el dato que se espera retorne en la respuesta';
+ 
+   COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."ID_RESPUESTA" IS 'fk con la tabla de respuestas';
+   
+--------------------------------------------------------
 --  DDL for Table SDA_PARAMETROS_SISTEMA
 --------------------------------------------------------
 
@@ -267,7 +290,8 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
   CREATE TABLE "SDA_LOG_DEPURACION" 
    (    "ID" NUMBER, 
 		"SUSCRIPTOR" VARCHAR2(50 BYTE), 
-		"RESPUESTA" VARCHAR2(4000 BYTE),
+		"RESPUESTA" CLOB,
+		"ENVIO" CLOB, 
 		"ESTADO_TRANSACCION" VARCHAR2(255 BYTE),
 		"FECHA_TRANSACCION" TIMESTAMP (6),
 		"TIPO_TRANSACCION" VARCHAR2(50 BYTE),
@@ -279,6 +303,8 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
  
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."SUSCRIPTOR" IS 'numero de telefono que se desea depurar';
  
+   COMMENT ON COLUMN "SDA_LOG_DEPURACION"."ENVIO" IS 'archivo enviado al servicio de los agregadores';
+	
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."RESPUESTA" IS 'respuesta obtenida al invocar al metodo web del servicio de los agregadores';
    
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."ESTADO_TRANSACCION" IS 'estado de la depuracion la cual sera mostrada en el reporte';
@@ -332,7 +358,13 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "SDA_RESPUESTA_PK" ON "SDA_RESPUESTAS" ("ID")  ;
-    
+
+--------------------------------------------------------
+--  DDL for Index SDA_RESULTADOS_RESPUESTA_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "SDA_RESULTADOS_RESPUESTA_PK" ON "SDA_RESULTADOS_RESPUESTA" ("ID")  ;
+  
 --------------------------------------------------------
 --  DDL for Index SDA_PARAMETROS_SISTEMA_PK
 --------------------------------------------------------
@@ -399,13 +431,11 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
  
   ALTER TABLE "SDA_METODOS" MODIFY ("ID_AGREGADOR" NOT NULL ENABLE);
  
-  ALTER TABLE "SDA_METODOS" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  ALTER TABLE "SDA_METODOS" MODIFY ("METODO" NOT NULL ENABLE);
  
   ALTER TABLE "SDA_METODOS" MODIFY ("END_POINT" NOT NULL ENABLE);
  
   ALTER TABLE "SDA_METODOS" MODIFY ("INPUTMESSAGETEXT" NOT NULL ENABLE);
-  
-  ALTER TABLE "SDA_METODOS" MODIFY ("ORDEN_EJECUCION" NOT NULL ENABLE);
   
 --------------------------------------------------------
 --  Constraints for Table SDA_PARAMETROS
@@ -430,6 +460,16 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
   ALTER TABLE "SDA_RESPUESTAS" MODIFY ("NOMBRE" NOT NULL ENABLE);
  
   ALTER TABLE "SDA_RESPUESTAS" MODIFY ("ID_METODO" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table SDA_RESULTADOS_RESPUESTA
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" ADD CONSTRAINT "SDA_RESULTADOS_RESPUESTA_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" MODIFY ("ID_RESPUESTA" NOT NULL ENABLE);
   
 --------------------------------------------------------
 --  Constraints for Table SDA_PARAMETROS_SISTEMA
@@ -513,6 +553,14 @@ DROP SEQUENCE "SQ_SDA_DEPURACION_LOG";
   ALTER TABLE "SDA_RESPUESTAS" 
     ADD CONSTRAINT "SDA_RESPUESTAS_METODOS_FK" FOREIGN KEY ("ID_METODO")
       REFERENCES "SDA_METODOS" ("ID") ON DELETE CASCADE ENABLE;
+
+--------------------------------------------------------
+--  Ref Constraints for Table SDA_RESULTADOS_RESPUESTA
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" 
+	ADD CONSTRAINT "SDA_RESULTADOS_RESPUESTA_FK1" FOREIGN KEY ("ID_RESPUESTA")
+	  REFERENCES "SDA_RESPUESTAS" ("ID") ENABLE;
 	  
 --------------------------------------------------------
 --  Ref Constraints for Table SDA_LOG_DEPURACION
@@ -531,19 +579,146 @@ INSERT INTO "SDA_USUARIO_SISTEMA" (ID, USUARIO, CONTRASENIA, ESTADO) VALUES ('1'
 COMMIT;
 
 
-/*
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('1', '50370001635')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('2', '50370001639')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('3', '50370001647')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('4', '50370001650')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('5', '50370001659')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('6', '50370001660')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('7', '50255846245')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('8', '50247166159')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('9', '50242155220')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('10', '50242435799')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('11', '50242107214')
-INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('12', '50247009375')
-COMMIT;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('1', '50370001635')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('2', '50370001639')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('3', '50370001647')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('4', '50370001650')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('5', '50370001659')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('6', '50370001660')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('7', '50255846245')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('8', '50247166159')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('9', '50242155220')  ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('10', '50242435799') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('11', '50242107214') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('12', '50247009375') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('13', '50370001661') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('14', '50370001665') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('15', '50370001671') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('16', '50370001678') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('17', '50370001679') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('18', '50370001682') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('19', '50370001690') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('20', '50370001701') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('21', '50370001708') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('22', '50370001712') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('23', '50370001720') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('24', '50370001730') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('25', '50370001742') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('26', '50370001748') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('27', '50370001761') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('28', '50370001762') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('29', '50370001764') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('30', '50370001770') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('31', '50370001773') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('32', '50370001777') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('33', '50370001784') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('34', '50370001787') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('35', '50370001788') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('36', '50370001790') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('37', '50370001795') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('38', '50370001837') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('39', '50370001839') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('40', '50370001841') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('41', '50370001844') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('42', '50370001864') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('43', '50370001865') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('44', '50370001868') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('45', '50370001872') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('47', '50370001875') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('48', '50370001877') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('49', '50370001878') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('50', '50370001882') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('51', '50370001883') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('52', '50370001884') ;
+INSERT INTO "CLIENTE_TEL" (ID, NUMERO) VALUES ('53', '50370001887') ;
 
-/*
+commit;
+
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (1,'GUATEMALA','502',1);
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (2,'EL SALVADOR','503',0);
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (3,'HONDURAS','504',0);
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (4,'NICARAGUA','505',0);
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (5,'COSTA RICA','506',0);
+
+commit;
+
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (1,'MOBILE',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (2,'CONTENTAMOBILE',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (3,'TELEVIDA',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (4,'P MOBILE',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (5,'WIRELES IDEA',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (6,'WAU',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (7,'TECH4MOBILE',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (8,'ESTRATEGIAS MOVILES',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (9,'ZED',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (10,'BINBIT',1,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (11,'TIMWE',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (12,'OPRATEL',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (13,'MOVIXLA',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (14,'GRUPO M',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (15,'XURPAS',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (16,'SMS AMERICAS',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (17,'WORLD2 MOBILE',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (18,'INTERACEL',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (19,'CRONOS',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (20,'PINGSA',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (21,'NUESTRO DIARIO',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (22,'BIZNET (CELUMANIX)',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (23,'VAS LATIN',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (24,'NEOMOBILE',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (25,'NARANYA',0,1);
+Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (26,'SMT',1,1);
+
+commit;
+
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (1,26,1,'PA00000737','Admin111','https://hub.americamovil.com/sag/services/blackgrayService',1,'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/blackgray/v1_0/local"><soapenv:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>_*user_*</wsse:Username><wsse:Password Type="...#PasswordDigest">_*passSMT_*</wsse:Password><wsse:Nonce>_*nonce_*</wsse:Nonce><wsse:Created>_*dateSMT_*</wsse:Created></wsse:UsernameToken></wsse:Security><tns:RequestSOAPHeader xmlns:tns="http://www.huawei.com.cn/schema/common/v2_1"><tns:AppId>35000001000001</tns:AppId><tns:TransId>2014011716010012345</tns:TransId><tns:OA>_*movil_*</tns:OA><tns:FA>_*movil_*</tns:FA></tns:RequestSOAPHeader></soapenv:Header><soapenv:Body><loc:deleteGrayList><loc:version>_*version_*</loc:version><loc:grayList><grayee><msisdn>_*movil_*</msisdn>    </grayee></loc:grayList></loc:deleteGrayList></soapenv:Body></soapenv:Envelope>',null,null,'loc:deleteGrayList',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (2,10,1,null,'ebea4edabf','http://webservices.binbit.com/claro_gt/claro_gt.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_gt/claro_gt.php"><soapenv:Header/><soapenv:Body><clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></clar:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'clar:listaNegra',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (3,10,2,null,'ebea4edabf','http://webservices.binbit.com/claro_gt/claro_gt.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_gt/claro_gt.php"><soapenv:Header/><soapenv:Body><clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></clar:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'clar:consultaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (4,10,3,null,'ebea4edabf','http://webservices.binbit.com/claro_gt/claro_gt.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_gt/claro_gt.php"><soapenv:Header/><soapenv:Body><clar:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><marcacion xsi:type="xsd:string">_*marcacion_*</marcacion><pass xsi:type="xsd:string">_*pass_*</pass></clar:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'clar:bajaServicios',null,null,null,null,null,null);
+
+commit;
+
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (1,'user',1);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (2,'passSMT',1);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (3,'nonce',1);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (4,'dateSMT',1);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (5,'movil',1);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (6,'version',1);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (7,'movil',2);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (8,'accion',2);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (9,'pass',2);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (10,'movil',3);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (11,'pass',3);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (12,'movil',4);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (13,'servicio',4);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (14,'marcacion',4);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (15,'pass',4);
+
+commit;
+
+Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (1,'accion','2');
+Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (2,'host','172.24.0.222');
+Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (3,'version','1.0');
+
+commit;
+
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (1,'ns1:resultCode',1);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (2,'value',2);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (3,'item',3);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (4,'value',4);
+
+commit;
+
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (1,2,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (2,3,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (3,4,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (4,4,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (5,1,'Exito','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (6,1,'the msisdn has already existed','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (7,1,'the msisdn format is wrong','2');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (8,1,'the msisdn is not existed (for delete black list)','3');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (9,1,'the ASPID is not existed','4');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (10,1,'the serviceID is not existed','5');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (11,1,'system SMT error','9');
+
+commit;

@@ -31,7 +31,6 @@ public class UsuarioSessionMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private static String URL_PAGINA_PRINCIPAL = "/SDA-WEB/Principal.xhtml";
-	private static String URL_PAGINA_PERMISOS = "/SDA-WEB/Permisos.xhtml";
 	private static String URL_PAGINA_LOGOUT = "/SDA-WEB/vistas/commons/Logout.xhtml";
 	private static final String MASTER_USER = "admin";
 	private static final String MASTER_PASS = "admin";
@@ -195,37 +194,6 @@ public class UsuarioSessionMB implements Serializable {
 		String id = fc.getViewRoot().getViewId();
 		String[] arreglo = id.split("/");	
 		return arreglo[arreglo.length - 1];
-	}
-
-	/**
-	 * Metodo que nos muestra la ruta completa de la pagina activa en el momento
-	 * que se ejecuta este metodo
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * */
-	private String getContextoCompleto() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		String id = fc.getViewRoot().getViewId();
-		return id;
-	}
-
-	/**
-	 * Valida el acceso a la pagina, establece los permisos.
-	 * @author Edwin Mejia - Avantia Consultores
-	 * */
-	public void validarAccesoPagina() {
-		String contexto = getContextoCompleto();
-		boolean permiso = false;
-		if(getMenus() != null || !getMenus().isEmpty())
-			for (MenuT item : getMenus()) {
-				if (item.getUrl() != null && item.getUrl().equals(contexto)) {				
-					permiso = true;
-					break;
-				}
-			}
-		if (!permiso) {
-			redireccionarPagina(URL_PAGINA_PERMISOS);
-		}
 	}
 
 	/**

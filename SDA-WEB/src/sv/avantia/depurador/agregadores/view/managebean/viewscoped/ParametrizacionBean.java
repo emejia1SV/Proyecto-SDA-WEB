@@ -19,6 +19,7 @@ import sv.avantia.depurador.agregadores.entidades.Metodos;
 import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.entidades.Parametros;
 import sv.avantia.depurador.agregadores.entidades.Respuesta;
+import sv.avantia.depurador.agregadores.entidades.ResultadosRespuesta;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 import sv.avantia.depurador.agregadores.utils.ParametrizarServicio;
@@ -34,11 +35,13 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	private Metodos metodo;
 	private Parametros parametro;
 	private Respuesta respuesta;
+	private ResultadosRespuesta resultadosRespuesta;
 	private List<Pais> paises;
 	private List<Agregadores> agregadores;
 	private List<Metodos> metodos;
 	private List<Parametros> parametros;
 	private List<Respuesta> respuestas;
+	private List<ResultadosRespuesta> resultadosRespuestas;
 
 	/**
 	 * Metodo {@link PostConstruct}
@@ -58,6 +61,8 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		setParametros(new ArrayList<Parametros>());
 		setRespuesta(new Respuesta());
 		setRespuestas(new ArrayList<Respuesta>());
+		setResultadosRespuesta(new ResultadosRespuesta());
+		setResultadosRespuestas(new ArrayList<ResultadosRespuesta>());
 		llenarTablaPaises();
 	}
 
@@ -129,6 +134,21 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 			lanzarMensajeError("Error:", "No se pudo cargar la tabla de Respuestas", e);
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public void llenarTablaResultadoRespuestas() 
+	{	
+		try 
+		{
+			setResultadosRespuestas((List<ResultadosRespuesta>) (List<?>) getEjecucion()
+					.listData("FROM SDA_RESULTADOS_RESPUESTA WHERE ID_RESPUESTA = "
+							+ getRespuesta().getId()));
+		} 
+		catch (Exception e) 
+		{
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de Respuestas", e);
+		}
+	}
 
 	public void limpiarPais() 
 	{
@@ -157,6 +177,12 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	public void limpiarRespuesta() 
 	{
 		setRespuesta(new Respuesta());
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+	}
+	
+	public void limpiarResultadoRespuesta() 
+	{
+		setResultadosRespuesta(new ResultadosRespuesta());
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
 	}
 	
@@ -207,6 +233,16 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 			llenarTablaRespuestas();
 			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
 			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
+		}
+	}
+	
+	public void eliminarResultadoRespuesta() {
+		if(getResultadosRespuesta().getId()!=null){
+			getEjecucion().deleteData(getResultadosRespuesta());
+			setResultadosRespuesta(new ResultadosRespuesta());
+			llenarTablaResultadoRespuestas();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
 		}
 	}
 	
@@ -308,6 +344,23 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
 	}
+	
+	public void guardarResultadoRespuesta() 
+	{
+		if(getResultadosRespuesta().getId()==null)
+		{
+			getResultadosRespuesta().setRespuesta(getRespuesta());
+			getEjecucion().createData(getResultadosRespuesta());
+		}
+		else
+		{
+			getEjecucion().updateData(getResultadosRespuesta());
+		}
+		setResultadosRespuesta(new ResultadosRespuesta());
+		llenarTablaResultadoRespuestas();
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+	}
 
 	/**
 	 * Verificar que cuando se quiera mover de tab tenga seleccionado el objeto
@@ -340,6 +393,14 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 			if(getMetodo().getId()==null)
 			{
 				lanzarMensajeInformacion("Metodo", "Debe seleccionar un metodo");
+				return event.getOldStep();
+			}
+		}
+		if(event.getOldStep().equals("tab5") && event.getNewStep().equals("tab6"))
+		{
+			if(getRespuesta().getId()==null)
+			{
+				lanzarMensajeInformacion("Respuesta", "Debe seleccionar una respuesta");
 				return event.getOldStep();
 			}
 		}
@@ -402,7 +463,13 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	
 	public void cargarRespuesta(Respuesta respuesta) {
 		setRespuesta(respuesta);
+		llenarTablaResultadoRespuestas();
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+	}
+	
+	public void cargarResultadoRespuesta(ResultadosRespuesta resultadosRespuesta) {
+		setResultadosRespuesta(resultadosRespuesta);
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
 	}
 	
 	public SelectItem[] getListaEstados() {
@@ -530,5 +597,34 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	 */
 	public void setRespuestas(List<Respuesta> respuestas) {
 		this.respuestas = respuestas;
+	}
+
+	/**
+	 * @return the resultadosRespuesta
+	 */
+	public ResultadosRespuesta getResultadosRespuesta() {
+		return resultadosRespuesta;
+	}
+
+	/**
+	 * @param resultadosRespuesta the resultadosRespuesta to set
+	 */
+	public void setResultadosRespuesta(ResultadosRespuesta resultadosRespuesta) {
+		this.resultadosRespuesta = resultadosRespuesta;
+	}
+
+	/**
+	 * @return the resultadosRespuestas
+	 */
+	public List<ResultadosRespuesta> getResultadosRespuestas() {
+		return resultadosRespuestas;
+	}
+
+	/**
+	 * @param resultadosRespuestas the resultadosRespuestas to set
+	 */
+	public void setResultadosRespuestas(
+			List<ResultadosRespuesta> resultadosRespuestas) {
+		this.resultadosRespuestas = resultadosRespuestas;
 	}
 }
