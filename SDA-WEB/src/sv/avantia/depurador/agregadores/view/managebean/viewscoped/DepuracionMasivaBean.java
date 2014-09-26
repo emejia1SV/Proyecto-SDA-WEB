@@ -153,15 +153,24 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 				//consultar la parametrización
 				for (Pais pais : obtenerParmetrizacion()) 
 				{
-					for (Agregadores agregador : pais.getAgregadores()) 
+					if(pais.getEstado()==1)
 					{
-						//abrir un hilo pr cada agregador parametrizados
-						ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
-						hilo.setMoviles(getNumerosMoviles());
-						hilo.setAgregador(agregador);
-						hilo.setTipoDepuracion("ARCHIVO");
-						hilo.setUsuarioSistema(getUsuarioSessionMB().getUsuarioSession());
-						hilo.start();
+						for (Agregadores agregador : pais.getAgregadores()) 
+						{
+							if(agregador.getEstado()==1)
+							{
+								if(!agregador.getMetodos().isEmpty())
+								{
+									//abrir un hilo pr cada agregador parametrizados
+									ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
+									hilo.setMoviles(getNumerosMoviles());
+									hilo.setAgregador(agregador);
+									hilo.setTipoDepuracion("ARCHIVO");
+									hilo.setUsuarioSistema(getUsuarioSessionMB().getUsuarioSession());
+									hilo.start();
+								}
+							}
+						}
 					}
 				}
 				lanzarMensajeInformacion("Flujo", "Se termino de procesar exitosamente");
@@ -177,8 +186,6 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 		}
 		finally
 		{
-			//terminar el flujo.
-			//SessionFactoryUtil.closeSession();
 			setNumerosMoviles(null);
 			setEjecucion(null);
 		}

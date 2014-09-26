@@ -3,6 +3,7 @@ package sv.avantia.depurador.agregadores.utils;
 import java.util.Hashtable;
 
 import javax.naming.Context;
+import javax.naming.directory.InitialDirContext;
 
 public class ValidacionLDAP {
 
@@ -19,7 +20,7 @@ public class ValidacionLDAP {
 			env.put(Context.SECURITY_PRINCIPAL,	new String(domain + "\\" + user));
 			env.put(Context.SECURITY_CREDENTIALS, new String(pass));
 
-			//new InitialDirContext(env);
+			new InitialDirContext(env);
 			return true;
 		} catch (Exception e) {
 			return false;

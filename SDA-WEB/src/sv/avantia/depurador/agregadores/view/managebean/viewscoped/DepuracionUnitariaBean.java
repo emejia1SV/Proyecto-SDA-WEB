@@ -72,16 +72,24 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 				//consultar la parametrización
 				for (Pais pais : obtenerParmetrizacion()) 
 				{
-					System.out.println("Porcesando..." + pais.getNombre());
-					for (Agregadores agregador : pais.getAgregadores()) 
+					if(pais.getEstado()==1)
 					{
-						//abrir un hilo pr cada agregador parametrizados
-						ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
-						hilo.setMoviles(getNumerosMoviles());
-						hilo.setAgregador(agregador);
-						hilo.setTipoDepuracion("UNITARIA");
-						hilo.setUsuarioSistema(getUsuarioSessionMB().getUsuarioSession());
-						hilo.start();
+						for (Agregadores agregador : pais.getAgregadores()) 
+						{
+							if(agregador.getEstado()==1)
+							{
+								if(!agregador.getMetodos().isEmpty())
+								{
+									//abrir un hilo pr cada agregador parametrizados
+									ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
+									hilo.setMoviles(getNumerosMoviles());
+									hilo.setAgregador(agregador);
+									hilo.setTipoDepuracion("UNITARIA");
+									hilo.setUsuarioSistema(getUsuarioSessionMB().getUsuarioSession());
+									hilo.start();
+								}
+							}
+						}
 					}
 				}
 				lanzarMensajeInformacion("Flujo", "Se termino de procesar exitosamente");

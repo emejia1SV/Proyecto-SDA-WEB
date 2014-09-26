@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import sv.avantia.depurador.agregadores.entidades.ParametrosSistema;
 import sv.avantia.depurador.agregadores.entidades.UsuarioSistema;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.MenuControllerT;
@@ -69,10 +70,10 @@ public class UsuarioSessionMB implements Serializable {
 				redireccionarPagina(URL_PAGINA_PRINCIPAL);
 			}
 			else{
-				String host = (String) ejecucion.obtenerDato("SELECT a.VALUE FROM SDA_PARAMETROS_SISTEMA a WHERE a.KEY = 'host'");
+				ParametrosSistema sistema = (ParametrosSistema)	ejecucion.obtenerDato("FROM SDA_PARAMETROS_SISTEMA WHERE KEY = 'host'");
 				//validar en active directory
 				ValidacionLDAP activeDirectory = new ValidacionLDAP();
-				if(activeDirectory.Authenticate(host, getDominio(), getNombreUsuario(), contrasenia)){
+				if(activeDirectory.Authenticate(sistema.getValor(), getDominio(), getNombreUsuario(), contrasenia)){
 					//validar en Base de Datos
 					if(ejecucion.verificarUsuario(getNombreUsuario(), contrasenia)){
 						setUsuarioSession((UsuarioSistema) ejecucion.obtenerDato("FROM SDA_USUARIO_SISTEMA WHERE USUARIO = '" + getNombreUsuario() + "' AND CONTRASENIA =  '" + contrasenia + "'"));
@@ -101,27 +102,22 @@ public class UsuarioSessionMB implements Serializable {
 	private void PoblarMenu(Integer idPerfil) {
 		try {
 			setMenus(new ArrayList<MenuT>());
-			//new MenuT(id, nombre, idMenuPadre, url, orden)
 			
 			getMenus().add(	new MenuT("1", "Depuración", null, null));
 			getMenus().add(	new MenuT("2", "Uno a uno", "1",  "/vistas/depuracion/DepuracionUnitaria.xhtml"));
 			getMenus().add(	new MenuT("3", "Masivo", "1",  "/vistas/depuracion/DepuracionMasiva.xhtml"));
 			
 			getMenus().add(	new MenuT("4", "Reportes", null, null));
-			getMenus().add(	new MenuT("5", "Reporte", "4",  "/vistas/reportes/ReportesDepuacionUnitaria.xhtml"));
-			//getMenus().add(	new MenuT("6", "Masivo", "4",  "/vistas/reportes/ReportesDepuracionMasiva.xhtml"));
+			getMenus().add(	new MenuT("5", "Reporte", "4",  "/vistas/reportes/ReportesDepuacion.xhtml"));
 			
-			getMenus().add(	new MenuT("7", "Manteniento", null, null));
-			getMenus().add(	new MenuT("8", "Parametrización", "7",  "/vistas/mantenimientos/Parametrizacion.xhtml"));
-			getMenus().add(	new MenuT("9", "Parametros Sistema", "7",  "/vistas/mantenimientos/ParametrosSistema.xhtml"));
-			getMenus().add(	new MenuT("9", "Usuarios Sistema", "7",  "/vistas/mantenimientos/UsusarioSistema.xhtml"));
-			//getMenus().add(	new MenuT("9", "Agregadores", "7",  "/vistas/mantenimientos/Paises.xhtml"));
-			//getMenus().add(	new MenuT("10", "Metodos", "7",  "/vistas/mantenimientos/Paises.xhtml"));
-			//getMenus().add(	new MenuT("11", "Prametros", "7",  "/vistas/mantenimientos/Paises.xhtml"));
+			getMenus().add(	new MenuT("6", "Manteniento", null, null));
+			getMenus().add(	new MenuT("7", "Parametrización", "6",  "/vistas/mantenimientos/Parametrizacion.xhtml"));
+			getMenus().add(	new MenuT("8", "Parametros Sistema", "6",  "/vistas/mantenimientos/ParametrosSistema.xhtml"));
+			getMenus().add(	new MenuT("9", "Usuarios Sistema", "6",  "/vistas/mantenimientos/UsusarioSistema.xhtml"));
 			
-			getMenus().add(	new MenuT("12", "Opciones", null, null));
-			getMenus().add(	new MenuT("13", "Pagina Principal", "12",  "/Principal.xhtml"));
-			getMenus().add(	new MenuT("14", "Salir", "12",  "/vistas/commons/Logout.xhtml"));
+			getMenus().add(	new MenuT("10", "Opciones", null, null));
+			getMenus().add(	new MenuT("11", "Pagina Principal", "10",  "/Principal.xhtml"));
+			getMenus().add(	new MenuT("12", "Salir", "10",  "/vistas/commons/Logout.xhtml"));
 			
 			setMenu(new MenuControllerT(getMenus()));
 		} catch (Exception e) {
@@ -137,7 +133,6 @@ public class UsuarioSessionMB implements Serializable {
 	 * */
 	public String horaActual() {				
 		return getFechaActual().toString();
-		//return new UtilsDates().formatoFechaSession();
 	}
 	
 	/**
