@@ -23,9 +23,10 @@
 
 			<h:form id="IDFrmPrincipal">
 				<center>
+					<h:outputText value="#{parametrizacionBean.ubicacion}" />	
 					 <p:panelGrid   id="panelGrid" 
 					 				columns="1" 
-					 				style="margin: 0 auto; width: 75%">
+					 				style="margin: 0 auto; width: 65%">
 						<center>	
 		                    <p:wizard 	id="wizard"  
 		                    			flowListener="#{parametrizacionBean.onFlowProcessx}"   
@@ -417,12 +418,15 @@
 									</center>
 									<p:dataTable 	id="IDDataTblRespuestas" 
 													value="#{parametrizacionBean.respuestas}"
-													var="VDataTblRespuesta"	
+													var="VDataTblRespuesta"
+													selection="#{parametrizacionBean.respuestaSelected}"
+													rowKey="#{VDataTblRespuesta.id}"					
 													emptyMessage="#{msj['p.dataTable_emptyMessage']}"
 													paginator="true" 
-													rows="5"					
+													rows="10"					
 													editable="true">
 								
+										<p:column selectionMode="multiple" style="width:16px;text-align:center"/>
 										<p:column 	headerText="nombre" 
 													filterBy="#{VDataTblRespuesta.nombre}"
 													filterMatchMode="contains">

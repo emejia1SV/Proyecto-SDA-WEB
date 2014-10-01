@@ -12,6 +12,9 @@ public class ValidacionLDAP {
 	public boolean Authenticate(String host, String domain, String user, String pass) {
 		try {
 			Hashtable<String, String> env = new Hashtable<String, String>();
+			if (pass == null || user == null)
+				return false;
+			
 			if (pass.compareTo("") == 0 || user.compareTo("") == 0)
 				return false;
 			env.put(Context.INITIAL_CONTEXT_FACTORY, INITCTX);

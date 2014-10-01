@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
 
@@ -30,8 +31,8 @@ import sv.avantia.depurador.agregadores.utils.ValidacionLDAP;
 public class UsuarioSessionMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static String URL_PAGINA_PRINCIPAL = "/SDA-WEB/Principal.xhtml";
-	private static String URL_PAGINA_LOGOUT = "/SDA-WEB/vistas/commons/Logout.xhtml";
+	private static String URL_PAGINA_PRINCIPAL = "/vistas/generales/Principal.xhtml";
+	private static String URL_PAGINA_LOGOUT = "/vistas/generales/Logout.xhtml";
 	private static final String MASTER_USER = "admin";
 	private static final String MASTER_PASS = "admin";
 	private String nombreUsuario;
@@ -115,8 +116,8 @@ public class UsuarioSessionMB implements Serializable {
 			getMenus().add(	new MenuT("9", "Usuarios Sistema", "6",  "/vistas/mantenimientos/UsusarioSistema.xhtml"));
 			
 			getMenus().add(	new MenuT("10", "Opciones", null, null));
-			getMenus().add(	new MenuT("11", "Pagina Principal", "10",  "/Principal.xhtml"));
-			getMenus().add(	new MenuT("12", "Salir", "10",  "/vistas/commons/Logout.xhtml"));
+			getMenus().add(	new MenuT("11", "Pagina Principal", "10",  "/vistas/generales/Principal.xhtml"));
+			getMenus().add(	new MenuT("12", "Salir", "10",  "/vistas/generales/Logout.xhtml"));
 			
 			setMenu(new MenuControllerT(getMenus()));
 		} catch (Exception e) {
@@ -171,19 +172,6 @@ public class UsuarioSessionMB implements Serializable {
 			setMensaje("");
 		}
 	}
-
-	/**
-	 * Metodo que sirve para direccionar a la pagina de inicio
-	 * @author Edwin Mejia - Avantia Consultores
-	 * */
-	public void logout() {
-		try {
-			setMenus(new ArrayList<MenuT>());
-			redireccionarPagina("/SDA-WEB");
-		} catch (Exception exception) {
-			mostrarMensajeError("Error al redireccionar hacia la página de inicio");
-		}
-	}
 	
 	/**
 	 * Metodo que nos muestra la pagina activa en el momento que se ejecuta este metodo
@@ -202,7 +190,7 @@ public class UsuarioSessionMB implements Serializable {
 	 * */
 	public void redireccionarPagina(String url) {
 		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/SDA-WEB"+url);
 		} catch (IOException exception) {
 			mostrarMensajeError("No es posible re-direccionar a la página " + url);
 		}
@@ -217,6 +205,14 @@ public class UsuarioSessionMB implements Serializable {
 	public void limpiarSesion(){
 		try{
 			setMenus(new ArrayList<MenuT>());
+			setDominio("");
+			setNombreUsuario("");
+			setUsuarioSession(null);
+			FacesContext facescontext = FacesContext.getCurrentInstance();
+			RequestContext.getCurrentInstance().execute("stopTimer();");
+			HttpSession sesion = (HttpSession) facescontext.getExternalContext().getSession(false);
+			if (sesion != null)
+				sesion.invalidate();
 		}catch(Exception exception){
 			mostrarMensajeError("Error al limpiar sesión");
 		}

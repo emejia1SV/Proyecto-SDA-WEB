@@ -51,7 +51,7 @@
 		if (endTime - now <= 0) {
 		    stopTimer();
 		 //cuando el tiempo haya finalizado redirigimos a la pagina de sesion expirada
-		   window.location='#{facesContext.externalContext.requestContextPath}/SessionExpired.xhtml';
+		   window.location='#{facesContext.externalContext.requestContextPath}/vistas/generales/SessionExpired.xhtml';
 		} else {
 		var delta = new Date(endTime - now);
 		var theMin = delta.getMinutes();
@@ -116,17 +116,6 @@
 	</ui:define>
 
 	<ui:define name="inf_gral"></ui:define>
-
-	<ui:define name="user">
-		<h:outputText
-						value="Usuario en Sesion: #{usuarioSessionMB.nombreUsuario}"
-						rendered="#{usuarioSessionMB.contexto ne 'iniciarSesion.xhtml'}" />
-		<br/>
-		<p:commandLink 	style="margin-right: 15px;" 
-						value="Logout"
-						rendered="#{usuarioSessionMB.contexto ne 'iniciarSesion.xhtml'}"
-						actionListener="#{usuarioSessionMB.logout()}" />
-	</ui:define>
 
 	<ui:define name="content"></ui:define>
 

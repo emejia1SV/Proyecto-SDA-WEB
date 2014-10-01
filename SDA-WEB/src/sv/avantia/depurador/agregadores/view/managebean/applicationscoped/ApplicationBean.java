@@ -40,8 +40,10 @@ public class ApplicationBean implements Serializable {
 	@PostConstruct
 	public void init(){
 		System.out.println("inicia el application scope");
+		
 		setEjecucion(new BdEjecucion());
-		System.out.println(getEjecucion().usuarioMaestro().getUsuario());
+		logger.info("Normal Usuario: " + getEjecucion().usuarioMaestro().getUsuario());
+		logger.debug("Debug Usuario: " + getEjecucion().usuarioMaestro().getUsuario());
 	}
 
 	/**

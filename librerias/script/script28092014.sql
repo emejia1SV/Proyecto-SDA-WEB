@@ -32,13 +32,13 @@ DROP SEQUENCE "SQ_SDA_LOG_DEPURACION";
 --  DDL for Sequence SQ_SDA_AGREGADORES
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_AGREGADORES"  MINVALUE 1 MAXVALUE 10000 INCREMENT BY 1 START WITH 26 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_AGREGADORES"  MINVALUE 1 MAXVALUE 10000 INCREMENT BY 1 START WITH 27 NOCACHE  NOORDER  NOCYCLE ;
 
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_METODOS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_METODOS"  MINVALUE 1 MAXVALUE 50000 INCREMENT BY 1 START WITH 5 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_METODOS"  MINVALUE 1 MAXVALUE 50000 INCREMENT BY 1 START WITH 24 NOCACHE  NOORDER  NOCYCLE ;
 
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_PAIS
@@ -50,19 +50,19 @@ DROP SEQUENCE "SQ_SDA_LOG_DEPURACION";
 --  DDL for Sequence SQ_SDA_PARAMETROS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_PARAMETROS"  MINVALUE 1 MAXVALUE 100000 INCREMENT BY 1 START WITH 16 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_PARAMETROS"  MINVALUE 1 MAXVALUE 100000 INCREMENT BY 1 START WITH 70 NOCACHE  NOORDER  NOCYCLE ;
    
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_RESPUESTAS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_RESPUESTAS"  MINVALUE 1 MAXVALUE 10000 INCREMENT BY 1 START WITH 5 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_RESPUESTAS"  MINVALUE 1 MAXVALUE 10000 INCREMENT BY 1 START WITH 20 NOCACHE  NOORDER  NOCYCLE ;
 
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_RESULTADO_RESPUESTAS
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SQ_SDA_RESULTADO_RESPUESTAS"  MINVALUE 1 MAXVALUE 100 INCREMENT BY 1 START WITH 12 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SQ_SDA_RESULTADO_RESPUESTAS"  MINVALUE 1 MAXVALUE 100 INCREMENT BY 1 START WITH 35 NOCACHE  NOORDER  NOCYCLE ;
    
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_PARAMETROS_SISTEMA
@@ -675,6 +675,24 @@ Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SE
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (2,10,1,null,'ebea4edabf','http://webservices.binbit.com/claro_gt/claro_gt.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_gt/claro_gt.php"><soapenv:Header/><soapenv:Body><clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></clar:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'clar:listaNegra',null,null,null,null,null,null);
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (3,10,2,null,'ebea4edabf','http://webservices.binbit.com/claro_gt/claro_gt.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_gt/claro_gt.php"><soapenv:Header/><soapenv:Body><clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></clar:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'clar:consultaServicios',null,null,null,null,null,null);
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (4,10,3,null,'ebea4edabf','http://webservices.binbit.com/claro_gt/claro_gt.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_gt/claro_gt.php"><soapenv:Header/><soapenv:Body><clar:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><marcacion xsi:type="xsd:string">_*marcacion_*</marcacion><pass xsi:type="xsd:string">_*pass_*</pass></clar:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'clar:bajaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (5,22,1,null,'qwio2012','http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></tem:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'tem:listaNegra',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (6,22,2,null,'qwio2012','http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></tem:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'tem:consultaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (7,22,3,null,'qwio2012','http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></tem:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'tem:bajaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (8,2,1,'7182818284','7182818284','http://callcenter2.contentamobile.com/server.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:ListaNegrawsdl"><soapenv:Header/><soapenv:Body><urn:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><operacion xsi:type="xsd:string">_*operacion_*</operacion><pass xsi:type="xsd:string">_*pass_*</pass></urn:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'urn:listaNegra',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (9,2,2,'7182818284','7182818284','http://callcenter2.contentamobile.com/server.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:consultaservicioswsdl"><soapenv:Header/><soapenv:Body><urn:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></urn:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'urn:consultaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (10,2,3,'7182818284','7182818284','http://callcenter2.contentamobile.com/server.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:BajaServicioswsdl"><soapenv:Header/><soapenv:Body><urn:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></urn:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'urn:bajaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (12,19,1,null,'neef1he7Az5thaimoojiemahChoy0v','http://hdclaro.cronos.mobi/',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/"><soapenv:Header/><soapenv:Body><hdc:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></hdc:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'hdc:listaNegra',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (13,19,2,null,'neef1he7Az5thaimoojiemahChoy0v','http://hdclaro.cronos.mobi/',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/"><soapenv:Header/><soapenv:Body><hdc:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></hdc:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'hdc:consultaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (14,19,3,null,'neef1he7Az5thaimoojiemahChoy0v','http://hdclaro.cronos.mobi/',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/"><soapenv:Header/><soapenv:Body><hdc:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></hdc:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'hdc:bajaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (15,8,1,null,'1234','http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices"><soapenv:Header/><soapenv:Body><clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></clar:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'clar:listaNegra',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (16,8,2,null,'1234','http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices"><soapenv:Header/><soapenv:Body><clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></clar:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'clar:consultaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (17,8,3,null,'1234','http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices"><soapenv:Header/><soapenv:Body><clar:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></clar:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'clar:bajaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (18,14,1,null,'clrPsshxq678','http://ws.intertronmobile.com/Unlimited/WS.Claro.SuscripcionesSMS/service.asmx',0,'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:listaNegra><tem:movil>_*movil_*</tem:movil><tem:accion>_*accion_*</tem:accion><tem:pass>_*pass_*</tem:pass></tem:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'tem:listaNegra',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (19,14,2,null,'clrPsshxq678','http://ws.intertronmobile.com/Unlimited/WS.Claro.SuscripcionesSMS/service.asmx',0,'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:consultaServicios><tem:movil>_*movil_*</tem:movil><tem:pass>_*pass_*</tem:pass></tem:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'tem:consultaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (20,14,3,null,'clrPsshxq678','http://ws.intertronmobile.com/Unlimited/WS.Claro.SuscripcionesSMS/service.asmx',0,'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:bajaServicios><tem:movil>_*movil_*</tem:movil><tem:servicio>_*servicio_*</tem:servicio><tem:mcorta>_*mcorta_*</tem:mcorta><tem:pass>_*pass_*</tem:pass></tem:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'tem:bajaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (21,1,1,'cl4w0d.11','c45pe2','http://mobilemedios.com/wsmedios/clarogt/wsCLAGT.asmx',0,'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/"><soapenv:Header/><soapenv:Body><mob:listaNegra><mob:movil>_*movil_*</mob:movil><mob:accion>_*accion_*</mob:accion><mob:pass>_*pass_*</mob:pass></mob:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'mob:listaNegra',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (22,1,2,'cl4w0d.11','c45pe2','http://mobilemedios.com/wsmedios/clarogt/wsCLAGT.asmx',0,'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/"><soapenv:Header/><soapenv:Body><mob:consultaServicios><mob:movil>_*movil_*</mob:movil><mob:pass>_*pass_*</mob:pass></mob:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'mob:consultaServicios',null,null,null,null,null,null);
+Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (23,1,3,'cl4w0d.11','c45pe2','http://mobilemedios.com/wsmedios/clarogt/wsCLAGT.asmx',0,'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/"><soapenv:Header/><soapenv:Body><mob:bajaServicios><mob:movil>_*movil_*</mob:movil><mob:servicio>_*servicio_*</mob:servicio><mob:mcorta>_*mcorta_*</mob:mcorta><mob:pass>_*pass_*</mob:pass></mob:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'mob:bajaServicios',null,null,null,null,null,null);
 
 commit;
 
@@ -693,6 +711,60 @@ Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (12,'movil',4);
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (13,'servicio',4);
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (14,'marcacion',4);
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (15,'pass',4);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (16,'movil',5);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (17,'accion',5);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (18,'pass',5);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (19,'movil',6);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (20,'pass',6);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (21,'movil',7);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (22,'servicio',7);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (23,'mcorta',7);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (24,'pass',7);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (25,'movil',8);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (26,'operacion',8);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (27,'pass',8);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (28,'movil',9);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (29,'pass',9);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (30,'movil',10);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (31,'servicio',10);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (32,'mcorta',10);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (33,'pass',10);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (34,'movil',12);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (35,'accion',12);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (36,'pass',12);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (37,'movil',13);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (38,'pass',13);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (39,'movil',14);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (40,'servicio',14);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (41,'mcorta',14);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (42,'pass',14);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (43,'movil',15);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (44,'accion',15);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (45,'pass',15);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (46,'movil',16);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (47,'pass',16);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (48,'movil',17);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (49,'servicio',17);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (50,'mcorta',17);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (51,'pass',17);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (52,'movil',18);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (53,'accion',18);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (54,'pass',18);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (55,'movil',19);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (56,'pass',19);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (57,'movil',20);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (58,'servicio',20);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (59,'mcorta',20);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (60,'pass',20);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (61,'movil',21);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (62,'accion',21);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (63,'pass',21);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (64,'movil',22);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (65,'pass',22);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (66,'movil',23);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (67,'servicio',23);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (68,'pass',23);
+Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (69,'mcorta',23);
 
 commit;
 
@@ -706,11 +778,25 @@ Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (1,'ns1:resultCode',1);
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (2,'value',2);
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (3,'item',3);
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (4,'value',4);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (5,'value',5);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (6,'value',6);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (7,'item',7);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (8,'Resp',8);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (9,'item',9);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (10,'item',10);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (11,'value',12);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (12,'item',13);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (13,'value',14);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (14,'Resp',18);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (15,'item',19);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (16,'Resp',20);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (17,'string',21);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (18,'item',22);
+Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_METODO) values (19,'string',23);
 
 commit;
 
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (1,2,'Exito','1');
-Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (2,3,'Fallo','0');
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (3,4,'Exito','1');
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (4,4,'Fallo','0');
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (5,1,'Exito','0');
@@ -720,5 +806,27 @@ Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (8,1,'t
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (9,1,'the ASPID is not existed','4');
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (10,1,'the serviceID is not existed','5');
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (11,1,'system SMT error','9');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (12,2,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (13,5,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (14,5,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (15,6,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (16,6,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (17,8,'Exito','SI');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (18,8,'Fallo','NO');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (19,10,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (20,10,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (21,11,'Exito','SI');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (22,11,'Fallo','NO');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (25,13,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (27,14,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (26,13,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (28,14,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (29,16,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (30,16,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (31,17,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (32,17,'Fallo','0');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (33,19,'Exito','1');
+Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO) values (34,19,'Fallo','0');
+
 
 commit;

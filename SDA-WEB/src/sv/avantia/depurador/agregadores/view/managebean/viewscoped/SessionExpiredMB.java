@@ -8,6 +8,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.context.RequestContext;
+
 /**
  * Clase generada para la verificacion de la expiracion de session
  * 
@@ -33,6 +35,7 @@ public class SessionExpiredMB implements Serializable {
 	 * */
 	public void invalidateSession() {
 		FacesContext facescontext = FacesContext.getCurrentInstance();
+		RequestContext.getCurrentInstance().execute("stopTimer();");
 		HttpSession sesion = (HttpSession) facescontext.getExternalContext().getSession(false);
 		if (sesion != null)
 			sesion.invalidate();

@@ -1,6 +1,9 @@
 package sv.avantia.depurador.agregadores.view.managebean.viewscoped;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +11,22 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FlowEvent;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.cladonia.xml.webservice.wsdl.WSDLException;
 
 import sv.avantia.depurador.agregadores.entidades.Agregadores;
+import sv.avantia.depurador.agregadores.entidades.CatRespuestas;
 import sv.avantia.depurador.agregadores.entidades.Metodos;
 import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.entidades.Parametros;
@@ -42,6 +54,9 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	private List<Parametros> parametros;
 	private List<Respuesta> respuestas;
 	private List<ResultadosRespuesta> resultadosRespuestas;
+	private List<CatRespuestas> catRespuestas;
+	private List<CatRespuestas> catRespuestaSelected;
+	private String ubicacion;
 
 	/**
 	 * Metodo {@link PostConstruct}
@@ -50,6 +65,7 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	 * */
 	@PostConstruct
 	public void init() {
+		setUbicacion("");
 		setEjecucion(new BdEjecucion());
 		setPais(new Pais());
 		setAgregador(new Agregadores());
@@ -63,6 +79,8 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		setRespuestas(new ArrayList<Respuesta>());
 		setResultadosRespuesta(new ResultadosRespuesta());
 		setResultadosRespuestas(new ArrayList<ResultadosRespuesta>());
+		setCatRespuestas(new ArrayList<CatRespuestas>());
+		setCatRespuestaSelected(new ArrayList<CatRespuestas>());
 		llenarTablaPaises();
 	}
 
@@ -82,7 +100,9 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	public void llenarTablaAgregadores() {
 		try 
 		{
-			setAgregadores((List<Agregadores>) (List<?>) getEjecucion().listData("FROM SDA_AGREGADORES WHERE ID_PAIS = "	+ getPais().getId()));
+			setAgregadores((List<Agregadores>) (List<?>) getEjecucion()
+					.listData("FROM SDA_AGREGADORES WHERE ID_PAIS = " 
+							+ getPais().getId() + " ORDER BY NOMBRE_AGREGADOR"));
 		} 
 		catch (Exception e) 
 		{
@@ -128,6 +148,10 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 			setRespuestas((List<Respuesta>) (List<?>) getEjecucion()
 					.listData("FROM SDA_RESPUESTAS WHERE ID_METODO = "
 							+ getMetodo().getId()));
+			
+			for (Respuesta respuesta : getRespuestas() ) {
+				getCatRespuestaSelected().add(respuesta.getCatRespuestas());
+			}
 		} 
 		catch (Exception e) 
 		{
@@ -187,179 +211,267 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	}
 	
 	public void eliminarPais() {
-		if(getPais().getId()!=null){
-			getEjecucion().deleteData(getPais());
-			setPais(new Pais());
-			llenarTablaPaises();
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblPaises");
+		try {
+			if(getPais().getId()!=null){
+				getEjecucion().deleteData(getPais());
+				setPais(new Pais());
+				llenarTablaPaises();
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblPaises");
+			}
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Pais", e);
 		}
 	}
 
 	public void eliminarAgregador() {
-		if(getAgregador().getId()!=null){
-			getEjecucion().deleteData(getAgregador());
-			setAgregador(new Agregadores());
-			llenarTablaAgregadores();
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblAgregadores");
-		}
+		try {
+			if(getAgregador().getId()!=null){
+				getEjecucion().deleteData(getAgregador());
+				setAgregador(new Agregadores());
+				llenarTablaAgregadores();
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblAgregadores");
+			}
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Agregador", e);
+		}	
 	}
 
 	public void eliminarMetodo() {
-		if(getMetodo()!=null){
-			getEjecucion().deleteData(getMetodo());
-			setMetodo(new Metodos());
-			llenarTablaMetodos();
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblMetodos");
+		try {
+			if(getMetodo()!=null){
+				getEjecucion().deleteData(getMetodo());
+				setMetodo(new Metodos());
+				llenarTablaMetodos();
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblMetodos");
+			}
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Metodo", e);
 		}
+		
 	}
 
 	public void eliminarParametro() {
-		if(getParametro().getId()!=null){
-			getEjecucion().deleteData(getParametro());
-			setParametro(new Parametros());
-			llenarTablaParametros();
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblParametros");
+		try {
+			if(getParametro().getId()!=null){
+				getEjecucion().deleteData(getParametro());
+				setParametro(new Parametros());
+				llenarTablaParametros();
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblParametros");
+			}
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Parametro", e);
 		}
 	}
 	
 	public void eliminarRespuesta() {
-		if(getRespuesta().getId()!=null){
-			getEjecucion().deleteData(getRespuesta());
-			setRespuesta(new Respuesta());
-			llenarTablaRespuestas();
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
+		try {
+			if(getRespuesta().getId()!=null){
+				getEjecucion().deleteData(getRespuesta());
+				setRespuesta(new Respuesta());
+				llenarTablaRespuestas();
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
+			}
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Respuesta", e);
 		}
+		
 	}
 	
 	public void eliminarResultadoRespuesta() {
-		if(getResultadosRespuesta().getId()!=null){
-			getEjecucion().deleteData(getResultadosRespuesta());
-			setResultadosRespuesta(new ResultadosRespuesta());
-			llenarTablaResultadoRespuestas();
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+		try {
+			if(getResultadosRespuesta().getId()!=null){
+				getEjecucion().deleteData(getResultadosRespuesta());
+				setResultadosRespuesta(new ResultadosRespuesta());
+				llenarTablaResultadoRespuestas();
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+			}
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Resiltado de la Respuesta", e);
 		}
+		
 	}
 	
 	public void guardarPais()
 	{
-		if(getPais().getId() == null)
-		{
-			getEjecucion().createData(getPais());
+		try {
+			if(getPais().getId() == null)
+			{
+				getEjecucion().createData(getPais());
+			}
+			else
+			{
+				getEjecucion().updateData(getPais());
+			}
+			setPais(new Pais());
+			llenarTablaPaises();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblPaises");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Agregador", e);
 		}
-		else
-		{
-			getEjecucion().updateData(getPais());
-		}
-		setPais(new Pais());
-		llenarTablaPaises();
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblPaises");
+		
 	}
 	
 	public void guardarAgregador()
 	{
-		if(getAgregador().getId()== null)
-		{
-			getAgregador().setPais(getPais());
-			getEjecucion().createData(getAgregador());
+		try {
+			if(getAgregador().getId()== null)
+			{
+				getAgregador().setPais(getPais());
+				getEjecucion().createData(getAgregador());
+			}
+			else
+			{
+				getEjecucion().updateData(getAgregador());
+			}
+			setAgregador(new Agregadores());
+			llenarTablaAgregadores();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblAgregadores");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Agregador", e);
 		}
-		else
-		{
-			getEjecucion().updateData(getAgregador());
-		}
-		setAgregador(new Agregadores());
-		llenarTablaAgregadores();
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblAgregadores");
+		
 	}
 	
 	public void guardarMetodo()
 	{
-		if(getMetodo().getEndPoint()==null){
-			lanzarMensajeAdvertencia("Endpoint", "Debe ingresar el endpoint");
-			return;
-		}else{
-			if(getMetodo().getEndPoint().startsWith("http:"))
-			{
-				getMetodo().setSeguridad(0);
-			}
-			else if(getMetodo().getEndPoint().startsWith("https:"))
-			{
-				getMetodo().setSeguridad(1);
+		try {
+			if(getMetodo().getEndPoint()==null){
+				lanzarMensajeAdvertencia("Endpoint", "Debe ingresar el endpoint");
+				return;
 			}else{
-				lanzarMensajeAdvertencia("Endpoint", "Debe iniciar el endpoint con http: ó https");
+				if(getMetodo().getEndPoint().startsWith("http:"))
+				{
+					getMetodo().setSeguridad(0);
+				}
+				else if(getMetodo().getEndPoint().startsWith("https:"))
+				{
+					getMetodo().setSeguridad(1);
+				}else{
+					lanzarMensajeAdvertencia("Endpoint", "Debe iniciar el endpoint con http: ó https");
+				}
+			}
+			if(getMetodo().getId()==null)
+			{
+				getMetodo().setAgregador(getAgregador());
+				getMetodo().setId((Integer)getEjecucion().createData(getMetodo()));
+				obtenerParametros(getMetodo().getInputMessageText());
+			}
+			else
+			{
+				getEjecucion().updateData(getMetodo());
+			}
+			setMetodo(new Metodos());
+			llenarTablaMetodos();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblMetodos");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Metodo", e);
+		}
+		
+	}
+	
+	private void obtenerParametros(String xml) throws ParserConfigurationException, UnsupportedEncodingException, SAXException, IOException {
+		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder;
+		builder = builderFactory.newDocumentBuilder();
+		Document doc = builder.parse(new InputSource(new ByteArrayInputStream(xml.getBytes("utf-8")))  );
+		doc.getDocumentElement().normalize();
+		if (doc.getDocumentElement().hasChildNodes()) 
+		{
+			NodeList nodeList = doc.getDocumentElement().getChildNodes();
+			lecturaDeDatos(nodeList);
+		}
+	}
+	
+	private void lecturaDeDatos(NodeList nodeList) {
+		for (int i = 0; i < nodeList.getLength(); i++) 
+		{
+			Node node = nodeList.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) 
+			{
+				if (node.hasChildNodes())
+					lecturaDeDatos(node.getChildNodes());
+				if(node.getTextContent().startsWith("_*") && node.getNodeName().contains(node.getTextContent().substring(2, node.getTextContent().length()-2)))
+				{
+					getParametro().setNombre(node.getTextContent().substring(2, node.getTextContent().length()-2));
+					guardarParametro();
+				}					
 			}
 		}
-		if(getMetodo().getId()==null)
-		{
-			getMetodo().setAgregador(getAgregador());
-			getEjecucion().createData(getMetodo());
-		}
-		else
-		{
-			getEjecucion().updateData(getMetodo());
-		}
-		setMetodo(new Metodos());
-		llenarTablaMetodos();
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblMetodos");
 	}
 	
 	public void guardarParametro() 
 	{
-		if(getParametro().getId()==null)
-		{
-			getParametro().setMetodo(getMetodo());
-			getEjecucion().createData(getParametro());
+		try {
+			if(getParametro().getId()==null)
+			{
+				getParametro().setMetodo(getMetodo());
+				getEjecucion().createData(getParametro());
+			}
+			else
+			{
+				getEjecucion().updateData(getParametro());
+			}
+			setParametro(new Parametros());
+			llenarTablaParametros();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblParametros");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Parametro", e);
 		}
-		else
-		{
-			getEjecucion().updateData(getParametro());
-		}
-		setParametro(new Parametros());
-		llenarTablaParametros();
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblParametros");
+		
 	}
 	
 	public void guardarRespuesta() 
 	{
-		if(getRespuesta().getId()==null)
-		{
-			getRespuesta().setMetodo(getMetodo());
-			getEjecucion().createData(getRespuesta());
+		try {
+			if(getRespuesta().getId()==null)
+			{
+				getRespuesta().setMetodo(getMetodo());
+				getEjecucion().createData(getRespuesta());
+			}
+			else
+			{
+				getEjecucion().updateData(getRespuesta());
+			}
+			setRespuesta(new Respuesta());
+			llenarTablaRespuestas();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Respuesta", e);
 		}
-		else
-		{
-			getEjecucion().updateData(getRespuesta());
-		}
-		setRespuesta(new Respuesta());
-		llenarTablaRespuestas();
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
+		
 	}
 	
 	public void guardarResultadoRespuesta() 
 	{
-		if(getResultadosRespuesta().getId()==null)
-		{
-			getResultadosRespuesta().setRespuesta(getRespuesta());
-			getEjecucion().createData(getResultadosRespuesta());
+		try {
+			if(getResultadosRespuesta().getId()==null)
+			{
+				getResultadosRespuesta().setRespuesta(getRespuesta());
+				getEjecucion().createData(getResultadosRespuesta());
+			}
+			else
+			{
+				getEjecucion().updateData(getResultadosRespuesta());
+			}
+			setResultadosRespuesta(new ResultadosRespuesta());
+			llenarTablaResultadoRespuestas();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Resultado de la Respuesta", e);
 		}
-		else
-		{
-			getEjecucion().updateData(getResultadosRespuesta());
-		}
-		setResultadosRespuesta(new ResultadosRespuesta());
-		llenarTablaResultadoRespuestas();
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+		
 	}
 
 	/**
@@ -439,20 +551,35 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	
 	public void cargarPais(Pais pais) {
 		setPais(pais);
+		setAgregador(new Agregadores());
+		setMetodo(new Metodos());
+		setParametro(new Parametros());
+		setRespuesta(new Respuesta());
+		setResultadosRespuesta(new ResultadosRespuesta());
 		llenarTablaAgregadores();
+		setUbicacion(getPais().getNombre());
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
 	}
 	
 	public void cargarAgregador(Agregadores agregadores) {
 		setAgregador(agregadores);
+		setMetodo(new Metodos());
+		setParametro(new Parametros());
+		setRespuesta(new Respuesta());
+		setResultadosRespuesta(new ResultadosRespuesta());
 		llenarTablaMetodos();
+		setUbicacion(getPais().getNombre() + "	>>	" + getAgregador().getNombre_agregador());
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab2");
 	}
 	
 	public void cargarMetodo(Metodos metodos) {
 		setMetodo(metodos);
+		setParametro(new Parametros());
+		setRespuesta(new Respuesta());
+		setResultadosRespuesta(new ResultadosRespuesta());
 		llenarTablaParametros();
 		llenarTablaRespuestas();
+		setUbicacion(getPais().getNombre() + "	>>	" + getAgregador().getNombre_agregador() + " >>	"  + metodoLabel(metodos.getMetodo()));
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab3_2");
 	}
 	
@@ -461,8 +588,13 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
 	}
 	
-	public void cargarRespuesta(Respuesta respuesta) {
-		setRespuesta(respuesta);
+	public void cargarRespuesta(CatRespuestas catRespuesta) {
+		for (Respuesta respuesta : getRespuestas() ) {
+			if(catRespuesta.getId() == respuesta.getCatRespuestas().getId()){
+				setRespuesta(respuesta);
+			}
+		}
+		setResultadosRespuesta(new ResultadosRespuesta());
 		llenarTablaResultadoRespuestas();
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
 	}
@@ -626,5 +758,47 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	public void setResultadosRespuestas(
 			List<ResultadosRespuesta> resultadosRespuestas) {
 		this.resultadosRespuestas = resultadosRespuestas;
+	}
+
+	/**
+	 * @return the ubicacion
+	 */
+	public String getUbicacion() {
+		return ubicacion;
+	}
+
+	/**
+	 * @param ubicacion the ubicacion to set
+	 */
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	/**
+	 * @return the catRespuestas
+	 */
+	public List<CatRespuestas> getCatRespuestas() {
+		return catRespuestas;
+	}
+
+	/**
+	 * @param catRespuestas the catRespuestas to set
+	 */
+	public void setCatRespuestas(List<CatRespuestas> catRespuestas) {
+		this.catRespuestas = catRespuestas;
+	}
+
+	/**
+	 * @return the catRespuestaSelected
+	 */
+	public List<CatRespuestas> getCatRespuestaSelected() {
+		return catRespuestaSelected;
+	}
+
+	/**
+	 * @param catRespuestaSelected the catRespuestaSelected to set
+	 */
+	public void setCatRespuestaSelected(List<CatRespuestas> catRespuestaSelected) {
+		this.catRespuestaSelected = catRespuestaSelected;
 	}
 }

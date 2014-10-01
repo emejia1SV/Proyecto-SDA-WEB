@@ -37,7 +37,7 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>/vistas/usuario/iniciarSesion.xhtml</welcome-file>
+		<welcome-file>/vistas/generales/iniciarSesion.xhtml</welcome-file>
 	</welcome-file-list>
 	<filter>
         <filter-name>PrimeFaces FileUpload Filter</filter-name>
@@ -66,10 +66,10 @@
 
 	<error-page>
 		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-		<location>/vistas/commons/Logout.xhtml</location>
+		<location>/vistas/generales/Logout.xhtml</location>
 	</error-page>
 
 	<session-config>
-		<session-timeout>3</session-timeout>
+		<session-timeout>-1</session-timeout>
 	</session-config>
 </web-app>
