@@ -114,10 +114,12 @@ public class UsuarioSessionMB implements Serializable {
 			getMenus().add(	new MenuT("7", "Parametrización", "6",  "/vistas/mantenimientos/Parametrizacion.xhtml"));
 			getMenus().add(	new MenuT("8", "Parametros Sistema", "6",  "/vistas/mantenimientos/ParametrosSistema.xhtml"));
 			getMenus().add(	new MenuT("9", "Usuarios Sistema", "6",  "/vistas/mantenimientos/UsusarioSistema.xhtml"));
+			getMenus().add(	new MenuT("10", "Catalogo Respuestas", "6",  "/vistas/mantenimientos/CatalogoRespuestas.xhtml"));
+			//getMenus().add(	new MenuT("9", "Usuarios Sistema", "6",  "/vistas/mantenimientos/UsusarioSistema.xhtml"));
 			
-			getMenus().add(	new MenuT("10", "Opciones", null, null));
-			getMenus().add(	new MenuT("11", "Pagina Principal", "10",  "/vistas/generales/Principal.xhtml"));
-			getMenus().add(	new MenuT("12", "Salir", "10",  "/vistas/generales/Logout.xhtml"));
+			getMenus().add(	new MenuT("11", "Opciones", null, null));
+			getMenus().add(	new MenuT("12", "Pagina Principal", "11",  "/vistas/generales/Principal.xhtml"));
+			getMenus().add(	new MenuT("13", "Salir", "11",  "/vistas/generales/Logout.xhtml"));
 			
 			setMenu(new MenuControllerT(getMenus()));
 		} catch (Exception e) {

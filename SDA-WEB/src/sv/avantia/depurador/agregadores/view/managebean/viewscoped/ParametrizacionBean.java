@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -27,6 +29,7 @@ import com.cladonia.xml.webservice.wsdl.WSDLException;
 
 import sv.avantia.depurador.agregadores.entidades.Agregadores;
 import sv.avantia.depurador.agregadores.entidades.CatRespuestas;
+import sv.avantia.depurador.agregadores.entidades.CatResultados;
 import sv.avantia.depurador.agregadores.entidades.Metodos;
 import sv.avantia.depurador.agregadores.entidades.Pais;
 import sv.avantia.depurador.agregadores.entidades.Parametros;
@@ -34,6 +37,7 @@ import sv.avantia.depurador.agregadores.entidades.Respuesta;
 import sv.avantia.depurador.agregadores.entidades.ResultadosRespuesta;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
+import sv.avantia.depurador.agregadores.utils.CollectionsUtils;
 import sv.avantia.depurador.agregadores.utils.ParametrizarServicio;
 
 @ManagedBean
@@ -46,8 +50,8 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	private Agregadores agregador;
 	private Metodos metodo;
 	private Parametros parametro;
-	private Respuesta respuesta;
 	private ResultadosRespuesta resultadosRespuesta;
+	private Respuesta respuesta;
 	private List<Pais> paises;
 	private List<Agregadores> agregadores;
 	private List<Metodos> metodos;
@@ -55,7 +59,9 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	private List<Respuesta> respuestas;
 	private List<ResultadosRespuesta> resultadosRespuestas;
 	private List<CatRespuestas> catRespuestas;
-	private List<CatRespuestas> catRespuestaSelected;
+	private CatRespuestas[] catRespuestaSelected;
+	private List<CatResultados> catResultados;
+	private CatResultados[] catResultadoSelected;
 	private String ubicacion;
 
 	/**
@@ -75,15 +81,40 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		setAgregadores(new ArrayList<Agregadores>());
 		setMetodos(new ArrayList<Metodos>());
 		setParametros(new ArrayList<Parametros>());
-		setRespuesta(new Respuesta());
 		setRespuestas(new ArrayList<Respuesta>());
 		setResultadosRespuesta(new ResultadosRespuesta());
 		setResultadosRespuestas(new ArrayList<ResultadosRespuesta>());
 		setCatRespuestas(new ArrayList<CatRespuestas>());
-		setCatRespuestaSelected(new ArrayList<CatRespuestas>());
+		setCatResultados(new ArrayList<CatResultados>());
 		llenarTablaPaises();
+		llenarTablaCatRespuesta();
+		llenarTablaCatResultado();
 	}
 
+	@SuppressWarnings("unchecked")
+	private void llenarTablaCatResultado() {
+		try 
+		{
+			setCatResultados((List<CatResultados>) (List<?>) getEjecucion().listData("FROM SDA_CAT_RESULTADOS"));
+		} 
+		catch (Exception e) 
+		{
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de catresultados", e);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void llenarTablaCatRespuesta() {
+		try 
+		{
+			setCatRespuestas((List<CatRespuestas>) (List<?>) getEjecucion().listData("FROM SDA_CAT_RESPUESTAS"));
+		} 
+		catch (Exception e) 
+		{
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de catrespuestas", e);
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public void llenarTablaPaises() {
 		try 
@@ -141,7 +172,7 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void llenarTablaRespuestas() 
+	private void llenarTablaRespuestas() 
 	{	
 		try 
 		{
@@ -149,9 +180,11 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 					.listData("FROM SDA_RESPUESTAS WHERE ID_METODO = "
 							+ getMetodo().getId()));
 			
-			for (Respuesta respuesta : getRespuestas() ) {
-				getCatRespuestaSelected().add(respuesta.getCatRespuestas());
+			setCatRespuestaSelected(new CatRespuestas[getRespuestas().size()]);
+			for (int i = 0; i < getRespuestas().size(); i++) {
+				getCatRespuestaSelected()[i] = getRespuestas().get(i).getCatRespuesta();
 			}
+			
 		} 
 		catch (Exception e) 
 		{
@@ -160,13 +193,20 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void llenarTablaResultadoRespuestas() 
+	private void llenarTablaResultadoRespuestas() 
 	{	
 		try 
 		{
 			setResultadosRespuestas((List<ResultadosRespuesta>) (List<?>) getEjecucion()
 					.listData("FROM SDA_RESULTADOS_RESPUESTA WHERE ID_RESPUESTA = "
 							+ getRespuesta().getId()));
+			
+			System.out.println(getResultadosRespuestas().size());
+			setCatResultadoSelected(new CatResultados[getResultadosRespuestas().size()]);
+			for (int i = 0; i < getResultadosRespuestas().size(); i++) {
+				System.out.println("agregaremos a " + getResultadosRespuestas().get(i).getCatResultado().getId());
+				getCatResultadoSelected()[i] = getResultadosRespuestas().get(i).getCatResultado();
+			}
 		} 
 		catch (Exception e) 
 		{
@@ -196,12 +236,6 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	{
 		setParametro(new Parametros());
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
-	}
-	
-	public void limpiarRespuesta() 
-	{
-		setRespuesta(new Respuesta());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
 	}
 	
 	public void limpiarResultadoRespuesta() 
@@ -267,35 +301,7 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		}
 	}
 	
-	public void eliminarRespuesta() {
-		try {
-			if(getRespuesta().getId()!=null){
-				getEjecucion().deleteData(getRespuesta());
-				setRespuesta(new Respuesta());
-				llenarTablaRespuestas();
-				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
-				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
-			}
-		} catch (Exception e) {
-			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Respuesta", e);
-		}
-		
-	}
 	
-	public void eliminarResultadoRespuesta() {
-		try {
-			if(getResultadosRespuesta().getId()!=null){
-				getEjecucion().deleteData(getResultadosRespuesta());
-				setResultadosRespuesta(new ResultadosRespuesta());
-				llenarTablaResultadoRespuestas();
-				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
-				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
-			}
-		} catch (Exception e) {
-			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Resiltado de la Respuesta", e);
-		}
-		
-	}
 	
 	public void guardarPais()
 	{
@@ -430,49 +436,7 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		
 	}
 	
-	public void guardarRespuesta() 
-	{
-		try {
-			if(getRespuesta().getId()==null)
-			{
-				getRespuesta().setMetodo(getMetodo());
-				getEjecucion().createData(getRespuesta());
-			}
-			else
-			{
-				getEjecucion().updateData(getRespuesta());
-			}
-			setRespuesta(new Respuesta());
-			llenarTablaRespuestas();
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
-		} catch (Exception e) {
-			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Respuesta", e);
-		}
-		
-	}
 	
-	public void guardarResultadoRespuesta() 
-	{
-		try {
-			if(getResultadosRespuesta().getId()==null)
-			{
-				getResultadosRespuesta().setRespuesta(getRespuesta());
-				getEjecucion().createData(getResultadosRespuesta());
-			}
-			else
-			{
-				getEjecucion().updateData(getResultadosRespuesta());
-			}
-			setResultadosRespuesta(new ResultadosRespuesta());
-			llenarTablaResultadoRespuestas();
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
-			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
-		} catch (Exception e) {
-			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Resultado de la Respuesta", e);
-		}
-		
-	}
 
 	/**
 	 * Verificar que cuando se quiera mover de tab tenga seleccionado el objeto
@@ -588,12 +552,17 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab4");
 	}
 	
-	public void cargarRespuesta(CatRespuestas catRespuesta) {
-		for (Respuesta respuesta : getRespuestas() ) {
-			if(catRespuesta.getId() == respuesta.getCatRespuestas().getId()){
-				setRespuesta(respuesta);
+	public void cargarCatRespuesta(CatRespuestas catRespuesta){
+		setResultadosRespuestas(new ArrayList<ResultadosRespuesta>());
+		for (int i = 0; i < getRespuestas().size(); i++) {
+			if(getRespuestas().get(i).getCatRespuesta().getId()==catRespuesta.getId()){
+				cargarRespuesta(getRespuestas().get(i));
 			}
 		}
+	}
+	
+	private void cargarRespuesta(Respuesta respuesta) {
+		setRespuesta(respuesta);
 		setResultadosRespuesta(new ResultadosRespuesta());
 		llenarTablaResultadoRespuestas();
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
@@ -637,6 +606,177 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 			return "Baja de Servicios";
 		else
 			return "";
+	}
+	
+	public void readRespuestaSelected(){
+		Integer[] enBase;
+		Integer[] selected;
+		
+		enBase = new Integer[getRespuestas().size()];
+		for (int i = 0; i < getRespuestas().size(); i++) {
+			enBase[i] = getRespuestas().get(i).getCatRespuesta().getId();
+		}
+		
+		selected = new Integer[getCatRespuestaSelected().length];
+		for (int i = 0; i < getCatRespuestaSelected().length; i++) {
+			selected[i] = getCatRespuestaSelected()[i].getId();
+		}
+		
+		HashSet<Integer> marge2 = (HashSet<Integer>) CollectionsUtils.eliminar(new HashSet<Integer>(Arrays.asList(enBase)), new HashSet<Integer>(Arrays.asList(selected)));
+		System.out.println("Cantida de eliminaciones" + marge2.size());
+		for (Integer idCatRespuesta : marge2) {
+			for (int i = 0; i < getRespuestas().size(); i++) {
+				if(getRespuestas().get(i).getCatRespuesta().getId()==idCatRespuesta){
+					System.out.println("eliminaremos a la respuesta " + getRespuestas().get(i).getId());
+					eliminarRespuesta(getRespuestas().get(i));
+				}
+			}
+		}
+		
+		HashSet<Integer> marge1 = (HashSet<Integer>) CollectionsUtils.guardar(new HashSet<Integer>(Arrays.asList(enBase)), new HashSet<Integer>(Arrays.asList(selected)));
+		for (Integer idCatRespuesta : marge1) {
+			System.out.println("guardaremos una respuesta con el id " + idCatRespuesta); 
+			for (CatRespuestas catRespuesta : getCatRespuestas()) {
+				if(catRespuesta.getId()==idCatRespuesta){
+					guardarRespuesta(catRespuesta);
+				}
+			}
+		}
+	}
+	
+	private void guardarRespuesta(CatRespuestas catRespuesta) 
+	{
+		try {
+			Respuesta respuesta = new Respuesta();
+			respuesta.setMetodo(getMetodo());
+			respuesta.setCatRespuesta(catRespuesta);
+			respuesta.setNombre(catRespuesta.getNombre());
+			getEjecucion().createData(respuesta);
+			
+			
+			respuesta=new Respuesta();
+			llenarTablaRespuestas();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Respuesta", e);
+		}
+		
+	}
+	
+	private void eliminarRespuesta(Respuesta respuesta) {
+		try {
+			getEjecucion().deleteData(respuesta);
+			llenarTablaRespuestas();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblRespuestas");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Respuesta", e);
+		}
+		
+	}
+	
+	public void readResultadoSelected(){
+		Integer[] enBase;
+		Integer[] selected;
+		
+		System.out.println("iniciamos los resultados de base");
+		enBase = new Integer[getResultadosRespuestas().size()];
+		for (int i = 0; i < getResultadosRespuestas().size(); i++) {
+			enBase[i] = getResultadosRespuestas().get(i).getCatResultado().getId();
+		}
+		
+		System.out.println("iniciamos los datos seleccionados");
+		selected = new Integer[getCatResultadoSelected().length];
+		for (int i = 0; i < getCatResultadoSelected().length; i++) {
+			selected[i] = getCatResultadoSelected()[i].getId();
+		}
+		
+		HashSet<Integer> marge2 = (HashSet<Integer>) CollectionsUtils.eliminar(new HashSet<Integer>(Arrays.asList(enBase)), new HashSet<Integer>(Arrays.asList(selected)));
+		System.out.println("Cantida de eliminaciones" + marge2.size());
+		for (Integer idCatResultado : marge2) {
+			for (int i = 0; i < getRespuestas().size(); i++) {
+				if(getResultadosRespuestas().get(i).getCatResultado().getId()==idCatResultado){
+					System.out.println("eliminaremos al resultado " + getResultadosRespuestas().get(i).getId());
+					eliminarResultadoRespuesta(getResultadosRespuestas().get(i));
+				}
+			}
+		}
+		
+		HashSet<Integer> marge1 = (HashSet<Integer>) CollectionsUtils.guardar(new HashSet<Integer>(Arrays.asList(enBase)), new HashSet<Integer>(Arrays.asList(selected)));
+		for (Integer idCatResultado : marge1) {
+			System.out.println("guardaremos una respuesta con el id " + idCatResultado); 
+			for (CatResultados catResultados : getCatResultados()) {
+				if(catResultados.getId()==idCatResultado){
+					guardarResultadoRespuesta(catResultados);
+				}
+			}
+		}
+	}
+	
+	private void guardarResultadoRespuesta(CatResultados catResultados) {
+		try {
+			ResultadosRespuesta resultadosRespuesta = new ResultadosRespuesta();
+			
+			resultadosRespuesta.setCatResultado(catResultados);
+			resultadosRespuesta.setDato(catResultados.getDato());
+			resultadosRespuesta.setValor(catResultados.getValor());
+			getEjecucion().createData(resultadosRespuesta);
+			
+			llenarTablaResultadoRespuestas();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Resultado de la Respuesta", e);
+		}
+	}
+	
+	private void eliminarResultadoRespuesta(ResultadosRespuesta resultadosRespuesta) {
+		try {
+				getEjecucion().deleteData(resultadosRespuesta);
+				llenarTablaResultadoRespuestas();
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Resiltado de la Respuesta", e);
+		}
+	}
+	
+	public void guardarResultadoRespuesta() 
+	{
+		try {
+			if(getResultadosRespuesta().getId()==null)
+			{
+				getResultadosRespuesta().setRespuesta(getRespuesta());
+				getEjecucion().createData(getResultadosRespuesta());
+			}
+			else
+			{
+				getEjecucion().updateData(getResultadosRespuesta());
+			}
+			setResultadosRespuesta(new ResultadosRespuesta());
+			llenarTablaResultadoRespuestas();
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
+			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para guardar el objeto Resultado de la Respuesta", e);
+		}
+		
+	}
+	
+	public void eliminarResultadoRespuesta() {
+		try {
+			if(getResultadosRespuesta().getId()!=null){
+				getEjecucion().deleteData(getResultadosRespuesta());
+				setResultadosRespuesta(new ResultadosRespuesta());
+				llenarTablaResultadoRespuestas();
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
+				RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblResultadoRespuestas");
+			}
+		} catch (Exception e) {
+			lanzarMensajeError("Guardar", "Problemas para eliminar el objeto Resiltado de la Respuesta", e);
+		}
+		
 	}
 	
 	public Pais getPais() {
@@ -701,20 +841,6 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 
 	public void setParametros(List<Parametros> parametros) {
 		this.parametros = parametros;
-	}
-
-	/**
-	 * @return the respuesta
-	 */
-	public Respuesta getRespuesta() {
-		return respuesta;
-	}
-
-	/**
-	 * @param respuesta the respuesta to set
-	 */
-	public void setRespuesta(Respuesta respuesta) {
-		this.respuesta = respuesta;
 	}
 
 	/**
@@ -791,14 +917,56 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	/**
 	 * @return the catRespuestaSelected
 	 */
-	public List<CatRespuestas> getCatRespuestaSelected() {
+	public CatRespuestas[] getCatRespuestaSelected() {
 		return catRespuestaSelected;
 	}
 
 	/**
 	 * @param catRespuestaSelected the catRespuestaSelected to set
 	 */
-	public void setCatRespuestaSelected(List<CatRespuestas> catRespuestaSelected) {
+	public void setCatRespuestaSelected(CatRespuestas[] catRespuestaSelected) {
 		this.catRespuestaSelected = catRespuestaSelected;
+	}
+
+	/**
+	 * @return the respuesta
+	 */
+	public Respuesta getRespuesta() {
+		return respuesta;
+	}
+
+	/**
+	 * @param respuesta the respuesta to set
+	 */
+	public void setRespuesta(Respuesta respuesta) {
+		this.respuesta = respuesta;
+	}
+
+	/**
+	 * @return the catResultados
+	 */
+	public List<CatResultados> getCatResultados() {
+		return catResultados;
+	}
+
+	/**
+	 * @param catResultados the catResultados to set
+	 */
+	public void setCatResultados(List<CatResultados> catResultados) {
+		this.catResultados = catResultados;
+	}
+
+	/**
+	 * @return the catResultadoSelected
+	 */
+	public CatResultados[] getCatResultadoSelected() {
+		return catResultadoSelected;
+	}
+
+	/**
+	 * @param catResultadoSelected the catResultadoSelected to set
+	 */
+	public void setCatResultadoSelected(CatResultados[] catResultadoSelected) {
+		this.catResultadoSelected = catResultadoSelected;
 	}
 }

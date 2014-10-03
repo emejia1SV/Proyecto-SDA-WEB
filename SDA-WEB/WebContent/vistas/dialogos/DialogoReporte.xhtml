@@ -1,0 +1,46 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	
+	<!-- dialogo de Abono a cuenta -->
+	<p:dialog
+		id="IDDialogreporte" header="Descripción de Reporte"
+		widgetVar="WVDialogReporte" resizable="false"
+		showEffect="fade" modal="true" width="400" closable="true">
+		<p:panel	id="IDPanelReporte"
+					header="#{msj['depuracionUnitaria.header']}"
+					style="#{msj['p.panelMediano']} margin-top: 10pt;">
+			<h:form 	id="IDFrmDialogReporte">
+				<p:panelGrid 	id="IDPnlGridDialogReporte">
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msj['reporte.agregador']}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{reportesBean.logDepuracion.metodo.agregador.nombre_agregador}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="#{msj['reporte.suscriptor']}" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{reportesBean.logDepuracion.numero}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="Descripcion" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{reportesBean.logDepuracion.descripcionEstado}" />
+						</p:column>						
+					</p:row>
+				</p:panelGrid>
+			</h:form>		
+		</p:panel>
+	</p:dialog>
+</ui:composition>

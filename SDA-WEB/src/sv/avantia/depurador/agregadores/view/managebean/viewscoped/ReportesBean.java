@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 import sv.avantia.depurador.agregadores.entidades.LogDepuracion;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
@@ -21,9 +22,14 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private List<LogDepuracion> depuraciones;
 	private Date filterTripDateFrom, filterTripDateTo;
+	/**
+	 * Instancia para ser manejada en el dialogo del reporte
+	 * */
+	private LogDepuracion logDepuracion;
 	
 	@PostConstruct
 	public void init(){
+		setLogDepuracion(new LogDepuracion());
 		llenarTablaLogs();
 	}
 	
@@ -109,10 +115,24 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 	public void setDepuraciones(List<LogDepuracion> depuraciones) {
 		this.depuraciones = depuraciones;
 	}
+	
+	public void onRowSelect(SelectEvent event){
+		setLogDepuracion((LogDepuracion)event.getObject());
+		// TODO: debo implementar la manera en que el dialogo no me llame una segunda instancia del viewScope
+		//RequestContext.getCurrentInstance().execute("WVDialogReporte.show();");
+	}
 
+	/**
+	 * @return the logDepuracion
+	 */
+	public LogDepuracion getLogDepuracion() {
+		return logDepuracion;
+	}
 
-	public void cargarLog(LogDepuracion logDepuracion) {
-		System.out.println("Se recibio " + logDepuracion.getId());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+	/**
+	 * @param logDepuracion the logDepuracion to set
+	 */
+	public void setLogDepuracion(LogDepuracion logDepuracion) {
+		this.logDepuracion = logDepuracion;
 	}
 }
