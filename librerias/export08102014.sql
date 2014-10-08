@@ -1,8 +1,8 @@
 --------------------------------------------------------
--- Archivo creado  - miércoles-octubre-08-2014   
+-- ARCHIVO CREADO  JUEVES-08-OCTUBRE-2014   
+-- USUARIO CREADOR Edwin Mejia - Avantia Consultores
 --------------------------------------------------------
 DROP TABLE "CLIENTE_TEL" cascade constraints;
-DROP TABLE "HABITANTES" cascade constraints;
 DROP TABLE "SDA_AGREGADORES" cascade constraints;
 DROP TABLE "SDA_CAT_RESPUESTAS" cascade constraints;
 DROP TABLE "SDA_CAT_RESULTADOS" cascade constraints;
@@ -25,6 +25,11 @@ DROP SEQUENCE "SQ_SDA_PARAMETROS_SISTEMA";
 DROP SEQUENCE "SQ_SDA_RESPUESTAS";
 DROP SEQUENCE "SQ_SDA_RESULTADO_RESPUESTAS";
 DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
+
+---------------------------------------------------------------
+------------------DDL CREACION DE SECUENCIAS-------------------
+---------------------------------------------------------------
+
 --------------------------------------------------------
 --  DDL for Sequence SQ_SDA_AGREGADORES
 --------------------------------------------------------
@@ -80,6 +85,16 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 --------------------------------------------------------
 
    CREATE SEQUENCE  "SQ_SDA_USUARIO_SISTEMA"  MINVALUE 2 MAXVALUE 10000 INCREMENT BY 1 START WITH 2 NOCACHE  NOORDER  NOCYCLE ;
+
+      
+   
+---------------------------------------------------------------
+------------------DDL CREACION DE TABLAS-----------------------
+---------------------------------------------------------------
+   
+   
+   
+   
 --------------------------------------------------------
 --  DDL for Table CLIENTE_TEL
 --------------------------------------------------------
@@ -87,23 +102,8 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
   CREATE TABLE "CLIENTE_TEL" 
    (	"ID" NUMBER, 
 	"NUMERO" VARCHAR2(20 BYTE)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Table HABITANTES
---------------------------------------------------------
+   ) ;
 
-  CREATE TABLE "HABITANTES" 
-   (	"HABITANTES_ID" VARCHAR2(10 BYTE), 
-	"NOMBRES" VARCHAR2(100 BYTE), 
-	"APELLIDOS" VARCHAR2(100 BYTE), 
-	"CARGO" VARCHAR2(1 BYTE)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
 --------------------------------------------------------
 --  DDL for Table SDA_AGREGADORES
 --------------------------------------------------------
@@ -113,10 +113,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 	"NOMBRE_AGREGADOR" VARCHAR2(255 BYTE), 
 	"ESTADO" NUMBER, 
 	"ID_PAIS" NUMBER
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   ) ;
  
 
    COMMENT ON COLUMN "SDA_AGREGADORES"."ID" IS 'pk de la tabla SDA_AGREGADORES';
@@ -133,10 +130,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
   CREATE TABLE "SDA_CAT_RESPUESTAS" 
    (	"ID" NUMBER, 
 	"NOMBRE" VARCHAR2(20 BYTE)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   )  ;
  
 
    COMMENT ON COLUMN "SDA_CAT_RESPUESTAS"."ID" IS 'pk de la tabla de SDA_CAT_RESPUESTAS';
@@ -150,10 +144,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
    (	"ID" NUMBER, 
 	"DATO" VARCHAR2(100 BYTE), 
 	"VALOR" VARCHAR2(100 BYTE)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   )  ;
 --------------------------------------------------------
 --  DDL for Table SDA_LOG_DEPURACION
 --------------------------------------------------------
@@ -168,20 +159,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 	"TIPO_TRANSACCION" VARCHAR2(50 BYTE), 
 	"ID_METODO" NUMBER, 
 	"ID_USUARIO_SISTEMA" NUMBER
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" 
- LOB ("RESPUESTA") STORE AS (
-  TABLESPACE "SYSTEM" ENABLE STORAGE IN ROW CHUNK 8192 PCTVERSION 10
-  NOCACHE LOGGING 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)) 
- LOB ("ENVIO") STORE AS (
-  TABLESPACE "SYSTEM" ENABLE STORAGE IN ROW CHUNK 8192 PCTVERSION 10
-  NOCACHE LOGGING 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)) ;
+   )  ;
  
 
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."ID" IS 'pk de la tabla de SDA_LOG_DEPURACION';
@@ -223,10 +201,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 	"TARGETOBJECTURI" VARCHAR2(255 BYTE), 
 	"TARGETURL" VARCHAR2(255 BYTE), 
 	"WSDL_AGREGADOR" VARCHAR2(255 BYTE)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   )  ;
  
 
    COMMENT ON COLUMN "SDA_METODOS"."ID" IS 'pk de la tabla metodos de los servicios web de los agregadores';
@@ -270,11 +245,8 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
    (	"ID" NUMBER, 
 	"PAIS" VARCHAR2(100 BYTE), 
 	"CODIGO" VARCHAR2(10 BYTE), 
-	"STATUS" NUMBER(*,0)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+	"STATUS" NUMBER
+   ) ;
  
 
    COMMENT ON COLUMN "SDA_PAISES"."ID" IS 'pk de la tabla SDA_PAISES de donde sera ejecutado el agregador';
@@ -292,10 +264,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
    (	"ID" NUMBER, 
 	"NOMBRE" VARCHAR2(255 BYTE), 
 	"ID_METODO" NUMBER
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   )  ;
  
 
    COMMENT ON COLUMN "SDA_PARAMETROS"."ID" IS 'pk de la tabla de SDA_PARAMETROS';
@@ -311,10 +280,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
    (	"ID" NUMBER, 
 	"KEY" VARCHAR2(255 BYTE), 
 	"VALUE" VARCHAR2(255 BYTE)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   )  ;
  
 
    COMMENT ON COLUMN "SDA_PARAMETROS_SISTEMA"."ID" IS 'pk de la tabla de SDA_PARAMETROS_SISTEMA';
@@ -331,10 +297,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 	"NOMBRE" VARCHAR2(255 BYTE), 
 	"ID_RESPUESTA" NUMBER, 
 	"ID_METODO" NUMBER
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   )  ;
  
 
    COMMENT ON COLUMN "SDA_RESPUESTAS"."ID" IS 'pk de la tabla de SDA_RESPUESTAS';
@@ -354,10 +317,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 	"VALOR" VARCHAR2(255 BYTE), 
 	"DATO" VARCHAR2(20 BYTE), 
 	"ID_RESULTADO" NUMBER
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   )  ;
  
 
    COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."ID" IS 'pk de la tabla de SDA_RESPUESTAS';
@@ -376,10 +336,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 	"USUARIO" VARCHAR2(255 BYTE), 
 	"CONTRASENIA" VARCHAR2(255 BYTE), 
 	"ESTADO" NUMBER
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
+   )  ;
  
 
    COMMENT ON COLUMN "SDA_USUARIO_SISTEMA"."ID" IS 'pk de la tabla de SDA_USUARIO_SISTEMA';
@@ -389,63 +346,263 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
    COMMENT ON COLUMN "SDA_USUARIO_SISTEMA"."CONTRASENIA" IS 'contrasenia del usuario con permisos de entrar al sistema';
  
    COMMENT ON COLUMN "SDA_USUARIO_SISTEMA"."ESTADO" IS 'estado del usuario con permisos de entrar al sistema';
-REM INSERTING into CLIENTE_TEL
-SET DEFINE OFF;
-Insert into CLIENTE_TEL (ID,NUMERO) values (1,'50370001635');
-Insert into CLIENTE_TEL (ID,NUMERO) values (2,'50370001639');
-Insert into CLIENTE_TEL (ID,NUMERO) values (3,'50370001647');
-Insert into CLIENTE_TEL (ID,NUMERO) values (4,'50370001650');
-Insert into CLIENTE_TEL (ID,NUMERO) values (5,'50370001659');
-Insert into CLIENTE_TEL (ID,NUMERO) values (6,'50370001660');
-Insert into CLIENTE_TEL (ID,NUMERO) values (7,'50255846245');
-Insert into CLIENTE_TEL (ID,NUMERO) values (8,'50247166159');
-Insert into CLIENTE_TEL (ID,NUMERO) values (9,'50242155220');
-Insert into CLIENTE_TEL (ID,NUMERO) values (10,'50242435799');
-Insert into CLIENTE_TEL (ID,NUMERO) values (11,'50242107214');
-Insert into CLIENTE_TEL (ID,NUMERO) values (12,'50247009375');
-Insert into CLIENTE_TEL (ID,NUMERO) values (13,'50370001661');
-Insert into CLIENTE_TEL (ID,NUMERO) values (14,'50370001665');
-Insert into CLIENTE_TEL (ID,NUMERO) values (15,'50370001671');
-Insert into CLIENTE_TEL (ID,NUMERO) values (16,'50370001678');
-Insert into CLIENTE_TEL (ID,NUMERO) values (17,'50370001679');
-Insert into CLIENTE_TEL (ID,NUMERO) values (18,'50370001682');
-Insert into CLIENTE_TEL (ID,NUMERO) values (19,'50370001690');
-Insert into CLIENTE_TEL (ID,NUMERO) values (20,'50370001701');
-Insert into CLIENTE_TEL (ID,NUMERO) values (21,'50370001708');
-Insert into CLIENTE_TEL (ID,NUMERO) values (22,'50370001712');
-Insert into CLIENTE_TEL (ID,NUMERO) values (23,'50370001720');
-Insert into CLIENTE_TEL (ID,NUMERO) values (24,'50370001730');
-Insert into CLIENTE_TEL (ID,NUMERO) values (25,'50370001742');
-Insert into CLIENTE_TEL (ID,NUMERO) values (26,'50370001748');
-Insert into CLIENTE_TEL (ID,NUMERO) values (27,'50370001761');
-Insert into CLIENTE_TEL (ID,NUMERO) values (28,'50370001762');
-Insert into CLIENTE_TEL (ID,NUMERO) values (29,'50370001764');
-Insert into CLIENTE_TEL (ID,NUMERO) values (30,'50370001770');
-Insert into CLIENTE_TEL (ID,NUMERO) values (31,'50370001773');
-Insert into CLIENTE_TEL (ID,NUMERO) values (32,'50370001777');
-Insert into CLIENTE_TEL (ID,NUMERO) values (33,'50370001784');
-Insert into CLIENTE_TEL (ID,NUMERO) values (34,'50370001787');
-Insert into CLIENTE_TEL (ID,NUMERO) values (35,'50370001788');
-Insert into CLIENTE_TEL (ID,NUMERO) values (36,'50370001790');
-Insert into CLIENTE_TEL (ID,NUMERO) values (37,'50370001795');
-Insert into CLIENTE_TEL (ID,NUMERO) values (38,'50370001837');
-Insert into CLIENTE_TEL (ID,NUMERO) values (39,'50370001839');
-Insert into CLIENTE_TEL (ID,NUMERO) values (40,'50370001841');
-Insert into CLIENTE_TEL (ID,NUMERO) values (41,'50370001844');
-Insert into CLIENTE_TEL (ID,NUMERO) values (42,'50370001864');
-Insert into CLIENTE_TEL (ID,NUMERO) values (43,'50370001865');
-Insert into CLIENTE_TEL (ID,NUMERO) values (44,'50370001868');
-Insert into CLIENTE_TEL (ID,NUMERO) values (45,'50370001872');
-Insert into CLIENTE_TEL (ID,NUMERO) values (47,'50370001875');
-Insert into CLIENTE_TEL (ID,NUMERO) values (48,'50370001877');
-Insert into CLIENTE_TEL (ID,NUMERO) values (49,'50370001878');
-Insert into CLIENTE_TEL (ID,NUMERO) values (50,'50370001882');
-Insert into CLIENTE_TEL (ID,NUMERO) values (51,'50370001883');
-Insert into CLIENTE_TEL (ID,NUMERO) values (52,'50370001884');
-Insert into CLIENTE_TEL (ID,NUMERO) values (53,'50370001887');
-Insert into CLIENTE_TEL (ID,NUMERO) values (54,'50258260744');
-REM INSERTING into SDA_AGREGADORES
-SET DEFINE OFF;
+
+    
+  
+---------------------------------------------------------------
+-------------------DDL CREATE CONSTRAINTS----------------------
+---------------------------------------------------------------
+ 
+ 
+--------------------------------------------------------
+--  Constraints for Table SDA_CAT_RESULTADOS
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_CAT_RESULTADOS" ADD CONSTRAINT "SDA_CAT_RESULTADOS_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_CAT_RESULTADOS" MODIFY ("ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_CAT_RESULTADOS" MODIFY ("DATO" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_CAT_RESULTADOS" MODIFY ("VALOR" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table CLIENTE_TEL
+--------------------------------------------------------
+
+  ALTER TABLE "CLIENTE_TEL" MODIFY ("ID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "CLIENTE_TEL" ADD CONSTRAINT "CLIENTE_TEL_PK" PRIMARY KEY ("ID")  ENABLE;
+
+--------------------------------------------------------
+--  Constraints for Table SDA_PAISES
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_PAISES" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_PAISES" ADD CONSTRAINT "SDA_PAISES_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_PAISES" MODIFY ("PAIS" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table SDA_AGREGADORES
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_AGREGADORES" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_AGREGADORES" ADD CONSTRAINT "SDA_AGREGADORES_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_AGREGADORES" MODIFY ("NOMBRE_AGREGADOR" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_AGREGADORES" MODIFY ("ID_PAIS" NOT NULL ENABLE);
+
+--------------------------------------------------------
+--  Constraints for Table SDA_METODOS
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_METODOS" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_METODOS" ADD CONSTRAINT "SDA_METODOS_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_METODOS" MODIFY ("ID_AGREGADOR" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_METODOS" MODIFY ("METODO" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_METODOS" MODIFY ("END_POINT" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_METODOS" MODIFY ("INPUTMESSAGETEXT" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table SDA_PARAMETROS
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_PARAMETROS" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_PARAMETROS" ADD CONSTRAINT "SDA_PARAMETROS_PK" PRIMARY KEY ("ID") ENABLE; 
+ 
+  ALTER TABLE "SDA_PARAMETROS" MODIFY ("NOMBRE" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_PARAMETROS" MODIFY ("ID_METODO" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table SDA_CAT_RESPUESTAS
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_CAT_RESPUESTAS" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_CAT_RESPUESTAS" ADD CONSTRAINT "SDA_CAT_RESPUESTAS_PK" PRIMARY KEY ("ID") ENABLE; 
+ 
+  ALTER TABLE "SDA_CAT_RESPUESTAS" MODIFY ("NOMBRE" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table SDA_RESPUESTAS
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_RESPUESTAS" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_RESPUESTAS" ADD CONSTRAINT "SDA_RESPUESTA_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_RESPUESTAS" MODIFY ("NOMBRE" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_RESPUESTAS" MODIFY ("ID_METODO" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table SDA_RESULTADOS_RESPUESTA
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" ADD CONSTRAINT "SDA_RESULTADOS_RESPUESTA_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" MODIFY ("ID_RESPUESTA" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table SDA_PARAMETROS_SISTEMA
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_PARAMETROS_SISTEMA" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_PARAMETROS_SISTEMA" ADD CONSTRAINT "SDA_PARAMETROS_SISTEMA_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_PARAMETROS_SISTEMA" MODIFY ("KEY" NOT NULL ENABLE);
+ 
+  ALTER TABLE "SDA_PARAMETROS_SISTEMA" MODIFY ("VALUE" NOT NULL ENABLE);
+
+--------------------------------------------------------
+--  Constraints for Table SDA_USUARIO_SISTEMA
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_USUARIO_SISTEMA" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_USUARIO_SISTEMA" ADD CONSTRAINT "SDA_USUARIO_SISTEMA_PK" PRIMARY KEY ("ID") ENABLE;
+  
+  ALTER TABLE "SDA_USUARIO_SISTEMA" MODIFY ("USUARIO" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_USUARIO_SISTEMA" MODIFY ("CONTRASENIA" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_USUARIO_SISTEMA" MODIFY ("ESTADO" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+--  Constraints for Table SDA_LOG_DEPURACION
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("ID" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_LOG_DEPURACION" ADD CONSTRAINT "SDA_LOG_DEPURACION_PK" PRIMARY KEY ("ID") ENABLE;
+ 
+  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("SUSCRIPTOR" NOT NULL ENABLE);
+
+  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("ESTADO_TRANSACCION" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("FECHA_TRANSACCION" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("ID_METODO" NOT NULL ENABLE);
+  
+  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("ID_USUARIO_SISTEMA" NOT NULL ENABLE);
+  
+
+  
+---------------------------------------------------------------
+-------------DDL CREATE REFERENCES CONSTRAINTS-----------------
+---------------------------------------------------------------
+  
+  
+--------------------------------------------------------
+--  Ref Constraints for Table SDA_AGREGADORES
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_AGREGADORES" 
+    ADD CONSTRAINT "SDA_AGREGADORES_PAISES_FK" FOREIGN KEY ("ID_PAIS")
+        REFERENCES "SDA_PAISES" ("ID") ON DELETE CASCADE ENABLE;
+		
+--------------------------------------------------------
+--  Ref Constraints for Table SDA_METODOS
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_METODOS" 
+    ADD CONSTRAINT "SDA_METODOS_AGREGADORES_FK" FOREIGN KEY ("ID_AGREGADOR")
+      REFERENCES "SDA_AGREGADORES" ("ID") ON DELETE CASCADE ENABLE;
+	  
+--------------------------------------------------------
+--  Ref Constraints for Table SDA_PARAMETROS
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_PARAMETROS" 
+    ADD CONSTRAINT "SDA_PARAMETROS_METODOS_FK" FOREIGN KEY ("ID_METODO")
+      REFERENCES "SDA_METODOS" ("ID") ON DELETE CASCADE ENABLE;
+	  
+--------------------------------------------------------
+--  Ref Constraints for Table SDA_RESPUESTAS
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_RESPUESTAS" 
+    ADD CONSTRAINT "SDA_RESPUESTAS_METODOS_FK" FOREIGN KEY ("ID_METODO")
+      REFERENCES "SDA_METODOS" ("ID") ON DELETE CASCADE ENABLE;
+
+  ALTER TABLE "SDA_RESPUESTAS" 
+    ADD CONSTRAINT "SDA_CAT_RESPUESTAS_FK" FOREIGN KEY ("ID_RESPUESTA")
+      REFERENCES "SDA_CAT_RESPUESTAS" ("ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table SDA_RESULTADOS_RESPUESTA
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" 
+	ADD CONSTRAINT "SDA_RESULTADOS_RESPUESTA_FK1" FOREIGN KEY ("ID_RESPUESTA")
+	  REFERENCES "SDA_RESPUESTAS" ("ID") ENABLE;
+	  
+  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" 
+	ADD CONSTRAINT "SDA_RESULTADOS_RESPUESTA_FK2" FOREIGN KEY ("ID_RESULTADO")
+	  REFERENCES "SDA_CAT_RESULTADOS" ("ID") ENABLE;
+	  
+--------------------------------------------------------
+--  Ref Constraints for Table SDA_LOG_DEPURACION
+--------------------------------------------------------
+
+  ALTER TABLE "SDA_LOG_DEPURACION" 
+    ADD CONSTRAINT "SDA_LOG_DEPURACION_METODOS_FK" FOREIGN KEY ("ID_METODO")
+      REFERENCES "SDA_METODOS" ("ID") ENABLE;
+
+  ALTER TABLE "SDA_LOG_DEPURACION" 
+    ADD CONSTRAINT "SDA_LOG_USUARIO_FK" FOREIGN KEY ("ID_USUARIO_SISTEMA")
+      REFERENCES "SDA_USUARIO_SISTEMA" ("ID") ENABLE;
+
+	  
+	  
+  
+Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (1,'item');
+Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (2,'ns1:resultCode');
+Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (3,'Resp');
+Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (4,'Value');
+Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (5,'Return');
+Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (6,'string');
+
+commit;
+
+Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (1,'0','Fallo');
+Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (2,'1','Exito');
+Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (3,'2','the msisdn format is wrong');
+Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (4,'3','the msisdn is not existed (for delete black list)');
+Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (5,'4','the ASPID is not existed');
+Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (6,'1','the msisdn has already existed');
+Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (7,'5','the serviceID is not existed');
+Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (8,'9','system SMT error');
+
+commit;
+
+Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (1,'accion','2');
+Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (2,'host','172.24.0.222');
+Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (3,'version','1.0');
+
+commit;
+
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (1,'GUATEMALA','502',0);
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (2,'EL SALVADOR','503',0);
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (3,'HONDURAS','504',0);
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (4,'NICARAGUA','505',1);
+Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (5,'COSTA RICA','506',0);
+
+commit;
+   
 Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (1,'MOBILE',0,1);
 Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (2,'CONTENTAMOBILE',0,1);
 Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (3,'TELEVIDA',0,1);
@@ -512,28 +669,9 @@ Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (64,'VAS
 Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (65,'WAU',1,4);
 Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (66,'WIRELES_IDEA',1,4);
 Insert into SDA_AGREGADORES (ID,NOMBRE_AGREGADOR,ESTADO,ID_PAIS) values (68,'ZED',1,4);
-REM INSERTING into SDA_CAT_RESPUESTAS
-SET DEFINE OFF;
-Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (1,'item');
-Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (2,'ns1:resultCode');
-Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (3,'Resp');
-Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (4,'Value');
-Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (5,'Return');
-Insert into SDA_CAT_RESPUESTAS (ID,NOMBRE) values (6,'string');
-REM INSERTING into SDA_CAT_RESULTADOS
-SET DEFINE OFF;
-Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (1,'0','Fallo');
-Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (2,'1','Exito');
-Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (3,'2','the msisdn format is wrong');
-Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (4,'3','the msisdn is not existed (for delete black list)');
-Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (5,'4','the ASPID is not existed');
-Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (6,'1','the msisdn has already existed');
-Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (7,'5','the serviceID is not existed');
-Insert into SDA_CAT_RESULTADOS (ID,DATO,VALOR) values (8,'9','system SMT error');
-REM INSERTING into SDA_LOG_DEPURACION
-SET DEFINE OFF;
-REM INSERTING into SDA_METODOS
-SET DEFINE OFF;
+
+commit;
+
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (1,26,1,'PA00000737','Admin111','https://hub.americamovil.com/sag/services/blackgrayService',1,'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/blackgray/v1_0/local"><soapenv:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>_*user_*</wsse:Username><wsse:Password Type="...#PasswordDigest">_*passSMT_*</wsse:Password><wsse:Nonce>_*nonce_*</wsse:Nonce><wsse:Created>_*dateSMT_*</wsse:Created></wsse:UsernameToken></wsse:Security><tns:RequestSOAPHeader xmlns:tns="http://www.huawei.com.cn/schema/common/v2_1"><tns:AppId>35000001000001</tns:AppId><tns:TransId>2014011716010012345</tns:TransId><tns:OA>_*movil_*</tns:OA><tns:FA>_*movil_*</tns:FA></tns:RequestSOAPHeader></soapenv:Header><soapenv:Body><loc:deleteGrayList><loc:version>_*version_*</loc:version><loc:grayList><grayee><msisdn>_*movil_*</msisdn>    </grayee></loc:grayList></loc:deleteGrayList></soapenv:Body></soapenv:Envelope>',null,null,'loc:deleteGrayList',null,null,null,null,null,null);
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (2,10,1,null,'ebea4edabf','http://webservices.binbit.com/claro_gt/claro_gt.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_gt/claro_gt.php"><soapenv:Header/><soapenv:Body><clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></clar:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'clar:listaNegra',null,null,null,null,null,null);
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (3,10,2,null,'ebea4edabf','http://webservices.binbit.com/claro_gt/claro_gt.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_gt/claro_gt.php"><soapenv:Header/><soapenv:Body><clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></clar:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'clar:consultaServicios',null,null,null,null,null,null);
@@ -718,15 +856,9 @@ Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SE
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (193,68,1,null,'1234','http://wpclaro.zed.com/external/WsClaroLatam/WsClaroLatam.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsc="WsClaroLatam"><soapenv:Header/><soapenv:Body><wsc:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><action xsi:type="xsd:string">_*accion_*</action><pass xsi:type="xsd:string">_*pass_*</pass></wsc:listaNegra></soapenv:Body></soapenv:Envelope>',null,null,'wsc:listaNegra',null,null,null,null,null,null);
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (194,68,2,null,'1234','http://wpclaro.zed.com/external/WsClaroLatam/WsClaroLatam.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsc="WsClaroLatam"><soapenv:Header/><soapenv:Body><wsc:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></wsc:consultaServicios></soapenv:Body></soapenv:Envelope>',null,null,'wsc:consultaServicios',null,null,null,null,null,null);
 Insert into SDA_METODOS (ID,ID_AGREGADOR,METODO,USUARIO,CONTRASENIA,END_POINT,SEGURIDAD,INPUTMESSAGETEXT,INPUTMESSAGENAME,SERVICE_NAME,SOAPACTIONURI,NAMESPACEURI,STYLE,TARGETMETHODNAME,TARGETOBJECTURI,TARGETURL,WSDL_AGREGADOR) values (195,68,3,null,'1234','http://wpclaro.zed.com/external/WsClaroLatam/WsClaroLatam.php',0,'<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsc="WsClaroLatam"><soapenv:Header/><soapenv:Body><wsc:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></wsc:bajaServicios></soapenv:Body></soapenv:Envelope>',null,null,'wsc:bajaServicios',null,null,null,null,null,null);
-REM INSERTING into SDA_PAISES
-SET DEFINE OFF;
-Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (1,'GUATEMALA','502',0);
-Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (2,'EL SALVADOR','503',0);
-Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (3,'HONDURAS','504',0);
-Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (4,'NICARAGUA','505',1);
-Insert into SDA_PAISES (ID,PAIS,CODIGO,STATUS) values (5,'COSTA RICA','506',0);
-REM INSERTING into SDA_PARAMETROS
-SET DEFINE OFF;
+
+commit;
+
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (218,'pass',81);
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (219,'movil',82);
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (220,'accion',82);
@@ -1266,13 +1398,9 @@ Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (543,'servicio',195);
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (544,'mcorta',195);
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (545,'pass',195);
 Insert into SDA_PARAMETROS (ID,NOMBRE,ID_METODO) values (546,'accion',193);
-REM INSERTING into SDA_PARAMETROS_SISTEMA
-SET DEFINE OFF;
-Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (1,'accion','2');
-Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (2,'host','172.24.0.222');
-Insert into SDA_PARAMETROS_SISTEMA (ID,KEY,VALUE) values (3,'version','1.0');
-REM INSERTING into SDA_RESPUESTAS
-SET DEFINE OFF;
+
+commit;
+
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_RESPUESTA,ID_METODO) values (66,'item',1,81);
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_RESPUESTA,ID_METODO) values (70,'item',1,86);
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_RESPUESTA,ID_METODO) values (71,'Value',4,85);
@@ -1438,8 +1566,9 @@ Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_RESPUESTA,ID_METODO) values (179,'Resp'
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_RESPUESTA,ID_METODO) values (180,'Resp',3,193);
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_RESPUESTA,ID_METODO) values (181,'item',1,194);
 Insert into SDA_RESPUESTAS (ID,NOMBRE,ID_RESPUESTA,ID_METODO) values (182,'Resp',3,195);
-REM INSERTING into SDA_RESULTADOS_RESPUESTA
-SET DEFINE OFF;
+
+commit;
+
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO,ID_RESULTADO) values (97,66,'Exito','1',2);
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO,ID_RESULTADO) values (98,66,'Fallo','0',1);
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO,ID_RESULTADO) values (101,69,'Exito','1',2);
@@ -1669,367 +1798,9 @@ Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO,ID_RESULTADO) v
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO,ID_RESULTADO) values (240,180,'Exito','1',null);
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO,ID_RESULTADO) values (241,182,'Fallo','0',null);
 Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO,ID_RESULTADO) values (242,182,'Exito','1',null);
-REM INSERTING into SDA_USUARIO_SISTEMA
-SET DEFINE OFF;
+
+commit;
+
 Insert into SDA_USUARIO_SISTEMA (ID,USUARIO,CONTRASENIA,ESTADO) values (1,'admin','admin',1);
---------------------------------------------------------
---  DDL for Index CLIENTE_TEL_PK
---------------------------------------------------------
 
-  CREATE UNIQUE INDEX "CLIENTE_TEL_PK" ON "CLIENTE_TEL" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_AGREGADORES_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_AGREGADORES_PK" ON "SDA_AGREGADORES" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_CAT_RESPUESTAS_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_CAT_RESPUESTAS_PK" ON "SDA_CAT_RESPUESTAS" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_CAT_RESULTADOS_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_CAT_RESULTADOS_PK" ON "SDA_CAT_RESULTADOS" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_LOG_DEPURACION_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_LOG_DEPURACION_PK" ON "SDA_LOG_DEPURACION" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_METODOS_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_METODOS_PK" ON "SDA_METODOS" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_PAISES_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_PAISES_PK" ON "SDA_PAISES" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_PARAMETROS_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_PARAMETROS_PK" ON "SDA_PARAMETROS" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_PARAMETROS_SISTEMA_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_PARAMETROS_SISTEMA_PK" ON "SDA_PARAMETROS_SISTEMA" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_RESPUESTA_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_RESPUESTA_PK" ON "SDA_RESPUESTAS" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_RESULTADOS_RESPUESTA_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_RESULTADOS_RESPUESTA_PK" ON "SDA_RESULTADOS_RESPUESTA" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index SDA_USUARIO_SISTEMA_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SDA_USUARIO_SISTEMA_PK" ON "SDA_USUARIO_SISTEMA" ("ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  DDL for Index HABITANTES_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "HABITANTES_PK" ON "HABITANTES" ("HABITANTES_ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM" ;
---------------------------------------------------------
---  Constraints for Table CLIENTE_TEL
---------------------------------------------------------
-
-  ALTER TABLE "CLIENTE_TEL" ADD CONSTRAINT "CLIENTE_TEL_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "CLIENTE_TEL" MODIFY ("ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table HABITANTES
---------------------------------------------------------
-
-  ALTER TABLE "HABITANTES" ADD CONSTRAINT "HABITANTES_PK" PRIMARY KEY ("HABITANTES_ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "HABITANTES" MODIFY ("HABITANTES_ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "HABITANTES" MODIFY ("NOMBRES" NOT NULL ENABLE);
- 
-  ALTER TABLE "HABITANTES" MODIFY ("APELLIDOS" NOT NULL ENABLE);
- 
-  ALTER TABLE "HABITANTES" MODIFY ("CARGO" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_AGREGADORES
---------------------------------------------------------
-
-  ALTER TABLE "SDA_AGREGADORES" ADD CONSTRAINT "SDA_AGREGADORES_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_AGREGADORES" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_AGREGADORES" MODIFY ("NOMBRE_AGREGADOR" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_AGREGADORES" MODIFY ("ID_PAIS" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_CAT_RESPUESTAS
---------------------------------------------------------
-
-  ALTER TABLE "SDA_CAT_RESPUESTAS" ADD CONSTRAINT "SDA_CAT_RESPUESTAS_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_CAT_RESPUESTAS" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_CAT_RESPUESTAS" MODIFY ("NOMBRE" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_CAT_RESULTADOS
---------------------------------------------------------
-
-  ALTER TABLE "SDA_CAT_RESULTADOS" ADD CONSTRAINT "SDA_CAT_RESULTADOS_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_CAT_RESULTADOS" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_CAT_RESULTADOS" MODIFY ("DATO" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_CAT_RESULTADOS" MODIFY ("VALOR" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_LOG_DEPURACION
---------------------------------------------------------
-
-  ALTER TABLE "SDA_LOG_DEPURACION" ADD CONSTRAINT "SDA_LOG_DEPURACION_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("SUSCRIPTOR" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("ESTADO_TRANSACCION" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("FECHA_TRANSACCION" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("ID_METODO" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_LOG_DEPURACION" MODIFY ("ID_USUARIO_SISTEMA" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_METODOS
---------------------------------------------------------
-
-  ALTER TABLE "SDA_METODOS" ADD CONSTRAINT "SDA_METODOS_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_METODOS" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_METODOS" MODIFY ("ID_AGREGADOR" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_METODOS" MODIFY ("METODO" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_METODOS" MODIFY ("END_POINT" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_METODOS" MODIFY ("INPUTMESSAGETEXT" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_PAISES
---------------------------------------------------------
-
-  ALTER TABLE "SDA_PAISES" ADD CONSTRAINT "SDA_PAISES_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_PAISES" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_PAISES" MODIFY ("PAIS" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_PARAMETROS
---------------------------------------------------------
-
-  ALTER TABLE "SDA_PARAMETROS" ADD CONSTRAINT "SDA_PARAMETROS_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_PARAMETROS" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_PARAMETROS" MODIFY ("NOMBRE" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_PARAMETROS" MODIFY ("ID_METODO" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_PARAMETROS_SISTEMA
---------------------------------------------------------
-
-  ALTER TABLE "SDA_PARAMETROS_SISTEMA" ADD CONSTRAINT "SDA_PARAMETROS_SISTEMA_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_PARAMETROS_SISTEMA" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_PARAMETROS_SISTEMA" MODIFY ("KEY" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_PARAMETROS_SISTEMA" MODIFY ("VALUE" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_RESPUESTAS
---------------------------------------------------------
-
-  ALTER TABLE "SDA_RESPUESTAS" ADD CONSTRAINT "SDA_RESPUESTA_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_RESPUESTAS" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_RESPUESTAS" MODIFY ("NOMBRE" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_RESPUESTAS" MODIFY ("ID_METODO" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_RESULTADOS_RESPUESTA
---------------------------------------------------------
-
-  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" ADD CONSTRAINT "SDA_RESULTADOS_RESPUESTA_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" MODIFY ("ID_RESPUESTA" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SDA_USUARIO_SISTEMA
---------------------------------------------------------
-
-  ALTER TABLE "SDA_USUARIO_SISTEMA" ADD CONSTRAINT "SDA_USUARIO_SISTEMA_PK" PRIMARY KEY ("ID")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "SYSTEM"  ENABLE;
- 
-  ALTER TABLE "SDA_USUARIO_SISTEMA" MODIFY ("ID" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_USUARIO_SISTEMA" MODIFY ("USUARIO" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_USUARIO_SISTEMA" MODIFY ("CONTRASENIA" NOT NULL ENABLE);
- 
-  ALTER TABLE "SDA_USUARIO_SISTEMA" MODIFY ("ESTADO" NOT NULL ENABLE);
---------------------------------------------------------
---  Ref Constraints for Table SDA_AGREGADORES
---------------------------------------------------------
-
-  ALTER TABLE "SDA_AGREGADORES" ADD CONSTRAINT "SDA_AGREGADORES_PAISES_FK" FOREIGN KEY ("ID_PAIS")
-	  REFERENCES "SDA_PAISES" ("ID") ON DELETE CASCADE ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table SDA_LOG_DEPURACION
---------------------------------------------------------
-
-  ALTER TABLE "SDA_LOG_DEPURACION" ADD CONSTRAINT "SDA_LOG_DEPURACION_METODOS_FK" FOREIGN KEY ("ID_METODO")
-	  REFERENCES "SDA_METODOS" ("ID") ENABLE;
- 
-  ALTER TABLE "SDA_LOG_DEPURACION" ADD CONSTRAINT "SDA_LOG_USUARIO_FK" FOREIGN KEY ("ID_USUARIO_SISTEMA")
-	  REFERENCES "SDA_USUARIO_SISTEMA" ("ID") ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table SDA_METODOS
---------------------------------------------------------
-
-  ALTER TABLE "SDA_METODOS" ADD CONSTRAINT "SDA_METODOS_AGREGADORES_FK" FOREIGN KEY ("ID_AGREGADOR")
-	  REFERENCES "SDA_AGREGADORES" ("ID") ON DELETE CASCADE ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table SDA_PARAMETROS
---------------------------------------------------------
-
-  ALTER TABLE "SDA_PARAMETROS" ADD CONSTRAINT "SDA_PARAMETROS_METODOS_FK" FOREIGN KEY ("ID_METODO")
-	  REFERENCES "SDA_METODOS" ("ID") ON DELETE CASCADE ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table SDA_RESPUESTAS
---------------------------------------------------------
-
-  ALTER TABLE "SDA_RESPUESTAS" ADD CONSTRAINT "SDA_CAT_RESPUESTAS_FK" FOREIGN KEY ("ID_RESPUESTA")
-	  REFERENCES "SDA_CAT_RESPUESTAS" ("ID") ENABLE;
- 
-  ALTER TABLE "SDA_RESPUESTAS" ADD CONSTRAINT "SDA_RESPUESTAS_METODOS_FK" FOREIGN KEY ("ID_METODO")
-	  REFERENCES "SDA_METODOS" ("ID") ON DELETE CASCADE ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table SDA_RESULTADOS_RESPUESTA
---------------------------------------------------------
-
-  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" ADD CONSTRAINT "SDA_RESULTADOS_RESPUESTA_FK1" FOREIGN KEY ("ID_RESPUESTA")
-	  REFERENCES "SDA_RESPUESTAS" ("ID") ON DELETE CASCADE ENABLE;
- 
-  ALTER TABLE "SDA_RESULTADOS_RESPUESTA" ADD CONSTRAINT "SDA_RESULTADOS_RESPUESTA_FK2" FOREIGN KEY ("ID_RESULTADO")
-	  REFERENCES "SDA_CAT_RESULTADOS" ("ID") ENABLE;
+commit;

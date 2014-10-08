@@ -120,6 +120,15 @@ public class UsuarioSistemaBean extends AccionesManageBean implements Serializab
 		items[1] = new SelectItem(0, "Inactivo");
 		return items;
 	}
+	
+	public String estadoLabel(Integer id){
+		if(id==1)
+			return "Activo";
+		else if (id==0)
+			return "Inactivo";
+		else
+			return "";
+	}
 
 	/**
 	 * @return the usuarioSistema

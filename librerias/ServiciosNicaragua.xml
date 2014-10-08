@@ -406,6 +406,7 @@
 		
 	</P_MOBILE>
 	
+	<!-- este agregador tiene estado 0 en el insumo de parametrizacion lo que indica que no debe colocarse-->
 	<SMS_AMERICAS>
 		<usuario></usuario>
 		<password>cl4r0_n1c4r4gu4</password>

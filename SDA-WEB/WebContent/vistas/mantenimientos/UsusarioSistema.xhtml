@@ -39,7 +39,7 @@
 								<h:outputText value="#{msj['manto.usuario.sistema.contrasenia']}" />
 							</p:column>
 							<p:column style="#{msj['p.column_width_mediano_inputText']}">
-								<p:inputText value="#{usuarioSistemaBean.usuarioSistema.contrasenia}" />
+								<p:password value="#{usuarioSistemaBean.usuarioSistema.contrasenia}" />
 							</p:column>
 							<p:column/>
 						</p:row>
@@ -91,7 +91,7 @@
 						<h:outputText value="#{VDataTblUserSistem.usuario}" />
 					</p:column>
 					<p:column headerText="#{msj['manto.usuario.sistema.estado']}" >
-						<h:outputText value="#{VDataTblUserSistem.estado}" />
+						<h:outputText value="#{usuarioSistemaBean.estadoLabel(VDataTblUserSistem.estado)}" />
 					</p:column>
 					<p:column>
 						<div style="float: left;">
