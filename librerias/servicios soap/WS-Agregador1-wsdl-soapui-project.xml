@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="WS_Agregador1?wsdl" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WS_Agregador1Soap12Binding" type="wsdl" bindingName="{http://webservices.agregador1.test}WS_Agregador1Soap12Binding" soapVersion="1_2" anonymous="optional" definition="http://localhost:8090/axis2/services/WS_Agregador1?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:darBaja" name="darBaja" bindingOperationName="darBaja" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:web="http://webservices.agregador1.test">
+   <soap:Header/>
+   <soap:Body>
+      <web:darBaja>
+         <!--Optional:-->
+         <web:movil>?</web:movil>
+         <!--Optional:-->
+         <web:Servicio>?</web:Servicio>
+         <!--Optional:-->
+         <web:mCort>?</web:mCort>
+         <!--Optional:-->
+         <web:pass>?</web:pass>
+      </web:darBaja>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:darBaja"/></con:call></con:operation><con:operation isOneWay="false" action="urn:listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:web="http://webservices.agregador1.test">
+   <soap:Header/>
+   <soap:Body>
+      <web:listaNegra>
+         <!--Optional:-->
+         <web:movil>?</web:movil>
+         <!--Optional:-->
+         <web:accion>?</web:accion>
+         <!--Optional:-->
+         <web:password>?</web:password>
+      </web:listaNegra>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:listaNegra"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WS_Agregador1Soap11Binding" type="wsdl" bindingName="{http://webservices.agregador1.test}WS_Agregador1Soap11Binding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8090/axis2/services/WS_Agregador1?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8090/axis2/services/WS_Agregador1?wsdl"><con:part><con:url>http://localhost:8090/axis2/services/WS_Agregador1?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://webservices.agregador1.test" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://webservices.agregador1.test" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://webservices.agregador1.test">
+      <xs:element name="listaNegra">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="movil" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="accion" type="xs:int"/>
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listaNegraResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="darBaja">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="movil" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="Servicio" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="mCort" type="xs:int"/>
+            <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="darBajaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="darBajaRequest">
+    <wsdl:part name="parameters" element="ns:darBaja"/>
+  </wsdl:message>
+  <wsdl:message name="darBajaResponse">
+    <wsdl:part name="parameters" element="ns:darBajaResponse"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraRequest">
+    <wsdl:part name="parameters" element="ns:listaNegra"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraResponse">
+    <wsdl:part name="parameters" element="ns:listaNegraResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="WS_Agregador1PortType">
+    <wsdl:operation name="darBaja">
+      <wsdl:input message="ns:darBajaRequest" wsaw:Action="urn:darBaja"/>
+      <wsdl:output message="ns:darBajaResponse" wsaw:Action="urn:darBajaResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <wsdl:input message="ns:listaNegraRequest" wsaw:Action="urn:listaNegra"/>
+      <wsdl:output message="ns:listaNegraResponse" wsaw:Action="urn:listaNegraResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_Agregador1Soap11Binding" type="ns:WS_Agregador1PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="darBaja">
+      <soap:operation soapAction="urn:darBaja" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap:operation soapAction="urn:listaNegra" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_Agregador1Soap12Binding" type="ns:WS_Agregador1PortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="darBaja">
+      <soap12:operation soapAction="urn:darBaja" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap12:operation soapAction="urn:listaNegra" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_Agregador1HttpBinding" type="ns:WS_Agregador1PortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="darBaja">
+      <http:operation location="darBaja"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <http:operation location="listaNegra"/>
+      <wsdl:input>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="application/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_Agregador1">
+    <wsdl:port name="WS_Agregador1HttpSoap11Endpoint" binding="ns:WS_Agregador1Soap11Binding">
+      <soap:address location="http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="WS_Agregador1HttpSoap12Endpoint" binding="ns:WS_Agregador1Soap12Binding">
+      <soap12:address location="http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="WS_Agregador1HttpEndpoint" binding="ns:WS_Agregador1HttpBinding">
+      <http:address location="http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:darBaja" name="darBaja" bindingOperationName="darBaja" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservices.agregador1.test">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:darBaja>
+         <web:movil>1</web:movil>
+         <web:Servicio>1</web:Servicio>
+         <web:mCort>1</web:mCort>
+         <web:pass>1</web:pass>
+      </web:darBaja>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:darBaja"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/axis2/services/WS_Agregador1.WS_Agregador1HttpSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservices.agregador1.test">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:listaNegra>
+         <!--Optional:-->
+         <web:movil>?</web:movil>
+         <!--Optional:-->
+         <web:accion>?</web:accion>
+         <!--Optional:-->
+         <web:password>?</web:password>
+      </web:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:listaNegra"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

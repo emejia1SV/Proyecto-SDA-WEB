@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="GT_NEOMOBILE_WsAltaServicio" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WsAltaServicioSoap" type="wsdl" bindingName="{http://tempuri.org/}WsAltaServicioSoap" soapVersion="1_1" anonymous="optional" definition="http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <parameters xsi:type="tem:altaServicio" xmlns:tem="http://tempuri.org">
+         <!--Optional:-->
+         <movil xsi:type="xsd:string">?</movil>
+         <!--Optional:-->
+         <servicio xsi:type="xsd:string">?</servicio>
+         <!--Optional:-->
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <!--Optional:-->
+         <pass xsi:type="xsd:string">?</pass>
+      </parameters>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WsAltaServicioSoap/altaServicioRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WsAltaServicioSoap12" type="wsdl" bindingName="{http://tempuri.org/}WsAltaServicioSoap12" soapVersion="1_2" anonymous="optional" definition="http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx?WSDL"><con:part><con:url>http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s0="http://tempuri.org" xmlns:s1="http://tempuri.org/encodedTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org">
+      <s:import namespace="http://tempuri.org/encodedTypes"/>
+      <s:complexType name="altaServicio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="movil" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="servicio" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="marcacion" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="pass" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="altaServicioResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="altaServicioResult" type="s1:ArrayOfString"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/encodedTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+      <s:complexType name="ArrayOfString">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="s:string[]" ref="soapenc:arrayType"/>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="altaServicioSoapIn">
+    <wsdl:part name="parameters" type="s0:altaServicio"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapOut">
+    <wsdl:part name="parameters" type="s0:altaServicioResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="WsAltaServicioSoap">
+    <wsdl:operation name="altaServicio">
+      <wsdl:input message="tns:altaServicioSoapIn"/>
+      <wsdl:output message="tns:altaServicioSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsAltaServicioSoap" type="tns:WsAltaServicioSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="altaServicio">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WsAltaServicioSoap12" type="tns:WsAltaServicioSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="altaServicio">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsAltaServicio">
+    <wsdl:port name="WsAltaServicioSoap" binding="tns:WsAltaServicioSoap">
+      <soap:address location="http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WsAltaServicioSoap12" binding="tns:WsAltaServicioSoap12">
+      <soap12:address location="http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsAltaServicio.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+   <soap:Header/>
+   <soap:Body>
+      <parameters>
+         <!--Optional:-->
+         <movil>?</movil>
+         <!--Optional:-->
+         <servicio>?</servicio>
+         <!--Optional:-->
+         <marcacion>?</marcacion>
+         <!--Optional:-->
+         <pass>?</pass>
+      </parameters>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WsAltaServicioSoap/altaServicioRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

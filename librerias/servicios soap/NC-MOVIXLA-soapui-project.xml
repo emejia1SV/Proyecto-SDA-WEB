@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="NC_MOVIXLA" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SubscriptionsClaroNiWSInterfaceBinding" type="wsdl" bindingName="{http://wssubscriptions.ni.claro.ws.movix.cl}SubscriptionsClaroNiWSInterfaceBinding" soapVersion="1_1" anonymous="optional" definition="http://prod110.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://prod110.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS?WSDL"><con:part><con:url>http://prod110.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS?WSDL</con:url><con:content><![CDATA[<definitions name="MovixSubscriptionsClaroNiWS" targetNamespace="http://wssubscriptions.ni.claro.ws.movix.cl" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://wssubscriptions.ni.claro.ws.movix.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <schema targetNamespace="http://wssubscriptions.ni.claro.ws.movix.cl" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <complexType name="ArrayOfItem">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:Item[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="Item">
+        <sequence>
+          <element name="Resp" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="ArrayOfArrayOfstring">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="tns:ArrayOfstring[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOfstring">
+        <complexContent>
+          <restriction base="soap11-enc:Array">
+            <attribute ref="soap11-enc:arrayType" wsdl:arrayType="string[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+  </types>
+  <message name="SubscriptionsClaroNiWSInterface_bajaServicios">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="mcorta" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="SubscriptionsClaroNiWSInterface_bajaServiciosResponse">
+    <part name="result" type="tns:ArrayOfItem"/>
+  </message>
+  <message name="SubscriptionsClaroNiWSInterface_consultaServicios">
+    <part name="movil" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="SubscriptionsClaroNiWSInterface_consultaServiciosResponse">
+    <part name="result" type="tns:ArrayOfArrayOfstring"/>
+  </message>
+  <message name="SubscriptionsClaroNiWSInterface_listaNegra">
+    <part name="movil" type="xsd:string"/>
+    <part name="accion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="SubscriptionsClaroNiWSInterface_listaNegraResponse">
+    <part name="result" type="tns:ArrayOfItem"/>
+  </message>
+  <!--START Alta Servicio-->
+  <message name="SubscriptionsClaroNiWSInterface_altaServicio">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="marcacion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="SubscriptionsClaroNiWSInterface_altaServicioResponse">
+    <part name="result" type="tns:ArrayOfItem"/>
+  </message>
+  <!--END Alta Servicio-->
+  <portType name="SubscriptionsClaroNiWSInterface">
+    <operation name="bajaServicios" parameterOrder="movil servicio mcorta pass">
+      <input message="tns:SubscriptionsClaroNiWSInterface_bajaServicios"/>
+      <output message="tns:SubscriptionsClaroNiWSInterface_bajaServiciosResponse"/>
+    </operation>
+    <operation name="consultaServicios" parameterOrder="movil pass">
+      <input message="tns:SubscriptionsClaroNiWSInterface_consultaServicios"/>
+      <output message="tns:SubscriptionsClaroNiWSInterface_consultaServiciosResponse"/>
+    </operation>
+    <operation name="listaNegra" parameterOrder="movil accion pass">
+      <input message="tns:SubscriptionsClaroNiWSInterface_listaNegra"/>
+      <output message="tns:SubscriptionsClaroNiWSInterface_listaNegraResponse"/>
+    </operation>
+    <!--START Alta Servicio-->
+    <operation name="altaServicio" parameterOrder="movil servicio marcacion pass">
+      <input message="tns:SubscriptionsClaroNiWSInterface_altaServicio"/>
+      <output message="tns:SubscriptionsClaroNiWSInterface_altaServicioResponse"/>
+    </operation>
+    <!--END Alta Servicio-->
+  </portType>
+  <binding name="SubscriptionsClaroNiWSInterfaceBinding" type="tns:SubscriptionsClaroNiWSInterface">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="bajaServicios">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://wssubscriptions.ni.claro.ws.movix.cl"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://wssubscriptions.ni.claro.ws.movix.cl"/>
+      </output>
+    </operation>
+    <operation name="consultaServicios">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://wssubscriptions.ni.claro.ws.movix.cl"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://wssubscriptions.ni.claro.ws.movix.cl"/>
+      </output>
+    </operation>
+    <operation name="listaNegra">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://wssubscriptions.ni.claro.ws.movix.cl"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://wssubscriptions.ni.claro.ws.movix.cl"/>
+      </output>
+    </operation>
+    <!--START Alta Servicio-->
+    <operation name="altaServicio">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://wssubscriptions.ni.claro.ws.movix.cl"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="encoded" namespace="http://wssubscriptions.ni.claro.ws.movix.cl"/>
+      </output>
+    </operation>
+    <!--END Alta Servicio-->
+  </binding>
+  <service name="MovixSubscriptionsClaroNiWS">
+    <port name="SubscriptionsClaroNiWSInterfacePort" binding="tns:SubscriptionsClaroNiWSInterfaceBinding">
+      <soap:address location="http://prodws.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://prodws.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://prodws.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.ni.claro.ws.movix.cl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <pass xsi:type="xsd:string">?</pass>
+      </wss:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wssubscriptions.ni.claro.ws.movix.cl/SubscriptionsClaroNiWSInterface/altaServicioRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://prodws.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.ni.claro.ws.movix.cl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <mcorta xsi:type="xsd:string">?</mcorta>
+         <pass xsi:type="xsd:string">?</pass>
+      </wss:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wssubscriptions.ni.claro.ws.movix.cl/SubscriptionsClaroNiWSInterface/bajaServiciosRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://prodws.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.ni.claro.ws.movix.cl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <pass xsi:type="xsd:string">?</pass>
+      </wss:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wssubscriptions.ni.claro.ws.movix.cl/SubscriptionsClaroNiWSInterface/consultaServiciosRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://prodws.services.movixla.com/movix-ws/services/MovixSubscriptionsClaroNiWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.ni.claro.ws.movix.cl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <accion xsi:type="xsd:string">?</accion>
+         <pass xsi:type="xsd:string">?</pass>
+      </wss:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wssubscriptions.ni.claro.ws.movix.cl/SubscriptionsClaroNiWSInterface/listaNegraRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

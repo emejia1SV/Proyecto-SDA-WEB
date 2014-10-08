@@ -1,0 +1,29 @@
+Numero prepagos 5 y postpago
+identificar los servicios para verificar si hay suscripciones  en varios agregadores, para verificar que da de baja, se le mandara una matriz de prueba
+dia y medio dos lo mucho.
+
+Guatemala 
+Pendiente...
+
+Honduras
+Katerin Maciel
+viernes a las 2Pm
+
+El Salvador
+Viernes 9am
+Daniel Mendoza y Ricardo
+
+Nicaragua
+Miercoles por la tar 2:30
+roger Martinez y Audgusto
+
+Costa Rica
+Lunes 2PM
+David y Leonel
+
+Test CDC SMT and console unified... finish all test next week
+jueves 23 de octubre estaría en producción
+
+El salvador quiere agregar *** broadcast *** 
+
+

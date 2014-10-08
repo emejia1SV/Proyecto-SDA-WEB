@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="NC_EBCLOSION" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CLAROBinding" type="wsdl" bindingName="{urn:WSCLARO}CLAROBinding" soapVersion="1_1" anonymous="optional" definition="http://200.49.165.116/ServiciosMT/api/claroni/wsServer.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://200.49.165.116/ServiciosMT/api/claroni/wsServer.wsdl"><con:part><con:url>http://200.49.165.116/ServiciosMT/api/claroni/wsServer.wsdl</con:url><con:content><![CDATA[<definitions name="WSCLARO" targetNamespace="urn:WSCLARO" xmlns:tns="http://200.49.165.116:80/ServiciosMT/api/claroni/wsServer.php" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="urn:CLARO" xmlns="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="consultaServiciosResponse" type="xsd:string"/>
+      <xsd:element name="bajaServiciosResponse" type="xsd:string"/>
+      <xsd:element name="listaNegraResponse" type="xsd:string"/>
+      <xsd:element name="altaServicioResponse" type="xsd:string"/>
+    </xsd:schema>
+  </types>
+  <message name="consultaServicios">
+    <part name="movil" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="bajaServicios">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="mcorta" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="listaNegra">
+    <part name="movil" type="xsd:string"/>
+    <part name="accion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="altaServicio">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="marcacion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="consultaServiciosResponse">
+    <part name="return" type="tns:consultaServiciosResponse"/>
+  </message>
+  <message name="bajaServiciosResponse">
+    <part name="return" type="tns:bajaServiciosResponse"/>
+  </message>
+  <message name="listaNegraResponse">
+    <part name="return" type="tns:listaNegraResponse"/>
+  </message>
+  <message name="altaServicioResponse">
+    <part name="return" type="tns:altaServicioResponse"/>
+  </message>
+  <portType name="CLAROPort">
+    <operation name="consultaServicios">
+      <input message="tns:consultaServicios"/>
+      <output message="tns:consultaServiciosResponse"/>
+    </operation>
+    <operation name="bajaServicios">
+      <input message="tns:bajaServicios"/>
+      <output message="tns:bajaServiciosResponse"/>
+    </operation>
+    <operation name="listaNegra">
+      <input message="tns:listaNegra"/>
+      <output message="tns:listaNegraResponse"/>
+    </operation>
+    <operation name="altaServicio">
+      <input message="tns:altaServicio"/>
+      <output message="tns:altaServicioResponse"/>
+    </operation>
+  </portType>
+  <binding name="CLAROBinding" type="tns:CLAROPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consultaServicios">
+      <soap:operation soapAction="urn:consultaServiciosAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:CLARO" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CLARO" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="bajaServicios">
+      <soap:operation soapAction="urn:bajaServiciosAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:CLARO" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CLARO" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="listaNegra">
+      <soap:operation soapAction="urn:listaNegraAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:CLARO" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CLARO" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="altaServicio">
+      <soap:operation soapAction="urn:altaServicioAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:CLARO" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:CLARO" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="CLAROService">
+    <port name="CLAROPort" binding="tns:CLAROBinding">
+      <soap:address location="http://200.49.165.116:80/ServiciosMT/api/claroni/wsServer.php"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints/></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

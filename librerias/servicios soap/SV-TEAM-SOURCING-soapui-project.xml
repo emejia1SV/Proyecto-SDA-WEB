@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="SV_TEAM SOURCING" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="teamclarosvwsdlBinding" type="wsdl" bindingName="{urn:teamclarosvwsdl}teamclarosvwsdlBinding" soapVersion="1_1" anonymous="optional" definition="http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php?wsdl"><con:part><con:url>http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="urn:teamclarosvwsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:teamclarosvwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="urn:teamclarosvwsdl">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+    </xsd:schema>
+  </types>
+  <message name="consultaServiciosRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="consultaServiciosResponse">
+    <part name="return" type="xsd:Array"/>
+  </message>
+  <message name="bajaServiciosRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="mcorta" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="bajaServiciosResponse">
+    <part name="return" type="xsd:Array"/>
+  </message>
+  <message name="listaNegraRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="accion" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="listaNegraResponse">
+    <part name="return" type="xsd:Array"/>
+  </message>
+  <message name="altaServicioRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="mcorta" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="altaServicioResponse">
+    <part name="return" type="xsd:Array"/>
+  </message>
+  <portType name="teamclarosvwsdlPortType">
+    <operation name="consultaServicios">
+      <documentation>Funcion que validar MO recibido</documentation>
+      <input message="tns:consultaServiciosRequest"/>
+      <output message="tns:consultaServiciosResponse"/>
+    </operation>
+    <operation name="bajaServicios">
+      <documentation>Funcion que validar MO recibido</documentation>
+      <input message="tns:bajaServiciosRequest"/>
+      <output message="tns:bajaServiciosResponse"/>
+    </operation>
+    <operation name="listaNegra">
+      <documentation>Funcion que validar MO recibido</documentation>
+      <input message="tns:listaNegraRequest"/>
+      <output message="tns:listaNegraResponse"/>
+    </operation>
+    <operation name="altaServicio">
+      <documentation>Funcion que validar MO recibido</documentation>
+      <input message="tns:altaServicioRequest"/>
+      <output message="tns:altaServicioResponse"/>
+    </operation>
+  </portType>
+  <binding name="teamclarosvwsdlBinding" type="tns:teamclarosvwsdlPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consultaServicios">
+      <soap:operation soapAction="urn:teamclarosvwsdl/consultaServicios" style="rpc"/>
+      <input>
+        <soap:body use="literal" namespace="urn:teamclarosvwsdl"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="urn:teamclarosvwsdl"/>
+      </output>
+    </operation>
+    <operation name="bajaServicios">
+      <soap:operation soapAction="urn:teamclarosvwsdl/bajaServicios" style="rpc"/>
+      <input>
+        <soap:body use="literal" namespace="urn:teamclarosvwsdl"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="urn:teamclarosvwsdl"/>
+      </output>
+    </operation>
+    <operation name="listaNegra">
+      <soap:operation soapAction="urn:teamclarosvwsdl/bajaServicios" style="rpc"/>
+      <input>
+        <soap:body use="literal" namespace="urn:teamclarosvwsdl"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="urn:teamclarosvwsdl"/>
+      </output>
+    </operation>
+    <operation name="altaServicio">
+      <soap:operation soapAction="urn:teamclarosvwsdl/bajaServicios" style="rpc"/>
+      <input>
+        <soap:body use="literal" namespace="urn:teamclarosvwsdl"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="urn:teamclarosvwsdl"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="teamclarosvwsdl">
+    <port name="teamclarosvwsdlPort" binding="tns:teamclarosvwsdlBinding">
+      <soap:address location="http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:teamclarosvwsdl/bajaServicios" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:teamclarosvwsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:altaServicio>
+         <movil>?</movil>
+         <servicio>?</servicio>
+         <mcorta>?</mcorta>
+         <password>?</password>
+      </urn:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:teamclarosvwsdl/bajaServicios"/></con:call></con:operation><con:operation isOneWay="false" action="urn:teamclarosvwsdl/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:teamclarosvwsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:bajaServicios>
+         <movil>50370001770</movil>
+         <servicio>test</servicio>
+         <mcorta>1234</mcorta>
+         <password>CLAROSV</password>
+      </urn:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:teamclarosvwsdl/bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:teamclarosvwsdl/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:teamclarosvwsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:consultaServicios>
+         <movil>50370001770</movil>
+         <password>CLAROSV</password>
+      </urn:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:teamclarosvwsdl/consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:teamclarosvwsdl/bajaServicios" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://98.129.194.129/ws/sv/claro/ws_server_clarosv.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:teamclarosvwsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:listaNegra>
+         <movil>50370001770</movil>
+         <accion>2</accion>
+         <password>CLAROSV</password>
+      </urn:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:teamclarosvwsdl/bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

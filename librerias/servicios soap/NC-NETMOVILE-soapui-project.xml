@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="NC_NETMOVILE" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Service1Soap12" type="wsdl" bindingName="{http://netmobile.com.ni/}Service1Soap12" soapVersion="1_2" anonymous="optional" definition="http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://netmobile.com.ni/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:net="http://netmobile.com.ni/">
+   <soap:Header/>
+   <soap:Body>
+      <net:altaServicio>
+         <!--Optional:-->
+         <net:movil>?</net:movil>
+         <!--Optional:-->
+         <net:servicio>?</net:servicio>
+         <!--Optional:-->
+         <net:marcacion>?</net:marcacion>
+         <!--Optional:-->
+         <net:pass>?</net:pass>
+      </net:altaServicio>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://netmobile.com.ni/Service1Soap/altaServicioRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://netmobile.com.ni/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:net="http://netmobile.com.ni/">
+   <soap:Header/>
+   <soap:Body>
+      <net:bajaServicios>
+         <!--Optional:-->
+         <net:movil>?</net:movil>
+         <!--Optional:-->
+         <net:servicio>?</net:servicio>
+         <!--Optional:-->
+         <net:mcorta>?</net:mcorta>
+         <!--Optional:-->
+         <net:pass>?</net:pass>
+      </net:bajaServicios>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://netmobile.com.ni/Service1Soap/bajaServiciosRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://netmobile.com.ni/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:net="http://netmobile.com.ni/">
+   <soap:Header/>
+   <soap:Body>
+      <net:consultaServicios>
+         <!--Optional:-->
+         <net:movil>?</net:movil>
+         <!--Optional:-->
+         <net:pass>?</net:pass>
+      </net:consultaServicios>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://netmobile.com.ni/Service1Soap/consultaServiciosRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://netmobile.com.ni/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:net="http://netmobile.com.ni/">
+   <soap:Header/>
+   <soap:Body>
+      <net:listaNegra>
+         <!--Optional:-->
+         <net:movil>?</net:movil>
+         <!--Optional:-->
+         <net:accion>?</net:accion>
+         <!--Optional:-->
+         <net:pass>?</net:pass>
+      </net:listaNegra>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://netmobile.com.ni/Service1Soap/listaNegraRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Service1Soap" type="wsdl" bindingName="{http://netmobile.com.ni/}Service1Soap" soapVersion="1_1" anonymous="optional" definition="http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx?wsdl"><con:part><con:url>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://netmobile.com.ni/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://netmobile.com.ni/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://netmobile.com.ni/">
+      <s:element name="consultaServicios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movil" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultaServiciosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultaServiciosResult" type="tns:ArrayOfArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString" nillable="true" type="tns:ArrayOfString"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="bajaServicios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movil" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="servicio" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="mcorta" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="bajaServiciosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bajaServiciosResult" type="tns:ArrayOfArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaNegra">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movil" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="accion" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaNegraResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaNegraResult" type="tns:ArrayOfArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="altaServicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movil" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="servicio" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="marcacion" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="altaServicioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="altaServicioResult" type="tns:ArrayOfArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="consultaServiciosSoapIn">
+    <wsdl:part name="parameters" element="tns:consultaServicios"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosSoapOut">
+    <wsdl:part name="parameters" element="tns:consultaServiciosResponse"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapIn">
+    <wsdl:part name="parameters" element="tns:bajaServicios"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapOut">
+    <wsdl:part name="parameters" element="tns:bajaServiciosResponse"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapIn">
+    <wsdl:part name="parameters" element="tns:listaNegra"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapOut">
+    <wsdl:part name="parameters" element="tns:listaNegraResponse"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapIn">
+    <wsdl:part name="parameters" element="tns:altaServicio"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapOut">
+    <wsdl:part name="parameters" element="tns:altaServicioResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="consultaServicios">
+      <wsdl:input message="tns:consultaServiciosSoapIn"/>
+      <wsdl:output message="tns:consultaServiciosSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <wsdl:input message="tns:bajaServiciosSoapIn"/>
+      <wsdl:output message="tns:bajaServiciosSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <wsdl:input message="tns:listaNegraSoapIn"/>
+      <wsdl:output message="tns:listaNegraSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <wsdl:input message="tns:altaServicioSoapIn"/>
+      <wsdl:output message="tns:altaServicioSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultaServicios">
+      <soap:operation soapAction="http://netmobile.com.ni/consultaServicios" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <soap:operation soapAction="http://netmobile.com.ni/bajaServicios" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap:operation soapAction="http://netmobile.com.ni/listaNegra" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <soap:operation soapAction="http://netmobile.com.ni/altaServicio" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultaServicios">
+      <soap12:operation soapAction="http://netmobile.com.ni/consultaServicios" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <soap12:operation soapAction="http://netmobile.com.ni/bajaServicios" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap12:operation soapAction="http://netmobile.com.ni/listaNegra" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <soap12:operation soapAction="http://netmobile.com.ni/altaServicio" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://netmobile.com.ni/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:net="http://netmobile.com.ni/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <net:altaServicio>
+         <!--Optional:-->
+         <net:movil>?</net:movil>
+         <!--Optional:-->
+         <net:servicio>?</net:servicio>
+         <!--Optional:-->
+         <net:marcacion>?</net:marcacion>
+         <!--Optional:-->
+         <net:pass>?</net:pass>
+      </net:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://netmobile.com.ni/altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="http://netmobile.com.ni/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:net="http://netmobile.com.ni/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <net:bajaServicios>
+         <net:movil>50577494676</net:movil>
+         <net:servicio>test</net:servicio>
+         <net:mcorta>1234</net:mcorta>
+         <net:pass>n3tm0b1l3</net:pass>
+      </net:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://netmobile.com.ni/bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://netmobile.com.ni/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:net="http://netmobile.com.ni/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <net:consultaServicios>
+         <net:movil>50577494676</net:movil>
+         <net:pass>n3tm0b1l3</net:pass>
+      </net:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://netmobile.com.ni/consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://netmobile.com.ni/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:net="http://netmobile.com.ni/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <net:listaNegra>
+         <net:movil>50577494676</net:movil>
+         <net:accion>3</net:accion>
+         <net:pass>n3tm0b1l3</net:pass>
+      </net:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://netmobile.com.ni/listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

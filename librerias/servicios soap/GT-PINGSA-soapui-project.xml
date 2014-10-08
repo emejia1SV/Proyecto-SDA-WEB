@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="GT_PINGSA" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MTHttpBinding" type="wsdl" bindingName="{urn:MT}MTHttpBinding" soapVersion="1_1" anonymous="optional" definition="http://api.pingsa.com/clarogt/webService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://api.pingsa.com/clarogt/webService.wsdl"><con:part><con:url>http://api.pingsa.com/clarogt/webService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="MT" targetNamespace="urn:MT" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:tns="urn:MT" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:MT" xmlns="http://www.w3.org/2001/XMLSchema"></xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="consultaServiciosRequest">
+    <wsdl:part name="movil" type="xsd:string"/>
+    <wsdl:part name="pass" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosResponse">
+    <wsdl:part name="response" type="xsd:string[]"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosRequest">
+    <wsdl:part name="movil" type="xsd:string"/>
+    <wsdl:part name="servicio" type="xsd:string"/>
+    <wsdl:part name="mcorta" type="xsd:string"/>
+    <wsdl:part name="pass" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosResponse">
+    <wsdl:part name="response" type="xsd:string[]"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraRequest">
+    <wsdl:part name="movil" type="xsd:string"/>
+    <wsdl:part name="accion" type="xsd:int"/>
+    <wsdl:part name="pass" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraResponse">
+    <wsdl:part name="response" type="xsd:string[]"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioRequest">
+    <wsdl:part name="movil" type="xsd:string"/>
+    <wsdl:part name="servicio" type="xsd:string"/>
+    <wsdl:part name="marcacion" type="xsd:string"/>
+    <wsdl:part name="pass" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioResponse">
+    <wsdl:part name="response" type="xsd:string[]"/>
+  </wsdl:message>
+  <wsdl:portType name="MTPortType">
+    <wsdl:operation name="consultaServicios">
+      <wsdl:input name="consultaServiciosRequest" message="tns:consultaServiciosRequest"/>
+      <wsdl:output name="consultaServiciosResponse" message="tns:consultaServiciosResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <wsdl:input name="bajaServiciosRequest" message="tns:bajaServiciosRequest"/>
+      <wsdl:output name="bajaServiciosResponse" message="tns:bajaServiciosResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <wsdl:input name="listaNegraRequest" message="tns:listaNegraRequest"/>
+      <wsdl:output name="listaNegraResponse" message="tns:listaNegraResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <wsdl:input name="altaServicioRequest" message="tns:altaServicioRequest"/>
+      <wsdl:output name="altaServicioResponse" message="tns:altaServicioResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MTHttpBinding" type="tns:MTPortType">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultaServicios">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="consultaServiciosRequest">
+        <wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output name="consultaServiciosResponse" style="rpc">
+        <wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="bajaServiciosRequest">
+        <wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output name="bajaServiciosResponse" style="rpc">
+        <wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="listaNegraRequest">
+        <wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output name="listaNegraResponse" style="rpc">
+        <wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="altaServicioRequest">
+        <wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output name="altaServicioResponse" style="rpc">
+        <wsdlsoap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MTServicesService">
+    <wsdl:port name="MTHTTPPort" binding="tns:MTHttpBinding">
+      <wsdlsoap:address location="http://api.pingsa.com/clarogt/webService.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://api.pingsa.com/clarogt/webService.php</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" outputName="altaServicioResponse" inputName="altaServicioRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://api.pingsa.com/clarogt/webService.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <movil xsi:type="xsd:string">?</movil>
+      <servicio xsi:type="xsd:string">?</servicio>
+      <marcacion xsi:type="xsd:string">?</marcacion>
+      <pass xsi:type="xsd:string">?</pass>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:MT/MTPortType/altaServicioRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" outputName="bajaServiciosResponse" inputName="bajaServiciosRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://api.pingsa.com/clarogt/webService.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <movil xsi:type="xsd:string">50258260744</movil>
+      <servicio xsi:type="xsd:string">test</servicio>
+      <mcorta xsi:type="xsd:string">234234</mcorta>
+      <pass xsi:type="xsd:string">)866k7@7K[Y*WGO</pass>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:MT/MTPortType/bajaServiciosRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" outputName="consultaServiciosResponse" inputName="consultaServiciosRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://api.pingsa.com/clarogt/webService.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <movil xsi:type="xsd:string">50258260744</movil>
+      <pass xsi:type="xsd:string">)866k7@7K[Y*WGO</pass>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:MT/MTPortType/consultaServiciosRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" outputName="listaNegraResponse" inputName="listaNegraRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://api.pingsa.com/clarogt/webService.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <movil xsi:type="xsd:string">50258260744</movil>
+      <accion xsi:type="xsd:int">2</accion>
+      <pass xsi:type="xsd:string">)866k7@7K[Y*WGO</pass>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:MT/MTPortType/listaNegraRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

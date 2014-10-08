@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="GT_WORLD2 MOBILE" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="suscripcionesmovilBinding" type="wsdl" bindingName="{urn:suscripcionesmovil}suscripcionesmovilBinding" soapVersion="1_1" anonymous="optional" definition="http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil.wsdl"><con:part><con:url>http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil.wsdl</con:url><con:content><![CDATA[<definitions name="suscripcionesmovilServicio" targetNamespace="urn:suscripcionesmovil" xmlns:tns="urn:suscripcionesmovil" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="urn:suscripcionesmovil">
+      <xsd:complexType name="UserService">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="nombre" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="status" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="cobro" type="xsd:double"/>
+          <xsd:element minOccurs="0" name="mo" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="mt" type="xsd:string"/>
+          <xsd:element minOccurs="0" nillable="true" name="fecha" type="xsd:string"/>
+          <xsd:element minOccurs="0" nillable="true" name="hora" type="xsd:string"/>
+          <xsd:element minOccurs="0" nillable="true" name="medio" type="xsd:string"/>
+          <xsd:element minOccurs="0" nillable="true" name="fechacancela" type="xsd:string"/>
+          <xsd:element minOccurs="0" nillable="true" name="horacancela" type="xsd:string"/>
+          <xsd:element minOccurs="0" nillable="true" name="mediocancela" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UserResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="resp" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UserResponses">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="UserResponse" nillable="true" type="tns:UserResponse"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfUserServices">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="UserService" nillable="true" type="tns:UserService"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfResponse">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="UserResponse" nillable="true" type="tns:UserResponses"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+  <message name="listaNegraReq">
+    <part name="movil" type="xsd:string"/>
+    <part name="accion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="bajaServiciosReq">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="mcorta" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="altaServicioReq">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="marcacion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="consultaServiciosReq">
+    <part name="movil" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="listaNegraResp">
+    <part name="resp" type="ArrayOfResponse"/>
+  </message>
+  <message name="bajaServiciosResp">
+    <part name="resp" type="xsd:ArrayOfResponse"/>
+  </message>
+  <message name="altaServicioResp">
+    <part name="resp" type="xsd:ArrayOfResponse"/>
+  </message>
+  <message name="consultaServiciosResp">
+    <part name="services" type="ArrayOfUserServices"/>
+  </message>
+  <portType name="suscripcionesmovilPort">
+    <operation name="listaNegra">
+      <input message="tns:listaNegraReq"/>
+      <output message="tns:listaNegraResp"/>
+    </operation>
+    <operation name="bajaServicios">
+      <input message="tns:bajaServiciosReq"/>
+      <output message="tns:bajaServiciosResp"/>
+    </operation>
+    <operation name="altaServicio">
+      <input message="tns:altaServicioReq"/>
+      <output message="tns:altaServicioResp"/>
+    </operation>
+    <operation name="consultaServicios">
+      <input message="tns:consultaServiciosReq"/>
+      <output message="tns:consultaServiciosResp"/>
+    </operation>
+  </portType>
+  <binding name="suscripcionesmovilBinding" type="tns:suscripcionesmovilPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="listaNegra">
+      <soap:operation soapAction="urn:suscripcionesmovil#listaNegra"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:suscripcionesmovil" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:suscripcionesmovil" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="bajaServicios">
+      <soap:operation soapAction="urn:suscripcionmovil#bajaServicios"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:suscripcionmovil" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:suscripcionmovil" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="altaServicio">
+      <soap:operation soapAction="urn:suscripcionmovil#altaServicio"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:suscripcionmovil" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:suscripcionmovil" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="consultaServicios">
+      <soap:operation soapAction="urn:suscripcionmovil#consultaServicios"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:suscripcionmovil" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:suscripcionmovil" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="suscripcionesmovilServicio">
+    <port name="suscripcionesmovilPort" binding="tns:suscripcionesmovilBinding">
+      <soap:address location="http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil_server.php"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil_server.php</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:suscripcionmovil#altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil_server.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:suscripcionmovil">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <pass xsi:type="xsd:string">?</pass>
+      </urn:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:suscripcionmovil#altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="urn:suscripcionmovil#bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil_server.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:suscripcionmovil">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <servicio xsi:type="xsd:string">test</servicio>
+         <mcorta xsi:type="xsd:string">1234</mcorta>
+         <pass xsi:type="xsd:string">$zf3RmyP</pass>
+      </urn:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:suscripcionmovil#bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:suscripcionmovil#consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil_server.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:suscripcionmovil">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <pass xsi:type="xsd:string">$zf3RmyP</pass>
+      </urn:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:suscripcionmovil#consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:suscripcionesmovil#listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://siglo21.conceptomovil.com/apps/suscripcion/wsc/suscrimovil_server.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:suscripcionesmovil">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <accion xsi:type="xsd:string">2</accion>
+         <pass xsi:type="xsd:string">$zf3RmyP</pass>
+      </urn:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:suscripcionesmovil#listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

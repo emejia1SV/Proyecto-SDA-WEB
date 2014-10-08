@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="NC_MEDIA_INTERACTIVA" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Application" type="wsdl" bindingName="{http://tempuri.org/}Application" soapVersion="1_1" anonymous="optional" definition="http://ws.mediainteractiva.info/CLARO-ws/MTService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://ws.mediainteractiva.info/CLARO-ws/MTService?wsdl"><con:part><con:url>http://ws.mediainteractiva.info/CLARO-ws/MTService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Application" targetNamespace="http://tempuri.org/" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:s12enc="http://www.w3.org/2003/05/soap-encoding/" xmlns:s12env="http://www.w3.org/2003/05/soap-envelope/" xmlns:senc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:senv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xs:complexType name="ArgumentMissingException"/>
+      <xs:complexType name="consultaServiciosResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="consultaServiciosResult" nillable="true" type="tns:Iterable"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="altaServicioResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="altaServicioResult" nillable="true" type="tns:Iterable"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listaNegra">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="movil" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="accion" nillable="true" type="xs:integer"/>
+          <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listaNegraResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="listaNegraResult" nillable="true" type="tns:Iterable"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="consultaServicios">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="movil" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="altaServicio">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="movil" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="servicio" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="marcacion" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="bajaServiciosResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="bajaServiciosResult" nillable="true" type="tns:Iterable"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Iterable">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Iterable" nillable="true" type="tns:Iterable"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="bajaServicios">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="movil" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="servicio" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="mcorta" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="bajaServicios" type="tns:bajaServicios"/>
+      <xs:element name="Iterable" type="tns:Iterable"/>
+      <xs:element name="bajaServiciosResponse" type="tns:bajaServiciosResponse"/>
+      <xs:element name="altaServicio" type="tns:altaServicio"/>
+      <xs:element name="consultaServicios" type="tns:consultaServicios"/>
+      <xs:element name="listaNegraResponse" type="tns:listaNegraResponse"/>
+      <xs:element name="listaNegra" type="tns:listaNegra"/>
+      <xs:element name="altaServicioResponse" type="tns:altaServicioResponse"/>
+      <xs:element name="consultaServiciosResponse" type="tns:consultaServiciosResponse"/>
+      <xs:element name="ArgumentMissingException" type="tns:ArgumentMissingException"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="listaNegra">
+    <wsdl:part element="tns:listaNegra" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraResponse">
+    <wsdl:part element="tns:listaNegraResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ArgumentMissingException">
+    <wsdl:part element="tns:ArgumentMissingException" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicio">
+    <wsdl:part element="tns:altaServicio" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioResponse">
+    <wsdl:part element="tns:altaServicioResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServicios">
+    <wsdl:part element="tns:bajaServicios" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosResponse">
+    <wsdl:part element="tns:bajaServiciosResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServicios">
+    <wsdl:part element="tns:consultaServicios" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosResponse">
+    <wsdl:part element="tns:consultaServiciosResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:service name="MTService">
+    <wsdl:port binding="tns:Application" name="Application">
+      <soap:address location="http://ws.mediainteractiva.info/CLARO-ws/MTService"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:portType name="Application">
+    <wsdl:operation name="listaNegra" parameterOrder="listaNegra">
+      <wsdl:documentation>Agrega o elmina un movil de la lista negra
+
+        @movil Telefono a agregar o eliminar de la lista negra.
+        @operation Tipo de accion 1 = agregar, 2 = eliminar, 3 = consulta.</wsdl:documentation>
+      <wsdl:input message="tns:listaNegra" name="listaNegra"/>
+      <wsdl:output message="tns:listaNegraResponse" name="listaNegraResponse"/>
+      <wsdl:fault message="tns:ArgumentMissingException" name="ArgumentMissingException"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio" parameterOrder="altaServicio">
+      <wsdl:input message="tns:altaServicio" name="altaServicio"/>
+      <wsdl:output message="tns:altaServicioResponse" name="altaServicioResponse"/>
+      <wsdl:fault message="tns:ArgumentMissingException" name="ArgumentMissingException"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios" parameterOrder="bajaServicios">
+      <wsdl:documentation>Da de baja a el usuario con numero @movil del servicio @servicio.
+
+        @movil Numero de celular del usuario a darle de baja
+        @servicio Nombre de servicio a darle de baja, en el formato
+        'ID; Description' por ejemplo: '225; Piropo'</wsdl:documentation>
+      <wsdl:input message="tns:bajaServicios" name="bajaServicios"/>
+      <wsdl:output message="tns:bajaServiciosResponse" name="bajaServiciosResponse"/>
+      <wsdl:fault message="tns:ArgumentMissingException" name="ArgumentMissingException"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultaServicios" parameterOrder="consultaServicios">
+      <wsdl:documentation>Historial de activaciones y desactivaciones del usuario.
+        @movil Numero de telefono del usuario.</wsdl:documentation>
+      <wsdl:input message="tns:consultaServicios" name="consultaServicios"/>
+      <wsdl:output message="tns:consultaServiciosResponse" name="consultaServiciosResponse"/>
+      <wsdl:fault message="tns:ArgumentMissingException" name="ArgumentMissingException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Application" type="tns:Application">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="listaNegra">
+      <soap:operation soapAction="listaNegra" style="document"/>
+      <wsdl:input name="listaNegra">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listaNegraResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ArgumentMissingException">
+        <soap:fault name="ArgumentMissingException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <soap:operation soapAction="altaServicio" style="document"/>
+      <wsdl:input name="altaServicio">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaServicioResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ArgumentMissingException">
+        <soap:fault name="ArgumentMissingException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <soap:operation soapAction="bajaServicios" style="document"/>
+      <wsdl:input name="bajaServicios">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bajaServiciosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ArgumentMissingException">
+        <soap:fault name="ArgumentMissingException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="consultaServicios">
+      <soap:operation soapAction="consultaServicios" style="document"/>
+      <wsdl:input name="consultaServicios">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultaServiciosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ArgumentMissingException">
+        <soap:fault name="ArgumentMissingException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://ws.mediainteractiva.info/CLARO-ws/MTService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" outputName="altaServicioResponse" inputName="altaServicio" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://ws.mediainteractiva.info/CLARO-ws/MTService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:altaServicio>
+         <!--Optional:-->
+         <tem:movil>?</tem:movil>
+         <!--Optional:-->
+         <tem:servicio>?</tem:servicio>
+         <!--Optional:-->
+         <tem:marcacion>?</tem:marcacion>
+         <!--Optional:-->
+         <tem:pass>?</tem:pass>
+      </tem:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" outputName="bajaServiciosResponse" inputName="bajaServicios" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://ws.mediainteractiva.info/CLARO-ws/MTService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:bajaServicios>
+         <tem:movil>?</tem:movil>
+         <tem:servicio>?</tem:servicio>
+         <tem:mcorta>?</tem:mcorta>
+         <tem:pass>?</tem:pass>
+      </tem:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" outputName="consultaServiciosResponse" inputName="consultaServicios" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://ws.mediainteractiva.info/CLARO-ws/MTService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:consultaServicios>
+         <tem:movil>50577494676</tem:movil>
+         <tem:pass>1234</tem:pass>
+      </tem:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" outputName="listaNegraResponse" inputName="listaNegra" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://ws.mediainteractiva.info/CLARO-ws/MTService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:listaNegra>
+         <tem:movil>?</tem:movil>
+         <tem:accion>?</tem:accion>
+         <tem:pass>?</tem:pass>
+      </tem:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

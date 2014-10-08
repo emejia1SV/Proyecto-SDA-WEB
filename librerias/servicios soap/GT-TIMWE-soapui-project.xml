@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="GT_TIMWE" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ClaroWebServicePortSoapBinding" type="wsdl" bindingName="{http://claro.ws.andean.util.timwe.com}ClaroWebServicePortSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort?wsdl"><con:part><con:url>http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://claro.ws.andean.util.timwe.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://claro.ws.andean.util.timwe.com" xmlns:intf="http://claro.ws.andean.util.timwe.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://claro.ws.andean.util.timwe.com" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <complexType name="Item">
+        <sequence>
+          <element name="Resp" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="listaNegraResult">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:Item[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOfArray">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[][]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="consultaServiciosRequest">
+    <wsdl:part name="movil" type="xsd:string"/>
+    <wsdl:part name="pass" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraResponse">
+    <wsdl:part name="listaNegraResult" type="impl:listaNegraResult"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosResponse">
+    <wsdl:part name="listaNegraResult" type="impl:listaNegraResult"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosResponse">
+    <wsdl:part name="return" type="impl:ArrayOfArray"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraRequest">
+    <wsdl:part name="movil" type="xsd:string"/>
+    <wsdl:part name="accion" type="xsd:int"/>
+    <wsdl:part name="pass" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosRequest">
+    <wsdl:part name="movil" type="xsd:string"/>
+    <wsdl:part name="servicio" type="xsd:string"/>
+    <wsdl:part name="mcorta" type="xsd:string"/>
+    <wsdl:part name="pass" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioRequest">
+    <wsdl:part name="movil" type="xsd:string"/>
+    <wsdl:part name="servicio" type="xsd:string"/>
+    <wsdl:part name="marcacion" type="xsd:string"/>
+    <wsdl:part name="pass" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioResponse">
+    <wsdl:part name="listaNegraResult" type="impl:listaNegraResult"/>
+  </wsdl:message>
+  <wsdl:portType name="ClaroWebServicePortType">
+    <wsdl:operation name="listaNegra" parameterOrder="movil accion pass">
+      <wsdl:input message="impl:listaNegraRequest" name="listaNegraRequest"/>
+      <wsdl:output message="impl:listaNegraResponse" name="listaNegraResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultaServicios" parameterOrder="movil pass">
+      <wsdl:input message="impl:consultaServiciosRequest" name="consultaServiciosRequest"/>
+      <wsdl:output message="impl:consultaServiciosResponse" name="consultaServiciosResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios" parameterOrder="movil servicio mcorta pass">
+      <wsdl:input message="impl:bajaServiciosRequest" name="bajaServiciosRequest"/>
+      <wsdl:output message="impl:bajaServiciosResponse" name="bajaServiciosResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio" parameterOrder="movil servicio marcacion pass">
+      <wsdl:input message="impl:altaServicioRequest" name="altaServicioRequest"/>
+      <wsdl:output message="impl:altaServicioResponse" name="altaServicioResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ClaroWebServicePortSoapBinding" type="impl:ClaroWebServicePortType">
+    <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="listaNegra">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="listaNegraRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://claro.ws.andean.util.timwe.com" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="listaNegraResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://claro.ws.andean.util.timwe.com" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultaServicios">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="consultaServiciosRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://claro.ws.andean.util.timwe.com" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="consultaServiciosResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://claro.ws.andean.util.timwe.com" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="bajaServiciosRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://claro.ws.andean.util.timwe.com" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="bajaServiciosResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://claro.ws.andean.util.timwe.com" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="altaServicioRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://claro.ws.andean.util.timwe.com" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="altaServicioResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://claro.ws.andean.util.timwe.com" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ClaroWebService">
+    <wsdl:port binding="impl:ClaroWebServicePortSoapBinding" name="ClaroWebServicePort">
+      <wsdlsoap:address location="http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" outputName="altaServicioResponse" inputName="altaServicioRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://claro.ws.andean.util.timwe.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <pass xsi:type="xsd:string">?</pass>
+      </clar:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://claro.ws.andean.util.timwe.com/ClaroWebServicePortType/altaServicioRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" outputName="bajaServiciosResponse" inputName="bajaServiciosRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://claro.ws.andean.util.timwe.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <servicio xsi:type="xsd:string">test</servicio>
+         <mcorta xsi:type="xsd:string">1234</mcorta>
+         <pass xsi:type="xsd:string">guaclaro1</pass>
+      </clar:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://claro.ws.andean.util.timwe.com/ClaroWebServicePortType/bajaServiciosRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" outputName="consultaServiciosResponse" inputName="consultaServiciosRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://claro.ws.andean.util.timwe.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <pass xsi:type="xsd:string">guaclaro1</pass>
+      </clar:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://claro.ws.andean.util.timwe.com/ClaroWebServicePortType/consultaServiciosRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" outputName="listaNegraResponse" inputName="listaNegraRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://claro.ws.andean.util.timwe.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <accion xsi:type="xsd:int">2</accion>
+         <pass xsi:type="xsd:string">guaclaro1</pass>
+      </clar:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://claro.ws.andean.util.timwe.com/ClaroWebServicePortType/listaNegraRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

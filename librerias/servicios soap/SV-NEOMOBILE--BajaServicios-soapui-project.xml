@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="SV_NEOMOBILE _BajaServicios" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WsBajaServiciosSoap" type="wsdl" bindingName="{http://tempuri.org/}WsBajaServiciosSoap" soapVersion="1_1" anonymous="optional" definition="http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <parameters xsi:type="tem:bajaServicios" xmlns:tem="http://tempuri.org">
+         <!--Optional:-->
+         <movil xsi:type="xsd:string">?</movil>
+         <!--Optional:-->
+         <servicio xsi:type="xsd:string">?</servicio>
+         <!--Optional:-->
+         <mcorta xsi:type="xsd:string">?</mcorta>
+         <!--Optional:-->
+         <pass xsi:type="xsd:string">?</pass>
+      </parameters>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WsBajaServiciosSoap/bajaServiciosRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WsBajaServiciosSoap12" type="wsdl" bindingName="{http://tempuri.org/}WsBajaServiciosSoap12" soapVersion="1_2" anonymous="optional" definition="http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx?WSDL"><con:part><con:url>http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s0="http://tempuri.org" xmlns:s1="http://tempuri.org/encodedTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org">
+      <s:import namespace="http://tempuri.org/encodedTypes"/>
+      <s:complexType name="bajaServicios">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="movil" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="servicio" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="mcorta" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="pass" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="bajaServiciosResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="bajaServiciosResult" type="s1:ArrayOfString"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/encodedTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+      <s:complexType name="ArrayOfString">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="s:string[]" ref="soapenc:arrayType"/>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="bajaServiciosSoapIn">
+    <wsdl:part name="parameters" type="s0:bajaServicios"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapOut">
+    <wsdl:part name="parameters" type="s0:bajaServiciosResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="WsBajaServiciosSoap">
+    <wsdl:operation name="bajaServicios">
+      <wsdl:input message="tns:bajaServiciosSoapIn"/>
+      <wsdl:output message="tns:bajaServiciosSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsBajaServiciosSoap" type="tns:WsBajaServiciosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="bajaServicios">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WsBajaServiciosSoap12" type="tns:WsBajaServiciosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="bajaServicios">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsBajaServicios">
+    <wsdl:port name="WsBajaServiciosSoap" binding="tns:WsBajaServiciosSoap">
+      <soap:address location="http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WsBajaServiciosSoap12" binding="tns:WsBajaServiciosSoap12">
+      <soap12:address location="http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+   <soap:Header/>
+   <soap:Body>
+      <parameters>
+         <!--Optional:-->
+         <movil>?</movil>
+         <!--Optional:-->
+         <servicio>?</servicio>
+         <!--Optional:-->
+         <mcorta>?</mcorta>
+         <!--Optional:-->
+         <pass>?</pass>
+      </parameters>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WsBajaServiciosSoap/bajaServiciosRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

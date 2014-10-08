@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="SV_BINBIT" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Claro_Webservice_SvBinding" type="wsdl" bindingName="{http://webservices.binbit.com/claro_sv/claro_sv.php}Claro_Webservice_SvBinding" soapVersion="1_1" anonymous="optional" definition="http://webservices.binbit.com/claro_sv/claro_sv.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://webservices.binbit.com/claro_sv/claro_sv.php?wsdl"><con:part><con:url>http://webservices.binbit.com/claro_sv/claro_sv.php?wsdl</con:url><con:content><![CDATA[<definitions name="Claro_Webservice_Sv" targetNamespace="http://webservices.binbit.com/claro_sv/claro_sv.php" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservices.binbit.com/claro_sv/claro_sv.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+  </types>
+  <portType name="Claro_Webservice_SvPort">
+    <operation name="consultaServicios">
+      <documentation>Retorna los servicios activos y no activos asociados a un telefono.</documentation>
+      <input message="tns:consultaServiciosIn"/>
+      <output message="tns:consultaServiciosOut"/>
+    </operation>
+    <operation name="bajaServicios">
+      <documentation>Da de baja un servicio asociado a un teléfono</documentation>
+      <input message="tns:bajaServiciosIn"/>
+      <output message="tns:bajaServiciosOut"/>
+    </operation>
+    <operation name="listaNegra">
+      <documentation>Consulta, agrega o remueve un número de móvil dado de la lista negra.
+		Accion: 1 para agregar, 2 para remover, 3 para consultar</documentation>
+      <input message="tns:listaNegraIn"/>
+      <output message="tns:listaNegraOut"/>
+    </operation>
+    <operation name="altaServicio">
+      <documentation>Da de alta un servicio asociado a un teléfono, marcación</documentation>
+      <input message="tns:altaServicioIn"/>
+      <output message="tns:altaServicioOut"/>
+    </operation>
+  </portType>
+  <binding name="Claro_Webservice_SvBinding" type="tns:Claro_Webservice_SvPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consultaServicios">
+      <soap:operation soapAction="http://webservices.binbit.com/claro_sv/claro_sv.php#consultaServicios"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+      </output>
+    </operation>
+    <operation name="bajaServicios">
+      <soap:operation soapAction="http://webservices.binbit.com/claro_sv/claro_sv.php#bajaServicios"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+      </output>
+    </operation>
+    <operation name="listaNegra">
+      <soap:operation soapAction="http://webservices.binbit.com/claro_sv/claro_sv.php#listaNegra"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+      </output>
+    </operation>
+    <operation name="altaServicio">
+      <soap:operation soapAction="http://webservices.binbit.com/claro_sv/claro_sv.php#altaServicio"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="Claro_Webservice_SvService">
+    <port name="Claro_Webservice_SvPort" binding="tns:Claro_Webservice_SvBinding">
+      <soap:address location="http://webservices.binbit.com/claro_sv/claro_sv.php"/>
+    </port>
+  </service>
+  <message name="consultaServiciosIn">
+    <part name="movil" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="consultaServiciosOut">
+    <part name="return" type="soap-enc:Array"/>
+  </message>
+  <message name="bajaServiciosIn">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="marcacion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="bajaServiciosOut">
+    <part name="return" type="soap-enc:Array"/>
+  </message>
+  <message name="listaNegraIn">
+    <part name="movil" type="xsd:string"/>
+    <part name="accion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="listaNegraOut">
+    <part name="return" type="soap-enc:Array"/>
+  </message>
+  <message name="altaServicioIn">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="marcacion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="altaServicioOut">
+    <part name="return" type="soap-enc:Array"/>
+  </message>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://webservices.binbit.com/claro_sv/claro_sv.php</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://webservices.binbit.com/claro_sv/claro_sv.php#altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://webservices.binbit.com/claro_sv/claro_sv.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_sv/claro_sv.php">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <pass xsi:type="xsd:string">?</pass>
+      </clar:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservices.binbit.com/claro_sv/claro_sv.php#altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="http://webservices.binbit.com/claro_sv/claro_sv.php#bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://webservices.binbit.com/claro_sv/claro_sv.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_sv/claro_sv.php">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50370001770</movil>
+         <servicio xsi:type="xsd:string">test</servicio>
+         <marcacion xsi:type="xsd:string">1234</marcacion>
+         <pass xsi:type="xsd:string">ebea4edabf</pass>
+      </clar:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservices.binbit.com/claro_sv/claro_sv.php#bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://webservices.binbit.com/claro_sv/claro_sv.php#consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://webservices.binbit.com/claro_sv/claro_sv.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_sv/claro_sv.php">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50370001770</movil>
+         <pass xsi:type="xsd:string">ebea4edabf</pass>
+      </clar:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservices.binbit.com/claro_sv/claro_sv.php#consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://webservices.binbit.com/claro_sv/claro_sv.php#listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://webservices.binbit.com/claro_sv/claro_sv.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://webservices.binbit.com/claro_sv/claro_sv.php">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50370001770</movil>
+         <accion xsi:type="xsd:string">2</accion>
+         <pass xsi:type="xsd:string">ebea4edabf</pass>
+      </clar:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservices.binbit.com/claro_sv/claro_sv.php#listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="SV_MOBILE" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="wsCLASVSoap12" type="wsdl" bindingName="{http://mobilemedios.com/}wsCLASVSoap12" soapVersion="1_2" anonymous="optional" definition="http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://mobilemedios.com/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mob="http://mobilemedios.com/">
+   <soap:Header/>
+   <soap:Body>
+      <mob:altaServicio>
+         <!--Optional:-->
+         <mob:movil>?</mob:movil>
+         <!--Optional:-->
+         <mob:servicio>?</mob:servicio>
+         <!--Optional:-->
+         <mob:marcacion>?</mob:marcacion>
+         <!--Optional:-->
+         <mob:pass>?</mob:pass>
+      </mob:altaServicio>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mobilemedios.com/wsCLASVSoap/altaServicioRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://mobilemedios.com/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mob="http://mobilemedios.com/">
+   <soap:Header/>
+   <soap:Body>
+      <mob:bajaServicios>
+         <!--Optional:-->
+         <mob:movil>?</mob:movil>
+         <!--Optional:-->
+         <mob:servicio>?</mob:servicio>
+         <!--Optional:-->
+         <mob:mcorta>?</mob:mcorta>
+         <!--Optional:-->
+         <mob:pass>?</mob:pass>
+      </mob:bajaServicios>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mobilemedios.com/wsCLASVSoap/bajaServiciosRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://mobilemedios.com/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mob="http://mobilemedios.com/">
+   <soap:Header/>
+   <soap:Body>
+      <mob:consultaServicios>
+         <!--Optional:-->
+         <mob:movil>?</mob:movil>
+         <!--Optional:-->
+         <mob:pass>?</mob:pass>
+      </mob:consultaServicios>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mobilemedios.com/wsCLASVSoap/consultaServiciosRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://mobilemedios.com/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:mob="http://mobilemedios.com/">
+   <soap:Header/>
+   <soap:Body>
+      <mob:listaNegra>
+         <!--Optional:-->
+         <mob:movil>?</mob:movil>
+         <mob:accion>?</mob:accion>
+         <!--Optional:-->
+         <mob:pass>?</mob:pass>
+      </mob:listaNegra>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mobilemedios.com/wsCLASVSoap/listaNegraRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="wsCLASVSoap" type="wsdl" bindingName="{http://mobilemedios.com/}wsCLASVSoap" soapVersion="1_1" anonymous="optional" definition="http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx?WSDL"><con:part><con:url>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mobilemedios.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://mobilemedios.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://mobilemedios.com/">
+      <s:element name="consultaServicios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movil" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultaServiciosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultaServiciosResult" type="tns:ArrayOfArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString" nillable="true" type="tns:ArrayOfString"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="bajaServicios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movil" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="servicio" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="mcorta" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="bajaServiciosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bajaServiciosResult" type="tns:ArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="altaServicio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movil" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="servicio" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="marcacion" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="altaServicioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="altaServicioResult" type="tns:ArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaNegra">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="movil" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="accion" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listaNegraResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listaNegraResult" type="tns:ArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfArrayOfString" nillable="true" type="tns:ArrayOfArrayOfString"/>
+      <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString"/>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="consultaServiciosSoapIn">
+    <wsdl:part name="parameters" element="tns:consultaServicios"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosSoapOut">
+    <wsdl:part name="parameters" element="tns:consultaServiciosResponse"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapIn">
+    <wsdl:part name="parameters" element="tns:bajaServicios"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapOut">
+    <wsdl:part name="parameters" element="tns:bajaServiciosResponse"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapIn">
+    <wsdl:part name="parameters" element="tns:altaServicio"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapOut">
+    <wsdl:part name="parameters" element="tns:altaServicioResponse"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapIn">
+    <wsdl:part name="parameters" element="tns:listaNegra"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapOut">
+    <wsdl:part name="parameters" element="tns:listaNegraResponse"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosHttpGetIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosHttpGetIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="servicio" type="s:string"/>
+    <wsdl:part name="mcorta" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioHttpGetIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="servicio" type="s:string"/>
+    <wsdl:part name="marcacion" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraHttpGetIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="accion" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosHttpPostIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosHttpPostIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="servicio" type="s:string"/>
+    <wsdl:part name="mcorta" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioHttpPostIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="servicio" type="s:string"/>
+    <wsdl:part name="marcacion" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraHttpPostIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="accion" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfString"/>
+  </wsdl:message>
+  <wsdl:portType name="wsCLASVSoap">
+    <wsdl:operation name="consultaServicios">
+      <wsdl:input message="tns:consultaServiciosSoapIn"/>
+      <wsdl:output message="tns:consultaServiciosSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <wsdl:input message="tns:bajaServiciosSoapIn"/>
+      <wsdl:output message="tns:bajaServiciosSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <wsdl:input message="tns:altaServicioSoapIn"/>
+      <wsdl:output message="tns:altaServicioSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <wsdl:input message="tns:listaNegraSoapIn"/>
+      <wsdl:output message="tns:listaNegraSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="wsCLASVHttpGet">
+    <wsdl:operation name="consultaServicios">
+      <wsdl:input message="tns:consultaServiciosHttpGetIn"/>
+      <wsdl:output message="tns:consultaServiciosHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <wsdl:input message="tns:bajaServiciosHttpGetIn"/>
+      <wsdl:output message="tns:bajaServiciosHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <wsdl:input message="tns:altaServicioHttpGetIn"/>
+      <wsdl:output message="tns:altaServicioHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <wsdl:input message="tns:listaNegraHttpGetIn"/>
+      <wsdl:output message="tns:listaNegraHttpGetOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="wsCLASVHttpPost">
+    <wsdl:operation name="consultaServicios">
+      <wsdl:input message="tns:consultaServiciosHttpPostIn"/>
+      <wsdl:output message="tns:consultaServiciosHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <wsdl:input message="tns:bajaServiciosHttpPostIn"/>
+      <wsdl:output message="tns:bajaServiciosHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <wsdl:input message="tns:altaServicioHttpPostIn"/>
+      <wsdl:output message="tns:altaServicioHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <wsdl:input message="tns:listaNegraHttpPostIn"/>
+      <wsdl:output message="tns:listaNegraHttpPostOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsCLASVSoap" type="tns:wsCLASVSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultaServicios">
+      <soap:operation soapAction="http://mobilemedios.com/consultaServicios" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <soap:operation soapAction="http://mobilemedios.com/bajaServicios" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <soap:operation soapAction="http://mobilemedios.com/altaServicio" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap:operation soapAction="http://mobilemedios.com/listaNegra" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsCLASVSoap12" type="tns:wsCLASVSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultaServicios">
+      <soap12:operation soapAction="http://mobilemedios.com/consultaServicios" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <soap12:operation soapAction="http://mobilemedios.com/bajaServicios" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <soap12:operation soapAction="http://mobilemedios.com/altaServicio" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap12:operation soapAction="http://mobilemedios.com/listaNegra" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsCLASVHttpGet" type="tns:wsCLASVHttpGet">
+    <http:binding verb="GET"/>
+    <wsdl:operation name="consultaServicios">
+      <http:operation location="/consultaServicios"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <http:operation location="/bajaServicios"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <http:operation location="/altaServicio"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <http:operation location="/listaNegra"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsCLASVHttpPost" type="tns:wsCLASVHttpPost">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="consultaServicios">
+      <http:operation location="/consultaServicios"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <http:operation location="/bajaServicios"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <http:operation location="/altaServicio"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <http:operation location="/listaNegra"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsCLASV">
+    <wsdl:port name="wsCLASVSoap" binding="tns:wsCLASVSoap">
+      <soap:address location="http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="wsCLASVSoap12" binding="tns:wsCLASVSoap12">
+      <soap12:address location="http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="wsCLASVHttpGet" binding="tns:wsCLASVHttpGet">
+      <http:address location="http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="wsCLASVHttpPost" binding="tns:wsCLASVHttpPost">
+      <http:address location="http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://mobilemedios.com/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mob:altaServicio>
+         <!--Optional:-->
+         <mob:movil>?</mob:movil>
+         <!--Optional:-->
+         <mob:servicio>?</mob:servicio>
+         <!--Optional:-->
+         <mob:marcacion>?</mob:marcacion>
+         <!--Optional:-->
+         <mob:pass>?</mob:pass>
+      </mob:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mobilemedios.com/altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="http://mobilemedios.com/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mob:bajaServicios>
+         <mob:movil>50370001770</mob:movil>
+         <mob:servicio>JAJAJA</mob:servicio>
+         <mob:mcorta>1221</mob:mcorta>
+         <mob:pass>claro</mob:pass>
+      </mob:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mobilemedios.com/bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://mobilemedios.com/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mob:consultaServicios>
+         <mob:movil>50370001770</mob:movil>
+         <mob:pass>claro</mob:pass>
+      </mob:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mobilemedios.com/consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://mobilemedios.com/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://mobilemedios.com/wsmedios/clarosv/wsCLASV.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mob:listaNegra>
+         <mob:movil>50370001770</mob:movil>
+         <mob:accion>2</mob:accion>
+         <mob:pass>claro</mob:pass>
+      </mob:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mobilemedios.com/listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

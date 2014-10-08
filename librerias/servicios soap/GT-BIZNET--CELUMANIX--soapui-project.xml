@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="GT_BIZNET (CELUMANIX)" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WebServiceSoap12" type="wsdl" bindingName="{http://tempuri.org/}WebServiceSoap12" soapVersion="1_2" anonymous="optional" definition="http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://tempuri.org/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://tempuri.org/">
+   <soap:Header/>
+   <soap:Body>
+      <tem:altaServicio>
+         <movil>?</movil>
+         <servicio>?</servicio>
+         <marcacion>?</marcacion>
+         <pass>?</pass>
+      </tem:altaServicio>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WebServiceSoap/altaServicioRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://tempuri.org/">
+   <soap:Header/>
+   <soap:Body>
+      <tem:bajaServicios>
+         <movil>?</movil>
+         <servicio>?</servicio>
+         <mcorta>?</mcorta>
+         <pass>?</pass>
+      </tem:bajaServicios>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WebServiceSoap/bajaServiciosRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://tempuri.org/">
+   <soap:Header/>
+   <soap:Body>
+      <tem:consultaServicios>
+         <movil>?</movil>
+         <pass>?</pass>
+      </tem:consultaServicios>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WebServiceSoap/consultaServiciosRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://tempuri.org/">
+   <soap:Header/>
+   <soap:Body>
+      <tem:listaNegra>
+         <movil>?</movil>
+         <accion>?</accion>
+         <pass>?</pass>
+      </tem:listaNegra>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WebServiceSoap/listaNegraRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WebServiceSoap" type="wsdl" bindingName="{http://tempuri.org/}WebServiceSoap" soapVersion="1_1" anonymous="optional" definition="http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx?wsdl"><con:part><con:url>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="tns:ArrayOfString[]" ref="soapenc:arrayType"/>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="s:string[]" ref="soapenc:arrayType"/>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="consultaServiciosSoapIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosSoapOut">
+    <wsdl:part name="consultaServiciosResult" type="tns:ArrayOfArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="servicio" type="s:string"/>
+    <wsdl:part name="mcorta" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapOut">
+    <wsdl:part name="bajaServiciosResult" type="tns:ArrayOfArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="accion" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapOut">
+    <wsdl:part name="listaNegraResult" type="tns:ArrayOfArrayOfString"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="servicio" type="s:string"/>
+    <wsdl:part name="marcacion" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapOut">
+    <wsdl:part name="altaServicioResult" type="tns:ArrayOfArrayOfString"/>
+  </wsdl:message>
+  <wsdl:portType name="WebServiceSoap">
+    <wsdl:operation name="consultaServicios">
+      <wsdl:input message="tns:consultaServiciosSoapIn"/>
+      <wsdl:output message="tns:consultaServiciosSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <wsdl:input message="tns:bajaServiciosSoapIn"/>
+      <wsdl:output message="tns:bajaServiciosSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <wsdl:input message="tns:listaNegraSoapIn"/>
+      <wsdl:output message="tns:listaNegraSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <wsdl:input message="tns:altaServicioSoapIn"/>
+      <wsdl:output message="tns:altaServicioSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <wsdl:operation name="consultaServicios">
+      <soap:operation soapAction="http://tempuri.org/consultaServicios" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <soap:operation soapAction="http://tempuri.org/bajaServicios" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap:operation soapAction="http://tempuri.org/listaNegra" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <soap:operation soapAction="http://tempuri.org/altaServicio" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <wsdl:operation name="consultaServicios">
+      <soap12:operation soapAction="http://tempuri.org/consultaServicios" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <soap12:operation soapAction="http://tempuri.org/bajaServicios" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap12:operation soapAction="http://tempuri.org/listaNegra" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <soap12:operation soapAction="http://tempuri.org/altaServicio" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://tempuri.org/" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService">
+    <wsdl:port name="WebServiceSoap" binding="tns:WebServiceSoap">
+      <soap:address location="http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WebServiceSoap12" binding="tns:WebServiceSoap12">
+      <soap12:address location="http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://tempuri.org/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <servicio xsi:type="xsd:string">RELATOS</servicio>
+         <marcacion xsi:type="xsd:string">5028121</marcacion>
+         <pass xsi:type="xsd:string">qwio2012;</pass>
+      </tem:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/altaServicio"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <mcorta xsi:type="xsd:string">?</mcorta>
+         <pass xsi:type="xsd:string">?</pass>
+      </tem:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50258260744</movil>
+         <pass xsi:type="xsd:string">qwio2012;</pass>
+      </tem:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+	<soapenv:Header/>
+	<soapenv:Body>
+		<tem:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+			<movil xsi:type="xsd:string">50258260744</movil>
+			<accion xsi:type="xsd:string">2</accion>
+			<pass xsi:type="xsd:string">qwio2012;</pass>
+		</tem:listaNegra>
+	</soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
