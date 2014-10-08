@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="NC_SMS AMERICAS" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SMSACBinding" type="wsdl" bindingName="{SMSACwsdl}SMSACBinding" soapVersion="1_1" anonymous="optional" definition="http://reports.smsamericas.net/ws_claro/Service.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://reports.smsamericas.net/ws_claro/Service.php?wsdl"><con:part><con:url>http://reports.smsamericas.net/ws_claro/Service.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="SMSACwsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="SMSACwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<con:soapui-project activeEnvironment="Default" name="NC_SMS AMERICAS" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SMSACBinding" type="wsdl" bindingName="{SMSACwsdl}SMSACBinding" soapVersion="1_1" anonymous="optional" definition="http://reports.smsamericas.net/ws_claro/Service.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://reports.smsamericas.net/ws_claro/Service.php?wsdl"><con:part><con:url>http://reports.smsamericas.net/ws_claro/Service.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="SMSACwsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="SMSACwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <xsd:schema targetNamespace="SMSACwsdl">
       <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -138,31 +138,31 @@
          <pass xsi:type="xsd:string">?</pass>
       </sms:altaServicio>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="SMSACwsdl#altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="SMSACwsdl#bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://reports.smsamericas.net/ws_claro/Service.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="SMSACwsdl#altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="SMSACwsdl#bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://reports.smsamericas.net/ws_claro/Service.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl">
    <soapenv:Header/>
    <soapenv:Body>
-      <sms:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <movil xsi:type="xsd:string">?</movil>
-         <servicio xsi:type="xsd:string">?</servicio>
-         <mcorta xsi:type="xsd:string">?</mcorta>
-         <pass xsi:type="xsd:string">?</pass>
+      <sms:bajaServicios>
+         <movil xsi:type="xsd:string">50377494676</movil>
+         <servicio xsi:type="xsd:string">test</servicio>
+         <mcorta xsi:type="xsd:string">1234</mcorta>
+         <pass xsi:type="xsd:string">cl4r0_n1c4r4gu4</pass>
       </sms:bajaServicios>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="SMSACwsdl#bajaServicios"/></con:call></con:operation><con:operation isOneWay="false" action="SMSACwsdl#consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://reports.smsamericas.net/ws_claro/Service.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="SMSACwsdl#bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="SMSACwsdl#consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://reports.smsamericas.net/ws_claro/Service.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl">
    <soapenv:Header/>
    <soapenv:Body>
       <sms:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <movil xsi:type="xsd:string">?</movil>
-         <pass xsi:type="xsd:string">?</pass>
+         <movil xsi:type="xsd:string">50577494676</movil>
+         <pass xsi:type="xsd:string">cl4r0_n1c4r4gu4</pass>
       </sms:consultaServicios>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="SMSACwsdl#consultaServicios"/></con:call></con:operation><con:operation isOneWay="false" action="SMSACwsdl#listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://reports.smsamericas.net/ws_claro/Service.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="SMSACwsdl#consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="SMSACwsdl#listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://reports.smsamericas.net/ws_claro/Service.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl">
    <soapenv:Header/>
    <soapenv:Body>
       <sms:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-         <movil xsi:type="xsd:string">?</movil>
-         <accion xsi:type="xsd:string">?</accion>
-         <pass xsi:type="xsd:string">?</pass>
+         <movil xsi:type="xsd:string">50577494676</movil>
+         <accion xsi:type="xsd:string">2</accion>
+         <pass xsi:type="xsd:string">cl4r0_n1c4r4gu4</pass>
       </sms:listaNegra>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="SMSACwsdl#listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

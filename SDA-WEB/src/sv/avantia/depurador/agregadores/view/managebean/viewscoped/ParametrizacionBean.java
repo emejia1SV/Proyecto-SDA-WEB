@@ -197,20 +197,27 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	{	
 		try 
 		{
-			setResultadosRespuestas((List<ResultadosRespuesta>) (List<?>) getEjecucion()
-					.listData("FROM SDA_RESULTADOS_RESPUESTA WHERE ID_RESPUESTA = "
-							+ getRespuesta().getId()));
-			
-			System.out.println(getResultadosRespuestas().size());
-			setCatResultadoSelected(new CatResultados[getResultadosRespuestas().size()]);
-			for (int i = 0; i < getResultadosRespuestas().size(); i++) {
-				System.out.println("agregaremos a " + getResultadosRespuestas().get(i).getCatResultado().getId());
-				getCatResultadoSelected()[i] = getResultadosRespuestas().get(i).getCatResultado();
-			}
+			if(getRespuesta()!=null)
+			{
+				if(getRespuesta().getId()!=null)
+				{
+					setResultadosRespuestas((List<ResultadosRespuesta>) (List<?>) getEjecucion()
+							.listData("FROM SDA_RESULTADOS_RESPUESTA WHERE ID_RESPUESTA = "
+									+ getRespuesta().getId()));
+					
+					setCatResultadoSelected(new CatResultados[getResultadosRespuestas().size()]);
+					for (int i = 0; i < getResultadosRespuestas().size(); i++) {
+						if(getResultadosRespuestas().get(i).getCatResultado()!=null)
+						{
+							getCatResultadoSelected()[i] = getResultadosRespuestas().get(i).getCatResultado();
+						}
+					}
+				}
+			}			
 		} 
 		catch (Exception e) 
 		{
-			lanzarMensajeError("Error:", "No se pudo cargar la tabla de Respuestas", e);
+			lanzarMensajeError("Error:", "No se pudo cargar la tabla de Resultado Respuesta", e);
 		}
 	}
 

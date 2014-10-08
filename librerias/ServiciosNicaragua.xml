@@ -13,7 +13,9 @@
 		</listaNegra>
 		<consultaServicios>
 			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></tem:consultaServicios></soapenv:Body></soapenv:Envelope>
-			<soapActionUri>tem:consultaServicios</soapActionUri>
+			<soapActionUri>
+				tem:consultaServicios
+			</soapActionUri>
 		</consultaServicios>
 		<bajaServicios>
 			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></tem:bajaServicios></soapenv:Body></soapenv:Envelope>
@@ -99,8 +101,8 @@
 		</endpoint>
 		
 		<listaNegra>
-			<soapActionUri>urn:listaNegra</soapActionUri>
-			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:ListaNegrawsdl"><soapenv:Header/><soapenv:Body><urn:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><operacion xsi:type="xsd:string">_*operacion_*</operacion><pass xsi:type="xsd:string">_*pass_*</pass></urn:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:ListaNegrawsdl"><soapenv:Header/><soapenv:Body><urn:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><operacion xsi:type="xsd:string">_*accion_*</operacion><pass xsi:type="xsd:string">_*pass_*</pass></urn:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>urn:listaNegra</soapActionUri>	
 		</listaNegra>
 		<consultaServicios>
 			<soapActionUri>urn:consultaServicios</soapActionUri>
@@ -120,7 +122,7 @@
 		
 		<listaNegra>
 			<soapActionUri>hdc:listaNegra</soapActionUri>
-			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/"><soapenv:Header/><soapenv:Body><hdc:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></hdc:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/"><soapenv:Header/><soapenv:Body><hdc:listaNegra><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></hdc:listaNegra></soapenv:Body></soapenv:Envelope>
 		</listaNegra>
 		<consultaServicios>
 			<soapActionUri>hdc:consultaServicios</soapActionUri>
@@ -246,6 +248,7 @@
 		
 	</IT_SOLUTIONS>
 	
+	<!--asumimos respuesta de baja-->
 	<MEDIA_INTERACTIVA>
 		<usuario></usuario>
 		<password>1234</password>
@@ -299,15 +302,15 @@
 		
 		<listaNegra>
 			<soapActionUri>wss:listaNegra</soapActionUri>
-			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.gt.claro.ws.movix.cl"><soapenv:Header/><soapenv:Body><wss:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></wss:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.gt.claro.ws.movix.cl"><soapenv:Header/><soapenv:Body><wss:listaNegra><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></wss:listaNegra></soapenv:Body></soapenv:Envelope>
 		</listaNegra>
 		<consultaServicios>
 			<soapActionUri>wss:consultaServicios</soapActionUri>
-			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.gt.claro.ws.movix.cl"><soapenv:Header/><soapenv:Body><wss:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></wss:consultaServicios></soapenv:Body></soapenv:Envelope>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.gt.claro.ws.movix.cl"><soapenv:Header/><soapenv:Body><wss:consultaServicios><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></wss:consultaServicios></soapenv:Body></soapenv:Envelope>
 		</consultaServicios>
 		<bajaServicios>
 			<soapActionUri>wss:bajaServicios</soapActionUri>
-			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.gt.claro.ws.movix.cl"><soapenv:Header/><soapenv:Body><wss:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></wss:bajaServicios></soapenv:Body></soapenv:Envelope>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://wssubscriptions.gt.claro.ws.movix.cl"><soapenv:Header/><soapenv:Body><wss:bajaServicios><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></wss:bajaServicios></soapenv:Body></soapenv:Envelope>
 		</bajaServicios>
 		
 	</MOVIXLA>
@@ -412,15 +415,15 @@
 		
 		<listaNegra>
 			<soapActionUri>sms:listaNegra</soapActionUri>
-			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl"><soapenv:Header/><soapenv:Body><sms:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></sms:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl"><soapenv:Header/><soapenv:Body><sms:listaNegra><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></sms:listaNegra></soapenv:Body></soapenv:Envelope>
 		</listaNegra>
 		<consultaServicios>
 			<soapActionUri>sms:consultaServicios</soapActionUri>
-			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl"><soapenv:Header/><soapenv:Body><sms:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></sms:consultaServicios></soapenv:Body></soapenv:Envelope>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl"><soapenv:Header/><soapenv:Body><sms:consultaServicios><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></sms:consultaServicios></soapenv:Body></soapenv:Envelope>
 		</consultaServicios>
 		<bajaServicios>
 			<soapActionUri>sms:bajaServicios</soapActionUri>
-			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl"><soapenv:Header/><soapenv:Body><sms:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></sms:bajaServicios></soapenv:Body></soapenv:Envelope>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sms="SMSACwsdl"><soapenv:Header/><soapenv:Body><sms:bajaServicios><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></sms:bajaServicios></soapenv:Body></soapenv:Envelope>
 		</bajaServicios>
 		
 	</SMS_AMERICAS>
@@ -602,6 +605,7 @@
 		
 	</WIRELES_IDEA>
 	
+	<!--No parametrizable RESPONDE como pagina web-->
 	<XURPAS>
 		<usuario></usuario>
 		<password>Sj3pZkO7ioXC</password>

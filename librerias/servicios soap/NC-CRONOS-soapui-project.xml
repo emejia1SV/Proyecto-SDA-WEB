@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="NC_CRONOS" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HDClaroSoap" type="wsdl" bindingName="{http://hdclaro.cronos.mobi/}HDClaroSoap" soapVersion="1_1" anonymous="optional" definition="http://hdclaro.cronos.mobi/?WSDL&amp;readable" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://hdclaro.cronos.mobi/?WSDL&amp;readable"><con:part><con:url>http://hdclaro.cronos.mobi/?WSDL&amp;readable</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://hdclaro.cronos.mobi/" xmlns:tns="http://hdclaro.cronos.mobi/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:message name="consultaServiciosSoapIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="consultaServiciosSoapOut">
+    <wsdl:part name="return" type="tns:Array"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="servicio" type="s:string"/>
+    <wsdl:part name="mcorta" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="bajaServiciosSoapOut">
+    <wsdl:part name="return" type="tns:Array"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="accion" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapOut">
+    <wsdl:part name="return" type="tns:Array"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapIn">
+    <wsdl:part name="movil" type="s:string"/>
+    <wsdl:part name="servicio" type="s:string"/>
+    <wsdl:part name="marcacion" type="s:string"/>
+    <wsdl:part name="pass" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="altaServicioSoapOut">
+    <wsdl:part name="return" type="tns:Array"/>
+  </wsdl:message>
+  <wsdl:portType name="HDClaroSoap">
+    <wsdl:operation name="consultaServicios" parameterOrder="movil pass">
+      <wsdl:input message="tns:consultaServiciosSoapIn"/>
+      <wsdl:output message="tns:consultaServiciosSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios" parameterOrder="movil servicio mcorta pass">
+      <wsdl:input message="tns:bajaServiciosSoapIn"/>
+      <wsdl:output message="tns:bajaServiciosSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra" parameterOrder="movil accion pass">
+      <wsdl:input message="tns:listaNegraSoapIn"/>
+      <wsdl:output message="tns:listaNegraSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio" parameterOrder="movil servicio marcacion pass">
+      <wsdl:input message="tns:altaServicioSoapIn"/>
+      <wsdl:output message="tns:altaServicioSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HDClaroSoap" type="tns:HDClaroSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <wsdl:operation name="consultaServicios">
+      <soap:operation soapAction="http://hdclaro.cronos.mobi/consultaServicios"/>
+      <wsdl:input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://hdclaro.cronos.mobi/" parts="movil pass"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://hdclaro.cronos.mobi/" parts="return"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaServicios">
+      <soap:operation soapAction="http://hdclaro.cronos.mobi/bajaServicios"/>
+      <wsdl:input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://hdclaro.cronos.mobi/" parts="movil servicio mcorta pass"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://hdclaro.cronos.mobi/" parts="return"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listaNegra">
+      <soap:operation soapAction="http://hdclaro.cronos.mobi/listaNegra"/>
+      <wsdl:input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://hdclaro.cronos.mobi/" parts="movil accion pass"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://hdclaro.cronos.mobi/" parts="return"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaServicio">
+      <soap:operation soapAction="http://hdclaro.cronos.mobi/altaServicio"/>
+      <wsdl:input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://hdclaro.cronos.mobi/" parts="movil servicio marcacion pass"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://hdclaro.cronos.mobi/" parts="return"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HDClaro">
+    <wsdl:port name="HDClaroSoap" binding="tns:HDClaroSoap">
+      <soap:address location="http://hdclaro.cronos.mobi/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://hdclaro.cronos.mobi/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://hdclaro.cronos.mobi/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://hdclaro.cronos.mobi/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hdc:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <pass xsi:type="xsd:string">?</pass>
+      </hdc:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hdclaro.cronos.mobi/altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="http://hdclaro.cronos.mobi/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://hdclaro.cronos.mobi/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hdc:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <mcorta xsi:type="xsd:string">?</mcorta>
+         <pass xsi:type="xsd:string">?</pass>
+      </hdc:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hdclaro.cronos.mobi/bajaServicios"/></con:call></con:operation><con:operation isOneWay="false" action="http://hdclaro.cronos.mobi/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://hdclaro.cronos.mobi/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hdc:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <pass xsi:type="xsd:string">?</pass>
+      </hdc:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hdclaro.cronos.mobi/consultaServicios"/></con:call></con:operation><con:operation isOneWay="false" action="http://hdclaro.cronos.mobi/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://hdclaro.cronos.mobi/</con:endpoint><con:request><![CDATA[<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hdc="http://hdclaro.cronos.mobi/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hdc:listaNegra>
+         <movil xsi:type="xsd:string">?</movil>
+         <accion xsi:type="xsd:string">?</accion>
+         <pass xsi:type="xsd:string">?</pass>
+      </hdc:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://hdclaro.cronos.mobi/listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

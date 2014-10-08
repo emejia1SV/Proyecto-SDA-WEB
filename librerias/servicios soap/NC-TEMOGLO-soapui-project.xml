@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="NC_TEMOGLO" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="TMGwsdlBinding" type="wsdl" bindingName="{urn:TMGwsdl}TMGwsdlBinding" soapVersion="1_1" anonymous="optional" definition="http://190.106.0.126/web/wsdl/claro.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://190.106.0.126/web/wsdl/claro.php?wsdl"><con:part><con:url>http://190.106.0.126/web/wsdl/claro.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="urn:TMGwsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:TMGwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<con:soapui-project activeEnvironment="Default" name="NC_TEMOGLO" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="TMGwsdlBinding" type="wsdl" bindingName="{urn:TMGwsdl}TMGwsdlBinding" soapVersion="1_1" anonymous="optional" definition="http://190.106.0.126/web/wsdl/claro.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://190.106.0.126/web/wsdl/claro.php?wsdl"><con:part><con:url>http://190.106.0.126/web/wsdl/claro.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="urn:TMGwsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:TMGwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <xsd:schema targetNamespace="urn:TMGwsdl">
       <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -134,7 +134,7 @@
    <soapenv:Body>
       <listaNegra>
          <movil xsi:type="xsd:string">50577467946</movil>
-         <accion xsi:type="xsd:int">3</accion>
+         <accion xsi:type="xsd:int">2</accion>
          <pass xsi:type="xsd:string">Cl4r0N1</pass>
       </listaNegra>
    </soapenv:Body>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="NC_NETMOVILE" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Service1Soap12" type="wsdl" bindingName="{http://netmobile.com.ni/}Service1Soap12" soapVersion="1_2" anonymous="optional" definition="http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://netmobile.com.ni/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:net="http://netmobile.com.ni/">
+<con:soapui-project activeEnvironment="Default" name="NC_NETMOVILE" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Service1Soap12" type="wsdl" bindingName="{http://netmobile.com.ni/}Service1Soap12" soapVersion="1_2" anonymous="optional" definition="http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://netmobile.com.ni/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smpp.netmovil.co/ServiciosClaro/ServiciosAsociados.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:net="http://netmobile.com.ni/">
    <soap:Header/>
    <soap:Body>
       <net:altaServicio>
@@ -294,7 +294,7 @@
    <soapenv:Body>
       <net:listaNegra>
          <net:movil>50577494676</net:movil>
-         <net:accion>3</net:accion>
+         <net:accion>2</net:accion>
          <net:pass>n3tm0b1l3</net:pass>
       </net:listaNegra>
    </soapenv:Body>
