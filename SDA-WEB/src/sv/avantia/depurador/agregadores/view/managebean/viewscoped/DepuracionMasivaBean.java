@@ -1,6 +1,5 @@
 package sv.avantia.depurador.agregadores.view.managebean.viewscoped;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -82,11 +81,13 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
             
             if(getFile().getFileName().endsWith(".xlsx"))
             	readExcelxFile(getFile().getInputstream());
+            
+            accionDepuracion();
         } 
-        catch (IOException ex) 
+        catch (Exception ex) 
         {
+        	logger.error("Error en el sistema de depuracion masiva por archivo ", ex);
             lanzarMensajeError("Error", "Problemas al subir el archivo", ex);
-            logger.error("Error en el sistema de depuracion masiva por archivo ", ex);
         }
     }
 	
@@ -97,9 +98,9 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	 * @author Edwin Mejia - Avantia Consultores
 	 * @param fileInputStream {@link InputStream}
 	 * @return {@link Void}
-	 * @throws IOException producida por instanciar HSSFWorkbook, POIFSFileSystem
+	 * @throws Exception producida por instanciar HSSFWorkbook, POIFSFileSystem
 	 * */
-	private void readExcelFile(InputStream fileInputStream) throws IOException {
+	private void readExcelFile(InputStream fileInputStream) throws Exception {
 		POIFSFileSystem fsFileSystem = new POIFSFileSystem(fileInputStream);
 		HSSFWorkbook workBook = new HSSFWorkbook(fsFileSystem);
 		HSSFSheet hssfSheet = workBook.getSheetAt(0);
@@ -110,7 +111,6 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 			DecimalFormat dFormat = new DecimalFormat("###########");
 			getNumerosMoviles().add(dFormat.format(doubleCellValue));
 		}
-		accionDepuracion();
 	}
 
 	/**
@@ -120,9 +120,9 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	 * @author Edwin Mejia - Avantia Consultores
 	 * @param  fileInputStream {@link InputStream}
 	 * @return {@link Void}
-	 * @throws IOException producida por instanciar XSSFWorkbook
+	 * @throws Exception producida por instanciar XSSFWorkbook
 	 * */
-	private void readExcelxFile(InputStream fileInputStream) throws IOException {
+	private void readExcelxFile(InputStream fileInputStream) throws Exception {
 		XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 		XSSFSheet sheet = workbook.getSheetAt(0);
 		Iterator<org.apache.poi.ss.usermodel.Row> rowIterator = sheet.iterator();
@@ -132,7 +132,6 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 			DecimalFormat dFormat = new DecimalFormat("###########");
 			getNumerosMoviles().add(dFormat.format(doubleCellValue));
 		}
-		accionDepuracion();
 	}
 
 	/**
@@ -203,7 +202,7 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 	@SuppressWarnings("unchecked")
 	public List<Pais> obtenerParmetrizacion() throws Exception 
 	{
-		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES WHERE STATUS = 1");
+		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES WHERE STATUS = 1 AND CODIGO = '" + getNumerosMoviles().get(0).substring(0, 3) + "'");
 	}
 
 	/**

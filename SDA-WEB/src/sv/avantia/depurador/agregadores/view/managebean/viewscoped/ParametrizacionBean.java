@@ -25,8 +25,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.cladonia.xml.webservice.wsdl.WSDLException;
-
 import sv.avantia.depurador.agregadores.entidades.Agregadores;
 import sv.avantia.depurador.agregadores.entidades.CatRespuestas;
 import sv.avantia.depurador.agregadores.entidades.CatResultados;
@@ -38,7 +36,6 @@ import sv.avantia.depurador.agregadores.entidades.ResultadosRespuesta;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 import sv.avantia.depurador.agregadores.utils.CollectionsUtils;
-import sv.avantia.depurador.agregadores.utils.ParametrizarServicio;
 
 @ManagedBean
 @ViewScoped
@@ -224,7 +221,8 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	public void limpiarPais() 
 	{
 		setPais(new Pais());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
+		setUbicacion("");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
 	}
 
 	public void limpiarAgregador() 
@@ -248,7 +246,7 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	public void limpiarResultadoRespuesta() 
 	{
 		setResultadosRespuesta(new ResultadosRespuesta());
-		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
+		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab6");
 	}
 	
 	public void eliminarPais() {
@@ -323,6 +321,7 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 			}
 			setPais(new Pais());
 			llenarTablaPaises();
+			lanzarMensajeInformacion("Información", "Verificar, el host del pais para ingresar por el Active directory");
 			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab1");
 			RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDDataTblPaises");
 		} catch (Exception e) {
@@ -356,6 +355,11 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 	public void guardarMetodo()
 	{
 		try {
+			if(getMetodo().getMetodo()==null){
+				lanzarMensajeAdvertencia("Endpoint", "Debe seleccionar el metodo que desea guardar");
+				return;
+			}
+			
 			if(getMetodo().getEndPoint()==null){
 				lanzarMensajeAdvertencia("Endpoint", "Debe ingresar el endpoint");
 				return;
@@ -489,36 +493,6 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		}
 		return event.getNewStep();
 	}
-
-	public void readWSDL() {
-		try {
-			getAgregador().setPais(getPais());
-			ParametrizarServicio readWSDL = new ParametrizarServicio();
-			setAgregador(readWSDL.getServicesInfo(getMetodo().getWsdl_Agregador(), getAgregador()));
-			
-			for (Metodos metodo : agregador.getMetodos()) {
-				System.out.println("Metodo Name: " 		+ metodo.toString());
-				metodo.setAgregador(getAgregador());
-				
-				if(metodo.getTargetURL().startsWith("http:")){
-					metodo.setSeguridad(0);
-				}
-				if(metodo.getTargetURL().startsWith("https:")){
-					metodo.setSeguridad(1);
-				}
-				getEjecucion().createData(metodo);
-				
-				for (Parametros param : metodo.getParametros()) {
-					System.out.println("parametro Name: " + param.getNombre());
-					param.setMetodo(metodo);
-					getEjecucion().createData(param);
-				}				
-			}			
-			lanzarMensajeInformacion("Exito", "Se obtubo la parametrizacion exitosamente");
-		} catch (WSDLException e) {
-			lanzarMensajeError("Error",	"No se pudo obtener la parametrización", e);
-		}
-	}
 	
 	public void cargarPais(Pais pais) {
 		setPais(pais);
@@ -563,15 +537,16 @@ public class ParametrizacionBean extends AccionesManageBean implements	Serializa
 		setResultadosRespuestas(new ArrayList<ResultadosRespuesta>());
 		for (int i = 0; i < getRespuestas().size(); i++) {
 			if(getRespuestas().get(i).getCatRespuesta().getId()==catRespuesta.getId()){
-				cargarRespuesta(getRespuestas().get(i));
+				cargarRespuesta(getRespuestas().get(i), catRespuesta.getNombre());
 			}
 		}
 	}
 	
-	private void cargarRespuesta(Respuesta respuesta) {
+	private void cargarRespuesta(Respuesta respuesta, String label) {
 		setRespuesta(respuesta);
 		setResultadosRespuesta(new ResultadosRespuesta());
 		llenarTablaResultadoRespuestas();
+		setUbicacion(getPais().getNombre() + "	>>	" + getAgregador().getNombre_agregador() + " >>	"  + metodoLabel(getMetodo().getMetodo())  + " >>	"  + label);
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal:IDPnlGridTab5");
 	}
 	

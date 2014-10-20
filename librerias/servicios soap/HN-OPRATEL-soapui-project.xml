@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="HN_OPRATEL" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="serviciosBinding" type="wsdl" bindingName="{urn:servicioswsdl}serviciosBinding" soapVersion="1_1" anonymous="optional" definition="http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php?wsdl"><con:part><con:url>http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="urn:servicioswsdl" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:servicioswsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="urn:servicioswsdl">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+    </xsd:schema>
+  </types>
+  <message name="consultaServiciosRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="consultaServiciosResponse">
+    <part name="return" type="SOAP-ENC:Array"/>
+  </message>
+  <message name="bajaServiciosRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="mcorta" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="bajaServiciosResponse">
+    <part name="return" type="SOAP-ENC:Array"/>
+  </message>
+  <message name="listaNegraRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="accion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="listaNegraResponse">
+    <part name="return" type="SOAP-ENC:Array"/>
+  </message>
+  <message name="altaServicioRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="marcacion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="altaServicioResponse">
+    <part name="return" type="SOAP-ENC:Array"/>
+  </message>
+  <portType name="serviciosPortType">
+    <operation name="consultaServicios">
+      <documentation>Devuelve informacion de cada servicio que se presta al consumidor</documentation>
+      <input message="tns:consultaServiciosRequest"/>
+      <output message="tns:consultaServiciosResponse"/>
+    </operation>
+    <operation name="bajaServicios">
+      <documentation>Elimina el servicio del consumidor</documentation>
+      <input message="tns:bajaServiciosRequest"/>
+      <output message="tns:bajaServiciosResponse"/>
+    </operation>
+    <operation name="listaNegra">
+      <documentation>Elimina o agrega un movil de la lista negra</documentation>
+      <input message="tns:listaNegraRequest"/>
+      <output message="tns:listaNegraResponse"/>
+    </operation>
+    <operation name="altaServicio">
+      <documentation>Agrega al usuario a la suscripcion solicitada</documentation>
+      <input message="tns:altaServicioRequest"/>
+      <output message="tns:altaServicioResponse"/>
+    </operation>
+  </portType>
+  <binding name="serviciosBinding" type="tns:serviciosPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consultaServicios">
+      <soap:operation soapAction="urn:consultaservicioswsdl#consultaservicios" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:consultaservicioswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:consultaservicioswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="bajaServicios">
+      <soap:operation soapAction="urn:BajaServicioswsdl#bajaServicios" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:BajaServicioswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:BajaServicioswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="listaNegra">
+      <soap:operation soapAction="urn:ListaNegrawsdl#ListaNegra" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:ListaNegrawsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:ListaNegrawsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="altaServicio">
+      <soap:operation soapAction="urn:AltaServiciowsdl#AltaServicio" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:AltaServiciowsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:AltaServiciowsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="servicios">
+    <port name="serviciosPort" binding="tns:serviciosBinding">
+      <soap:address location="http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:AltaServiciowsdl#AltaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:AltaServiciowsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <pass xsi:type="xsd:string">?</pass>
+      </urn:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:AltaServiciowsdl#AltaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="urn:BajaServicioswsdl#bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:BajaServicioswsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:bajaServicios>
+         <movil>50477494676</movil>
+         <servicio>test</servicio>
+         <mcorta>1234</mcorta>
+         <pass>cl4r0H0ndUr4s</pass>
+      </urn:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:BajaServicioswsdl#bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:consultaservicioswsdl#consultaservicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:consultaservicioswsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:consultaServicios>
+         <movil>50477494676</movil>
+         <pass>cl4r0H0ndUr4s</pass>
+      </urn:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:consultaservicioswsdl#consultaservicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:ListaNegrawsdl#ListaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.opratel.com/testing/ws_claro_honduras/ws_claro.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:ListaNegrawsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:listaNegra>
+         <movil>50477494676</movil>
+         <accion>2</accion>
+         <pass>cl4r0H0ndUr4s</pass>
+      </urn:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:ListaNegrawsdl#ListaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

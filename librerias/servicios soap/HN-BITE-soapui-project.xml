@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="HN_BITE" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ClaroWSPortBinding" type="wsdl" bindingName="{http://smpp.lucidwise.com/}ClaroWSPortBinding" soapVersion="1_1" anonymous="optional" definition="http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS?wsdl"><con:part><con:url>http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS?wsdl</con:url><con:content><![CDATA[<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2.0-1 (tags/2.2.0u1-7139; 2012-06-02T10:55:19+0000) JAXWS-RI/2.2.6-2 JAXWS/2.2 svn-revision#unknown.-->
+<definitions targetNamespace="http://smpp.lucidwise.com/" name="claro-ws" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://smpp.lucidwise.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xs:schema version="1.0" targetNamespace="http://smpp.lucidwise.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:element name="altaServicio" type="tns:inputAltaServicio"/>
+        <xs:element name="altaServicioResponse" type="tns:outputAprovServicios"/>
+        <xs:element name="bajaServicios" type="tns:inputBajaServicios"/>
+        <xs:element name="bajaServiciosResponse" type="tns:outputAprovServicios"/>
+        <xs:element name="consultaServicios" type="tns:inputConsultaServicios"/>
+        <xs:element name="consultaServiciosResponse" type="tns:outputConsultaServicios"/>
+        <xs:element name="listaNegra" type="tns:inputListaNegra"/>
+        <xs:element name="listaNegraResponse" type="tns:outputListaNegra"/>
+        <xs:complexType name="inputAltaServicio">
+          <xs:sequence>
+            <xs:element name="movil" type="xs:string"/>
+            <xs:element name="servicio" type="xs:string"/>
+            <xs:element name="marcacion" type="xs:string"/>
+            <xs:element name="pass" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="inputBajaServicios">
+          <xs:sequence>
+            <xs:element name="movil" type="xs:string"/>
+            <xs:element name="servicio" type="xs:string"/>
+            <xs:element name="mcorta" type="xs:string"/>
+            <xs:element name="pass" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="outputAprovServicios">
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="inputListaNegra">
+          <xs:sequence>
+            <xs:element name="movil" type="xs:string"/>
+            <xs:element name="accion" type="xs:int"/>
+            <xs:element name="pass" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="outputListaNegra">
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="inputConsultaServicios">
+          <xs:sequence>
+            <xs:element name="movil" type="xs:string"/>
+            <xs:element name="pass" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="outputConsultaServicios">
+          <xs:sequence>
+            <xs:element name="return" type="tns:suscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="suscripcion" final="#all">
+          <xs:sequence>
+            <xs:element name="item" type="xs:string" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:schema>
+    </xsd:schema>
+  </types>
+  <message name="altaServicio">
+    <part name="parameters" element="tns:altaServicio"/>
+  </message>
+  <message name="altaServicioResponse">
+    <part name="parameters" element="tns:altaServicioResponse"/>
+  </message>
+  <message name="bajaServicios">
+    <part name="parameters" element="tns:bajaServicios"/>
+  </message>
+  <message name="bajaServiciosResponse">
+    <part name="parameters" element="tns:bajaServiciosResponse"/>
+  </message>
+  <message name="consultaServicios">
+    <part name="parameters" element="tns:consultaServicios"/>
+  </message>
+  <message name="consultaServiciosResponse">
+    <part name="parameters" element="tns:consultaServiciosResponse"/>
+  </message>
+  <message name="listaNegra">
+    <part name="parameters" element="tns:listaNegra"/>
+  </message>
+  <message name="listaNegraResponse">
+    <part name="parameters" element="tns:listaNegraResponse"/>
+  </message>
+  <portType name="ClaroWS">
+    <operation name="altaServicio">
+      <input wsam:Action="http://smpp.lucidwise.com/ClaroWS/altaServicioRequest" message="tns:altaServicio"/>
+      <output wsam:Action="http://smpp.lucidwise.com/ClaroWS/altaServicioResponse" message="tns:altaServicioResponse"/>
+    </operation>
+    <operation name="bajaServicios">
+      <input wsam:Action="http://smpp.lucidwise.com/ClaroWS/bajaServiciosRequest" message="tns:bajaServicios"/>
+      <output wsam:Action="http://smpp.lucidwise.com/ClaroWS/bajaServiciosResponse" message="tns:bajaServiciosResponse"/>
+    </operation>
+    <operation name="consultaServicios">
+      <input wsam:Action="http://smpp.lucidwise.com/ClaroWS/consultaServiciosRequest" message="tns:consultaServicios"/>
+      <output wsam:Action="http://smpp.lucidwise.com/ClaroWS/consultaServiciosResponse" message="tns:consultaServiciosResponse"/>
+    </operation>
+    <operation name="listaNegra">
+      <input wsam:Action="http://smpp.lucidwise.com/ClaroWS/listaNegraRequest" message="tns:listaNegra"/>
+      <output wsam:Action="http://smpp.lucidwise.com/ClaroWS/listaNegraResponse" message="tns:listaNegraResponse"/>
+    </operation>
+  </portType>
+  <binding name="ClaroWSPortBinding" type="tns:ClaroWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="altaServicio">
+      <soap:operation soapAction="http://smpp.lucidwise.com/altaServicio"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="bajaServicios">
+      <soap:operation soapAction="http://smpp.lucidwise.com/bajaServicios"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="consultaServicios">
+      <soap:operation soapAction="http://smpp.lucidwise.com/consultaServicios"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="listaNegra">
+      <soap:operation soapAction="http://smpp.lucidwise.com/listaNegra"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="claro-ws">
+    <port name="ClaroWSPort" binding="tns:ClaroWSPortBinding">
+      <soap:address location="http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://smpp.lucidwise.com/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:smpp="http://smpp.lucidwise.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <smpp:altaServicio>
+         <movil>?</movil>
+         <servicio>?</servicio>
+         <marcacion>?</marcacion>
+         <pass>?</pass>
+      </smpp:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://smpp.lucidwise.com/altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="http://smpp.lucidwise.com/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:smpp="http://smpp.lucidwise.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <smpp:bajaServicios>
+         <movil>50477494676</movil>
+         <servicio>test</servicio>
+         <mcorta>1234</mcorta>
+         <pass>1234</pass>
+      </smpp:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://smpp.lucidwise.com/bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://smpp.lucidwise.com/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:smpp="http://smpp.lucidwise.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <smpp:consultaServicios>
+         <movil>50477494676</movil>
+         <pass>1234</pass>
+      </smpp:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://smpp.lucidwise.com/consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://smpp.lucidwise.com/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:smpp="http://smpp.lucidwise.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <smpp:listaNegra>
+         <movil>50477494676</movil>
+         <accion>2</accion>
+         <pass>1234</pass>
+      </smpp:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://smpp.lucidwise.com/listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

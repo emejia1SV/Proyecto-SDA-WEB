@@ -429,6 +429,41 @@
 		
 	</SMS_AMERICAS>
 	
+	<SMT>
+		<usuario>PA00000737</usuario>
+		<password>Admin111</password>
+		<endpoint>https://hub.americamovil.com/sag/services/blackgrayService</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>loc:deleteGrayList</soapActionUri>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/blackgray/v1_0/local"><soapenv:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>_*user_*</wsse:Username><wsse:Password Type="...#PasswordDigest">_*passSMT_*</wsse:Password><wsse:Nonce>_*nonce_*</wsse:Nonce><wsse:Created>_*dateSMT_*</wsse:Created></wsse:UsernameToken></wsse:Security><tns:RequestSOAPHeader xmlns:tns="http://www.huawei.com.cn/schema/common/v2_1"><tns:AppId>35000001000001</tns:AppId><tns:TransId>2014011716010012345</tns:TransId><tns:OA>_*movil_*</tns:OA><tns:FA>_*movil_*</tns:FA></tns:RequestSOAPHeader></soapenv:Header><soapenv:Body><loc:deleteGrayList><loc:version>_*version_*</loc:version><loc:grayList><grayee><msisdn>_*movil_*</msisdn>    </grayee></loc:grayList></loc:deleteGrayList></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri></soapActionUri>
+			
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri></soapActionUri>
+			
+		</bajaServicios>
+		user
+		passSMT
+		nonce
+		dateSMT
+		movil
+		
+		
+		ns1:resultCode
+		
+		0	Exito
+		1	the msisdn has already existed
+		2	the msisdn format is wrong
+		3	the msisdn is not existed (for delete black list)
+		4	the ASPID is not existed
+		5	the serviceID is not existed
+		9	system SMT error
+	</SMT>
+	
 	<TELENICA>
 		<usuario></usuario>
 		<password>claro</password>

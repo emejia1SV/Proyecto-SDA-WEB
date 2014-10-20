@@ -8,14 +8,10 @@
 
 	<f:metadata>
 		<f:event
-			listener="#{usuarioSessionMB.validarSesion()}"
-			type="preRenderView" />
-		<f:event
-			listener="#{usuarioSessionMB.mostrarMensajeValidacion()}"
-			type="postAddToView" />
-		
+			type="preRenderView"
+			listener="#{usuarioSessionMB.validarSesion}" />
 	</f:metadata>
-
+	
 	<ui:define name="content">
 		<p:panel	id="IDPanel"
 					header="Matenimiento"

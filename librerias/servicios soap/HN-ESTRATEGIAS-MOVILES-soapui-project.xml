@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="HN_ESTRATEGIAS MOVILES" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ClaroWebServiceBinding" type="wsdl" bindingName="{claro-webservices}ClaroWebServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php?wsdl"><con:part><con:url>http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="claro-webservices" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="claro-webservices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="claro-webservices">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+      <xsd:complexType name="ArrayOfString">
+        <xsd:element name="st_item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfArray">
+        <xsd:element name="arr_item" type="tns:ArrayOfString" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+  <message name="listaNegraRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="accion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="listaNegraResponse">
+    <part name="return" type="tns:ArrayOfString"/>
+  </message>
+  <message name="consultaServiciosRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="consultaServiciosResponse">
+    <part name="return" type="tns:ArrayOfArray"/>
+  </message>
+  <message name="bajaServiciosRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="mcorta" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="bajaServiciosResponse">
+    <part name="return" type="tns:ArrayOfString"/>
+  </message>
+  <message name="altaServicioRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="marcacion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="altaServicioResponse">
+    <part name="return" type="tns:ArrayOfString"/>
+  </message>
+  <portType name="ClaroWebServicePortType">
+    <operation name="listaNegra">
+      <input message="tns:listaNegraRequest"/>
+      <output message="tns:listaNegraResponse"/>
+    </operation>
+    <operation name="consultaServicios">
+      <input message="tns:consultaServiciosRequest"/>
+      <output message="tns:consultaServiciosResponse"/>
+    </operation>
+    <operation name="bajaServicios">
+      <input message="tns:bajaServiciosRequest"/>
+      <output message="tns:bajaServiciosResponse"/>
+    </operation>
+    <operation name="altaServicio">
+      <input message="tns:altaServicioRequest"/>
+      <output message="tns:altaServicioResponse"/>
+    </operation>
+  </portType>
+  <binding name="ClaroWebServiceBinding" type="tns:ClaroWebServicePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="listaNegra">
+      <soap:operation soapAction="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/listaNegra" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="claro-webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="claro-webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="consultaServicios">
+      <soap:operation soapAction="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/consultaServicios" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="claro-webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="claro-webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="bajaServicios">
+      <soap:operation soapAction="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/bajaServicios" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="claro-webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="claro-webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="altaServicio">
+      <soap:operation soapAction="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/altaServicio" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="claro-webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="claro-webservices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ClaroWebService">
+    <port name="ClaroWebServicePort" binding="tns:ClaroWebServiceBinding">
+      <soap:address location="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <pass xsi:type="xsd:string">?</pass>
+      </clar:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <mcorta xsi:type="xsd:string">?</mcorta>
+         <pass xsi:type="xsd:string">?</pass>
+      </clar:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/bajaServicios"/></con:call></con:operation><con:operation isOneWay="false" action="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <pass xsi:type="xsd:string">?</pass>
+      </clar:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/consultaServicios"/></con:call></con:operation><con:operation isOneWay="false" action="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">50477494676</movil>
+         <accion xsi:type="xsd:string">2</accion>
+         <pass xsi:type="xsd:string">1234</pass>
+      </clar:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php/listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

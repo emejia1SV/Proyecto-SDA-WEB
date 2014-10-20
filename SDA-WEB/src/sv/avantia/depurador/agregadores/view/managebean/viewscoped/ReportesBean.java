@@ -73,6 +73,17 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
 	}
 	
+	public String metodoLabel(Integer id){
+		if(id==1)
+			return "Lista Negra";
+		else if (id==2)
+			return "Consulta de Servicios";
+		else if (id==3)
+			return "Baja de Servicios";
+		else
+			return "";
+	}
+	
 	/**
 	 * @return the filterTripDateFrom
 	 */
@@ -118,8 +129,8 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 	
 	public void onRowSelect(SelectEvent event){
 		setLogDepuracion((LogDepuracion)event.getObject());
-		// TODO: debo implementar la manera en que el dialogo no me llame una segunda instancia del viewScope
-		//RequestContext.getCurrentInstance().execute("WVDialogReporte.show();");
+		RequestContext.getCurrentInstance().execute("WVDialogReporte.show()");
+		RequestContext.getCurrentInstance().update("IDFrmDialogReporte");
 	}
 
 	/**

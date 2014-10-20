@@ -6,6 +6,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="./../commons/template.xhtml">
 
+	<f:metadata>
+		<f:event
+			type="preRenderView"
+			listener="#{usuarioSessionMB.validarSesion}" />
+	</f:metadata>
+	
 	<ui:define name="content">
 		<p:panel	id="IDPanelGeneral"
 					header=""
@@ -33,7 +39,7 @@
 					</p:row>
 					<p:row>
 						<p:column>
-							<h:outputText value="Desde:" />
+							<h:outputText value="Hasta:" />
 						</p:column>
 						<p:column style="#{msj['p.column_width_mediano_inputText']}">
 					    	<p:calendar	id="filterTripDateTo" 
@@ -56,12 +62,7 @@
 					    					 	actionListener="#{reportesBean.limpiarFechas}"/>
 						</p:column>
 						<p:column>
-							<p:commandButton 	value="Export as PDF" 
-												ajax="false" >
-								<p:dataExporter type="pdf" 
-												target="IDDataTblReporte" 
-												fileName="Reporte"/>
-							</p:commandButton>			
+										
 						</p:column>
 						<p:column>
 					    	<p:commandButton 	value="Export as Excel" 
@@ -109,6 +110,13 @@
 						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.numero}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
+								headerText="#{msj['reporte.metodo']}"
+								filterStyle="#{msj['p.column_filter']}"
+								filterBy="#{reportesBean.metodoLabel(VDataTblReporte.metodo.metodo)}"
+								filterMatchMode="contains">
+						<h:outputText style="font-size:10px;" value="#{reportesBean.metodoLabel(VDataTblReporte.metodo.metodo)}" />
+					</p:column>
+					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.empleado']}" 
 								filterStyle="#{msj['p.column_filter']}"
 								filterBy="#{VDataTblReporte.usuarioSistema.usuario}"
@@ -118,7 +126,7 @@
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.fecha']}" >
 						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.fechaTransaccion}" >
-							 <f:convertDateTime pattern="dd/MM/yyyy"/>
+							 <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
 						</h:outputText>
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
@@ -144,7 +152,7 @@
 	<p:dialog
 		id="IDDialogreporte" header="Descripción de Reporte"
 		widgetVar="WVDialogReporte" resizable="false"
-		showEffect="fade" modal="true" width="400" closable="true">
+		showEffect="fade" modal="true" width="600" closable="true">
 		<p:panel	id="IDPanelReporte"
 					header="#{msj['depuracionUnitaria.header']}"
 					style="#{msj['p.panelMediano']} margin-top: 10pt;">

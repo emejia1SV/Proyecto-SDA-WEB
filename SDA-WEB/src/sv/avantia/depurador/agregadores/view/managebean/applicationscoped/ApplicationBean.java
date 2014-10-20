@@ -15,10 +15,10 @@ import sv.avantia.depurador.agregadores.utileria.Log4jInit;
 @ApplicationScoped
 public class ApplicationBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	
 	/* Get actual class name to be printed on */
-	public static Logger logger = Logger.getLogger("avantiaLogger");
-	private static final long serialVersionUID = 1L;
+	private static Logger logger = Logger.getLogger("avantiaLogger");
 	
 	/**
 	 * Instanacia de {@link BdEjecucion} para poder generar ejecuciones en la
@@ -29,21 +29,18 @@ public class ApplicationBean implements Serializable {
 	private BdEjecucion ejecucion ;
 	
 	public ApplicationBean(){
-		System.out.println("constructor");
 	}
 	
 	static{
-		System.out.println("iniciando aplicacion");
 		Log4jInit.init();
+		logger.info("iniciando aplicacion SDA");
 	}
 
 	@PostConstruct
 	public void init(){
-		System.out.println("inicia el application scope");
-		
 		setEjecucion(new BdEjecucion());
-		logger.info("Normal Usuario: " + getEjecucion().usuarioMaestro().getUsuario());
-		logger.debug("Debug Usuario: " + getEjecucion().usuarioMaestro().getUsuario());
+		getEjecucion().usuarioMaestro();//test conect DB
+		logger.info("SDA iniciado... Listo para funcionar");
 	}
 
 	/**

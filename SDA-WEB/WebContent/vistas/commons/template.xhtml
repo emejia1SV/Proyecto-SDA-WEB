@@ -37,81 +37,12 @@
 	    }
 		}
 
-		function startTimer() {
-	   	running = true;
-		now = new Date();
-		now = now.getTime();
-		// change last multiple for the number of minutes
-		endTime = now + (1000 * 60 * 5);
-		showCountDown();
-		}
-		function showCountDown() {
-		var now = new Date();
-		now = now.getTime();
-		if (endTime - now <= 0) {
-		    stopTimer();
-		 //cuando el tiempo haya finalizado redirigimos a la pagina de sesion expirada
-		   window.location='#{facesContext.externalContext.requestContextPath}/vistas/generales/SessionExpired.xhtml';
-		} else {
-		var delta = new Date(endTime - now);
-		var theMin = delta.getMinutes();
-		var theSec = delta.getSeconds();
-		var theTime = theMin;
-		theTime += ((theSec < 10) ? ":0" : ":") + theSec;
-		document.getElementById('formSession:idHoraInicio').value = theTime;
-		if (running) {
-		timerID = setTimeout("showCountDown()",1000);
-		}
-		}
-		}
-
-		function stopTimer() {
-		clearTimeout(timerID);
-		running = false;
-		document.getElementById('formSession:idHoraInicio').value = "0:00";
-		}
-
 	 //]]>
 		</script>
 	</ui:define>
 	<ui:define name="menu">
 		<h:form id="formMenu">
 			<p:menubar model="#{usuarioSessionMB.menu.model}" style="z-index:5;" />
-		</h:form>
-
-		<h:form id="formSession">
-			<p:dialog 	header="Tiempo limite de session" 
-						resizable="false"
-						onShow="startTimer()" 
-						widgetVar="idleDialogSessionExpired"
-						modal="true" 
-						width="350" 
-						height="90" 
-						closable="false">
-				
-				<h:outputText value="Su session va expirar en " />
-				
-				<h:inputText 	id="idHoraInicio" 
-								value="" 
-								readonly="true"
-								disable="true" 
-								style="border:0px; width:22px" 
-								onfocus="this.blur()" />
-				<h:outputText 	value=". De click en aceptar para continuar " />
-				<br />
-				<br />
-
-				<center>
-					<p:commandButton 	value="Aceptar" 
-										process="@this"
-										onclick="stopTimer(); idleDialogSessionExpired.hide();" />
-				</center>
-			</p:dialog>
-
-			<p:idleMonitor 	timeout="#{msj['session.timeout.mili.monitor']}"
-							onidle="idleDialogSessionExpired.show()">
-			</p:idleMonitor>
-
 		</h:form>
 	</ui:define>
 

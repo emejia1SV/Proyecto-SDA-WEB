@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="HN_NEOMOBILE_ListaNegra" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WsListaNegraSoap" type="wsdl" bindingName="{http://tempuri.org/}WsListaNegraSoap" soapVersion="1_1" anonymous="optional" definition="http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:tem="http://tempuri.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:listaNegra>
+         <movil>50477494676</movil>
+         <accion>2</accion>
+         <pass>Neomobile</pass>
+      </tem:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WsListaNegraSoap/listaNegraRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WsListaNegraSoap12" type="wsdl" bindingName="{http://tempuri.org/}WsListaNegraSoap12" soapVersion="1_2" anonymous="optional" definition="http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx?WSDL"><con:part><con:url>http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s0="http://tempuri.org" xmlns:s1="http://tempuri.org/encodedTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org">
+      <s:import namespace="http://tempuri.org/encodedTypes"/>
+      <s:complexType name="listaNegra">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="movil" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="accion" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="pass" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="listaNegraResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="listaNegraResult" type="s1:ArrayOfString"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/encodedTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+      <s:complexType name="ArrayOfString">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="s:string[]" ref="soapenc:arrayType"/>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="listaNegraSoapIn">
+    <wsdl:part name="parameters" type="s0:listaNegra"/>
+  </wsdl:message>
+  <wsdl:message name="listaNegraSoapOut">
+    <wsdl:part name="parameters" type="s0:listaNegraResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="WsListaNegraSoap">
+    <wsdl:operation name="listaNegra">
+      <wsdl:input message="tns:listaNegraSoapIn"/>
+      <wsdl:output message="tns:listaNegraSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsListaNegraSoap" type="tns:WsListaNegraSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="listaNegra">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WsListaNegraSoap12" type="tns:WsListaNegraSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="listaNegra">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://tempuri.org" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsListaNegra">
+    <wsdl:port name="WsListaNegraSoap" binding="tns:WsListaNegraSoap">
+      <soap:address location="http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WsListaNegraSoap12" binding="tns:WsListaNegraSoap12">
+      <soap12:address location="http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+   <soap:Header/>
+   <soap:Body>
+      <parameters>
+         <!--Optional:-->
+         <movil>?</movil>
+         <!--Optional:-->
+         <accion>?</accion>
+         <!--Optional:-->
+         <pass>?</pass>
+      </parameters>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/WsListaNegraSoap/listaNegraRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

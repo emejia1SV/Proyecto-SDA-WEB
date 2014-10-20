@@ -84,14 +84,17 @@ public class AccionesManageBean {
 	private static void showFacesMsg(Exception e, String msg, String cabecera, String componetID, Severity severityError) {
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 		FacesContext context = FacesContext.getCurrentInstance();
-		if (e != null) {
-			loadConsoleError(e, getCauseMsgs(e.getCause()));
-		}
+		
+		logger.debug("Mensaje a pantalla " + msg);
 		
 		context.addMessage(null, new FacesMessage(severityError, cabecera, msg));
 		
 		if (requestContext != null) {
 			requestContext.update(componetID);
+		}
+		
+		if (e != null) {
+			loadConsoleError(e, getCauseMsgs(e.getCause()));
 		}
 	}
 

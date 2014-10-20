@@ -124,7 +124,7 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 	@SuppressWarnings("unchecked")
 	public List<Pais> obtenerParmetrizacion() throws Exception 
 	{
-		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES WHERE STATUS = 1");
+		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES WHERE STATUS = 1 AND CODIGO = '" + getNumeroMovil().substring(0, 3) + "'" );
 	}
 	
 	/**

@@ -1,0 +1,485 @@
+<HONDURAS>
+	
+	<BITE>
+		<usuario>1234</usuario>
+		<password>1234</password>
+		<endpoint>
+		http://vpsapp01.bitepublicidad.com:8080/claro-ws/ClaroWS
+		</endpoint>
+		
+		<listaNegra>
+			
+			<soapActionUri></soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</bajaServicios>
+		
+	</BITE>
+	
+	<BIZNET_CELUMANIX>
+		<usuario></usuario>
+		<password>qwio2012;</password>
+		<endpoint>
+		http://146.82.89.83/WSSuscripcionesClaroRegional/WebService.asmx
+		</endpoint>
+		
+		<listaNegra>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></tem:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>tem:listaNegra</soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></tem:consultaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>
+				tem:consultaServicios
+			</soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></tem:bajaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>tem:bajaServicios</soapActionUri>
+		</bajaServicios>
+		
+	</BIZNET_CELUMANIX>
+	
+	<!--No parametrizable-->
+	<CIBERSONS>
+		<usuario>claro</usuario>
+		<password>claro</password>
+		<endpoint>
+		http://10.6.32.210:8082/ClaroNCAPI/services/service
+		</endpoint>
+		
+		<listaNegra>
+			
+			<soapActionUri></soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</bajaServicios>
+		
+	</CIBERSONS>
+	
+	<CONTENTAMOBILE>
+		<usuario>7182818284</usuario>
+		<password>7182818284</password>
+		<endpoint>
+		http://callcenter4.contentamobile.com/server.php
+		</endpoint>
+		
+		<listaNegra>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:ListaNegrawsdl"><soapenv:Header/><soapenv:Body><urn:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><operacion xsi:type="xsd:string">_*accion_*</operacion><pass xsi:type="xsd:string">_*pass_*</pass></urn:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>urn:listaNegra</soapActionUri>	
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>urn:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:consultaservicioswsdl"><soapenv:Header/><soapenv:Body><urn:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></urn:consultaServicios></soapenv:Body></soapenv:Envelope>
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>urn:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:BajaServicioswsdl"><soapenv:Header/><soapenv:Body><urn:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></urn:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</CONTENTAMOBILE>
+	
+	<ESTRATEGIAS_MOVILES> <!-- problema con que no se puede acceder ni de el salvador ni de guate ni de nicaragua-->
+		<usuario></usuario>
+		<password>1234</password>
+		<endpoint>
+		http://corp.esmoviles.com/public/Subscriptions/webservice/claroWebService/claroWebService.php
+		</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>clar:listaNegra</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices"><soapenv:Header/><soapenv:Body><clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></clar:listaNegra></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>clar:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices"><soapenv:Header/><soapenv:Body><clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></clar:consultaServicios></soapenv:Body></soapenv:Envelope>
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>clar:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="claro-webservices"><soapenv:Header/><soapenv:Body><clar:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></clar:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</ESTRATEGIAS_MOVILES>
+	
+	<GRUPO_M>
+		<usuario></usuario>
+		<password>clrPsshxq678</password>
+		<endpoint>
+		http://ws.intertronmobile.com/Unlimited/WS.Claro.SuscripcionesSMS/service.asmx
+		</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>tem:listaNegra</soapActionUri>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:listaNegra><tem:movil>_*movil_*</tem:movil><tem:accion>_*accion_*</tem:accion><tem:pass>_*pass_*</tem:pass></tem:listaNegra></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>tem:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:consultaServicios><tem:movil>_*movil_*</tem:movil><tem:pass>_*pass_*</tem:pass></tem:consultaServicios></soapenv:Body></soapenv:Envelope>
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>tem:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:bajaServicios><tem:movil>_*movil_*</tem:movil><tem:servicio>_*servicio_*</tem:servicio><tem:mcorta>_*mcorta_*</tem:mcorta><tem:pass>_*pass_*</tem:pass></tem:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</GRUPO_M>
+	
+	<INTERACTIVE_MEDIA>
+		<usuario>1234</usuario>
+		<password>1234</password>
+		<endpoint>
+		http://208.109.106.202/clarows/Service.asmx
+		</endpoint>
+		
+		<listaNegra>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:listaNegra><tem:movil>_*movil_*</tem:movil><tem:accion>_*accion_*</tem:accion><tem:pass>_*pass_*</tem:pass></tem:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>tem:listaNegra</soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:consultaServicios><tem:movil>_*movil_*</tem:movil><tem:pass>_*pass_*</tem:pass></tem:consultaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>tem:consultaServicios</soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:bajaServicios><tem:movil>_*movil_*</tem:movil><tem:servicio>_*servicio_*</tem:servicio><tem:mcorta>_*mcorta_*</tem:mcorta><tem:pass>_*pass_*</tem:pass></tem:bajaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>tem:bajaServicios</soapActionUri>
+		</bajaServicios>
+		
+	</INTERACTIVE_MEDIA>
+	
+	<!--No parametrizable-->
+	<IT_SOLUTIONS>
+		<usuario></usuario>
+		<password>c1@ro_StK!</password>
+		<endpoint>
+		
+		</endpoint>
+		
+		<listaNegra>
+			
+			<soapActionUri></soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</bajaServicios>
+		
+	</IT_SOLUTIONS>
+
+	<!--No parametrizable-->
+	<MAS_SOLUTIONS>
+		<usuario></usuario>
+		<password></password>
+		<endpoint>
+		
+		</endpoint>
+		
+		<listaNegra>
+			
+			<soapActionUri></soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</bajaServicios>
+		
+	</MAS_SOLUTIONS>
+	
+	<MOBILE>
+		<usuario></usuario>
+		<password>h0d4rp</password>
+		<endpoint>
+		http://mobilemedios.com/wsmedios/clarohn/wsclahn.asmx
+		</endpoint>
+		
+		<listaNegra>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/"><soapenv:Header/><soapenv:Body><mob:listaNegra><mob:movil>_*movil_*</mob:movil><mob:accion>_*accion_*</mob:accion><mob:pass>_*pass_*</mob:pass></mob:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>mob:listaNegra</soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/"><soapenv:Header/><soapenv:Body><mob:consultaServicios><mob:movil>_*movil_*</mob:movil><mob:pass>_*pass_*</mob:pass></mob:consultaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>mob:consultaServicios</soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mob="http://mobilemedios.com/"><soapenv:Header/><soapenv:Body><mob:bajaServicios><mob:movil>_*movil_*</mob:movil><mob:servicio>_*servicio_*</mob:servicio><mob:mcorta>_*mcorta_*</mob:mcorta><mob:pass>_*pass_*</mob:pass></mob:bajaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>mob:bajaServicios</soapActionUri>
+		</bajaServicios>
+		
+	</MOBILE>
+	
+	<NEOMOBILE>
+		<usuario></usuario>
+		<password>Neomobile</password>
+		<endpoint>
+		http://wsce.neomobile.net/ws_claro_services/WsBajaServicios.asmx
+		http://wsce.neomobile.net/ws_claro_services/WsConsultaServicios.asmx
+		http://wsce.neomobile.net/ws_claro_services/WsListaNegra.asmx
+		</endpoint>
+		
+		<listaNegra>
+			<soapenv:Envelope xmlns:tem="http://tempuri.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><tem:listaNegra><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></tem:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>tem:listaNegra</soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			<soapenv:Envelope xmlns:tem="http://tempuri.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><tem:consultaServicios><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></tem:consultaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>tem:consultaServicios</soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			<soapenv:Envelope xmlns:tem="http://tempuri.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><tem:bajaServicios><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></tem:bajaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>tem:bajaServicios</soapActionUri>
+		</bajaServicios>
+		
+	</NEOMOBILE>
+	
+	<OPRATEL>
+		<usuario></usuario>
+		<password>cl4r0N1c4r4gu4</password>
+		<endpoint>
+		http://www.opratel.com/testing/ws_claro_nicaragua/ws_claro.php
+		</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>urn:listaNegra</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:ListaNegrawsdl"><soapenv:Header/><soapenv:Body><urn:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></urn:listaNegra></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>urn:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:consultaservicioswsdl"><soapenv:Header/><soapenv:Body><urn:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></urn:consultaServicios></soapenv:Body></soapenv:Envelope>
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>urn:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:BajaServicioswsdl"><soapenv:Header/><soapenv:Body><urn:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></urn:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</OPRATEL>
+	
+	<!--No parametrizable-->
+	<P_MOBILE>
+		<usuario></usuario>
+		<password>WScaIntegracion</password>
+		<endpoint>
+		
+		</endpoint>
+		
+		<listaNegra>
+			
+			<soapActionUri></soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</bajaServicios>
+		
+	</P_MOBILE>
+	
+	<SKYNETWORK>
+		<usuario></usuario>
+		<password>WScaIntegracion</password>
+		<endpoint>
+		
+		</endpoint>
+		
+		<listaNegra>
+			
+			<soapActionUri></soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			
+			<soapActionUri></soapActionUri>
+		</bajaServicios>
+		
+	</SKYNETWORK>
+
+	<SMT>
+		<usuario>PA00000737</usuario>
+		<password>Admin111</password>
+		<endpoint>https://hub.americamovil.com/sag/services/blackgrayService</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>loc:deleteGrayList</soapActionUri>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:loc="http://www.csapi.org/schema/parlayx/blackgray/v1_0/local"><soapenv:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>_*user_*</wsse:Username><wsse:Password Type="...#PasswordDigest">_*passSMT_*</wsse:Password><wsse:Nonce>_*nonce_*</wsse:Nonce><wsse:Created>_*dateSMT_*</wsse:Created></wsse:UsernameToken></wsse:Security><tns:RequestSOAPHeader xmlns:tns="http://www.huawei.com.cn/schema/common/v2_1"><tns:AppId>35000001000001</tns:AppId><tns:TransId>2014011716010012345</tns:TransId><tns:OA>_*movil_*</tns:OA><tns:FA>_*movil_*</tns:FA></tns:RequestSOAPHeader></soapenv:Header><soapenv:Body><loc:deleteGrayList><loc:version>_*version_*</loc:version><loc:grayList><grayee><msisdn>_*movil_*</msisdn>    </grayee></loc:grayList></loc:deleteGrayList></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri></soapActionUri>
+			
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri></soapActionUri>
+			
+		</bajaServicios>
+		user
+		passSMT
+		nonce
+		dateSMT
+		movil
+		
+		
+		ns1:resultCode
+		
+		0	Exito
+		1	the msisdn has already existed
+		2	the msisdn format is wrong
+		3	the msisdn is not existed (for delete black list)
+		4	the ASPID is not existed
+		5	the serviceID is not existed
+		9	system SMT error
+	</SMT>
+	
+	<TELEVIDA>
+		<usuario></usuario>
+		<password>Pa55w0rd</password>
+		<endpoint>
+		http://190.111.8.113/appclaro/webService/appclaro.php
+		</endpoint>
+		
+		<listaNegra>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:appclaro"><soapenv:Header/><soapenv:Body><urn:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></urn:listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>urn:listaNegra</soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>urn:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:appclaro"><soapenv:Header/><soapenv:Body><urn:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></urn:consultaServicios></soapenv:Body></soapenv:Envelope>	
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>urn:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:appclaro"><soapenv:Header/><soapenv:Body><urn:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></urn:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</TELEVIDA>
+	
+	<TEMOGLO>
+		<usuario></usuario>
+		<password>Cl4r0N1</password>
+		<endpoint>
+		http://190.106.0.126/web/wsdl/claro.php
+		</endpoint>
+		
+		<listaNegra>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><listaNegra><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:int">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></listaNegra></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>listaNegra</soapActionUri>
+		</listaNegra>
+		<consultaServicios>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></consultaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>consultaServicios</soapActionUri>
+		</consultaServicios>
+		<bajaServicios>
+			<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><bajaServicios><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></bajaServicios></soapenv:Body></soapenv:Envelope>
+			<soapActionUri>bajaServicios</soapActionUri>
+		</bajaServicios>
+		
+	</TEMOGLO>
+	
+	<TIMWE>
+		<usuario></usuario>
+		<password>nicclaro1</password>
+		<endpoint>
+		http://neo2.and.timwe.com/util-andean-webservice-utility/services/ClaroWebServicePort
+		</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>clar:listaNegra</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://claro.ws.andean.util.timwe.com"><soapenv:Header/><soapenv:Body><clar:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:int">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></clar:listaNegra></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>clar:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://claro.ws.andean.util.timwe.com"><soapenv:Header/><soapenv:Body><clar:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></clar:consultaServicios></soapenv:Body></soapenv:Envelope>
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>clar:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clar="http://claro.ws.andean.util.timwe.com"><soapenv:Header/><soapenv:Body><clar:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></clar:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</TIMWE>
+	
+	<VAS_LATIN>
+		<usuario></usuario>
+		<password>nc#Cb411</password>
+		<endpoint>
+		http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php
+		</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>wsb:listaNegra</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/"><soapenv:Header/><soapenv:Body><wsb:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></wsb:listaNegra></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>wsb:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/"><soapenv:Header/><soapenv:Body><wsb:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></wsb:consultaServicios></soapenv:Body></soapenv:Envelope>
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>wsb:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/"><soapenv:Header/><soapenv:Body><wsb:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></wsb:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</VAS_LATIN>
+	
+	<WAU>
+		<usuario></usuario>
+		<password>w@uCEN539</password>
+		<endpoint>
+		http://wauservices.waumovil.net/ServiceSubscription/SubscriptionAdmin.asmx
+		</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>tem:listaNegra</soapActionUri>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:listaNegra><tem:movil>_*movil_*</tem:movil><tem:accion>_*accion_*</tem:accion><tem:pass>_*pass_*</tem:pass></tem:listaNegra></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>tem:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:consultaServicios><tem:movil>_*movil_*</tem:movil><tem:pass>_*pass_*</tem:pass></tem:consultaServicios></soapenv:Body></soapenv:Envelope>
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>tem:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/"><soapenv:Header/><soapenv:Body><tem:bajaServicios><tem:movil>_*movil_*</tem:movil><tem:servicio>_*servicio_*</tem:servicio><tem:mcorta>_*mcorta_*</tem:mcorta><tem:pass>_*pass_*</tem:pass></tem:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</WAU>
+	
+	<!--No parametrizable RESPONDE como pagina web-->
+	<XURPAS>
+		<usuario></usuario>
+		<password>Sj3pZkO7ioXC</password>
+		<endpoint>http://108.166.12.47</endpoint>
+		
+		<listaNegra>
+			<soapActionUri>urn:listaNegra</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:wsagregadores"><soapenv:Header/><soapenv:Body><urn:listaNegra soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></urn:listaNegra></soapenv:Body></soapenv:Envelope>
+		</listaNegra>
+		<consultaServicios>
+			<soapActionUri>urn:consultaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:wsagregadores"><soapenv:Header/><soapenv:Body><urn:consultaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></urn:consultaServicios></soapenv:Body></soapenv:Envelope>
+		</consultaServicios>
+		<bajaServicios>
+			<soapActionUri>urn:bajaServicios</soapActionUri>
+			<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:wsagregadores"><soapenv:Header/><soapenv:Body><urn:bajaServicios soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></urn:bajaServicios></soapenv:Body></soapenv:Envelope>
+		</bajaServicios>
+		
+	</XURPAS>
+	
+</HONDURAS>

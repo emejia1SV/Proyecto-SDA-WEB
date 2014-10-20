@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- ARCHIVO CREADO  JUEVES-08-OCTUBRE-2014   
+-- ARCHIVO CREADO  JUEVES-09-OCTUBRE-2014   
 -- USUARIO CREADOR Edwin Mejia - Avantia Consultores
 --------------------------------------------------------
 DROP TABLE "CLIENTE_TEL" cascade constraints;
@@ -155,6 +155,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 	"RESPUESTA" CLOB, 
 	"ENVIO" CLOB, 
 	"ESTADO_TRANSACCION" VARCHAR2(255 BYTE), 
+	"DESCRIPCION_ESTADO" VARCHAR2(4000 BYTE), 
 	"FECHA_TRANSACCION" TIMESTAMP (6), 
 	"TIPO_TRANSACCION" VARCHAR2(50 BYTE), 
 	"ID_METODO" NUMBER, 
@@ -171,6 +172,8 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."ENVIO" IS 'archivo enviado al servicio de los agregadores';
  
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."ESTADO_TRANSACCION" IS 'estado de la depuracion la cual sera mostrada en el reporte';
+   
+   COMMENT ON COLUMN "SDA_LOG_DEPURACION"."ESTADO_TRANSACCION" IS 'descripcion del estado de la depuracion la cual sera mostrada en el dialogo del reporte';
  
    COMMENT ON COLUMN "SDA_LOG_DEPURACION"."FECHA_TRANSACCION" IS 'Fecha en la que fue ejecutado la depuracion';
  
@@ -322,7 +325,9 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 
    COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."ID" IS 'pk de la tabla de SDA_RESPUESTAS';
  
-   COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."ID_RESPUESTA" IS 'fk con la tabla de respuestas';
+   COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."ID_RESPUESTA" IS 'fk con la tabla de SDA_RESPUESTAS';
+   
+   COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."ID_RESULTADO" IS 'fk con la tabla de SDA_CAT_RESULTADOS';
  
    COMMENT ON COLUMN "SDA_RESULTADOS_RESPUESTA"."VALOR" IS 'el VALOR que se considerara con el dato que se espera retorne en la respuesta';
  
@@ -333,8 +338,7 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
 
   CREATE TABLE "SDA_USUARIO_SISTEMA" 
    (	"ID" NUMBER, 
-	"USUARIO" VARCHAR2(255 BYTE), 
-	"CONTRASENIA" VARCHAR2(255 BYTE), 
+	"USUARIO" VARCHAR2(255 BYTE),  
 	"ESTADO" NUMBER
    )  ;
  
@@ -342,8 +346,6 @@ DROP SEQUENCE "SQ_SDA_USUARIO_SISTEMA";
    COMMENT ON COLUMN "SDA_USUARIO_SISTEMA"."ID" IS 'pk de la tabla de SDA_USUARIO_SISTEMA';
  
    COMMENT ON COLUMN "SDA_USUARIO_SISTEMA"."USUARIO" IS 'nombre del usuario con permisos de entrar al sistema';
- 
-   COMMENT ON COLUMN "SDA_USUARIO_SISTEMA"."CONTRASENIA" IS 'contrasenia del usuario con permisos de entrar al sistema';
  
    COMMENT ON COLUMN "SDA_USUARIO_SISTEMA"."ESTADO" IS 'estado del usuario con permisos de entrar al sistema';
 
@@ -1801,6 +1803,6 @@ Insert into SDA_RESULTADOS_RESPUESTA (ID,ID_RESPUESTA,VALOR,DATO,ID_RESULTADO) v
 
 commit;
 
-Insert into SDA_USUARIO_SISTEMA (ID,USUARIO,CONTRASENIA,ESTADO) values (1,'admin','admin',1);
+Insert into SDA_USUARIO_SISTEMA (ID,USUARIO,ESTADO) values (1,'admin',1);
 
 commit;
