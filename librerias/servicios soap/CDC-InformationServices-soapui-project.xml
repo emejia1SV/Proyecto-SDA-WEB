@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="CDC_InformationServices" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="InformationServiceSOAP" type="wsdl" bindingName="{http://ws.cdc.tecnotree.com/InformationService/}InformationServiceSOAP" soapVersion="1_1" anonymous="optional" definition="http://172.17.72.244:9090/cdc-service/services/InformationService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://172.17.72.244:9090/cdc-service/services/InformationService?wsdl"><con:part><con:url>http://172.17.72.244:9090/cdc-service/services/InformationService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="InformationService" targetNamespace="http://ws.cdc.tecnotree.com/InformationService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.cdc.tecnotree.com/InformationService/" xmlns:citp="http://type.ws.cdc.tecnotree.com/CDCInformationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://type.ws.cdc.tecnotree.com/InformationService/" xmlns:ctp="http://type.ws.cdc.tecnotree.com/CDCInformationType">
+      <xsd:import namespace="http://type.ws.cdc.tecnotree.com/CDCInformationType" schemaLocation="InformationService?xsd=CDCInformationType.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAllPackagesCRMResponse">
+    <wsdl:part name="parameters" element="citp:getAllPackagesCRMResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubscriberPackagesResponse">
+    <wsdl:part name="parameters" element="citp:getSubscriberPackagesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubscriberPackagesCRMResponse">
+    <wsdl:part name="parameters" element="citp:getSubscriberPackagesCRMResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubscriberPackagesCRMRequest">
+    <wsdl:part name="parameters" element="citp:getSubscriberPackagesCRMRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSubscriberPackagesRequest">
+    <wsdl:part name="parameters" element="citp:getSubscriberPackagesRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPackagesRequest">
+    <wsdl:part name="parameters" element="citp:getAllPackagesRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPackagesCRMRequest">
+    <wsdl:part name="parameters" element="citp:getAllPackagesCRMRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPackagesResponse">
+    <wsdl:part name="parameters" element="citp:getAllPackagesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="InformationService">
+    <wsdl:operation name="getSubscriberPackages">
+      <wsdl:input message="tns:getSubscriberPackagesRequest"></wsdl:input>
+      <wsdl:output message="tns:getSubscriberPackagesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackages">
+      <wsdl:input message="tns:getAllPackagesRequest"></wsdl:input>
+      <wsdl:output message="tns:getAllPackagesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSubscriberPackagesCRM">
+      <wsdl:input message="tns:getSubscriberPackagesCRMRequest"></wsdl:input>
+      <wsdl:output message="tns:getSubscriberPackagesCRMResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackagesCRM">
+      <wsdl:input message="tns:getAllPackagesCRMRequest"></wsdl:input>
+      <wsdl:output message="tns:getAllPackagesCRMResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="InformationServiceSOAP" type="tns:InformationService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getSubscriberPackages">
+      <soap:operation soapAction="http://ws.cdc.tecnotree.com/InformationService/getSubscriberPackages"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackages">
+      <soap:operation soapAction="http://ws.cm.tecnotree.com/InformationService/getAllPackages"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSubscriberPackagesCRM">
+      <soap:operation soapAction="http://ws.cdc.tecnotree.com/InformationService/getSubscriberPackagesCRM"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackagesCRM">
+      <soap:operation soapAction="http://ws.cm.tecnotree.com/InformationService/getAllPackagesCRM"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InformationService">
+    <wsdl:port name="InformationServiceSOAP" binding="tns:InformationServiceSOAP">
+      <soap:address location="http://172.17.72.244:9090/cdc-service/services/InformationService/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://172.17.72.244:9090/cdc-service/services/InformationService?xsd=CDCInformationType.xsd</con:url><con:content><![CDATA[<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://type.ws.cdc.tecnotree.com/CDCInformationType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://type.ws.cdc.tecnotree.com/CDCInformationType/" xmlns:tns="http://type.ws.cdc.tecnotree.com/CDCInformationType" xmlns:cctp="http://type.ws.cdc.tecnotree.com/CDCCommonType" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <xsd:import namespace="http://type.ws.cdc.tecnotree.com/CDCCommonType" schemaLocation="InformationService?xsd=CDCCommonType.xsd"/>
+  <xsd:element name="getSubscriberPackagesRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="msisdn" type="xsd:string"/>
+        <xsd:element name="providerId" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="applicationId" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="originId" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="serviceId" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="packageId" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getSubscriberPackagesCRMRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="msisdn" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="providerId" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="applicationId" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="originId" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="serviceId" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="packageId" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getSubscriberPackagesResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="GenericResponse" type="cctp:GenericResponseType"/>
+        <xsd:element minOccurs="0" name="SubscriberPackages" nillable="true" type="tns:SubscriberPackagesType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getSubscriberPackagesCRMResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="GenericResponse" type="cctp:GenericResponseType"/>
+        <xsd:element minOccurs="0" name="SubscriberPackages" nillable="true" type="tns:SubscriberPackagesType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="isBlacklistedRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="msisdn" type="xsd:string"/>
+        <xsd:element name="providerId" type="xsd:long"/>
+        <xsd:element name="origionId" type="xsd:long"/>
+        <xsd:element name="channel" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="isBlacklistedResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="GenericResponse" type="cctp:GenericResponseType"/>
+        <xsd:element minOccurs="0" name="blacklistInformation" nillable="true" type="tns:BlackListType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getAllPackagesRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="providerId" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getAllPackagesCRMRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="providerId" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="SubscriberPackageType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="subscriptionId" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="msisdn" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="providerId" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="applicationId" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="origionId" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="serviceId" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="tariffId" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="packageId" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="packageName" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="packageDescription" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="packageCredits" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="balanceCredits" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="chargeOnDelivery" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="activationDate" nillable="true" type="xsd:date"/>
+      <xsd:element minOccurs="0" name="activationChannel" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="expirationDate" nillable="true" type="xsd:date"/>
+      <xsd:element minOccurs="0" name="autoRenewFlag" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="autoRenewNotification" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="autoRenewNoticeDate" nillable="true" type="xsd:date"/>
+      <xsd:element minOccurs="0" name="status" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="BlackListType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="msisdn" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="providerId" nillable="true" type="xsd:long"/>
+      <xsd:element minOccurs="0" name="origionId" nillable="true" type="xsd:long"/>
+      <xsd:element name="channel" type="xsd:string"/>
+      <xsd:element name="requestType">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MO"/>
+            <xsd:enumeration value="MT"/>
+            <xsd:enumeration value="BOTH"/>
+            <xsd:enumeration value="NONE"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubscriberPackagesType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="subscriberPackage" nillable="true" type="tns:SubscriberPackageType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="packageDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="providerId" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="packageId" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="packageName" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="packageDescription" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="pacakgeCredits" nillable="true" type="xsd:double"/>
+      <xsd:element minOccurs="0" name="packagePrice" nillable="true" type="xsd:double"/>
+      <xsd:element minOccurs="0" name="packageType" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="chargeCodeID" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="packageDetailType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="packageDetail" nillable="true" type="tns:packageDetail"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getAllPackagesResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="GenericResponse" type="cctp:GenericResponseType"/>
+        <xsd:element minOccurs="0" name="packageDetails" nillable="true" type="tns:packageDetailType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="getAllPackagesCRMResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="GenericResponse" type="cctp:GenericResponseType"/>
+        <xsd:element minOccurs="0" name="packageDetails" nillable="true" type="tns:packageDetailType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://172.17.72.244:9090/cdc-service/services/InformationService?xsd=CDCCommonType.xsd</con:url><con:content><![CDATA[<xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://type.ws.cdc.tecnotree.com/CDCCommonType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://type.ws.cdc.tecnotree.com/CDCCommonType/" xmlns:cns="http://type.ws.cdc.tecnotree.com/CDCCommonType" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <xsd:complexType name="GenericResponseType">
+    <xsd:sequence>
+      <xsd:element name="transId" type="xsd:string"/>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubscriptionResponseType">
+    <xsd:sequence>
+      <xsd:element name="providerId" type="xsd:string"/>
+      <xsd:element name="originid" type="xsd:string"/>
+      <xsd:element name="msisdn" type="xsd:string"/>
+      <xsd:element name="subscriptionId" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ShortMessageType">
+    <xsd:sequence>
+      <xsd:element name="messageType" type="xsd:int"/>
+      <xsd:element name="messageHeader" nillable="true" type="xsd:string"/>
+      <xsd:element name="messageBody" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AuthenticationRequestType">
+    <xsd:sequence>
+      <xsd:element name="userId" type="xsd:string"/>
+      <xsd:element name="password" type="xsd:string"/>
+      <xsd:element name="moduleNumber" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AuthenticationResponseType">
+    <xsd:sequence>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+      <xsd:element name="moduleNumber" type="xsd:int"/>
+      <xsd:element name="rightsTypeId" type="xsd:int"/>
+      <xsd:element name="rightsType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ServiceRequestType">
+    <xsd:sequence>
+      <xsd:element name="authenticationRequest" type="cns:AuthenticationRequestType"/>
+      <xsd:element minOccurs="0" name="pageRequest" nillable="true" type="cns:PageRequestType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ServiceResponseType">
+    <xsd:sequence>
+      <xsd:element name="responseCode" type="xsd:int"/>
+      <xsd:element name="responseMessage" type="xsd:string"/>
+      <xsd:element name="authenticationResponse" type="cns:AuthenticationResponseType"/>
+      <xsd:element minOccurs="0" name="pageResponse" nillable="true" type="cns:PageResponseType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PageRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="pageNumber" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PageResponseType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="numberOfRecords" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="totalNumberOfRecords" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="currentPage" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="totalPage" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DeliverResponseType">
+    <xsd:sequence>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubmitResponseType">
+    <xsd:sequence>
+      <xsd:element name="transId" nillable="true" type="xsd:string"/>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DeliverContentResponseType">
+    <xsd:sequence>
+      <xsd:element name="chargeFlag" type="xsd:string"/>
+      <xsd:element name="statusCode" type="xsd:int"/>
+      <xsd:element name="statusMessage" type="xsd:string"/>
+      <xsd:element name="responseMessage" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="bonusChrgDate">
+    <xsd:sequence>
+      <xsd:element name="bonusChrgFromDate" type="xsd:date"/>
+      <xsd:element minOccurs="0" name="bonusChrgToDate" nillable="true" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="bonusChrgDates">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="bonusChrgDate" nillable="true" type="cns:bonusChrgDate"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="bonusChrgDetail">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="bonusChrgType" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="bonusChrgRetries" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="bonusChrgDates" nillable="true" type="cns:bonusChrgDates"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="tariffDetail">
+    <xsd:sequence>
+      <xsd:element name="providerId" type="xsd:string"/>
+      <xsd:element name="applicationId" type="xsd:int"/>
+      <xsd:element name="serviceId" type="xsd:int"/>
+      <xsd:element name="originId" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="tariff">
+    <xsd:sequence>
+      <xsd:element name="tariffId" type="xsd:int"/>
+      <xsd:element name="tariffDetail" type="cns:tariffDetail"/>
+      <xsd:element name="isSubscription" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="bonusChrgDetails" nillable="true" type="cns:bonusChrgDetail"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="tariffList">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="tariff" type="cns:tariff"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="updateAllTariffRequestType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="tariffList" type="cns:tariffList"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://172.17.72.244:9090/cdc-service/services/InformationService/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://ws.cm.tecnotree.com/InformationService/getAllPackages" name="getAllPackages" bindingOperationName="getAllPackages" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.17.72.244:9090/cdc-service/services/InformationService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cdc="http://type.ws.cdc.tecnotree.com/CDCInformationType">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cdc:getAllPackagesRequest>
+         <cdc:providerId>?</cdc:providerId>
+      </cdc:getAllPackagesRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cm.tecnotree.com/InformationService/getAllPackages"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://ws.cm.tecnotree.com/InformationService/getAllPackagesCRM" name="getAllPackagesCRM" bindingOperationName="getAllPackagesCRM" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.17.72.244:9090/cdc-service/services/InformationService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cdc="http://type.ws.cdc.tecnotree.com/CDCInformationType">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cdc:getAllPackagesCRMRequest>
+         <cdc:providerId>?</cdc:providerId>
+      </cdc:getAllPackagesCRMRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cm.tecnotree.com/InformationService/getAllPackagesCRM"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://ws.cdc.tecnotree.com/InformationService/getSubscriberPackages" name="getSubscriberPackages" bindingOperationName="getSubscriberPackages" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.17.72.244:9090/cdc-service/services/InformationService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cdc="http://type.ws.cdc.tecnotree.com/CDCInformationType">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cdc:getSubscriberPackagesRequest>
+         <cdc:msisdn>?</cdc:msisdn>
+         <cdc:providerId>?</cdc:providerId>
+         <cdc:applicationId>?</cdc:applicationId>
+         <cdc:originId>?</cdc:originId>
+         <cdc:serviceId>?</cdc:serviceId>
+         <cdc:packageId>?</cdc:packageId>
+      </cdc:getSubscriberPackagesRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdc.tecnotree.com/InformationService/getSubscriberPackages"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://ws.cdc.tecnotree.com/InformationService/getSubscriberPackagesCRM" name="getSubscriberPackagesCRM" bindingOperationName="getSubscriberPackagesCRM" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://172.17.72.244:9090/cdc-service/services/InformationService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cdc="http://type.ws.cdc.tecnotree.com/CDCInformationType">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cdc:getSubscriberPackagesCRMRequest>
+         <cdc:msisdn>?</cdc:msisdn>
+         <cdc:providerId>?</cdc:providerId>
+         <cdc:applicationId>?</cdc:applicationId>
+         <cdc:originId>?</cdc:originId>
+         <cdc:serviceId>?</cdc:serviceId>
+         <cdc:packageId>?</cdc:packageId>
+      </cdc:getSubscriberPackagesCRMRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdc.tecnotree.com/InformationService/getSubscriberPackagesCRM"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

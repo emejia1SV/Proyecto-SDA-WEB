@@ -10,9 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.primefaces.context.RequestContext;
 
-import sv.avantia.depurador.agregadores.entidades.Agregadores;
-import sv.avantia.depurador.agregadores.entidades.Pais;
-import sv.avantia.depurador.agregadores.hilo.ConsultaAgregadorPorHilo;
+import sv.avantia.depurador.agregadores.hilo.GestionarParametrizacion;
 import sv.avantia.depurador.agregadores.jdbc.BdEjecucion;
 import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 
@@ -69,30 +67,10 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 			if(getNumerosMoviles().size()>0) 
 			{
 				setEjecucion(new BdEjecucion());
-				//consultar la parametrización
-				for (Pais pais : obtenerParmetrizacion()) 
-				{
-					if(pais.getEstado()==1)
-					{
-						for (Agregadores agregador : pais.getAgregadores()) 
-						{
-							if(agregador.getEstado()==1)
-							{
-								if(!agregador.getMetodos().isEmpty())
-								{
-									//abrir un hilo pr cada agregador parametrizados
-									ConsultaAgregadorPorHilo hilo = new ConsultaAgregadorPorHilo();
-									hilo.setMoviles(getNumerosMoviles());
-									hilo.setAgregador(agregador);
-									hilo.setTipoDepuracion("UNITARIA");
-									hilo.setUsuarioSistema(getUsuarioSessionMB().getUsuarioSession());
-									hilo.start();
-								}
-							}
-						}
-					}
-				}
-				lanzarMensajeInformacion("Flujo", "Se termino de procesar exitosamente");
+				
+				//gestionar la logica de la depuracion
+				GestionarParametrizacion gestion = new GestionarParametrizacion();
+				gestion.depuracionBajaMasiva(getNumerosMoviles(), "UNITARIA", false);
 			}
 			else
 			{
@@ -109,22 +87,8 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 			setNumerosMoviles(null);
 			setEjecucion(null);
 			RequestContext.getCurrentInstance().update("IDFrmPrincipal");
+			lanzarMensajeInformacion("Flujo", "Se termino de procesar exitosamente");
 		}
-	}
-	
-	/**
-	 * Obtener insumo de parametrización para consultar a los agregadores
-	 * 
-	 * @author Edwin Mejia - Avantia Consultores
-	 * @return {@link List} paises con sus dependencias en la base de datos
-	 * @throws Exception
-	 *             podria generarse una exepcion en el momento de ejecutar la
-	 *             consulta a la base de datos
-	 * */
-	@SuppressWarnings("unchecked")
-	public List<Pais> obtenerParmetrizacion() throws Exception 
-	{
-		return (List<Pais>)(List<?>) getEjecucion().listData("FROM SDA_PAISES WHERE STATUS = 1 AND CODIGO = '" + getNumeroMovil().substring(0, 3) + "'" );
 	}
 	
 	/**

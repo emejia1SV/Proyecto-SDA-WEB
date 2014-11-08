@@ -20,21 +20,44 @@ import sv.avantia.depurador.agregadores.utils.AccionesManageBean;
 public class ReportesBean extends AccionesManageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Listado de depuracion que han sido realizadas de las cuales se mostrara el reporte
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
 	private List<LogDepuracion> depuraciones;
+	
+	/**
+	 * Parametros que nos serviran para filtrar las fechas
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
 	private Date filterTripDateFrom, filterTripDateTo;
+	
 	/**
 	 * Instancia para ser manejada en el dialogo del reporte
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
 	 * */
 	private LogDepuracion logDepuracion;
 	
+	/**
+	 * Metodo de tipo post contruct para inicializar los valores prinicipales
+	 * del bean para su buena ejecución
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
 	@PostConstruct
-	public void init(){
+	public void init()
+	{
 		setLogDepuracion(new LogDepuracion());
 		llenarTablaLogs();
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void llenarTablaLogs() {
+	private void llenarTablaLogs() 
+	{
 		try 
 		{
 			setDepuraciones(((List<LogDepuracion>) (List<?>) getEjecucion().listData("FROM SDA_LOG_DEPURACION")));
@@ -46,34 +69,66 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 		}
 	}
 	
+	/**
+	 * Metodo que genera los filtros de las fechas en el momento que sea
+	 * seleccionada una fecha en pantalla
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
 	@SuppressWarnings("unchecked")
-	public void filtrarPorFechaSeleccionada(){
+	public void filtrarPorFechaSeleccionada()
+	{
 		String query = "FROM SDA_LOG_DEPURACION";
-		if(getFilterTripDateFrom()!=null && getFilterTripDateTo()== null){
+		
+		if(getFilterTripDateFrom()!=null && getFilterTripDateTo()== null)
 			query = "from SDA_LOG_DEPURACION WHERE FECHA_TRANSACCION > TO_DATE('"+ getDateFromDateTime(getFilterTripDateFrom()) +"','DD/MM/YYYY')";
-		}
-		if(getFilterTripDateFrom()==null && getFilterTripDateTo()!= null){
-			query = "from SDA_LOG_DEPURACION WHERE FECHA_TRANSACCION < TO_DATE('"+ getDateFromDateTime(getFilterTripDateTo()) +"','DD/MM/YYYY')";
-		}
-		if(getFilterTripDateFrom()!=null && getFilterTripDateTo()!= null){
-			query = "from SDA_LOG_DEPURACION WHERE FECHA_TRANSACCION BETWEEN TO_DATE('"+ getDateFromDateTime(getFilterTripDateFrom()) +"','DD/MM/YYYY') AND TO_DATE('"+ getDateFromDateTime(getFilterTripDateTo()) +"','DD/MM/YYYY')";
-		}
+		
+		if(getFilterTripDateFrom()==null && getFilterTripDateTo()!= null)
+			query = "from SDA_LOG_DEPURACION WHERE FECHA_TRANSACCION < TO_DATE('"+ getDateFromDateTime(getFilterTripDateTo()) +"','DD/MM/YYYY')+1";
+		
+		if(getFilterTripDateFrom()!=null && getFilterTripDateTo()!= null)
+			query = "from SDA_LOG_DEPURACION WHERE FECHA_TRANSACCION BETWEEN TO_DATE('"+ getDateFromDateTime(getFilterTripDateFrom()) +"','DD/MM/YYYY') AND TO_DATE('"+ getDateFromDateTime(getFilterTripDateTo()) +"','DD/MM/YYYY')+1";
+		
 		setDepuraciones(((List<LogDepuracion>) (List<?>) getEjecucion().listData(query)));
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
 	}
 	
-	private String getDateFromDateTime (Date date) {
+	/**
+	 * Metodo que devuelve la fecha en el formato esperado para realizar el
+	 * filtro al reporte
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @param date de tipo {@link Date}
+	 * @return {@link String} fecha formateada dd/MM/yyyy
+	 * */
+	private String getDateFromDateTime (Date date) 
+	{
         SimpleDateFormat dtFormatter= new SimpleDateFormat("dd/MM/yyyy");
         return dtFormatter.format(date);
     }
 	
-	public void limpiarFechas(){
+	/**
+	 * Metodo que realiza la limpieza de los campos de fecha en la pantalla
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * */
+	public void limpiarFechas()
+	{
 		setFilterTripDateFrom(null);
 		setFilterTripDateTo(null);
 		RequestContext.getCurrentInstance().update("IDFrmPrincipal");
 	}
 	
-	public String metodoLabel(Integer id){
+	/**
+	 * Metodo que muestra el nombre del metodo a partir del id guardado en la
+	 * base de datos
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @param id
+	 * @return {@link String} con el nombre del metodo
+	 * */
+	public String metodoLabel(Integer id)
+	{
 		if(id==1)
 			return "Lista Negra";
 		else if (id==2)
@@ -82,6 +137,19 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 			return "Baja de Servicios";
 		else
 			return "";
+	}
+
+	/**
+	 * cuando alguien seleccione una fila del reporte se levantara un dialogo informando mas detalladamente el porque del estado de la transaccion
+	 * 
+	 * @author Edwin Mejia - Avantia Consultores
+	 * @param event {@link SelectEvent}
+	 * @return void
+	 * */
+	public void onRowSelect(SelectEvent event){
+		setLogDepuracion((LogDepuracion)event.getObject());
+		RequestContext.getCurrentInstance().execute("WVDialogReporte.show()");
+		RequestContext.getCurrentInstance().update("IDFrmDialogReporte");
 	}
 	
 	/**
@@ -119,18 +187,11 @@ public class ReportesBean extends AccionesManageBean implements Serializable {
 		return depuraciones;
 	}
 
-
 	/**
 	 * @param depuraciones the depuraciones to set
 	 */
 	public void setDepuraciones(List<LogDepuracion> depuraciones) {
 		this.depuraciones = depuraciones;
-	}
-	
-	public void onRowSelect(SelectEvent event){
-		setLogDepuracion((LogDepuracion)event.getObject());
-		RequestContext.getCurrentInstance().execute("WVDialogReporte.show()");
-		RequestContext.getCurrentInstance().update("IDFrmDialogReporte");
 	}
 
 	/**

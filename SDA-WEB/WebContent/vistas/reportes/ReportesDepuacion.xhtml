@@ -91,16 +91,16 @@
 					<p:column 	style="#{msj['p.column_width_diminuto']}" 
 								headerText="#{msj['reporte.pais']}"
 								filterStyle="#{msj['p.column_filter']}"
-								filterBy="#{VDataTblReporte.metodo.agregador.pais.nombre}"
+								filterBy="#{VDataTblReporte.respuestaFK.metodo.agregador.pais.nombre}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.metodo.agregador.pais.nombre}" />
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.respuestaFK.metodo.agregador.pais.nombre}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.agregador']}"
 								filterStyle="#{msj['p.column_filter']}"
-								filterBy="#{VDataTblReporte.metodo.agregador.nombre_agregador}"
+								filterBy="#{VDataTblReporte.respuestaFK.metodo.agregador.nombre_agregador}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.metodo.agregador.nombre_agregador}" />
+						<h:outputText style="font-size:10px;" value="#{VDataTblReporte.respuestaFK.metodo.agregador.nombre_agregador}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.suscriptor']}"
@@ -112,9 +112,9 @@
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.metodo']}"
 								filterStyle="#{msj['p.column_filter']}"
-								filterBy="#{reportesBean.metodoLabel(VDataTblReporte.metodo.metodo)}"
+								filterBy="#{reportesBean.metodoLabel(VDataTblReporte.respuestaFK.metodo.metodo)}"
 								filterMatchMode="contains">
-						<h:outputText style="font-size:10px;" value="#{reportesBean.metodoLabel(VDataTblReporte.metodo.metodo)}" />
+						<h:outputText style="font-size:10px;" value="#{reportesBean.metodoLabel(VDataTblReporte.respuestaFK.metodo.metodo)}" />
 					</p:column>
 					<p:column 	style="#{msj['p.column_width_diminuto']}"
 								headerText="#{msj['reporte.empleado']}" 
@@ -163,7 +163,7 @@
 							<h:outputText value="#{msj['reporte.agregador']}" />
 						</p:column>
 						<p:column>
-							<h:outputText value="#{reportesBean.logDepuracion.metodo.agregador.nombre_agregador}" />
+							<h:outputText value="#{reportesBean.logDepuracion.respuestaFK.metodo.agregador.nombre_agregador}" />
 						</p:column>
 					</p:row>
 					<p:row>
