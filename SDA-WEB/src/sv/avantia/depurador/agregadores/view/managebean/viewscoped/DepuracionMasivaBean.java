@@ -148,10 +148,9 @@ public class DepuracionMasivaBean extends AccionesManageBean implements Serializ
 			{
 				setEjecucion(new BdEjecucion());
 				
-				//TODO: se necesita importar el jar para que se lea esta clase
 				//gestionar la logica de la depuracion
 				GestionarParametrizacion gestion = new GestionarParametrizacion();
-				gestion.depuracionBajaMasiva(getNumerosMoviles(), "ARCHIVO", false);
+				gestion.depuracionBajaMasiva(getUsuarioSessionMB().getUsuarioSession(), getNumerosMoviles(), "ARCHIVO", false);
 			}
 			else
 			{

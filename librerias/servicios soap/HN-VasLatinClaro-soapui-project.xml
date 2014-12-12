@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="HN_VasLatinClaro" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="wsBajasVasLatinClaroBinding" type="wsdl" bindingName="{http://wsbjopt.vaslatin.com/}wsBajasVasLatinClaroBinding" soapVersion="1_1" anonymous="optional" definition="http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php?wsdl"><con:part><con:url>http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://wsbjopt.vaslatin.com/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://wsbjopt.vaslatin.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="http://wsbjopt.vaslatin.com/">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+    </xsd:schema>
+  </types>
+  <message name="consultaServiciosRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="consultaServiciosResponse">
+    <part name="return" type="xsd:Array"/>
+  </message>
+  <message name="bajaServiciosRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="mcorta" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="bajaServiciosResponse">
+    <part name="return" type="xsd:Array"/>
+  </message>
+  <message name="listaNegraRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="accion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="listaNegraResponse">
+    <part name="return" type="xsd:Array"/>
+  </message>
+  <message name="altaServicioRequest">
+    <part name="movil" type="xsd:string"/>
+    <part name="servicio" type="xsd:string"/>
+    <part name="marcacion" type="xsd:string"/>
+    <part name="pass" type="xsd:string"/>
+  </message>
+  <message name="altaServicioResponse">
+    <part name="return" type="xsd:Array"/>
+  </message>
+  <portType name="wsBajasVasLatinClaroPortType">
+    <operation name="consultaServicios">
+      <documentation>Get</documentation>
+      <input message="tns:consultaServiciosRequest"/>
+      <output message="tns:consultaServiciosResponse"/>
+    </operation>
+    <operation name="bajaServicios">
+      <documentation>Get</documentation>
+      <input message="tns:bajaServiciosRequest"/>
+      <output message="tns:bajaServiciosResponse"/>
+    </operation>
+    <operation name="listaNegra">
+      <documentation>Get</documentation>
+      <input message="tns:listaNegraRequest"/>
+      <output message="tns:listaNegraResponse"/>
+    </operation>
+    <operation name="altaServicio">
+      <documentation>Get</documentation>
+      <input message="tns:altaServicioRequest"/>
+      <output message="tns:altaServicioResponse"/>
+    </operation>
+  </portType>
+  <binding name="wsBajasVasLatinClaroBinding" type="tns:wsBajasVasLatinClaroPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consultaServicios">
+      <soap:operation soapAction="http://wsbjopt.vaslatin.com/#consultaServicios" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="http://wsbjopt.vaslatin.com/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://wsbjopt.vaslatin.com/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="bajaServicios">
+      <soap:operation soapAction="http://wsbjopt.vaslatin.com/#bajaServicios" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="http://wsbjopt.vaslatin.com/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://wsbjopt.vaslatin.com/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="listaNegra">
+      <soap:operation soapAction="http://wsbjopt.vaslatin.com/#listaNegra" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="http://wsbjopt.vaslatin.com/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://wsbjopt.vaslatin.com/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="altaServicio">
+      <soap:operation soapAction="http://wsbjopt.vaslatin.com/#altaServicio" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="http://wsbjopt.vaslatin.com/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://wsbjopt.vaslatin.com/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="wsBajasVasLatinClaro">
+    <port name="wsBajasVasLatinClaroPort" binding="tns:wsBajasVasLatinClaroBinding">
+      <soap:address location="http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://wsbjopt.vaslatin.com/#altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsb:altaServicio soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <movil xsi:type="xsd:string">?</movil>
+         <servicio xsi:type="xsd:string">?</servicio>
+         <marcacion xsi:type="xsd:string">?</marcacion>
+         <pass xsi:type="xsd:string">?</pass>
+      </wsb:altaServicio>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wsbjopt.vaslatin.com/#altaServicio"/></con:call></con:operation><con:operation isOneWay="false" action="http://wsbjopt.vaslatin.com/#bajaServicios" name="bajaServicios" bindingOperationName="bajaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsb:bajaServicios>
+         <movil xsi:type="xsd:string">50488913684</movil>
+         <servicio xsi:type="xsd:string">test</servicio>
+         <mcorta xsi:type="xsd:string">1234</mcorta>
+         <pass xsi:type="xsd:string">nc#Cb411</pass>
+      </wsb:bajaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+<!--
+nc#Cb411
+http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php
+<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/"><soapenv:Header/><soapenv:Body><wsb:bajaServicios><movil xsi:type="xsd:string">_*movil_*</movil><servicio xsi:type="xsd:string">_*servicio_*</servicio><mcorta xsi:type="xsd:string">_*mcorta_*</mcorta><pass xsi:type="xsd:string">_*pass_*</pass></wsb:bajaServicios></soapenv:Body></soapenv:Envelope>
+wsb:bajaServicios
+text/xml;charset=UTF-8
+-->]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wsbjopt.vaslatin.com/#bajaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://wsbjopt.vaslatin.com/#consultaServicios" name="consultaServicios" bindingOperationName="consultaServicios" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsb:consultaServicios>
+         <movil xsi:type="xsd:string">50488913684</movil>
+         <pass xsi:type="xsd:string">nc#Cb411</pass>
+      </wsb:consultaServicios>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+<!--
+nc#Cb411
+http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php
+<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/"><soapenv:Header/><soapenv:Body><wsb:consultaServicios><movil xsi:type="xsd:string">_*movil_*</movil><pass xsi:type="xsd:string">_*pass_*</pass></wsb:consultaServicios></soapenv:Body></soapenv:Envelope>
+wsb:consultaServicios
+text/xml;charset=UTF-8
+-->]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wsbjopt.vaslatin.com/#consultaServicios"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://wsbjopt.vaslatin.com/#listaNegra" name="listaNegra" bindingOperationName="listaNegra" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsb:listaNegra>
+         <movil xsi:type="xsd:string">50488913684</movil>
+         <accion xsi:type="xsd:string">3</accion>
+         <pass xsi:type="xsd:string">nc#Cb411</pass>
+      </wsb:listaNegra>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- 
+nc#Cb411
+http://wsbjopt.vaslatin.com:8080/wsBajasClaro/wsBajasVasLatinClaro.php
+<soapenv:Envelope soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsb="http://wsbjopt.vaslatin.com/"><soapenv:Header/><soapenv:Body><wsb:listaNegra><movil xsi:type="xsd:string">_*movil_*</movil><accion xsi:type="xsd:string">_*accion_*</accion><pass xsi:type="xsd:string">_*pass_*</pass></wsb:listaNegra></soapenv:Body></soapenv:Envelope>
+wsb:listaNegra
+text/xml;charset=UTF-8
+-->]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wsbjopt.vaslatin.com/#listaNegra"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

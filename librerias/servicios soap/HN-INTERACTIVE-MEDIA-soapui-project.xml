@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="HN_INTERACTIVE MEDIA" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ServiceSoap" type="wsdl" bindingName="{http://tempuri.org/}ServiceSoap" soapVersion="1_1" anonymous="optional" definition="http://208.109.106.202/clarows/Service.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://208.109.106.202/clarows/Service.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://tempuri.org/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://208.109.106.202/clarows/Service.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+<con:soapui-project activeEnvironment="Default" name="HN_INTERACTIVE MEDIA" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ServiceSoap" type="wsdl" bindingName="{http://tempuri.org/}ServiceSoap" soapVersion="1_1" anonymous="optional" definition="http://208.109.106.202/clarows/Service.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://208.109.106.202/clarows/Service.asmx</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://tempuri.org/altaServicio" name="altaServicio" bindingOperationName="altaServicio" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://208.109.106.202/clarows/Service.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
    <soapenv:Header/>
    <soapenv:Body>
       <tem:altaServicio>
@@ -17,7 +17,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <tem:bajaServicios>
-         <tem:movil>50477494676</tem:movil>
+         <tem:movil>50433977867</tem:movil>
          <tem:servicio>test</tem:servicio>
          <tem:mcorta>1234</tem:mcorta>
          <tem:pass>1234</tem:pass>
@@ -27,7 +27,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <tem:consultaServicios>
-         <tem:movil>50477494676</tem:movil>
+         <tem:movil>50433977867</tem:movil>
          <tem:pass>1234</tem:pass>
       </tem:consultaServicios>
    </soapenv:Body>
@@ -35,8 +35,8 @@
    <soapenv:Header/>
    <soapenv:Body>
       <tem:listaNegra>
-         <tem:movil>50477494676</tem:movil>
-         <tem:accion>2</tem:accion>
+         <tem:movil>50433977867</tem:movil>
+         <tem:accion>3</tem:accion>
          <tem:pass>1234</tem:pass>
       </tem:listaNegra>
    </soapenv:Body>

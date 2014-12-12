@@ -17,7 +17,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <tem:bajaServicios>
-         <tem:movil>50477494676</tem:movil>
+         <tem:movil>50433977867</tem:movil>
          <tem:servicio>test</tem:servicio>
          <tem:mcorta>1234</tem:mcorta>
          <tem:pass>claro</tem:pass>
@@ -31,7 +31,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <tem:consultaServicios>
-         <tem:movil>50477494676</tem:movil>
+         <tem:movil>50433977867</tem:movil>
          <tem:pass>claro</tem:pass>
       </tem:consultaServicios>
    </soapenv:Body>
@@ -43,7 +43,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <tem:listaNegra>
-         <tem:movil>50477494676</tem:movil>
+         <tem:movil>50433977867</tem:movil>
          <tem:accion>2</tem:accion>
          <tem:pass>claro</tem:pass>
       </tem:listaNegra>

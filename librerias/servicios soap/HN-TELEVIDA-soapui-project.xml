@@ -133,7 +133,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <urn:consultaServicios>
-         <movil>50677494676</movil>
+         <movil>50488913684</movil>
          <pass>Pa55w0rd</pass>
       </urn:consultaServicios>
    </soapenv:Body>
@@ -145,7 +145,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <urn:listaNegra>
-         <movil>50477494676</movil>
+         <movil>50433977867</movil>
          <accion>2</accion>
          <pass>Pa55w0rd</pass>
       </urn:listaNegra>

@@ -70,7 +70,7 @@ public class DepuracionUnitariaBean extends AccionesManageBean implements Serial
 				
 				//gestionar la logica de la depuracion
 				GestionarParametrizacion gestion = new GestionarParametrizacion();
-				gestion.depuracionBajaMasiva(getNumerosMoviles(), "UNITARIA", false);
+				gestion.depuracionBajaMasiva(getUsuarioSessionMB().getUsuarioSession(), getNumerosMoviles(), "UNITARIA", false);
 			}
 			else
 			{
